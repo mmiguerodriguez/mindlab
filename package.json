@@ -1,0 +1,33 @@
+{
+  "name": "diamond-courses",
+  "private": true,
+  "scripts": {
+    "start": "meteor run --port 8080 --settings settings.json"
+  },
+  "dependencies": {
+    "apollo-client": "^0.5.0",
+    "apollo-server": "^0.3.2",
+    "bcrypt": "^0.8.7",
+    "body-parser": "^1.15.2",
+    "classnames": "^2.2.5",
+    "express": "^4.14.0",
+    "graphql": "^0.7.0",
+    "graphql-server-express": "^0.4.3",
+    "graphql-tag": "^0.1.13",
+    "graphql-tools": "^0.8.0",
+    "graphql-typings": "0.0.1-beta-2",
+    "invariant": "^2.2.1",
+    "meteor-node-stubs": "~0.2.0",
+    "react": "^15.3.1",
+    "react-addons-pure-render-mixin": "^15.3.1",
+    "react-apollo": "^0.5.16",
+    "react-dom": "^15.3.1",
+    "react-komposer": "^1.13.1",
+    "react-router": "^3.0.0",
+    "web-push": "^3.2.1"
+  },
+  "devDependencies": {
+    "babel-plugin-transform-class-properties": "^6.19.0",
+    "babel-preset-env": "^1.1.4"
+  }
+}
