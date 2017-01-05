@@ -1,29 +1,36 @@
 import React from 'react';
 
-class WelcomeMenu extends React.Component {
-  constructor(props) {
-    super(props)
-  }
-  static propTypes = {
-    pagesCount: React.PropTypes.number.isRequired,
-    currentPosition: React.PropTypes.number.isRequired,
-  }
-  render() {
-    const pageBubblesArray = new Array(this.props.pagesCount).fill(
-      <div className="page-bubble" />
+/**
+ * WelcomeMenu: renders menu on the bottom of welcome page
+ * @param {Integer} pagesCount      Quantity of items in welcomePage
+ * @param {Integer} currentPosition Index of currently selected item
+ */
+const WelcomeMenu = ({ pagesCount, currentPosition }) => {
+  const pageBubblesArray = new Array(pagesCount) // prepare the array
+    .fill(true) // every element needs to be defined to be executed in the map
+    .map((_, index) =>
+      <div
+        key={index}
+        className={`page-bubble ${
+          currentPosition === index &&
+          'active'
+        }`}
+      />
     );
-    //pageBubblesArray[this.props.currentPosition].className = active;
-    return (
-      <div id="welcome-menu">
-        <a>SALTAR</a>
-        <div id="bubbles-container">
-          {pageBubblesArray}
-          
-        </div>
-        <a>></a>
+  return (
+    <div id="welcome-menu">
+      <a>SALTAR</a>
+      <div id="bubbles-container">
+        {pageBubblesArray}
       </div>
-    );
-  }
-}
+      <a> &gt; </a> {/* > */}
+    </div>
+  );
+};
+
+WelcomeMenu.propTypes = {
+  pagesCount: React.PropTypes.number.isRequired,
+  currentPosition: React.PropTypes.number.isRequired,
+};
 
 export default WelcomeMenu;
