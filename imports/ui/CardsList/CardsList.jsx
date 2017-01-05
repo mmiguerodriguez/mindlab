@@ -2,7 +2,11 @@ import React from 'react';
 
 class CardsList extends React.Component {
   render() {
-    return (null);
+    return (
+    <div>
+    aasdfsafsad
+    </div>
+    );
   }
 }
 

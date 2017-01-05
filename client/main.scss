@@ -1,3 +1,10 @@
-#login-dropdown-list {
-  position: relative;
+@import '../imports/ui/WelcomePage/WelcomePage';
+@import '../imports/ui/WelcomePage/WelcomeItem/WelcomeItem';
+@import '../imports/ui/WelcomePage/WelcomeMenu/WelcomeMenu';
+
+html, 
+body,
+#app {
+    height: 100%;
+    margin: 0;
 }

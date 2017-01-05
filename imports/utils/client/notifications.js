@@ -13,11 +13,10 @@ const Notifications = {
     if ('serviceWorker' in window.navigator && 'PushManager' in window) {
       window.navigator.serviceWorker
       .register('worker.js')
-      .then((workerRegistration) => {
-        console.log('Service Worker is registered', workerRegistration);
+      .then((worker) => {
+        console.log('Service Worker is registered', worker);
     
-        self.worker = workerRegistration;
-        
+        self.worker = worker;
         self.initialiseUI();
       })
       .catch((error) => {
@@ -31,14 +30,13 @@ const Notifications = {
   initialiseUI() {
     const self = this;
 
-    self.worker.pushManager.getSubscription()
+    this.worker.pushManager.getSubscription()
     .then((subscription) => {
       const _subscribed = !(subscription === null);
 
       self.subscribed = _subscribed;
   
       if (self.subscribed) {
-        console.log('User is already subscribed');
         self.updateUserSubscription(subscription);
       } else {
         self.subscribe();
@@ -54,8 +52,6 @@ const Notifications = {
       applicationServerKey: applicationServerKey,
     })
     .then((subscription) => {
-      console.log('User is subscribed:', subscription);
-
       self.updateUserSubscription(subscription);
       self.subscribed = true;
     })
@@ -66,8 +62,11 @@ const Notifications = {
   updateUserSubscription(subscription) {
     // JSON Stringify
     // Set user subscription on server
-    document.querySelector('#data').innerHTML = JSON.stringify(subscription, null, 2);
+    // document.querySelector('#data').innerHTML = JSON.stringify(subscription, null, 2);
     console.log(JSON.stringify(subscription));
+    
+    
+    
   },
   urlB64ToUint8Array(base64String) {
     const padding = '='.repeat((4 - base64String.length % 4) % 4);

@@ -1,5 +1,4 @@
 import React from 'react';
-import styles from './WelcomeItem.scss';
 
 class WelcomeItem extends React.Component {
   static propTypes = {
@@ -9,8 +8,16 @@ class WelcomeItem extends React.Component {
   }
   render() {
     return (
-      <div className={styles.WelcomeItem}>
-      
+      <div className="welcome-item">
+        <div className="welcome-image">
+          <img src={`images/welcome/${this.props.imageUrl}`} />
+        </div>
+        <h3>
+          {this.props.title}
+        </h3>
+        <h4>
+          {this.props.description}
+        </h4>
       </div>
     );
   }

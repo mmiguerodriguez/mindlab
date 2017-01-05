@@ -1,20 +1,23 @@
-import { Random } from 'meteor/random';
+import Notifications from './notifications/notifications';
 
 export const typeDefs = [`
-type Email {
-  address: String
-  verified: Boolean
+type Keys {
+  p256dh: String
+  auth: String
 }
 
-type User {
-  emails: [Email]
-  username: String
-  randomString: String
-  _id: String
+type Notification {
+  endpoint: String
+  keys: Keys
+  _id: ID!
+}
+
+type Mutation {
+  addNotification(notification: Notification): Notification,
 }
 
 type Query {
-  user(id: String!): User
+  notification(id: String!): Notification
 }
 
 schema {
@@ -31,8 +34,10 @@ export const resolvers = {
       }
     },
   },
-  User: {
-    emails: ({emails}) => emails,
-    randomString: () => Random.id(),
+  Mutation: {
+    addNotification(_, args) {
+      const notificationId = Notifications.insert(args.notification);
+      return Notifications.findOne(notificationId);
+    }
   }
-}
+};

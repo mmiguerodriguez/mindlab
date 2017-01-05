@@ -7,9 +7,10 @@ import ApolloClient from 'apollo-client';
 import { meteorClientConfig } from 'meteor/apollo';
 import { ApolloProvider } from 'react-apollo';
 
-import WelcomePage from '/imports/ui/WelcomePage/WelcomePage';
+import WelcomePage from '/imports/ui/WelcomePage/WelcomePage.jsx';
 import HomePage from '/imports/ui/HomePage/HomePage';
 import NotificationsTest from '/imports/ui/NotificationsTest';
+import CardsList from '/imports/ui/CardsList/CardsList';
 import './main.scss';
 
 const client = new ApolloClient(meteorClientConfig());
@@ -19,6 +20,7 @@ const client = new ApolloClient(meteorClientConfig());
   browserHistory.push('/welcome');
 }
 */
+
 Meteor.startup(() => {
   render(
     <ApolloProvider client={client}>
@@ -26,6 +28,7 @@ Meteor.startup(() => {
         <Route path="/" component={HomePage} />
         <Route path="/welcome" component={WelcomePage} />
         <Route path="/test" component={NotificationsTest} />
+        <Route path="/lesson" component={CardsList} />
       </Router>
     </ApolloProvider>,
     document.getElementById('app')
