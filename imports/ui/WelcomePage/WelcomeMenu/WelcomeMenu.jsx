@@ -19,7 +19,7 @@ const WelcomeMenu = ({ pagesCount, currentPosition }) => {
   return (
     <div id="welcome-menu">
       <div className="welcome-menu-item">
-        <a>SALTAR</a>
+        <a className="btn">SALTAR</a>
       </div>
       <div className="welcome-menu-item">
         <div id="bubbles-container">
