@@ -1,11 +1,11 @@
 .welcome-item {
-  display: -webkit-flex;
   display: flex;
-  -webkit-flex-direction: column;
-  flex-direction: column;
-  width: 100%;
-  height: 100%;
-  background-color: blue;
+  flex-flow: column;
+  flex: 0 0 100%;
+  align-items: center;
+  padding: 20px;
+  text-align: center;
+  color: $clouds-color;
 }
 
 .welcome-image {

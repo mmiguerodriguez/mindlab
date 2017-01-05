@@ -2,8 +2,13 @@
 
 .welcome-page {
   display: flex;
-  flex-direction: column;
+  flex: 0 0 100%;
+  flex-wrap: wrap;
   width: 100%;
   height: 100%;
-  background-color: green;
+}
+
+#welcome-page-items-container {
+  display: flex;
+  flex-wrap: nowrap;
 }

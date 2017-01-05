@@ -1,14 +1,13 @@
-$bubble-color: rgba(93, 93, 93, 0.5);
-
 #welcome-menu {
   display: flex;
+  flex: 0 0 100%;
+  align-self: flex-end;
   height: 55px;
   justify-content: space-around;
   align-items: center;
-  padding: 25px;
   a {
     text-decoration: none;
-    color: black;
+    color: $clouds-color;
     font-size: 17px;
   }
 }
@@ -22,7 +21,7 @@ $bubble-color: rgba(93, 93, 93, 0.5);
 .page-bubble {
   width: 10px;
   height: 10px;
-  background-color: $bubble-color;
+  background-color: transparentize($clouds-color, 0.7);
   display: inline-block;
   border-radius: 50%;
   margin-left: 2px;
@@ -31,5 +30,5 @@ $bubble-color: rgba(93, 93, 93, 0.5);
 
 .page-bubble-active {
   @extend .page-bubble;
-  background-color: darken($bubble-color, 50%);
+  background-color: transparentize($clouds-color, 0.1);
 }
