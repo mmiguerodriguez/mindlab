@@ -2,9 +2,12 @@
 @import '../imports/ui/WelcomePage/WelcomeItem/WelcomeItem';
 @import '../imports/ui/WelcomePage/WelcomeMenu/WelcomeMenu';
 
-html, 
+@import url('https://fonts.googleapis.com/css?family=Quicksand:500');
+
+html,
 body,
 #app {
     height: 100%;
     margin: 0;
+    font-family: 'Quicksand', sans-serif;
 }

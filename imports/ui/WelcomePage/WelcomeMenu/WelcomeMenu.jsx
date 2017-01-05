@@ -18,11 +18,17 @@ const WelcomeMenu = ({ pagesCount, currentPosition }) => {
     );
   return (
     <div id="welcome-menu">
-      <a>SALTAR</a>
-      <div id="bubbles-container">
-        {pageBubblesArray}
+      <div className="welcome-menu-item">
+        <a>SALTAR</a>
       </div>
-      <a> &gt; </a> {/* > */}
+      <div className="welcome-menu-item">
+        <div id="bubbles-container">
+          {pageBubblesArray}
+        </div>
+      </div>
+      <div className="welcome-menu-item">
+        <a> &gt; </a> {/* > */}
+      </div>
     </div>
   );
 };
