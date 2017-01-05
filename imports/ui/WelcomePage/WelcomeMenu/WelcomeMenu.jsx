@@ -11,10 +11,9 @@ const WelcomeMenu = ({ pagesCount, currentPosition }) => {
     .map((_, index) =>
       <div
         key={index}
-        className={`page-bubble ${
-          currentPosition === index &&
-          'active'
-        }`}
+        className={currentPosition === index ?
+          'page-bubble-active' : 'page-bubble'
+        }
       />
     );
   return (
