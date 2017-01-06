@@ -2,15 +2,15 @@ import React from 'react';
 
 const WelcomeItem = ({ imageUrl, title, description }) =>
   <div className="welcome-item">
-    <div className="welcome-image">
+    <div className="welcome-image animated fadeInDown">
       <img src={`images/welcome/${imageUrl}`} alt="" />
     </div>
-    <h3 className="welcome-item-title">
+    <h2 className="welcome-item-title animated fadeInUp">
       {title}
-    </h3>
-    <h4 className="welcome-item-description">
+    </h2>
+    <h3 className="welcome-item-description animated fadeInUp">
       {description}
-    </h4>
+    </h3>
   </div>;
 
 WelcomeItem.propTypes = {
