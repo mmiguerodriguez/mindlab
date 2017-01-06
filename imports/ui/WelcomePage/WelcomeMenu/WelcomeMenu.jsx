@@ -36,8 +36,19 @@ class WelcomeMenu extends React.Component {
       const diagonalWindowSize = Math.sqrt(
         Math.pow(window.innerWidth, 2) + Math.pow(window.innerHeight, 2)
       );
-      element.style.width = `${diagonalWindowSize * 2}px`;
+      // We disable animatios temporarily
+      element.style.transitionProperty = 'none';
+      // And prepare the circle (it will be out of sight)
       element.style.transform = `translate(-${diagonalWindowSize}px, ${diagonalWindowSize}px)`;
+      element.style.width = `${diagonalWindowSize}px`;
+      // We draw the circle with animations inside a setTimeout to
+      // give time for the previous modifications to finish
+      setTimeout( () => {
+        element.style.transition = 'width 0.75s linear, height 0.75s linear';
+        element.style.width = `${diagonalWindowSize * 2}px`;
+        // Finally, when the animation finishes, we redirect to homescreen
+        setTimeout(goToHomescreen, 750);
+      });
     });
   }
 

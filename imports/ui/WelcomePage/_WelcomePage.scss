@@ -16,12 +16,9 @@
   bottom: 0;
   left: 0;
   z-index: 1;
-  background-color: $peter-river-color;
+  background-color: $clouds-color;
   width: 0;
   border-radius: 50%;
-  transition: width, height, transform;
-  transition-duration: 0.5s;
-  transition-timing-function: linear;
 }
 
 .finish-element:after {

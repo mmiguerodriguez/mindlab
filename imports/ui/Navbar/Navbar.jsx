@@ -3,7 +3,7 @@ import React from 'react';
 class Navbar extends React.Component {
   render() {
     return (
-      <div className="navbar navbar-default">
+      <div className={`navbar navbar-default ${this.props.className}`}>
         <div className="container-fluid">
           <div className="navbar-header">
             <button type="button" className="navbar-toggle" data-toggle="collapse" data-target=".navbar-responsive-collapse">
@@ -51,5 +51,9 @@ class Navbar extends React.Component {
     );
   }
 }
+
+Navbar.propTypes = {
+  className: React.PropTypes.String,
+};
 
 export default Navbar;
