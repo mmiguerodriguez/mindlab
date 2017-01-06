@@ -43,7 +43,7 @@ class WelcomeMenu extends React.Component {
       element.style.width = `${diagonalWindowSize}px`;
       // We draw the circle with animations inside a setTimeout to
       // give time for the previous modifications to finish
-      setTimeout( () => {
+      setTimeout(() => {
         element.style.transition = 'width 0.75s linear, height 0.75s linear';
         element.style.width = `${diagonalWindowSize * 2}px`;
         // Finally, when the animation finishes, we redirect to homescreen
