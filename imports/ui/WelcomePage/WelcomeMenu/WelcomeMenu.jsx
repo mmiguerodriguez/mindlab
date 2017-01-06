@@ -27,7 +27,7 @@ const WelcomeMenu = ({ pagesCount, currentPosition }) => {
         </div>
       </div>
       <div className="welcome-menu-item">
-        <a id="welcome-menu-next-button"> &gt; </a> {/* > */}
+        <a className="btn" id="welcome-menu-next-button"> &gt; </a> {/* > */}
       </div>
     </div>
   );

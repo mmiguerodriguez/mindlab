@@ -1,7 +1,7 @@
 #welcome-menu {
   display: flex;
-  flex: 0 0 100%;
-  align-self: flex-end;
+  //flex: 0 0 100%;
+  //align-self: flex-end;
   height: 55px;
   justify-content: space-around;
   align-items: center;
@@ -16,6 +16,11 @@
   flex: 0 0 33.33%;
   display: flex;
   justify-content: center;
+  height: 100%;
+}
+
+#bubbles-container {
+  align-self: center;
 }
 
 .page-bubble {

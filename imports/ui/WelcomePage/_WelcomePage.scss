@@ -2,13 +2,12 @@
 
 .welcome-page {
   display: flex;
-  flex: 0 0 100%;
-  flex-wrap: wrap;
-  width: 100%;
+  flex-direction: column;
   height: 100%;
 }
 
 #welcome-page-items-container {
   display: flex;
-  flex-wrap: nowrap;
+  flex: 1;
+  overflow-x: auto;
 }
