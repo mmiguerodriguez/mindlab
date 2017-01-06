@@ -16,7 +16,7 @@ class Navbar extends React.Component {
 }
 
 Navbar.propTypes = {
-  className: React.PropTypes.String,
+  className: React.PropTypes.string,
 };
 
 export default Navbar;

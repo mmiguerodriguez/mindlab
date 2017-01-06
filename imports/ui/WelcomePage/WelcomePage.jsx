@@ -39,7 +39,7 @@ class WelcomePage extends React.Component {
     ];
     const welcomeItemsArray = welcomeItemsContent.map((item, index) =>
       <WelcomeItem
-        key={index}
+        key={`welcome-item-${index}`}
         {...item}
       />
     );
