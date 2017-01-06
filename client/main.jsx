@@ -16,10 +16,12 @@ import './main.scss';
 const client = new ApolloClient(meteorClientConfig());
 
 // Show WelcomePage only if it's the first time the user visits the site
-/*if (!localStorage.getItem('hasVisited')) {
+if (
+  !localStorage.getItem('hasVisited') ||
+  localStorage.getItem('hasVisited') === 'false'
+) {
   browserHistory.push('/welcome');
 }
-*/
 
 Meteor.startup(() => {
   render(
