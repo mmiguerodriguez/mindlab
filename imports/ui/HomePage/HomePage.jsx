@@ -1,6 +1,5 @@
 import React from 'react';
 
-import Navbar from '../Navbar/Navbar';
 import CourseItem from './CourseItem/CourseItem';
 
 class HomePage extends React.Component {
@@ -24,8 +23,6 @@ class HomePage extends React.Component {
     );
     return (
       <div className="homepage">
-        <Navbar className="animated fadeInDown" />
-
         <div id="homepage-courses-list">
           {
             coursesArray
