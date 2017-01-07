@@ -1,10 +1,16 @@
 import React from 'react';
+import { Link } from 'react-router'
 
 const LessonItem = ({ name, index }) => {
   return (
-    <p>
-      {`${name} -> ${index}`}
-    </p>
+    <div className="lesson-item">
+      <Link to="/course/programacion" className="btn">
+        <h3>
+          {`${index}. ${name}`}
+        </h3>
+      </Link>
+      <hr />
+    </div>
   );
 };
 

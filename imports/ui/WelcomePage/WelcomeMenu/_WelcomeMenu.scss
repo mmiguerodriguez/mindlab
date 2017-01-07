@@ -7,7 +7,7 @@
   align-items: center;
   button {
     text-decoration: none;
-    color: $clouds-color;
+    color: $white-1-color;
     font-size: 17px;
   }
 }
@@ -26,7 +26,7 @@
 .page-bubble {
   width: 10px;
   height: 10px;
-  background-color: transparentize($clouds-color, 0.7);
+  background-color: transparentize($white-1-color, 0.7);
   display: inline-block;
   border-radius: 50%;
   margin-left: 2px;
@@ -35,5 +35,5 @@
 
 .page-bubble-active {
   @extend .page-bubble;
-  background-color: transparentize($clouds-color, 0.1);
+  background-color: transparentize($white-1-color, 0.1);
 }

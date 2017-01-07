@@ -1,5 +1,10 @@
 #coursepage {
   display: flex;
   flex-direction: column;
-  background-color: $clouds-color;
+  background-color: $white-1-color;
+}
+
+#coursepage-lessons-list {
+  display: flex;
+  flex-wrap: wrap;
 }

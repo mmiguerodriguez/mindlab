@@ -1,0 +1,21 @@
+.lesson-item {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  width: 100%;
+
+  .btn {
+    width: 100%;
+    flex: 1;
+    padding: 0;
+    text-align: left;
+    margin: 0;
+    padding: 0 20px;
+  }
+}
+
+.lesson-item:not(:last-child) hr{
+  width: 100%;
+  margin: 0 5%;
+  border-color: $white-2-color;
+}
