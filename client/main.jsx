@@ -30,9 +30,9 @@ Meteor.startup(() => {
   render(
     <ApolloProvider client={client}>
       <Router history={browserHistory}>
+        <Route path="/welcome" component={WelcomePage} />
         <Route path="/" component={App}>
           <IndexRoute component={HomePage} />
-          <Route path="/welcome" component={WelcomePage} />
           <Route path="/course/:courseName" component={CoursePage} />
           <Route path="/course/:courseName/:lessonName" component={LessonPage} />
           <Route path="/test" component={NotificationsTest} />

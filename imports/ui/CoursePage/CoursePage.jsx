@@ -2,7 +2,7 @@ import React from 'react';
 
 import LessonItem from './LessonItem/LessonItem';
 
-class CoursePage extends React.Component {
+class CoursePage extends React.Component { // TODO: fix $.material.init()
   render() {
     // hardcoded programming lessons
     const lessonsContent = [
