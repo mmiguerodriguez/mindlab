@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router'
 
 const CourseItem = ({ name, courseUrl }) =>
   <div className="course-item animated fadeInUp">
@@ -6,12 +7,12 @@ const CourseItem = ({ name, courseUrl }) =>
       {name}
     </p>
 
-    <a
-      href={courseUrl}
+    <Link
+      to={courseUrl}
       className="btn btn-success btn-fab course-item-enter-button"
     >
       <i className="material-icons">keyboard_arrow_right</i>
-    </a>
+    </Link>
   </div>;
 
 CourseItem.propTypes = {

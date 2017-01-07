@@ -7,7 +7,7 @@ class HomePage extends React.Component {
     const coursesContent = [
       {
         name: 'Programación',
-        courseUrl: '/programacion',
+        courseUrl: '/course/programacion',
       },
       {
         name: 'Qué curso te gustaría que agreguemos?',
@@ -22,7 +22,7 @@ class HomePage extends React.Component {
       />
     );
     return (
-      <div className="homepage">
+      <div id="homepage">
         <div id="homepage-courses-list">
           {
             coursesArray
