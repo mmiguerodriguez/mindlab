@@ -1,23 +1,21 @@
-import Notifications from './notifications/notifications';
-
 export const typeDefs = [`
 type Keys {
   p256dh: String!
   auth: String!
 }
 
-type Notification {
+type Subscriber {
   endpoint: String!
   keys: Keys
   _id: String!
 }
 
 type Query {
-  notification(id: String!): Notification
+  subscriber(id: String!): Subscriber
 }
 
 type Mutation {
-  addNotification(endpoint: String!, p256dh: String!, auth: String!): Notification
+  addSubscriber(endpoint: String!, p256dh: String!, auth: String!): Subscriber
 }
 
 schema {
@@ -25,30 +23,3 @@ schema {
   mutation: Mutation
 }
 `];
-
-export const resolvers = {
-  Query: {
-    notification(_, args) {
-      return Notifications.findOne(args.id);
-    },
-  },
-  Mutation: {
-    addNotification(_, args) {
-      const { endpoint, p256dh, auth } = args;
-      const notification = {
-        endpoint,
-        keys: {
-          p256dh,
-          auth,
-        }
-      };
-      
-      if (!Notifications.findOne({ endpoint })) {
-        const notificationId = Notifications.insert(notification);
-        return Notifications.findOne(notificationId);
-      }
-
-      return;
-    }
-  }
-};

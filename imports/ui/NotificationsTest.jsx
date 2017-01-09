@@ -20,14 +20,14 @@ NotificationsTest.propTypes = {
   mutate: PropTypes.func.isRequired,
 };
 
-const addNotification = gql`
-  mutation addNotification($endpoint: String!, $p256dh: String!, $auth: String!) {
-    addNotification(endpoint: $endpoint, p256dh: $p256dh, auth: $auth) {
+const addSubscriber = gql`
+  mutation addSubscriber($endpoint: String!, $p256dh: String!, $auth: String!) {
+    addSubscriber(endpoint: $endpoint, p256dh: $p256dh, auth: $auth) {
       _id
     }
   }
 `;
 
-const withAddNotification = graphql(addNotification)(NotificationsTest);
+const withAddSubscriber = graphql(addSubscriber)(NotificationsTest);
 
-export default NotificationsTest = withAddNotification;
+export default NotificationsTest = withAddSubscriber;

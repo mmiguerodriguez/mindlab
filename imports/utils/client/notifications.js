@@ -51,14 +51,14 @@ const Notifications = {
       applicationServerKey: applicationServerKey,
     })
     .then((subscription) => {
-      self.updateUserSubscription(subscription);
+      self.addSubscriber(subscription);
       self.subscribed = true;
     })
     .catch(function(err) {
       console.log('Failed to subscribe the user: ', err);
     });
   },
-  updateUserSubscription(_subscription) {
+  addSubscriber(_subscription) {
     const subscription = JSON.parse(JSON.stringify(_subscription));
     const { endpoint, keys: { p256dh, auth } } = subscription;
 

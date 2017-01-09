@@ -1,8 +1,8 @@
 import * as webpush from 'web-push';
-import Notifications from '../../api/notifications/notifications';
+import Subscribers from '../../api/subscribers/subscribers';
 
 const sendNotifications = (message) => {
-  const notifications = Notifications.find().fetch();
+  const subscribers = Subscribers.find().fetch();
 
   const options = {
     vapidDetails: {
@@ -13,9 +13,9 @@ const sendNotifications = (message) => {
     TTL: 60 * 60, // 1 hour
   };
 
-  notifications.forEach((notification) => {
+  subscribers.forEach((subscriber) => {
     webpush.sendNotification(
-      notification,
+      subscriber,
       message,
       options
     );
