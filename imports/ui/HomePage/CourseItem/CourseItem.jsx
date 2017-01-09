@@ -1,11 +1,17 @@
 import React from 'react';
 import { Link } from 'react-router'
 
-const CourseItem = ({ name, courseUrl }) =>
+const CourseItem = ({ name, description, courseUrl }) =>
   <div className="course-item animated fadeInUp">
-    <p className="course-item-name">
-      {name}
-    </p>
+    <div className="course-item-img" />
+    <div className="course-item-info">
+      <p className="course-item-name">
+        {name}
+      </p>
+      <p className="course-item-description">
+        {description}
+      </p>
+    </div>
 
     <Link
       to={courseUrl}
@@ -17,6 +23,7 @@ const CourseItem = ({ name, courseUrl }) =>
 
 CourseItem.propTypes = {
   name: React.PropTypes.string.isRequired,
+  description: React.PropTypes.string.isRequired,
   courseUrl: React.PropTypes.string.isRequired,
 };
 export default CourseItem;
