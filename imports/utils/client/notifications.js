@@ -5,19 +5,19 @@ const Notifications = {
   worker: null,
   mutator: null,
   subscribed: false,
+
   askForPermission(mutator) {
     this.mutator = mutator;
-    this.registerWorker();
+    this.register();
   },
-  registerWorker() {
+  register() {
     const self = this;
 
     if ('serviceWorker' in window.navigator && 'PushManager' in window) {
-      window.navigator.serviceWorker
-      .register('worker.js')
+      window.navigator.serviceWorker.register('worker.js')
       .then((worker) => {
         self.worker = worker;
-        self.initialiseUI();
+        self.init();
       })
       .catch((error) => {
         console.error('Service Worker Error', error);
@@ -26,7 +26,7 @@ const Notifications = {
       console.warn('Push messaging is not supported');
     }
   },
-  initialiseUI() {
+  init() {
     const self = this;
 
     this.worker.pushManager.getSubscription()

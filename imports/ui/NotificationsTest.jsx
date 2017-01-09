@@ -8,9 +8,10 @@ class NotificationsTest extends Component {
   componentDidMount() {
     Notifications.askForPermission(this.props.mutate);
   }
+
   render() {
     return (
-      <div>xD</div>  
+      <div>Componente para registrar a un worker y pedir permisos de notifaciones</div>  
     );
   }
 }
