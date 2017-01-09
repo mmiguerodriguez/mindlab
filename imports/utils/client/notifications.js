@@ -3,8 +3,23 @@ import { Meteor } from 'meteor/meteor';
 const Notifications = {
   PUBLIC_API_KEY: Meteor.settings.public.publicKey,
   worker: null,
+  mutator: null,
   subscribed: false,
-  askForPermission() {
+  askForPermission(mutator) {
+    this.mutator = mutator;
+    mutator({
+      variables: {
+        endpoint: 'asd0',
+        p256dh: 'asd1',
+        auth: 'asd2',
+      }
+    })
+    .then(({ data }) => {
+      console.log('Data', data);
+    }).catch((error) => {
+      console.log(arguments);
+      console.log('There was an error sending the query', error);
+    });      
     this.registerWorker();
   },
   registerWorker() {

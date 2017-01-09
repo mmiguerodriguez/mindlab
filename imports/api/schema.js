@@ -2,22 +2,22 @@ import Notifications from './notifications/notifications';
 
 export const typeDefs = [`
 type Keys {
-  p256dh: String
-  auth: String
+  p256dh: String!
+  auth: String!
 }
 
 type Notification {
-  endpoint: String
+  endpoint: String!
   keys: Keys
-  _id: ID!
-}
-
-type Mutation {
-  addNotification(notification: Notification): Notification,
+  _id: String!
 }
 
 type Query {
   notification(id: String!): Notification
+}
+
+type Mutation {
+  addNotification(endpoint: String!, p256dh: String!, auth: String!): Notification
 }
 
 schema {
@@ -27,16 +27,23 @@ schema {
 
 export const resolvers = {
   Query: {
-    user(root, args, context) {
-      // Only return the current user, for security
-      if (context.userId === args.id) {
-        return context.user;
-      }
+    notification(_, args) {
+      return Notifications.findOne(args.id);
     },
   },
   Mutation: {
     addNotification(_, args) {
-      const notificationId = Notifications.insert(args.notification);
+      const { endpoint, p256dh, auth } = args;
+      const notification = {
+        endpoint,
+        keys: {
+          p256dh,
+          auth,
+        }
+      };
+      console.log(notification);
+    
+      const notificationId = Notifications.insert(notification);
       return Notifications.findOne(notificationId);
     }
   }
