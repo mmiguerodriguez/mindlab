@@ -1,8 +1,14 @@
 import React from 'react';
 
+import Card from '../Card';
+
 class ContentCard extends React.Component {
   render() {
-    return (null);
+    const content =
+      <p>holas</p>
+    return (
+      <Card content={content} />
+    );
   }
 }
 
