@@ -26,10 +26,7 @@ class HomePage extends React.Component {
     );
     return (
       <div id="homepage">
-        <div className="fix alert alert-dismissible alert-info animated fadeInDown">
-          <button type="button" className="close" data-dismiss="alert">×</button>
-          <strong>Bienvenido a Diamond Knowledge!</strong> Haz click en el uno de los cursos para poder profundizar. (no se que poner)
-        </div>
+        <p className="courses-title animated fadeInUp">Lista de cursos</p>
         <div id="homepage-courses-list">
           {
             coursesArray

@@ -8,19 +8,23 @@ class CoursePage extends React.Component { // TODO: fix $.material.init()
     const lessonsContent = [
       {
         name: 'Introducción',
+        icon: 'book',
       },
       {
         name: 'Primeros conceptos',
+        icon: 'child_friendly',
       },
       {
         name: 'Lenguages',
+        icon: 'language',
       },
     ];
 
-    const lessonsArray = lessonsContent.map(({ name }, index) =>
+    const lessonsArray = lessonsContent.map(({ name, icon }, index) =>
       <LessonItem
         key={`lesson-item-${index}`}
         name={name}
+        icon={icon}
         index={index}
       />
     );
