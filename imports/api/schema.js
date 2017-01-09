@@ -22,6 +22,7 @@ type Mutation {
 
 schema {
   query: Query
+  mutation: Mutation
 }
 `];
 
@@ -41,10 +42,13 @@ export const resolvers = {
           auth,
         }
       };
-      console.log(notification);
-    
-      const notificationId = Notifications.insert(notification);
-      return Notifications.findOne(notificationId);
+      
+      if (!Notifications.findOne({ endpoint })) {
+        const notificationId = Notifications.insert(notification);
+        return Notifications.findOne(notificationId);
+      }
+
+      return;
     }
   }
 };

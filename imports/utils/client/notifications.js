@@ -7,19 +7,6 @@ const Notifications = {
   subscribed: false,
   askForPermission(mutator) {
     this.mutator = mutator;
-    mutator({
-      variables: {
-        endpoint: 'asd0',
-        p256dh: 'asd1',
-        auth: 'asd2',
-      }
-    })
-    .then(({ data }) => {
-      console.log('Data', data);
-    }).catch((error) => {
-      console.log(arguments);
-      console.log('There was an error sending the query', error);
-    });      
     this.registerWorker();
   },
   registerWorker() {
@@ -29,8 +16,6 @@ const Notifications = {
       window.navigator.serviceWorker
       .register('worker.js')
       .then((worker) => {
-        console.log('Service Worker is registered', worker);
-    
         self.worker = worker;
         self.initialiseUI();
       })
@@ -39,7 +24,6 @@ const Notifications = {
       });
     } else {
       console.warn('Push messaging is not supported');
-      // Show error
     }
   },
   initialiseUI() {
@@ -52,7 +36,7 @@ const Notifications = {
       self.subscribed = _subscribed;
   
       if (self.subscribed) {
-        self.updateUserSubscription(subscription);
+        // self.updateUserSubscription(subscription);
       } else {
         self.subscribe();
       }
@@ -74,14 +58,23 @@ const Notifications = {
       console.log('Failed to subscribe the user: ', err);
     });
   },
-  updateUserSubscription(subscription) {
-    // JSON Stringify
-    // Set user subscription on server
-    // document.querySelector('#data').innerHTML = JSON.stringify(subscription, null, 2);
-    console.log(JSON.stringify(subscription));
-    
-    
-    
+  updateUserSubscription(_subscription) {
+    const subscription = JSON.parse(JSON.stringify(_subscription));
+    const { endpoint, keys: { p256dh, auth } } = subscription;
+
+    this.mutator({
+      variables: {
+        endpoint,
+        p256dh,
+        auth,
+      }
+    })
+    .then(({ data }) => {
+      console.log('Updated user subscription', data);
+    })
+    .catch((error) => {
+      console.log('There was an error updating user subscription', error);
+    });
   },
   urlB64ToUint8Array(base64String) {
     const padding = '='.repeat((4 - base64String.length % 4) % 4);
@@ -96,7 +89,7 @@ const Notifications = {
       outputArray[i] = rawData.charCodeAt(i);
     }
     return outputArray;
-  }
+  },
 };
 
 export default Notifications;

@@ -20,10 +20,9 @@ NotificationsTest.propTypes = {
 };
 
 const addNotification = gql`
-  mutation addNotification($notification: Notification!) {
-    addNotification(notification: $notification) {
-      endpoint
-      keys
+  mutation addNotification($endpoint: String!, $p256dh: String!, $auth: String!) {
+    addNotification(endpoint: $endpoint, p256dh: $p256dh, auth: $auth) {
+      _id
     }
   }
 `;
