@@ -1,29 +1,25 @@
 import React from 'react';
 
-import slideHelper from './slideHelper.js';
-
 class Card extends React.Component {
-  
-  componentDidMount(){
-    console.log('Mounted');
-    
-    // slideHelper($(this.card),) // Hay que importar jQuery
-  }
-  
+
   render() {
-    
-    //console.log(slideHelper); // Todo ok
-    
-    const content = this.props.content;
-    
+    const cardStyle = {
+      zIndex: this.props.cardsCount - this.props.index,
+      transform: this.props.cardsCount ?
+        `translateY(${10 * (this.props.index)}px)` : null,
+    };
     return (
-      <div id={this.props.id} className="card" ref={(card) => {this.card = card;}}>
-        {
-          content
-        }
+      <div className="_card" style={cardStyle}>
+        {this.props.content}
       </div>
     );
   }
 }
+
+Card.propTypes = {
+  content: React.PropTypes.element.isRequired,
+  index: React.PropTypes.number,
+  cardsCount: React.PropTypes.number,
+};
 
 export default Card;

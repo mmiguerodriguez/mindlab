@@ -1,8 +1,5 @@
-@import 'Card/Card';
-
-#cards-list {
-    display: block;
-    height: 80%;
-    width: 70%;
-    max-width: 900px;
+.cards-list {
+  display: flex;
+  flex-direction: column;
+  padding: 15px;
 }
