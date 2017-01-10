@@ -10,8 +10,10 @@ import { ApolloProvider } from 'react-apollo';
 import WelcomePage from '/imports/ui/WelcomePage/WelcomePage.jsx';
 import HomePage from '/imports/ui/HomePage/HomePage';
 import NotificationsTest from '/imports/ui/NotificationsTest';
-import CardsList from '/imports/ui/CardsList/CardsList';
+import LessonPage from '/imports/ui/LessonPage/LessonPage';
 import './main.scss';
+
+//import slideHelper from '../imports/utils/client/slideHelper.js';
 
 const client = new ApolloClient(meteorClientConfig());
 
@@ -28,7 +30,7 @@ Meteor.startup(() => {
         <Route path="/" component={HomePage} />
         <Route path="/welcome" component={WelcomePage} />
         <Route path="/test" component={NotificationsTest} />
-        <Route path="/lesson" component={CardsList} />
+        <Route path="/lesson" component={LessonPage} />
       </Router>
     </ApolloProvider>,
     document.getElementById('app')
