@@ -7,27 +7,7 @@ import QuizCard from './Card/QuizCard/QuizCard';
 
 class CardsList extends React.Component {
   render() {
-    const cardsContent = [
-      {
-        type: 'content',
-        imageUrl: '/images/welcome/page1.png',
-        title: 'HOLA',
-        text: 'Esto es un texto',
-      },
-      {
-        type: 'content',
-        imageUrl: '/images/welcome/page2.png',
-        title: 'Segunda card',
-        text: 'Esto es otro texto, un poco más largo que el anterior',
-      },
-      {
-        type: 'content',
-        imageUrl: '/images/welcome/page1.png',
-        title: 'Tercera card',
-        text: 'Esto es otro texto, un poco más largo que el anterior, y también que el primero.',
-      },
-    ];
-    const cardsArray = cardsContent.map((card, index) => {
+    const cardsArray = this.props.cards.map((card, index) => {
       let cardType = null;
       switch (card.type) {
         case 'content':
@@ -49,11 +29,10 @@ class CardsList extends React.Component {
         key: `card-${index}`,
         ...card,
         index,
-        cardsCount: cardsContent.length, // we pass this for the positioning
+        cardsCount: this.props.cards.length, // we pass this for the positioning
       });
     });
-    console.log(cardsArray);
-    window.cards = cardsArray;
+    // TODO: separate content by quizes
     return (
       <div className="cards-list">
         {cardsArray}
@@ -63,7 +42,7 @@ class CardsList extends React.Component {
 }
 
 CardsList.propTypes = {
-  cards: React.PropTypes.arrayOf(React.PropTypes.element).isRequired,
+  cards: React.PropTypes.arrayOf(React.PropTypes.object).isRequired,
 };
 
 export default CardsList;

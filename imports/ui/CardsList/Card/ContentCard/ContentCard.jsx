@@ -26,7 +26,7 @@ const ContentCard = ({ imageUrl, title, text, index, cardsCount }) => {
       </div>
     );
   return (
-    <Card content={content} index={index} cardsCount={cardsCount}/>
+    <Card content={content} index={index} cardsCount={cardsCount} />
   );
 };
 

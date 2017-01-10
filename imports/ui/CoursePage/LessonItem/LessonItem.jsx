@@ -4,7 +4,8 @@ import { Link } from 'react-router'
 const LessonItem = ({ name, index }) => {
   return (
     <div className="lesson-item">
-      <Link to="/course/programacion" className="btn">
+      {/* TODO: prettify url*/ }
+      <Link to={`/course/programacion/${name}`} className="btn">
         <h3>
           {`${index}. ${name}`}
         </h3>

@@ -1,14 +1,33 @@
 import React from 'react';
 
+import CardsList from '../CardsList/CardsList';
+
 class LessonPage extends React.Component {
   render() {
-    // hardcoded way to get the lessons
-    const lessonsContent = [
-      
+    // TODO: add real cards
+    const cardsContent = [
+      {
+        type: 'content',
+        imageUrl: '/images/welcome/page1.png',
+        title: 'HOLA',
+        text: 'Esto es un texto',
+      },
+      {
+        type: 'content',
+        imageUrl: '/images/welcome/page2.png',
+        title: 'Segunda card',
+        text: 'Esto es otro texto, un poco más largo que el anterior',
+      },
+      {
+        type: 'content',
+        imageUrl: '/images/welcome/page1.png',
+        title: 'Tercera card',
+        text: 'Esto es otro texto, un poco más largo que el anterior, y también que el primero.',
+      },
     ];
     return (
       <div>
-        {this.props.params.lessonName}
+        <CardsList cards={cardsContent} />
       </div>
     );
   }
