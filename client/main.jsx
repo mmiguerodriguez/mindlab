@@ -15,7 +15,8 @@ import CoursePage from '../imports/ui/CoursePage/CoursePage';
 import LessonPage from '../imports/ui/LessonPage/LessonPage';
 
 // testing purposes. delete this
-import ContentCard from '../imports/ui/CardsList/Card/ContentCard/ContentCard';
+import CardsList from '../imports/ui/CardsList/CardsList';
+
 import './main.scss';
 
 const client = new ApolloClient(meteorClientConfig());
@@ -38,7 +39,7 @@ Meteor.startup(() => {
           <Route path="/course/:courseName" component={CoursePage} />
           <Route path="/course/:courseName/:lessonName" component={LessonPage} />
           <Route path="/test" component={NotificationsTest} />
-          <Route path="/cardTest" component={ContentCard} />
+          <Route path="/cardTest" component={CardsList} />
         </Route>
       </Router>
     </ApolloProvider>,
