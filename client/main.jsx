@@ -16,6 +16,8 @@ import CoursePage from '../imports/ui/CoursePage/CoursePage';
 import LessonPage from '../imports/ui/LessonPage/LessonPage';
 import './main.scss';
 
+//import slideHelper from '../imports/utils/client/slideHelper.js';
+
 const client = new ApolloClient(meteorClientConfig());
 
 // Show WelcomePage only if it's the first time the user visits the site
