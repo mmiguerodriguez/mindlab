@@ -14,6 +14,7 @@
 @import '../imports/ui/CoursePage/LessonItem/LessonItem';
 
 @import '../imports/ui/CardsList/Card/Card';
+@import '../imports/ui/CardsList/Card/ContentCard/ContentCard';
 
 @import url('https://fonts.googleapis.com/css?family=Quicksand:500');
 
@@ -22,5 +23,8 @@ body,
 #app {
     height: 100%;
     margin: 0;
-    font-family: 'Quicksand', sans-serif;
+}
+
+#app, h1, h2, h3, h4, h5, h6 {
+  font-family: 'Quicksand', sans-serif !important;
 }
