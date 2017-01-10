@@ -48,7 +48,7 @@ class CardsList extends React.Component {
       return React.createElement(cardType, {
         key: `card-${index}`,
         ...card,
-        zIndex: cardsContent.length - index,
+        index,
         cardsCount: cardsContent.length, // we pass this for the positioning
       });
     });

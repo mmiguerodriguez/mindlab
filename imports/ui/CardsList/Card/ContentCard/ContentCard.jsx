@@ -2,7 +2,7 @@ import React from 'react';
 
 import Card from '../Card';
 
-const ContentCard = ({ imageUrl, title, text, zIndex, cardsCount }) => {
+const ContentCard = ({ imageUrl, title, text, index, cardsCount }) => {
   const content =
     (
       <div className="content-card">
@@ -26,7 +26,7 @@ const ContentCard = ({ imageUrl, title, text, zIndex, cardsCount }) => {
       </div>
     );
   return (
-    <Card content={content} zIndex={zIndex} cardsCount={cardsCount}/>
+    <Card content={content} index={index} cardsCount={cardsCount}/>
   );
 };
 
@@ -34,7 +34,7 @@ ContentCard.propTypes = {
   imageUrl: React.PropTypes.string,
   title: React.PropTypes.string,
   text: React.PropTypes.string,
-  zIndex: React.PropTypes.number,
+  index: React.PropTypes.number,
   cardsCount: React.PropTypes.number,
 };
 

@@ -1,6 +1,8 @@
 ._card { // not card because bootstrap-material-design already uses it
+  position: absolute;
+  top: 65px;
   display: flex;
-  flex: 0 0 100%;
+  width: calc(100% - 30px);
   flex-flow: column;
   align-items: center;
   min-height: 450px;
