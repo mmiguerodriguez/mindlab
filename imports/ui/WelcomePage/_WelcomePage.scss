@@ -3,7 +3,11 @@
 .welcome-page {
   display: flex;
   flex-direction: column;
-  width: 100%;
   height: 100%;
-  background-color: green;
+  overflow-x: hidden;
+}
+
+#welcome-page-items-container {
+  display: flex;
+  flex: 1;
 }

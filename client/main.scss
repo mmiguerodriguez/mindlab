@@ -1,11 +1,16 @@
+@import '../imports/utils/client/colors';
+
 @import '../imports/ui/WelcomePage/WelcomePage';
 @import '../imports/ui/WelcomePage/WelcomeItem/WelcomeItem';
 @import '../imports/ui/WelcomePage/WelcomeMenu/WelcomeMenu';
 @import '../imports/ui/LessonPage/LessonPage';
 
-html, 
+@import url('https://fonts.googleapis.com/css?family=Quicksand:500');
+
+html,
 body,
 #app {
     height: 100%;
     margin: 0;
+    font-family: 'Quicksand', sans-serif;
 }

@@ -1,25 +1,39 @@
 #welcome-menu {
   display: flex;
+  //flex: 0 0 100%;
+  //align-self: flex-end;
   height: 55px;
   justify-content: space-around;
   align-items: center;
   a {
     text-decoration: none;
-    color: black;
+    color: $clouds-color;
+    font-size: 17px;
   }
 }
 
-#bubbles-container {
+.welcome-menu-item {
+  flex: 0 0 33.33%;
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
+  height: 100%;
+}
+
+#bubbles-container {
+  align-self: center;
 }
 
 .page-bubble {
-  width: 7px;
-  height: 7px;
-  background-color: rgba(93, 93, 93, 0.5);
+  width: 10px;
+  height: 10px;
+  background-color: transparentize($clouds-color, 0.7);
   display: inline-block;
   border-radius: 50%;
   margin-left: 2px;
   margin-right: 2px;
+}
+
+.page-bubble-active {
+  @extend .page-bubble;
+  background-color: transparentize($clouds-color, 0.1);
 }

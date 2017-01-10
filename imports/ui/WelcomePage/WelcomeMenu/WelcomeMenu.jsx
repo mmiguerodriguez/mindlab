@@ -1,29 +1,52 @@
 import React from 'react';
+import { browserHistory } from 'react-router';
 
-class WelcomeMenu extends React.Component {
-  constructor(props) {
-    super(props)
-  }
-  static propTypes = {
-    pagesCount: React.PropTypes.number.isRequired,
-    currentPosition: React.PropTypes.number.isRequired,
-  }
-  render() {
-    const pageBubblesArray = new Array(this.props.pagesCount).fill(
-      <div className="page-bubble" />
+/**
+ * WelcomeMenu: renders menu on the bottom of welcome page
+ * @param {Integer} pagesCount      Quantity of items in welcomePage
+ * @param {Integer} currentPosition Index of currently selected item
+ */
+
+ /**
+  * goToHomescreen: sets hasVisited to true in localStorage and
+  * redirects to homescreen
+  */
+const goToHomescreen = () => {
+  localStorage.setItem('hasVisited', true);
+  browserHistory.push('/');
+};
+
+const WelcomeMenu = ({ pagesCount, currentPosition }) => {
+  const pageBubblesArray = new Array(pagesCount) // prepare the array
+    .fill(true) // every element needs to be defined to be executed in the map
+    .map((_, index) =>
+      <div
+        key={index}
+        className={currentPosition === index ?
+          'page-bubble-active' : 'page-bubble'
+        }
+      />
     );
-    //pageBubblesArray[this.props.currentPosition].className = active;
-    return (
-      <div id="welcome-menu">
-        <a>SALTAR</a>
+  return (
+    <div id="welcome-menu">
+      <div className="welcome-menu-item">
+        <a className="btn" onClick={goToHomescreen}>SALTAR</a>
+      </div>
+      <div className="welcome-menu-item">
         <div id="bubbles-container">
           {pageBubblesArray}
-          
         </div>
-        <a>></a>
       </div>
-    );
-  }
-}
+      <div className="welcome-menu-item">
+        <a className="btn" id="welcome-menu-next-button"> &gt; </a> {/* > */}
+      </div>
+    </div>
+  );
+};
+
+WelcomeMenu.propTypes = {
+  pagesCount: React.PropTypes.number.isRequired,
+  currentPosition: React.PropTypes.number.isRequired,
+};
 
 export default WelcomeMenu;
