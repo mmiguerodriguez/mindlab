@@ -1,46 +1,42 @@
 /**
- * TODO:
- *  Ver si requiere jQuery
- * */
-
-/**
  * - slideHelper($element,size,animationFrameHandler,finishOrRightHandler,leftHandler)
  * - setFrictionAcceleration(frictionAcceleration)
  * - setReturnVelocity(returnVelocity)
  * */
 import $ from 'jquery';
- 
-const slideHelper = (function (){
-  
-  const NAMESPACE = 'slideHelper';
-  
-  let _initialized = false;
-  
-  let _$body = null;
-  
-  let _$element = null;
-  let _size = 0;
-  let _animationFrameHandler = null;
-  let _finishHandler = null;
-  let _rightHandler = null, _leftHandler = null;
-  
-  let _frictionAcceleration = -7;
-  let _returnVelocity = 80;
-  
-  let _pressed = false;
-  let _shouldReturn = false;
-  let _shouldExit = false;
 
-  let _pointerX = null, _pointerY = null;
-  let _lastPointerPositionTimestamp = 0;
-  let _pressX = null, _pressY = null;
-  let _velocityX = 0;
+/**
+ * Variables
+ * */
+const NAMESPACE = 'slideHelper';
+
+let _initialized = false;
+
+let _$body = null;
+
+let _$element = null;
+let _size = 0;
+let _animationFrameHandler = null;
+let _finishHandler = null;
+let _rightHandler = null, _leftHandler = null;
+
+let _frictionAcceleration = -7;
+let _returnVelocity = 80;
+
+let _pressed = false;
+let _shouldReturn = false;
+let _shouldExit = false;
+
+let _pointerX = null, _pointerY = null;
+let _lastPointerPositionTimestamp = 0;
+let _pressX = null, _pressY = null;
+let _velocityX = 0;
+
+let _stateX = 0;
   
-  let _stateX = 0;
   
-  
-  
-  function slideHelper($element,size,animationFrameHandler,finishOrRightHandler,leftHandler){
+const slideHelper = {  
+  apply($element,size,animationFrameHandler,finishOrRightHandler,leftHandler){
     if(!$element){
       console.error('Did not pass element');
     }
@@ -49,12 +45,12 @@ const slideHelper = (function (){
     }
     
     if(!_initialized){
-      init();
+      _init();
     }
     _initialized = true;
     
     _$element = $element;
-    addTouchEvents(_$element,press);
+    _addTouchEvents(_$element,_press);
     
     if(size){
       _size = size;
@@ -84,182 +80,174 @@ const slideHelper = (function (){
     _stateX = 0;
     _velocityX = 0;
     
-    requestAnimationFrame(animationFrame);
-  }
+    requestAnimationFrame(_animationFrame);
+  },
   
-  slideHelper.setFrictionAcceleration = function setFrictionAcceleration(frictionAcceleration){
+  setFrictionAcceleration(frictionAcceleration){
     if(frictionAcceleration>0){
       frictionAcceleration = -frictionAcceleration;
     }
     
     _frictionAcceleration = frictionAcceleration;
-  };
+  },
   
-  slideHelper.setReturnVelocity = function setReturnVelocity(returnVelocity){
+  setReturnVelocity(returnVelocity){
     if(returnVelocity<0){
       returnVelocity = -returnVelocity;
     }
     
     _returnVelocity = returnVelocity;
-  };
+  },
+};
+
+/**
+ * Functions
+ * */
+const _init = () => {
+  _$body = $(document.body);
+};
+
+const _disable = () => {
+  _removeTouchEvents(_$element)
+  _$element = null;
   
-  
-  return slideHelper;
-  
-  /**
-   * Functions
-   * */
-  
-  function init(){
-    _$body = $('body');
-    
-    
+  _pressed = false;
+  _shouldExit = false;
+  _shouldReturn = false;
+};
+
+const _addTouchEvents = (element,pressHandler,releaseHandler,moveHandler) => {
+  if(pressHandler){
+    element.on(`touchstart.${NAMESPACE}`,pressHandler);
+    element.on(`mousedown.${NAMESPACE}`,pressHandler);
   }
   
-  function disable(){
-    removeTouchEvents(_$element)
-    _$element = null;
-    
-    _pressed = false;
-    _shouldExit = false;
-    _shouldReturn = false;
+  if(releaseHandler){
+    element.on(`touchend.${NAMESPACE}`,releaseHandler);
+    element.on(`mouseup.${NAMESPACE}`,releaseHandler);
   }
   
-  function addTouchEvents(element,pressHandler,releaseHandler,moveHandler){
-    if(pressHandler){
-      element.on(`touchstart.${NAMESPACE}`,pressHandler);
-      element.on(`mousedown.${NAMESPACE}`,pressHandler);
-    }
-    
-    if(releaseHandler){
-      element.on(`touchend.${NAMESPACE}`,releaseHandler);
-      element.on(`mouseup.${NAMESPACE}`,releaseHandler);
-    }
-    
-    if(moveHandler){
-      element.on(`touchmove.${NAMESPACE}`,moveHandler);
-      element.on(`mousemove.${NAMESPACE}`,moveHandler);
-    }
+  if(moveHandler){
+    element.on(`touchmove.${NAMESPACE}`,moveHandler);
+    element.on(`mousemove.${NAMESPACE}`,moveHandler);
+  }
+};
+
+const _removeTouchEvents = (element) => {
+  element.off(`.${NAMESPACE}`);
+};
+
+const _pointerMoved = (data) => {
+  let x,y;
+  if(data.screenX){
+      x = data.screenX;
+      y = data.screenY;
+  }
+  if(data.touches && data.touches.item(0).screenX){
+      x = data.touches.item(0).screenX;
+      y = data.touches.item(0).screenY;
   }
   
-  function removeTouchEvents(element){
-    element.off(`.${NAMESPACE}`);
+  _velocityX = (x-_pointerX)/((performance.now()-_lastPointerPositionTimestamp)/100);
+  _pointerX = x;
+  _pointerY = y;
+  _lastPointerPositionTimestamp = performance.now();
+  
+  _stateX = (_pointerX-_pressX)/_size;
+};
+
+const _press = (data) => {
+  console.log('Press');
+  
+  let x,y;
+  if(data.screenX){
+      x = data.screenX;
+      y = data.screenY;
+  }
+  if(data.touches && data.touches.item(0).screenX){
+      x = data.touches.item(0).screenX;
+      y = data.touches.item(0).screenY;
   }
   
-  function pointerMoved(data){
-    let x,y;
-    if(data.screenX){
-        x = data.screenX;
-        y = data.screenY;
-    }
-    if(data.touches && data.touches.item(0).screenX){
-        x = data.touches.item(0).screenX;
-        y = data.touches.item(0).screenY;
-    }
-    
-    _velocityX = (x-_pointerX)/((performance.now()-_lastPointerPositionTimestamp)/100);
-    _pointerX = x;
-    _pointerY = y;
-    _lastPointerPositionTimestamp = performance.now();
-    
-    _stateX = (_pointerX-_pressX)/_size;
-    //$card[0].style.transform = `translate(${pointerX-pressX}px,${pointerY-pressY}px) translateZ(0) rotateZ(${(pointerX-pressX)/20}deg)`;
-  }
+  _pressX = x;
+  _pressY = y;
   
-  function press(data){
-    console.log('Press');
-    
-    let x,y;
-    if(data.screenX){
-        x = data.screenX;
-        y = data.screenY;
-    }
-    if(data.touches && data.touches.item(0).screenX){
-        x = data.touches.item(0).screenX;
-        y = data.touches.item(0).screenY;
-    }
-    
-    _pressX = x;
-    _pressY = y;
-    
-    _pressed = true;
-    _shouldExit = false;
-    _shouldReturn = false;
-    
-    addTouchEvents(_$body,null,release,pointerMoved);
-  }
+  _pressed = true;
+  _shouldExit = false;
+  _shouldReturn = false;
   
-  function release(){
-    if(!_pressed){
-        return;
-    }
-    console.log('Release');
-    
-    _pressed = false;
-    //_$card[0].style.transform = ``;
-    
-    /**
-     * Determinar si se deberia pasar a la siguiente tarjeta o volver
-     * */
-    const timeToStop = -_velocityX/_frictionAcceleration;
-    const finalPositionX = (_pointerX-_pressX)+_velocityX*timeToStop+_frictionAcceleration*timeToStop*timeToStop/2;
-    if(Math.abs(finalPositionX)>500){
-      _shouldReturn = false;
-      _shouldExit = true;
-      /*if(_finishHandler){
-        _finishHandler();
-      }*/
-      //nextCard();
-    }
-    else {
-      _shouldReturn = true;
-      _shouldExit = false;
-    }
-    
-    removeTouchEvents(_$body);
-  }
-  
-  function animationFrame(){
-    
-    if(Math.abs(_stateX)>=1){
-      disable();
-      if(_finishHandler){
-        _finishHandler();
-      }
-      if(_leftHandler && _stateX<=-1){
-        _leftHandler();
-      }
-      if(_rightHandler && _stateX>=1){
-        _rightHandler();
-      }
+  _addTouchEvents(_$body,null,_release,_pointerMoved);
+}
+
+const _release = () => {
+  if(!_pressed){
       return;
+  }
+  console.log('Release');
+  
+  _pressed = false;
+
+  /**
+   * Determinar si se deberia pasar a la siguiente tarjeta o volver
+   * */
+  const timeToStop = -_velocityX/_frictionAcceleration;
+  const finalPositionX = _stateX*_size+_velocityX*timeToStop+_frictionAcceleration*timeToStop*timeToStop/2;
+  if(Math.abs(finalPositionX)>500){
+    _shouldReturn = false;
+    _shouldExit = true;
+    /*if(_finishHandler){
+      _finishHandler();
+    }*/
+    //nextCard();
+  }
+  else {
+    _shouldReturn = true;
+    _shouldExit = false;
+  }
+  
+  _removeTouchEvents(_$body);
+};
+
+const _animationFrame = () => {
+  
+  if(Math.abs(_stateX)>=1){
+    _disable();
+    if(_finishHandler){
+      _finishHandler();
     }
-    
-    if(_shouldReturn){
-      let positionDisplacement = _returnVelocity/_size;
-      if(_stateX>positionDisplacement){
-        _stateX-=positionDisplacement;
-      }
-      else if(_stateX<-positionDisplacement){
-        _stateX+=positionDisplacement;
-      }
-      else {
-        _stateX = 0;
-      }
+    if(_leftHandler && _stateX<=-1){
+      _leftHandler();
     }
-    
-    if(_shouldExit){
-      let positionDisplacement = _velocityX/_size;
+    if(_rightHandler && _stateX>=1){
+      _rightHandler();
+    }
+    return;
+  }
+  
+  if(_shouldReturn){
+    let positionDisplacement = _returnVelocity/_size;
+    if(_stateX>positionDisplacement){
+      _stateX-=positionDisplacement;
+    }
+    else if(_stateX<-positionDisplacement){
       _stateX+=positionDisplacement;
     }
-    
-    if(_animationFrameHandler){
-      _animationFrameHandler(_stateX);
+    else {
+      _stateX = 0;
     }
-    requestAnimationFrame(animationFrame);
   }
   
-})();
+  if(_shouldExit){
+    let positionDisplacement = _velocityX/_size;
+    _stateX+=positionDisplacement;
+  }
+  
+  if(_animationFrameHandler){
+    _animationFrameHandler(_stateX);
+  }
+  requestAnimationFrame(_animationFrame);
+};
+
 
 export default slideHelper;
 

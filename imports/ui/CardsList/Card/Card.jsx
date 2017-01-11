@@ -7,12 +7,10 @@ class Card extends React.Component {
   componentDidMount(){
     console.log('Mounted');
     
-    // slideHelper($(this.card),) // Hay que importar jQuery
+     slideHelper.apply($(this.card),400,(state) => {console.log(state);},() => {console.log('Out of bounds');});
   }
   
   render() {
-    
-    //console.log(slideHelper); // Todo ok
     
     const content = this.props.content;
     
@@ -27,3 +25,5 @@ class Card extends React.Component {
 }
 
 export default Card;
+
+/*global $*/

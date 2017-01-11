@@ -38,10 +38,12 @@ Meteor.startup(() => {
           <Route path="/course/:courseName" component={CoursePage} />
           <Route path="/course/:courseName/:lessonName" component={LessonPage} />
           <Route path="/test" component={NotificationsTest} />
-          <Route path="/lesson" component={CardsList} />
+          <Route path="/lesson" component={LessonPage} />
         </Route>
       </Router>
     </ApolloProvider>,
     document.getElementById('app')
   );
 });
+
+/*global localStorage*/
