@@ -7,7 +7,9 @@ class Card extends React.Component {
   componentDidMount(){
     console.log('Mounted');
     
-     slideHelper.apply($(this.card),400,(state) => {console.log(state);},() => {console.log('Out of bounds');});
+    if(this.props.id === 0){
+      slideHelper.apply($(this.card),400,(state) => {console.log(state);},() => {console.log('Out of bounds');});
+    }
   }
   
   render() {

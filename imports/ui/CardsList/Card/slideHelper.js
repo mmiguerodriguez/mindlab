@@ -27,9 +27,11 @@ let _pressed = false;
 let _shouldReturn = false;
 let _shouldExit = false;
 
-let _pointerX = null, _pointerY = null;
+let _pointerX = null;
+let _pointerY = null;
 let _lastPointerPositionTimestamp = 0;
-let _pressX = null, _pressY = null;
+let _pressX = null;
+let _pressY = null;
 let _velocityX = 0;
 
 let _stateX = 0;
@@ -37,6 +39,9 @@ let _stateX = 0;
   
 const slideHelper = {  
   apply($element,size,animationFrameHandler,finishOrRightHandler,leftHandler){
+    if(_$element){
+      console.error('Applying while already applied to another element!');
+    }
     if(!$element){
       console.error('Did not pass element');
     }
@@ -108,7 +113,7 @@ const _init = () => {
 };
 
 const _disable = () => {
-  _removeTouchEvents(_$element)
+  _removeTouchEvents(_$element);
   _$element = null;
   
   _pressed = false;
@@ -177,7 +182,7 @@ const _press = (data) => {
   _shouldReturn = false;
   
   _addTouchEvents(_$body,null,_release,_pointerMoved);
-}
+};
 
 const _release = () => {
   if(!_pressed){
@@ -195,10 +200,6 @@ const _release = () => {
   if(Math.abs(finalPositionX)>500){
     _shouldReturn = false;
     _shouldExit = true;
-    /*if(_finishHandler){
-      _finishHandler();
-    }*/
-    //nextCard();
   }
   else {
     _shouldReturn = true;
@@ -209,6 +210,7 @@ const _release = () => {
 };
 
 const _animationFrame = () => {
+  console.log('Called animation frame');
   
   if(Math.abs(_stateX)>=1){
     _disable();
