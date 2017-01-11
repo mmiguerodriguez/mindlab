@@ -4,7 +4,8 @@ import { Link } from 'react-router'
 const LessonItem = ({ name, icon, index }) => {
   return (
     <div className="lesson-item">
-      <Link to="/course/programacion" className="btn">
+      {/* TODO: prettify url*/ }
+      <Link to={`/course/programacion/${name}`} className="btn">
         <div className="lesson-item-icon">
           <i className="material-icons">{icon}</i>
         </div>
