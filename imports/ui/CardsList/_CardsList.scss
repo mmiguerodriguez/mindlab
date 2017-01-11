@@ -3,3 +3,18 @@
   flex-direction: column;
   padding: 15px;
 }
+
+.progress {
+  /*
+    TODO: Remove position absolute
+  */
+  position: absolute;
+  bottom: 0px;
+  height: 4px;
+  width: calc(100% - 30px);
+  margin: 10px 15px !important;
+  
+  .progress-bar {
+    width: 20%;
+  }
+}
