@@ -84,32 +84,34 @@ class SlideHelper {
     SlideHelper.returnVelocity = returnVelocity;
   }
   /**
-   * Variables
-   * */
-  static initialized = false
-  static $body = null
-  static $element = null
-  static size = 0
-  static animationFrameHandler = null
-  static finishHandler = null
-  static rightHandler = null
-  static leftHandler = null
-  static frictionAcceleration = -7
-  static returnVelocity = 80
-  static pressed = false
-  static shouldReturn = false
-  static shouldExit = false
-  static pointerX = null
-  static pointerY = null
-  static lastPointerPositionTimestamp = 0
-  static pressX = null
-  static pressY = null
-  static velocityX = 0
-  static stateX = 0
-  /**
    * Private Functions
    * */
   static init(){
+    /**
+     * Variables
+     * */
+    SlideHelper.initialized = false;
+    SlideHelper.$body = null;
+    SlideHelper.$element = null;
+    SlideHelper.size = 0;
+    SlideHelper.animationFrameHandler = null;
+    SlideHelper.finishHandler = null;
+    SlideHelper.rightHandler = null;
+    SlideHelper.leftHandler = null;
+    SlideHelper.frictionAcceleration = -7;
+    SlideHelper.returnVelocity = 80;
+    SlideHelper.pressed = false;
+    SlideHelper.shouldReturn = false;
+    SlideHelper.shouldExit = false;
+    SlideHelper.pointerX = null;
+    SlideHelper.pointerY = null;
+    SlideHelper.lastPointerPositionTimestamp = 0;
+    SlideHelper.pressX = null;
+    SlideHelper.pressY = null;
+    SlideHelper.velocityX = 0;
+    SlideHelper.stateX = 0;
+    
+    
     SlideHelper.$body = $(document.body);
   }
   // Disables the SlideHelper. Called when state reaches limit
