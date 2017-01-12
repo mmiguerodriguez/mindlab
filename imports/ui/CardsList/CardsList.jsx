@@ -1,5 +1,4 @@
 import React from 'react';
-import Card from './Card/Card';
 
 import ContentCard from './Card/ContentCard/ContentCard';
 import FeedbackCard from './Card/FeedbackCard/FeedbackCard';
