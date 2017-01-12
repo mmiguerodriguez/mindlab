@@ -1,6 +1,6 @@
 import React from 'react';
 
-import slideHelper from './slideHelper.js';
+import slideHelper from './SlideHelper.js';
 
 class Card extends React.Component {
   
