@@ -13,9 +13,6 @@
     }
   }
   .progress {
-    /*
-      TODO: Remove position absolute
-    */
     height: 4px;
     width: calc(100% - 80px);
     margin: 15px 0 15px 15px !important;

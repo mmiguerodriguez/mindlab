@@ -1,5 +1,6 @@
 import React from 'react';
 import Card from './Card/Card';
+import { Link } from 'react-router'
 
 import ContentCard from './Card/ContentCard/ContentCard';
 import FeedbackCard from './Card/FeedbackCard/FeedbackCard';
@@ -37,9 +38,9 @@ class CardsList extends React.Component {
     return (
       <div>
         <div className="lesson-data">
-          <div className="close-lesson close">
+          <Link to="course/programacion/" className="close-lesson close">
             <i className="material-icons">close</i>
-          </div>
+          </Link>
           <div className="progress">
             <div className="progress-bar progress-bar-info"></div>
           </div>
