@@ -17,19 +17,19 @@ class SlideHelper {
   /**
    * Public Functions
    * */
-  static apply($element,size,animationFrameHandler,finishOrRightHandler,leftHandler){
-    if(SlideHelper.$element){
+  static apply($element,size,animationFrameHandler,finishOrRightHandler,leftHandler) {
+    if (SlideHelper.$element) {
       console.error('Applying while already applied to another element!');
     }
-    if(!$element){
+    if (!$element) {
       console.error('Did not pass element');
     }
-    if(!size && !SlideHelper.size){
+    if (!size && !SlideHelper.size) {
       console.error('Did not pass size');
     }
     
     // Initialize if not initialized
-    if(!SlideHelper.initialized){
+    if (!SlideHelper.initialized) {
       SlideHelper.init();
     }
     SlideHelper.initialized = true;
@@ -38,22 +38,22 @@ class SlideHelper {
     SlideHelper.addTouchEvents(SlideHelper.$element,SlideHelper.press);
     
     // If arguments not passed, assume the previously held value
-    if(size){
+    if (size) {
       SlideHelper.size = size;
     }
     
-    if(animationFrameHandler){
+    if (animationFrameHandler) {
       SlideHelper.animationFrameHandler = animationFrameHandler;
     }
     
-    if(finishOrRightHandler){
-      if(leftHandler){
+    if (finishOrRightHandler) {
+      if (leftHandler) {
         SlideHelper.rightHandler = finishOrRightHandler;
         SlideHelper.leftHandler = leftHandler;
         
         SlideHelper.finishHandler = null;
       }
-      else{
+      else {
         SlideHelper.finishHandler = finishOrRightHandler;
         
         SlideHelper.rightHandler = null;
@@ -68,16 +68,16 @@ class SlideHelper {
     requestAnimationFrame(SlideHelper.animationFrame);
   }
   
-  static setFrictionAcceleration(frictionAcceleration){
-    if(frictionAcceleration>0){
+  static setFrictionAcceleration(frictionAcceleration) {
+    if (frictionAcceleration>0) {
       frictionAcceleration = -frictionAcceleration;
     }
     
     SlideHelper.frictionAcceleration = frictionAcceleration;
   }
   
-  static setReturnVelocity(returnVelocity){
-    if(returnVelocity<0){
+  static setReturnVelocity(returnVelocity) {
+    if (returnVelocity<0) {
       returnVelocity = -returnVelocity;
     }
     
@@ -86,7 +86,7 @@ class SlideHelper {
   /**
    * Private Functions
    * */
-  static init(){
+  static init() {
     /**
      * Variables
      * */
@@ -115,7 +115,7 @@ class SlideHelper {
     SlideHelper.$body = $(document.body);
   }
   // Disables the SlideHelper. Called when state reaches limit
-  static disable(){
+  static disable() {
     SlideHelper.removeTouchEvents(SlideHelper.$element);
     SlideHelper.$element = null;
     
@@ -124,35 +124,36 @@ class SlideHelper {
     SlideHelper.shouldReturn = false;
   }
   // Adds the touch events passed to the element passed
-  static addTouchEvents($element,pressHandler,releaseHandler,moveHandler){
-    if(pressHandler){
+  static addTouchEvents($element,pressHandler,releaseHandler,moveHandler) {
+    if (pressHandler) {
       $element.on(`touchstart.${NAMESPACE}`,pressHandler);
       $element.on(`mousedown.${NAMESPACE}`,pressHandler);
     }
     
-    if(releaseHandler){
+    if (releaseHandler) {
       $element.on(`touchend.${NAMESPACE}`,releaseHandler);
       $element.on(`mouseup.${NAMESPACE}`,releaseHandler);
     }
     
-    if(moveHandler){
+    if (moveHandler) {
       $element.on(`touchmove.${NAMESPACE}`,moveHandler);
       $element.on(`mousemove.${NAMESPACE}`,moveHandler);
     }
   }
-  static removeTouchEvents($element){
+  static removeTouchEvents($element) {
     $element.off(`.${NAMESPACE}`);
   }
-  static pointerMoved(data){
+  static pointerMoved(data) {
     // Get the position of the pointer
-    let x,y;
+    let x;
+    let y;
     // If not mobile the position is stored in screenX and screenY
-    if(data.screenX){
+    if (data.screenX) {
         x = data.screenX;
         y = data.screenY;
     }
     // If mobile the position of the touch is stored in a list of touches (may be many fingers)
-    if(data.touches && data.touches.item(0).screenX){
+    if (data.touches && data.touches.item(0).screenX) {
         x = data.touches.item(0).screenX;
         y = data.touches.item(0).screenY;
     }
@@ -168,16 +169,17 @@ class SlideHelper {
     SlideHelper.stateX = (SlideHelper.pointerX-SlideHelper.pressX)/SlideHelper.size;
   }
   // Called when the element is pressed
-  static press(data){
+  static press(data) {
     // Get the position of the pointer
-    let x,y;
+    let x;
+    let y;
     // If not mobile the position is stored in screenX and screenY
-    if(data.screenX){
+    if (data.screenX) {
         x = data.screenX;
         y = data.screenY;
     }
     // If mobile the position of the touch is stored in a list of touches (may be many fingers)
-    if(data.touches && data.touches.item(0).screenX){
+    if (data.touches && data.touches.item(0).screenX) {
         x = data.touches.item(0).screenX;
         y = data.touches.item(0).screenY;
     }
@@ -194,9 +196,9 @@ class SlideHelper {
     // Because the element was pressed, start listening for a release and a move
     SlideHelper.addTouchEvents(SlideHelper.$body,null,SlideHelper.release,SlideHelper.pointerMoved);
   }
-  static release(){
+  static release() {
     // Check for a buggy release (a release when the element was not actually being touched)
-    if(!SlideHelper.pressed){
+    if (!SlideHelper.pressed) {
         return;
     }
     
@@ -208,7 +210,7 @@ class SlideHelper {
      * */
     const timeToStop = -SlideHelper.velocityX/SlideHelper.frictionAcceleration;
     const finalPositionX = SlideHelper.stateX*SlideHelper.size+SlideHelper.velocityX*timeToStop+SlideHelper.frictionAcceleration*timeToStop*timeToStop/2;
-    if(Math.abs(finalPositionX)>500){
+    if (Math.abs(finalPositionX)>500) {
       // The state would reach the limit, therefore it should continue to the exit (shouldExit = true)
       SlideHelper.shouldReturn = false;
       SlideHelper.shouldExit = true;
@@ -223,30 +225,30 @@ class SlideHelper {
     SlideHelper.removeTouchEvents(SlideHelper.$body);
   }
   // Called every frame to update everything
-  static animationFrame(){
-    if(Math.abs(SlideHelper.stateX)>=1){
+  static animationFrame() {
+    if (Math.abs(SlideHelper.stateX)>=1) {
       // Reached the limit, disable the helper and call corresponding handlers
       SlideHelper.disable();
-      if(SlideHelper.finishHandler){
+      if (SlideHelper.finishHandler) {
         SlideHelper.finishHandler();
       }
-      if(SlideHelper.leftHandler && SlideHelper.stateX<=-1){
+      if (SlideHelper.leftHandler && SlideHelper.stateX<=-1) {
         SlideHelper.leftHandler();
       }
-      if(SlideHelper.rightHandler && SlideHelper.stateX>=1){
+      if (SlideHelper.rightHandler && SlideHelper.stateX>=1) {
         SlideHelper.rightHandler();
       }
       return;
     }
     
-    if(SlideHelper.shouldReturn){
+    if (SlideHelper.shouldReturn) {
       // Because the state should return to rest position, move to rest position a bit every frame
       let positionDisplacement = SlideHelper.returnVelocity/SlideHelper.size;// The distance that will be moved this frame
       // Move
-      if(SlideHelper.stateX>positionDisplacement){
+      if (SlideHelper.stateX>positionDisplacement) {
         SlideHelper.stateX-=positionDisplacement;
       }
-      else if(SlideHelper.stateX<-positionDisplacement){
+      else if (SlideHelper.stateX<-positionDisplacement) {
         SlideHelper.stateX+=positionDisplacement;
       }
       else {
@@ -255,14 +257,14 @@ class SlideHelper {
       }
     }
     
-    if(SlideHelper.shouldExit){
+    if (SlideHelper.shouldExit) {
       // Because the state should reach the limit (exit), move outside according to velocity
       let positionDisplacement = SlideHelper.velocityX/SlideHelper.size;
       SlideHelper.stateX+=positionDisplacement;
     }
     
     // Bug check if an animationFrameHandler was supplied
-    if(SlideHelper.animationFrameHandler){
+    if (SlideHelper.animationFrameHandler) {
       SlideHelper.animationFrameHandler(SlideHelper.stateX);
     }
     
