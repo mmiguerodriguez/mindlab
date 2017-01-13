@@ -1,20 +1,27 @@
 .cards-list {
   display: flex;
   flex-direction: column;
-  padding: 15px;
+  padding: 0 15px;
 }
-
-.progress {
-  /*
-    TODO: Remove position absolute
-  */
-  position: absolute;
-  bottom: 0px;
-  height: 4px;
-  width: calc(100% - 30px);
-  margin: 10px 15px !important;
+.lesson-data {
+  display: flex;
+  justify-content: center;
   
-  .progress-bar {
-    width: 20%;
+  .close-lesson {
+    i {
+      margin-top: 5px;
+    }
+  }
+  .progress {
+    /*
+      TODO: Remove position absolute
+    */
+    height: 4px;
+    width: calc(100% - 80px);
+    margin: 15px 0 15px 15px !important;
+    
+    .progress-bar {
+      width: 0%;
+    }
   }
 }

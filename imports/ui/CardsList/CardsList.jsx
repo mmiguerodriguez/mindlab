@@ -36,11 +36,16 @@ class CardsList extends React.Component {
     // TODO: separate content by quizes
     return (
       <div>
+        <div className="lesson-data">
+          <div className="close-lesson close">
+            <i className="material-icons">close</i>
+          </div>
+          <div className="progress">
+            <div className="progress-bar progress-bar-info"></div>
+          </div>
+          </div>
         <div className="cards-list">
           {cardsArray}
-        </div>
-        <div className="progress">
-          <div className="progress-bar progress-bar-info"></div>
         </div>
       </div>
     );
