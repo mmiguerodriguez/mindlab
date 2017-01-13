@@ -2,15 +2,15 @@ import React from 'react';
 
 import Card from '../Card';
 
-const QuizCard = ({ imageUrl, question, options, checkAnswer, index, cardsCount }) => {
+const QuizCard = ({ imageUrl, question, options, checkAnswer, index, cardsCount, cardPassed }) => {
   const content =
     (
-      <div className="quiz-card">
+      <div className="card-body">
         { imageUrl &&
           <img
             src={imageUrl}
             alt=""
-            className="quiz-card-img"
+            className="card-img"
           />
         }
         { question &&
@@ -24,11 +24,10 @@ const QuizCard = ({ imageUrl, question, options, checkAnswer, index, cardsCount 
           </div>
         }
         <button onClick={checkAnswer}>Enviar</button>
-
       </div>
     );
   return (
-    <Card content={content} index={index} cardsCount={cardsCount} />
+    <Card content={content} index={index} cardsCount={cardsCount} cardPassed={cardPassed} />
   );
 };
 
@@ -36,9 +35,16 @@ QuizCard.propTypes = {
   imageUrl: React.PropTypes.string,
   question: React.PropTypes.string,
   options: React.PropTypes.arrayOf(React.PropTypes.object),
-  checkAnswer: React.PropTypes.func,
-  index: React.PropTypes.number,
-  cardsCount: React.PropTypes.number,
+  checkAnswer: React.PropTypes.func.isRequired,
+  index: React.PropTypes.number.isRequired,
+  cardsCount: React.PropTypes.number.isRequired,
+  cardPassed: React.PropTypes.func.isRequired,
+};
+
+QuizCard.defaultProps = {
+  imageUrl: null,
+  question: null,
+  options: null,
 };
 
 export default QuizCard;

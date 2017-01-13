@@ -1,0 +1,20 @@
+.order-card-options {
+  border: 1px solid #efefef;
+  border-radius: 3px;
+  background-color: #f3f3f3;
+  max-width: 500px;
+}
+
+.order-card-option {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  height: 50px;
+  padding: 0 12px;
+  border: 1px solid #efefef;
+  background-color: #fff;
+  -webkit-align-items: center;
+  -ms-flex-align: center;
+  align-items: center;
+}

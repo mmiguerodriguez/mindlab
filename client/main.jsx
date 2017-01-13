@@ -14,9 +14,6 @@ import NotificationsTest from '../imports/ui/NotificationsTest';
 import CoursePage from '../imports/ui/CoursePage/CoursePage';
 import LessonPage from '../imports/ui/LessonPage/LessonPage';
 
-//testing purposes. delete this
-import { MultipleChoiceExample } from '../imports/ui/CardsList/Card/QuizCard/QuizCard';
-
 import './main.scss';
 
 //import slideHelper from '../imports/utils/client/slideHelper.js';
@@ -41,7 +38,6 @@ Meteor.startup(() => {
           <Route path="/course/:courseName" component={CoursePage} />
           <Route path="/course/:courseName/:lessonName" component={LessonPage} />
           <Route path="/test" component={NotificationsTest} />
-          <Route path="/quizTest" component={MultipleChoiceExample} />
         </Route>
       </Router>
     </ApolloProvider>,

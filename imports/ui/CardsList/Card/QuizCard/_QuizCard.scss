@@ -1,14 +1,2 @@
 @import 'MultipleChoiceCard/MultipleChoiceCard';
-
-.quiz-card {
-  display: flex;
-  flex-direction: column;
-  width: 100%;
-  align-items: center;
-  padding: 15px;
-}
-
-.quiz-card-img {
-  height: 100px;
-  width: 100px;
-}
+@import 'OrderCard/OrderCard';

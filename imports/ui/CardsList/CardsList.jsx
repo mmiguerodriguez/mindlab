@@ -5,6 +5,7 @@ import ContentCard from './Card/ContentCard/ContentCard';
 import FeedbackCard from './Card/FeedbackCard/FeedbackCard';
 import FinishCard from './Card/FinishCard/FinishCard';
 import MultipleChoiceCard from './Card/QuizCard/MultipleChoiceCard/MultipleChoiceCard';
+import OrderCard from './Card/QuizCard/OrderCard/OrderCard';
 
 class CardsList extends React.Component {
   render() {
