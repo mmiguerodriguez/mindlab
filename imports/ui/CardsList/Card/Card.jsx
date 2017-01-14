@@ -2,6 +2,7 @@ import React from 'react';
 
 class Card extends React.Component {
 
+  // TODO: implement slideHelper and pass cardPassed callback
   render() {
     const cardStyle = {
       zIndex: this.props.cardsCount - this.props.index,
@@ -20,6 +21,7 @@ Card.propTypes = {
   content: React.PropTypes.element.isRequired,
   index: React.PropTypes.number,
   cardsCount: React.PropTypes.number,
+  cardPassed: React.PropTypes.func,
 };
 
 export default Card;

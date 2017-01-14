@@ -16,7 +16,7 @@ import LessonPage from '../imports/ui/LessonPage/LessonPage';
 
 import './main.scss';
 
-//import slideHelper from '../imports/utils/client/slideHelper.js';
+// import slideHelper from '../imports/utils/client/slideHelper.js';
 
 const client = new ApolloClient(meteorClientConfig());
 
@@ -41,6 +41,6 @@ Meteor.startup(() => {
         </Route>
       </Router>
     </ApolloProvider>,
-    document.getElementById('app')
+    document.getElementById('app'),
   );
 });
