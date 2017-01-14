@@ -69,23 +69,15 @@ class SlideHelper {
 
     // The animation frame calls the animation frame handler and deals with setting the state upon
     // touch release.
-    requestAnimationFrame(SlideHelper.animationFrame);
+    window.requestAnimationFrame(SlideHelper.animationFrame);
   }
 
   static setFrictionAcceleration(frictionAcceleration) {
-    if (frictionAcceleration < 0) {
-      SlideHelper.frictionAcceleration = frictionAcceleration;
-    } else {
-      SlideHelper.frictionAcceleration = -frictionAcceleration;
-    }
+    SlideHelper.frictionAcceleration = -Math.abs(frictionAcceleration);
   }
 
   static setReturnVelocity(returnVelocity) {
-    if (returnVelocity > 0) {
-      SlideHelper.returnVelocity = returnVelocity;
-    } else {
-      SlideHelper.returnVelocity = -returnVelocity;
-    }
+    SlideHelper.returnVelocity = Math.abs(returnVelocity);
   }
   /**
    * Private Functions
@@ -95,7 +87,7 @@ class SlideHelper {
      * Variables
      * */
     SlideHelper.initialized = false;
-    SlideHelper.$body = null;
+    SlideHelper.$body = $(document.body);
     SlideHelper.$element = null;
     SlideHelper.size = 0;
     SlideHelper.animationFrameHandler = null;
@@ -114,9 +106,6 @@ class SlideHelper {
     SlideHelper.pressY = null;
     SlideHelper.velocityX = 0;
     SlideHelper.stateX = 0;
-
-
-    SlideHelper.$body = $(document.body);
   }
   // Disables the SlideHelper. Called when state reaches limit
   static disable() {
@@ -129,20 +118,14 @@ class SlideHelper {
   }
   // Adds the touch events passed to the element passed
   static addTouchEvents($element, pressHandler, releaseHandler, moveHandler) {
-    if (pressHandler) {
-      $element.on(`touchstart.${NAMESPACE}`, pressHandler);
-      $element.on(`mousedown.${NAMESPACE}`, pressHandler);
-    }
+    $element.on(`touchstart.${NAMESPACE}`, pressHandler);
+    $element.on(`mousedown.${NAMESPACE}`, pressHandler);
 
-    if (releaseHandler) {
-      $element.on(`touchend.${NAMESPACE}`, releaseHandler);
-      $element.on(`mouseup.${NAMESPACE}`, releaseHandler);
-    }
+    $element.on(`touchend.${NAMESPACE}`, releaseHandler);
+    $element.on(`mouseup.${NAMESPACE}`, releaseHandler);
 
-    if (moveHandler) {
-      $element.on(`touchmove.${NAMESPACE}`, moveHandler);
-      $element.on(`mousemove.${NAMESPACE}`, moveHandler);
-    }
+    $element.on(`touchmove.${NAMESPACE}`, moveHandler);
+    $element.on(`mousemove.${NAMESPACE}`, moveHandler);
   }
   static removeTouchEvents($element) {
     $element.off(`.${NAMESPACE}`);
@@ -278,7 +261,7 @@ class SlideHelper {
     }
 
     // Call this function once per frame
-    requestAnimationFrame(SlideHelper.animationFrame);
+    window.requestAnimationFrame(SlideHelper.animationFrame);
   }
 }
 
