@@ -1,4 +1,9 @@
 /**
+ * TODO:
+ *  Documentar bien metodos con docblockr y variables no intuitivas como stateX
+ * */
+
+/**
  * - slideHelper($element, size, animationFrameHandler, finishOrRightHandler, leftHandler)
  *    Apply the helper to an element. Supply the size of the element, and the handlers to be called
  *     when it reaches the end. You can either have finish handler or right and left handler,
@@ -21,103 +26,76 @@ class SlideHelper {
   /**
    * Public Functions
    * */
-  static apply($element, size, animationFrameHandler, finishOrRightHandler, leftHandler) {
-    if (SlideHelper.$element) {
+  constructor({
+    $element, 
+    size, 
+    frictionAcceleration = -7, 
+    returnVelocity = 80, 
+    animationFrameHandler = null, 
+    finishHandler = null, 
+    rightHandler = null, 
+    leftHandler = null,
+  }) {
+    if (this.$element) {
       console.error('Applying while already applied to another element!');
     }
     if (!$element) {
       console.error('Did not pass element');
     }
-    if (!size && !SlideHelper.size) {
+    if (!size) {
       console.error('Did not pass size');
     }
 
-    // Initialize if not initialized
-    if (!SlideHelper.initialized) {
-      SlideHelper.init();
-    }
-    SlideHelper.initialized = true;
+    this.$body = $(document.body);
+    this.pressed = false;
+    this.shouldReturn = false;
+    this.shouldExit = false;
+    this.pointerX = null;
+    this.pointerY = null;
+    this.lastPointerPositionTimestamp = 0;
+    this.pressX = null;
+    this.pressY = null;
+    this.$element = $element;
+    this.size = size;
+    this.returnVelocity = returnVelocity;
+    this.frictionAcceleration = frictionAcceleration;
+    this.animationFrameHandler = animationFrameHandler;
+    this.finishHandler = finishHandler;
+    this.rightHandler = rightHandler;
+    this.leftHandler = leftHandler;
 
-    SlideHelper.$element = $element;
-    SlideHelper.addTouchEvents(SlideHelper.$element, SlideHelper.press);
+    this.stateX = 0;
+    this.velocityX = 0;
+    
+    this.addTouchEvents(this.$element, this.press.bind(this));
 
-    // If arguments not passed, assume the previously held value
-    if (size) {
-      SlideHelper.size = size;
-    }
-
-    if (animationFrameHandler) {
-      SlideHelper.animationFrameHandler = animationFrameHandler;
-    }
-
-    if (finishOrRightHandler) {
-      if (leftHandler) {
-        SlideHelper.rightHandler = finishOrRightHandler;
-        SlideHelper.leftHandler = leftHandler;
-
-        SlideHelper.finishHandler = null;
-      } else {
-        SlideHelper.finishHandler = finishOrRightHandler;
-
-        SlideHelper.rightHandler = null;
-        SlideHelper.leftHandler = null;
-      }
-    }
-
-    SlideHelper.stateX = 0;
-    SlideHelper.velocityX = 0;
 
     // The animation frame calls the animation frame handler and deals with setting the state upon
     // touch release.
-    window.requestAnimationFrame(SlideHelper.animationFrame);
+    window.requestAnimationFrame(this.animationFrame.bind(this));
   }
 
-  static setFrictionAcceleration(frictionAcceleration) {
-    SlideHelper.frictionAcceleration = -Math.abs(frictionAcceleration);
+  setFrictionAcceleration(frictionAcceleration) {
+    this.frictionAcceleration = -Math.abs(frictionAcceleration);
   }
 
-  static setReturnVelocity(returnVelocity) {
-    SlideHelper.returnVelocity = Math.abs(returnVelocity);
+  setReturnVelocity(returnVelocity) {
+    this.returnVelocity = Math.abs(returnVelocity);
   }
   /**
    * Private Functions
    * */
-  static init() {
-    /**
-     * Variables
-     * */
-    SlideHelper.initialized = false;
-    SlideHelper.$body = $(document.body);
-    SlideHelper.$element = null;
-    SlideHelper.size = 0;
-    SlideHelper.animationFrameHandler = null;
-    SlideHelper.finishHandler = null;
-    SlideHelper.rightHandler = null;
-    SlideHelper.leftHandler = null;
-    SlideHelper.frictionAcceleration = -7;
-    SlideHelper.returnVelocity = 80;
-    SlideHelper.pressed = false;
-    SlideHelper.shouldReturn = false;
-    SlideHelper.shouldExit = false;
-    SlideHelper.pointerX = null;
-    SlideHelper.pointerY = null;
-    SlideHelper.lastPointerPositionTimestamp = 0;
-    SlideHelper.pressX = null;
-    SlideHelper.pressY = null;
-    SlideHelper.velocityX = 0;
-    SlideHelper.stateX = 0;
-  }
-  // Disables the SlideHelper. Called when state reaches limit
-  static disable() {
-    SlideHelper.removeTouchEvents(SlideHelper.$element);
-    SlideHelper.$element = null;
+  // Disables the this. Called when state reaches limit
+  disable() {
+    this.removeTouchEvents(this.$element);
+    this.$element = null;
 
-    SlideHelper.pressed = false;
-    SlideHelper.shouldExit = false;
-    SlideHelper.shouldReturn = false;
+    this.pressed = false;
+    this.shouldExit = false;
+    this.shouldReturn = false;
   }
   // Adds the touch events passed to the element passed
-  static addTouchEvents($element, pressHandler, releaseHandler, moveHandler) {
+  addTouchEvents($element, pressHandler, releaseHandler, moveHandler) {
     $element.on(`touchstart.${NAMESPACE}`, pressHandler);
     $element.on(`mousedown.${NAMESPACE}`, pressHandler);
 
@@ -127,10 +105,10 @@ class SlideHelper {
     $element.on(`touchmove.${NAMESPACE}`, moveHandler);
     $element.on(`mousemove.${NAMESPACE}`, moveHandler);
   }
-  static removeTouchEvents($element) {
+  removeTouchEvents($element) {
     $element.off(`.${NAMESPACE}`);
   }
-  static pointerMoved(data) {
+  pointerMoved(data) {
     // Get the position of the pointer
     let x;
     let y;
@@ -146,18 +124,18 @@ class SlideHelper {
     }
 
     // Velocity = distance/time
-    SlideHelper.velocityX = (x - SlideHelper.pointerX) /
-     ((performance.now() - SlideHelper.lastPointerPositionTimestamp) / 100);
+    this.velocityX = (x - this.pointerX) /
+     ((performance.now() - this.lastPointerPositionTimestamp) / 100);
     // Save pointer position
-    SlideHelper.pointerX = x;
-    SlideHelper.pointerY = y;
-    SlideHelper.lastPointerPositionTimestamp = performance.now();
+    this.pointerX = x;
+    this.pointerY = y;
+    this.lastPointerPositionTimestamp = performance.now();
 
     // Update the state
-    SlideHelper.stateX = (SlideHelper.pointerX - SlideHelper.pressX) / SlideHelper.size;
+    this.stateX = (this.pointerX - this.pressX) / this.size;
   }
   // Called when the element is pressed
-  static press(data) {
+  press(data) {
     // Get the position of the pointer
     let x;
     let y;
@@ -173,95 +151,95 @@ class SlideHelper {
     }
 
     // Save pointer position
-    SlideHelper.pressX = x;
-    SlideHelper.pressY = y;
+    this.pressX = x;
+    this.pressY = y;
 
     // Update current conditions
-    SlideHelper.pressed = true;
-    SlideHelper.shouldExit = false;
-    SlideHelper.shouldReturn = false;
+    this.pressed = true;
+    this.shouldExit = false;
+    this.shouldReturn = false;
 
     // Because the element was pressed, start listening for a release and a move
-    SlideHelper.addTouchEvents(
-      SlideHelper.$body, null, SlideHelper.release, SlideHelper.pointerMoved);
+    this.addTouchEvents(
+      this.$body, null, this.release.bind(this), this.pointerMoved.bind(this));
   }
-  static release() {
+  release() {
     // Check for a buggy release (a release when the element was not actually being touched)
-    if (!SlideHelper.pressed) {
+    if (!this.pressed) {
       return;
     }
 
-    SlideHelper.pressed = false;
+    this.pressed = false;
 
     /**
      * Determinar si se deberia pasar a la siguiente tarjeta o volver
      * CUIDADO: Matematica
      * */
-    const timeToStop = -SlideHelper.velocityX / SlideHelper.frictionAcceleration;
-    const finalPositionX = (SlideHelper.stateX * SlideHelper.size) +
-      (SlideHelper.velocityX * timeToStop) +
-        ((SlideHelper.frictionAcceleration * timeToStop * timeToStop) / 2);
+    const timeToStop = -this.velocityX / this.frictionAcceleration;
+    const finalPositionX = (this.stateX * this.size) +
+      (this.velocityX * timeToStop) +
+        ((this.frictionAcceleration * timeToStop * timeToStop) / 2);
     if (Math.abs(finalPositionX) > 500) {
       // The state would reach the limit, therefore it should continue to the exit
       // (shouldExit = true)
-      SlideHelper.shouldReturn = false;
-      SlideHelper.shouldExit = true;
+      this.shouldReturn = false;
+      this.shouldExit = true;
     } else {
       // The state would not reach the limit, therefore it should return to rest position
       // (shouldReturn = true)
-      SlideHelper.shouldReturn = true;
-      SlideHelper.shouldExit = false;
+      this.shouldReturn = true;
+      this.shouldExit = false;
     }
 
     // Because the element was released, stop listening for a release and a move (will only detach
     // release and move because press is atached to the element, not the body)
-    SlideHelper.removeTouchEvents(SlideHelper.$body);
+    this.removeTouchEvents(this.$body);
   }
   // Called every frame to update everything
-  static animationFrame() {
-    if (Math.abs(SlideHelper.stateX) >= 1) {
+  animationFrame() {
+    if (Math.abs(this.stateX) >= 1) {
       // Reached the limit, disable the helper and call corresponding handlers
-      SlideHelper.disable();
-      if (SlideHelper.finishHandler) {
-        SlideHelper.finishHandler();
+      this.disable();
+      if (this.finishHandler) {
+        this.finishHandler();
       }
-      if (SlideHelper.leftHandler && SlideHelper.stateX <= -1) {
-        SlideHelper.leftHandler();
+      if (this.leftHandler && this.stateX <= -1) {
+        this.leftHandler();
       }
-      if (SlideHelper.rightHandler && SlideHelper.stateX >= 1) {
-        SlideHelper.rightHandler();
+      if (this.rightHandler && this.stateX >= 1) {
+        this.rightHandler();
       }
       return;
     }
 
-    if (SlideHelper.shouldReturn) {
+    if (this.shouldReturn) {
       // Because the state should return to rest position, move to rest position a bit every frame
       const positionDisplacement =
-       SlideHelper.returnVelocity / SlideHelper.size;// The distance that will be moved this frame
+       this.returnVelocity / this.size;// The distance that will be moved this frame
       // Move
-      if (SlideHelper.stateX > positionDisplacement) {
-        SlideHelper.stateX -= positionDisplacement;
-      } else if (SlideHelper.stateX < -positionDisplacement) {
-        SlideHelper.stateX += positionDisplacement;
+      if (this.stateX > positionDisplacement) {
+        this.stateX -= positionDisplacement;
+      } else if (this.stateX < -positionDisplacement) {
+        this.stateX += positionDisplacement;
       } else {
         // If closer to rest position than the move distance, directly set rest position
-        SlideHelper.stateX = 0;
+        this.stateX = 0;
       }
     }
 
-    if (SlideHelper.shouldExit) {
+    if (this.shouldExit) {
       // Because the state should reach the limit (exit), move outside according to velocity
-      const positionDisplacement = SlideHelper.velocityX / SlideHelper.size;
-      SlideHelper.stateX += positionDisplacement;
+      const positionDisplacement = this.velocityX / this.size;
+      this.stateX += positionDisplacement;
     }
 
     // Bug check if an animationFrameHandler was supplied
-    if (SlideHelper.animationFrameHandler) {
-      SlideHelper.animationFrameHandler(SlideHelper.stateX);
+    if (this.animationFrameHandler) {
+      this.animationFrameHandler(this.stateX);
     }
 
     // Call this function once per frame
-    window.requestAnimationFrame(SlideHelper.animationFrame);
+    window.requestAnimationFrame(this.animationFrame.bind(this));
   }
 }
 
