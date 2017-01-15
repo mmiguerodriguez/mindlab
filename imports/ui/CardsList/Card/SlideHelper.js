@@ -27,13 +27,13 @@ class SlideHelper {
    * Public Functions
    * */
   constructor({
-    $element, 
-    size, 
-    frictionAcceleration = -7, 
-    returnVelocity = 80, 
-    animationFrameHandler = null, 
-    finishHandler = null, 
-    rightHandler = null, 
+    $element,
+    size,
+    frictionAcceleration = -7,
+    returnVelocity = 80,
+    animationFrameHandler = null,
+    finishHandler = null,
+    rightHandler = null,
     leftHandler = null,
   }) {
     if (this.$element) {
@@ -66,8 +66,8 @@ class SlideHelper {
 
     this.stateX = 0;
     this.velocityX = 0;
-    
-    this.addTouchEvents(this.$element, this.press.bind(this));
+
+    SlideHelper.addTouchEvents(this.$element, this.press.bind(this));
 
 
     // The animation frame calls the animation frame handler and deals with setting the state upon
@@ -75,10 +75,20 @@ class SlideHelper {
     window.requestAnimationFrame(this.animationFrame.bind(this));
   }
 
+  /**
+   * [setFrictionAcceleration sets the friction, which is used to calculate if the
+   *  element would exit after a swipe. The default friction value is -7]
+   * @param {[float]} frictionAcceleration [the new friction value]
+   */
   setFrictionAcceleration(frictionAcceleration) {
     this.frictionAcceleration = -Math.abs(frictionAcceleration);
   }
 
+  /**
+   * [setReturnVelocity sets the velocity with which a released element will return to rest state,
+   *  if it should return element would exit after a swipe. The default returnVelocity value is 80]
+   * @param {[float]} returnVelocity [the new returnVelocity value]
+   */
   setReturnVelocity(returnVelocity) {
     this.returnVelocity = Math.abs(returnVelocity);
   }
@@ -87,26 +97,12 @@ class SlideHelper {
    * */
   // Disables the this. Called when state reaches limit
   disable() {
-    this.removeTouchEvents(this.$element);
+    SlideHelper.removeTouchEvents(this.$element);
     this.$element = null;
 
     this.pressed = false;
     this.shouldExit = false;
     this.shouldReturn = false;
-  }
-  // Adds the touch events passed to the element passed
-  addTouchEvents($element, pressHandler, releaseHandler, moveHandler) {
-    $element.on(`touchstart.${NAMESPACE}`, pressHandler);
-    $element.on(`mousedown.${NAMESPACE}`, pressHandler);
-
-    $element.on(`touchend.${NAMESPACE}`, releaseHandler);
-    $element.on(`mouseup.${NAMESPACE}`, releaseHandler);
-
-    $element.on(`touchmove.${NAMESPACE}`, moveHandler);
-    $element.on(`mousemove.${NAMESPACE}`, moveHandler);
-  }
-  removeTouchEvents($element) {
-    $element.off(`.${NAMESPACE}`);
   }
   pointerMoved(data) {
     // Get the position of the pointer
@@ -160,7 +156,7 @@ class SlideHelper {
     this.shouldReturn = false;
 
     // Because the element was pressed, start listening for a release and a move
-    this.addTouchEvents(
+    SlideHelper.addTouchEvents(
       this.$body, null, this.release.bind(this), this.pointerMoved.bind(this));
   }
   release() {
@@ -193,7 +189,7 @@ class SlideHelper {
 
     // Because the element was released, stop listening for a release and a move (will only detach
     // release and move because press is atached to the element, not the body)
-    this.removeTouchEvents(this.$body);
+    SlideHelper.removeTouchEvents(this.$body);
   }
   // Called every frame to update everything
   animationFrame() {
@@ -240,6 +236,20 @@ class SlideHelper {
 
     // Call this function once per frame
     window.requestAnimationFrame(this.animationFrame.bind(this));
+  }
+  // Adds the touch events passed to the element passed
+  static addTouchEvents($element, pressHandler, releaseHandler, moveHandler) {
+    $element.on(`touchstart.${NAMESPACE}`, pressHandler);
+    $element.on(`mousedown.${NAMESPACE}`, pressHandler);
+
+    $element.on(`touchend.${NAMESPACE}`, releaseHandler);
+    $element.on(`mouseup.${NAMESPACE}`, releaseHandler);
+
+    $element.on(`touchmove.${NAMESPACE}`, moveHandler);
+    $element.on(`mousemove.${NAMESPACE}`, moveHandler);
+  }
+  static removeTouchEvents($element) {
+    $element.off(`.${NAMESPACE}`);
   }
 }
 
