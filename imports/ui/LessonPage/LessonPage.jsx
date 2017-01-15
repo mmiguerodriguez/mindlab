@@ -1,36 +1,28 @@
 import React from 'react';
 import CardsList from '../CardsList/CardsList';
+import {
+  IntroduccionLesson,
+  PrimerosConceptosLesson,
+  LenguajesLesson
+} from './HardcodedCourseContent';
 
 class LessonPage extends React.Component {
   render() {
-    // TODO: add real cards
-    const cardsContent = [
-      {
-        type: 'content',
-        imageUrl: '/images/welcome/page1.png',
-        title: 'HOLA',
-        text: 'Esto es un texto',
-      },
-      {
-        type: 'content',
-        imageUrl: '/images/welcome/page2.png',
-        title: 'Segunda card',
-        text: 'Esto es otro texto, un poco más largo que el anterior',
-      },
-      {
-        type: 'content',
-        imageUrl: '/images/welcome/page1.png',
-        title: 'Tercera card',
-        text: 'Esto es otro texto, un poco más largo que el anterior, y también que el primero.',
-      },
-      {
-        type: 'quiz',
-      },
-      {
-        type: 'content',
-        title: 'nuevo stack',
-      },
-    ];
+    let cardsContent = [];
+    switch (this.props.params.lessonName) {
+      case 'Introducción':
+        cardsContent = IntroduccionLesson;
+        break;
+      case 'Primeros conceptos':
+        cardsContent = PrimerosConceptosLesson;
+        break;
+      case 'Lenguages':
+        cardsContent = LenguajesLesson;
+        break;
+      default:
+        cardsContent = IntroduccionLesson;
+        break;
+    }
     return (
       <div>
         <CardsList cards={cardsContent} />
