@@ -26,7 +26,7 @@ const IntroduccionLesson = [
     type: 'content',
     //imageUrl: '/images/',
     title: 'Funcionamiento de las compus',
-    text: 'Ahora que ya sabés lo bueno de la programación, adentrémonos en lo técnico: ¿Cómo funcionan las computadoras?\nLas computadoras son torpes, lo único que saben hacer es seguir instrucciones.',
+    text: 'Ahora que ya sabés lo bueno de la programación, adentrémonos en lo técnico: ¿Cómo funcionan las computadoras?\n\nLas computadoras son torpes, lo único que saben hacer es seguir instrucciones.',
   },
   {
     type: 'content',
@@ -41,7 +41,7 @@ const IntroduccionLesson = [
   {
     type: 'content',
     //imageUrl: '/images/',
-    text: 'A esta serie de pasos le decimos <b>algoritmo</b>. Ahora vamos a hacer nuestro propio algoritmo.',
+    text: 'A esta serie de pasos le decimos **algoritmo**. Ahora vamos a hacer nuestro propio algoritmo.',
   },
 ];
 
