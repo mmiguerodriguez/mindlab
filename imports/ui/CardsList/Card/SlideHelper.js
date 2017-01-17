@@ -2,19 +2,6 @@
  * TODO:
  *  Documentar bien metodos con docblockr y variables no intuitivas como stateX
  * */
-
-/**
- * - slideHelper($element, size, animationFrameHandler, finishOrRightHandler, leftHandler)
- *    Apply the helper to an element. Supply the size of the element, and the handlers to be called
- *     when it reaches the end. You can either have finish handler or right and left handler,
- *   not both.
- * - setFrictionAcceleration(frictionAcceleration)
- *    Set the friction. The friction is used to determine if the element would exit or stay, when
- *     the user releases it.
- * - setReturnVelocity(returnVelocity)
- *    Set the return velocity for when the element is released and should return to rest position.
- *     (The exit velocity is determined by the touch's movement)
- * */
 import $ from 'jquery';
 
 /**
@@ -26,6 +13,18 @@ class SlideHelper {
   /**
    * Public Functions
    * */
+  /**
+   * Creates an instance and sets the corresponding values with the passed parameters
+   * @param {float} $element The element on which to use the helper
+   * @param {float} size The size of the element
+   * @param {float} frictionAcceleration Used to determine if upon release the element should exit
+   * @param {float} returnVelocity  Sets the speed with which the state returns to rest position
+   * @param {float} animationFrameHandler Called every frame with the state, used by user to animate
+   * @param {float} finishHandler Called when the state reaches passed size
+   * @param {float} rightHandler Called when the state reaches passed size, on the right
+   * @param {float} leftHandler Called when the state reaches passed size, on the left
+   * @return {SlideHelper}
+   */
   constructor({
     $element,
     size,
@@ -47,14 +46,14 @@ class SlideHelper {
     }
 
     this.$body = $(document.body);
-    this.pressed = false;
-    this.shouldReturn = false;
-    this.shouldExit = false;
-    this.pointerX = null;
-    this.pointerY = null;
-    this.lastPointerPositionTimestamp = 0;
-    this.pressX = null;
-    this.pressY = null;
+    this.pressed = false;// The element is being pressed
+    this.shouldReturn = false;// The state should return to rest position
+    this.shouldExit = false;// The state should continue to exit (when element is released)
+    this.pointerX = null;// Last pointer position
+    this.pointerY = null;// Last pointer position
+    this.lastPointerPositionTimestamp = 0;// The timestamp of the last pointer position recorded
+    this.pressX = null;// Last touch position
+    this.pressY = null;// Last touch position
     this.$element = $element;
     this.size = size;
     this.returnVelocity = returnVelocity;
@@ -64,7 +63,8 @@ class SlideHelper {
     this.rightHandler = rightHandler;
     this.leftHandler = leftHandler;
 
-    this.stateX = 0;
+    // The current position of movement
+    this.stateX = 0;// i.e. element pressed then pointer moved to the right, stateX increases
     this.velocityX = 0;
 
     SlideHelper.addTouchEvents(this.$element, this.press.bind(this));
@@ -76,26 +76,32 @@ class SlideHelper {
   }
 
   /**
-   * [setFrictionAcceleration sets the friction, which is used to calculate if the
-   *  element would exit after a swipe. The default friction value is -7]
-   * @param {[float]} frictionAcceleration [the new friction value]
+   * Sets the friction, which is used to calculate if the
+   *  element would exit after a swipe. The default friction value is -7
+   * @param {float} frictionAcceleration the new friction value
+   * @return {undefined}
    */
   setFrictionAcceleration(frictionAcceleration) {
     this.frictionAcceleration = -Math.abs(frictionAcceleration);
   }
 
   /**
-   * [setReturnVelocity sets the velocity with which a released element will return to rest state,
-   *  if it should return element would exit after a swipe. The default returnVelocity value is 80]
-   * @param {[float]} returnVelocity [the new returnVelocity value]
+   * Sets the velocity with which a released element will return to rest state,
+   *  if it should return element would exit after a swipe. The default returnVelocity value is 80
+   * @param {float} returnVelocity the new returnVelocity value
+   * @return {undefined}
    */
   setReturnVelocity(returnVelocity) {
     this.returnVelocity = Math.abs(returnVelocity);
   }
+
   /**
    * Private Functions
    * */
-  // Disables the this. Called when state reaches limit
+  /**
+   * disable disables the helper. called when the state reaches the limit
+   * @return {undefined}
+   */
   disable() {
     SlideHelper.removeTouchEvents(this.$element);
     this.$element = null;
@@ -104,6 +110,12 @@ class SlideHelper {
     this.shouldExit = false;
     this.shouldReturn = false;
   }
+
+  /**
+   * Called when the pointer moves, and updates the corresponding variables
+   * @param {object} data jquery event data object
+   * @return {undefined}
+   */
   pointerMoved(data) {
     // Get the position of the pointer
     let x;
@@ -130,7 +142,13 @@ class SlideHelper {
     // Update the state
     this.stateX = (this.pointerX - this.pressX) / this.size;
   }
-  // Called when the element is pressed
+
+  /**
+   * Called when the pointer clicks or touches the screen, and updates the corresponding
+   *  variables
+   * @param {object} data jquery event data object
+   * @return {undefined}
+   */
   press(data) {
     // Get the position of the pointer
     let x;
@@ -159,6 +177,12 @@ class SlideHelper {
     SlideHelper.addTouchEvents(
       this.$body, null, this.release.bind(this), this.pointerMoved.bind(this));
   }
+
+  /**
+   * Called when the pointer release or a finger leaves the screen, and updates the
+   *  corresponding variables. Does not accept the jquery event object because not used.
+   *  @return {undefined}
+   */
   release() {
     // Check for a buggy release (a release when the element was not actually being touched)
     if (!this.pressed) {
@@ -192,6 +216,10 @@ class SlideHelper {
     SlideHelper.removeTouchEvents(this.$body);
   }
   // Called every frame to update everything
+  /**
+   * Called every frame. Updates state variables and calls handlers. Disables if reached limit.
+   * @return {undefined}
+   */
   animationFrame() {
     if (Math.abs(this.stateX) >= 1) {
       // Reached the limit, disable the helper and call corresponding handlers
@@ -229,7 +257,7 @@ class SlideHelper {
       this.stateX += positionDisplacement;
     }
 
-    // Bug check if an animationFrameHandler was supplied
+    // Call handler if an animationFrameHandler was supplied
     if (this.animationFrameHandler) {
       this.animationFrameHandler(this.stateX);
     }
@@ -237,7 +265,15 @@ class SlideHelper {
     // Call this function once per frame
     window.requestAnimationFrame(this.animationFrame.bind(this));
   }
-  // Adds the touch events passed to the element passed
+
+  /**
+   * Adds the passed event handlers to the passed element
+   * @param {object} $element jquery element
+   * @param {function} pressHandler touchstart and mousedown event handlers
+   * @param {function} releaseHandler touchend and mouseup event handlers
+   * @param {function} moveHandler touchmove and mousemove event handlers
+   * @return {undefined}
+   */
   static addTouchEvents($element, pressHandler, releaseHandler, moveHandler) {
     $element.on(`touchstart.${NAMESPACE}`, pressHandler);
     $element.on(`mousedown.${NAMESPACE}`, pressHandler);
@@ -248,6 +284,12 @@ class SlideHelper {
     $element.on(`touchmove.${NAMESPACE}`, moveHandler);
     $element.on(`mousemove.${NAMESPACE}`, moveHandler);
   }
+
+  /**
+   * Removes events to the passed element
+   * @param {object} $element jquery element
+   * @return {undefined}
+   */
   static removeTouchEvents($element) {
     $element.off(`.${NAMESPACE}`);
   }
