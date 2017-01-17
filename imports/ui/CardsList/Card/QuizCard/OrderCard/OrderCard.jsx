@@ -3,17 +3,22 @@ import { SortableContainer, SortableElement, arrayMove } from 'react-sortable-ho
 
 import QuizCard from '../QuizCard';
 
-const SortableItem = SortableElement(({ value, zIndex }) => (
+const SortableItem = SortableElement(({ content, zIndex }) => (
   // zIndex is needed because card component have custom zIndex
   <div className="order-card-option" style={{ zIndex: zIndex + 1 }}>
-    <h4>{value}</h4>
+    <h4>{content}</h4>
   </div>
 ));
 
-const SortableList = SortableContainer(({ items, zIndex }) => (
+const SortableList = SortableContainer(({ options, zIndex }) => (
   <div className="order-card-options">
-    {items.map((value, index) => (
-      <SortableItem key={`item-${index}`} index={index} value={value} zIndex={zIndex} />
+    {options.map((option, index) => (
+      <SortableItem
+        key={`option-${index}`}
+        index={index}
+        content={option.content}
+        zIndex={zIndex}
+      />
     ))}
   </div>
 ));
@@ -22,9 +27,7 @@ class OrderCard extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      // We split options in the text and the step number
-      items: this.props.options.map(option => option.content),
-      itemsOrder: this.props.options.map(option => option.step),
+      options: this.props.options,
     };
 
     this.onSortEnd = this.onSortEnd.bind(this);
@@ -33,37 +36,43 @@ class OrderCard extends React.Component {
 
   onSortEnd({ oldIndex, newIndex }) {
     this.setState({
-      items: arrayMove(this.state.items, oldIndex, newIndex),
-      itemsOrder: arrayMove(this.state.itemsOrder, oldIndex, newIndex),
+      options: arrayMove(this.state.options, oldIndex, newIndex),
     });
   }
 
   checkAnswer() {
-    const itemsOrder = this.state.itemsOrder;
+    const options = this.state.options;
+    let wrongOrder = false;
 
-    for (let i = 1; i < itemsOrder.length; i += 1) {
-      if (itemsOrder[i - 1] > itemsOrder[i]) {
-        $.snackbar({ content: this.props.incorrectMessage });
-        // If the list is unordered, then exit checkAnswer function
-        return;
+    options.forEach((option, index) => {
+      if (option.step !== index + 1) {
+        wrongOrder = true;
       }
-    }
+    });
 
-    $.snackbar({ content: this.props.correctMessage });
+    if (wrongOrder) {
+      $.snackbar({ content: this.props.incorrectMessage });
+    } else {
+      $.snackbar({ content: this.props.correctMessage });
+    }
 
     // TODO: continue to the next card
   }
 
   render() {
-    const options = (
-      <SortableList items={this.state.items} onSortEnd={this.onSortEnd} zIndex={this.props.index} />
+    const optionsElement = (
+      <SortableList
+        options={this.state.options}
+        onSortEnd={this.onSortEnd}
+        zIndex={this.props.cardsCount - this.props.index}
+      />
     );
 
     return (
       <QuizCard
         imageUrl={this.props.imageUrl}
         question={this.props.question}
-        options={options}
+        options={optionsElement}
         checkAnswer={this.checkAnswer}
         index={this.props.index}
         cardsCount={this.props.cardsCount}
@@ -75,10 +84,13 @@ class OrderCard extends React.Component {
 
 OrderCard.propTypes = {
   imageUrl: React.PropTypes.string,
-  question: React.PropTypes.string,
+  question: React.PropTypes.string.isRequired,
   correctMessage: React.PropTypes.string,
   incorrectMessage: React.PropTypes.string,
-  options: React.PropTypes.arrayOf(React.PropTypes.object),
+  options: React.PropTypes.arrayOf(React.PropTypes.shape({
+    content: React.PropTypes.string.isRequired,
+    step: React.PropTypes.number.isRequired,
+  })).isRequired,
   index: React.PropTypes.number.isRequired,
   cardsCount: React.PropTypes.number.isRequired,
   cardPassed: React.PropTypes.func.isRequired,
@@ -86,8 +98,6 @@ OrderCard.propTypes = {
 
 OrderCard.defaultProps = {
   imageUrl: null,
-  question: null,
-  options: null,
   correctMessage: 'Correcto',
   incorrectMessage: 'Incorrecto',
 };

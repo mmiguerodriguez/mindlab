@@ -7,6 +7,38 @@ class LessonPage extends React.Component {
     // TODO: add real cards
     const cardsContent = [
       {
+        type: 'order',
+        imageUrl: '/images/welcome/page1.png',
+        question: 'Tercera card',
+        options: [{
+          content: 'Opción 1',
+          step: 1,
+        },
+        {
+          content: 'Opción 2',
+          step: 2,
+        },
+        {
+          content: 'Opción 3',
+          step: 3,
+        }],
+      },
+      {
+        type: 'multiple-choice',
+        imageUrl: '/images/welcome/page1.png',
+        question: 'Tercera card',
+        options: [{
+          content: 'Opción 1',
+          correct: true,
+        },
+        {
+          content: 'Opción 2',
+        },
+        {
+          content: 'Opción 3',
+        }],
+      },
+      {
         type: 'content',
         imageUrl: '/images/welcome/page1.png',
         title: 'HOLA',
@@ -37,6 +69,10 @@ LessonPage.propTypes = {
   params: React.PropTypes.shape({
     lessonName: React.PropTypes.string.isRequired,
   }),
+};
+
+LessonPage.defaultProps = {
+  params: null,
 };
 
 export default LessonPage;

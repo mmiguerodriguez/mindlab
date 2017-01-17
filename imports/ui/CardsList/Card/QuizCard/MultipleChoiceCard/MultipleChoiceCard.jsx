@@ -24,14 +24,10 @@ class MultipleChoiceCard extends React.Component {
 
     if (!selectedOption) {
       $.snackbar({ content: 'No seleccionaste ninguna respuesta' });
+    } else if (!this.props.options[selectedOption].correct) {
+      const content = this.props.options[selectedOption].message || 'Incorrecto';
+      $.snackbar({ content });
     } else {
-      if (!this.props.options[selectedOption].correct) {
-        const content = this.props.options[selectedOption].message || 'Incorrecto';
-        $.snackbar({ content });
-        // If the multiple choice is incorrect, then exit the checkAnswer function
-        return;
-      }
-
       const content = this.props.options[selectedOption].message || 'Correcto';
       $.snackbar({ content });
 
@@ -40,7 +36,7 @@ class MultipleChoiceCard extends React.Component {
   }
 
   render() {
-    const options = this.props.options.map((option, index) => (
+    const optionsArray = this.props.options.map((option, index) => (
       <div
         className="multiple-choice-card-option"
         key={`option-${index}`}
@@ -61,7 +57,7 @@ class MultipleChoiceCard extends React.Component {
       <QuizCard
         imageUrl={this.props.imageUrl}
         question={this.props.question}
-        options={options}
+        options={optionsArray}
         checkAnswer={this.checkAnswer}
         index={this.props.index}
         cardsCount={this.props.cardsCount}
@@ -73,8 +69,12 @@ class MultipleChoiceCard extends React.Component {
 
 MultipleChoiceCard.propTypes = {
   imageUrl: React.PropTypes.string,
-  question: React.PropTypes.string,
-  options: React.PropTypes.arrayOf(React.PropTypes.object),
+  question: React.PropTypes.string.isRequired,
+  options: React.PropTypes.arrayOf(React.PropTypes.shape({
+    content: React.PropTypes.string.isRequired,
+    message: React.PropTypes.string,
+    correct: React.PropTypes.bool,
+  })).isRequired,
   index: React.PropTypes.number.isRequired,
   cardsCount: React.PropTypes.number.isRequired,
   cardPassed: React.PropTypes.func.isRequired,
@@ -82,8 +82,6 @@ MultipleChoiceCard.propTypes = {
 
 MultipleChoiceCard.defaultProps = {
   imageUrl: null,
-  question: null,
-  options: null,
 };
 
 export default MultipleChoiceCard;

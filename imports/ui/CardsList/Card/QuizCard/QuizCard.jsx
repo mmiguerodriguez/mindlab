@@ -2,7 +2,15 @@ import React from 'react';
 
 import Card from '../Card';
 
-const QuizCard = ({ imageUrl, question, options, checkAnswer, index, cardsCount, cardPassed }) => {
+const QuizCard = ({
+  imageUrl,
+  question,
+  options,
+  checkAnswer,
+  index,
+  cardsCount,
+  cardPassed,
+}) => {
   const content =
     (
       <div className="card-body">
@@ -27,14 +35,19 @@ const QuizCard = ({ imageUrl, question, options, checkAnswer, index, cardsCount,
       </div>
     );
   return (
-    <Card content={content} index={index} cardsCount={cardsCount} cardPassed={cardPassed} />
+    <Card
+      content={content}
+      index={index}
+      cardsCount={cardsCount}
+      cardPassed={cardPassed}
+    />
   );
 };
 
 QuizCard.propTypes = {
   imageUrl: React.PropTypes.string,
-  question: React.PropTypes.string,
-  options: React.PropTypes.arrayOf(React.PropTypes.object),
+  question: React.PropTypes.string.isRequired,
+  options: React.PropTypes.arrayOf(React.PropTypes.element).isRequired,
   checkAnswer: React.PropTypes.func.isRequired,
   index: React.PropTypes.number.isRequired,
   cardsCount: React.PropTypes.number.isRequired,
