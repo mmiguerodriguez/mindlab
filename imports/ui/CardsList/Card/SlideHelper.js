@@ -1,12 +1,5 @@
-/**
- * TODO:
- *  Documentar bien metodos con docblockr y variables no intuitivas como stateX
- * */
 import $ from 'jquery';
 
-/**
- * Variables
- * */
 const NAMESPACE = 'SlideHelper';
 
 class SlideHelper {
