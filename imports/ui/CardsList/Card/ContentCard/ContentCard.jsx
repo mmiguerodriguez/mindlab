@@ -5,12 +5,12 @@ import Card from '../Card';
 const ContentCard = ({ imageUrl, title, text, index, cardsCount }) => {
   const content =
     (
-      <div className="content-card">
+      <div className="card-body">
         { imageUrl &&
           <img
             src={imageUrl}
             alt=""
-            className="content-card-img"
+            className="card-img"
           />
         }
         { title &&
@@ -34,8 +34,14 @@ ContentCard.propTypes = {
   imageUrl: React.PropTypes.string,
   title: React.PropTypes.string,
   text: React.PropTypes.string,
-  index: React.PropTypes.number,
-  cardsCount: React.PropTypes.number,
+  index: React.PropTypes.number.isRequired,
+  cardsCount: React.PropTypes.number.isRequired,
+};
+
+ContentCard.defaultProps = {
+  imageUrl: null,
+  title: null,
+  text: null,
 };
 
 export default ContentCard;
