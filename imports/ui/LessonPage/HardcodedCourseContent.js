@@ -5,7 +5,7 @@ const IntroduccionLesson = [
     type: 'content',
     //imageUrl: '/images/',
     title: 'Empecemos!',
-    text: 'Hoy en día, todo es programable. Desde donde estás viendo esto, hasta algunos relojes. Además, por cada persona en el mundo hay siete dispositivos tecnológicos.',
+    text: 'Hoy en día,todo es programable. Desde donde estás viendo esto, hasta algunos relojes. Además, por cada persona en el mundo hay siete dispositivos tecnológicos.',
   },
   {
     type: 'content',

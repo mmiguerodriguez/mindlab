@@ -1,4 +1,5 @@
 import React from 'react';
+import ReactMarkdown from 'react-markdown';
 
 import Card from '../Card';
 
@@ -26,9 +27,7 @@ const ContentCard = ({
         </h2>
       }
       {text &&
-        <h3 className="content-card-text">
-          {text}
-        </h3>
+        <ReactMarkdown source={text} className="content-card-text" />
       }
     </div>
     );
@@ -45,7 +44,7 @@ const ContentCard = ({
 ContentCard.propTypes = {
   imageUrl: React.PropTypes.string,
   title: React.PropTypes.string,
-  text: React.PropTypes.string,
+  text: React.PropTypes.string, // markdown string
   index: React.PropTypes.number,
   cardsCount: React.PropTypes.number,
   cardPassed: React.PropTypes.func,
