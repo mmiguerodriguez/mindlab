@@ -11,7 +11,7 @@ class NotificationsTest extends Component {
 
   render() {
     return (
-      <div>Componente para registrar a un worker y pedir permisos de notifaciones</div>  
+      <div>Componente para registrar a un worker y pedir permisos de notifaciones</div>
     );
   }
 }

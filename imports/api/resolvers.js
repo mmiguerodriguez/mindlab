@@ -1,14 +1,14 @@
 import Subscribers from './subscribers/subscribers';
 import Feedback from './feedback/feedback';
 
-export const resolvers = {
+const resolvers = {
   Query: {
     subscriber(_, args) {
       return Subscribers.findOne(args.id);
     },
     feedback(_, args) {
       return Feedback.findOne(args.id);
-    }
+    },
   },
   Mutation: {
     addSubscriber(_, args) {
@@ -18,26 +18,25 @@ export const resolvers = {
         keys: {
           p256dh,
           auth,
-        }
+        },
       };
-      
+
       if (!Subscribers.findOne({ endpoint })) {
         const subscriptionId = Subscribers.insert(subscriber);
         return Subscribers.findOne(subscriptionId);
       }
-
-      return;
     },
     addFeedback(_, args) {
-      const { title, description, email } = args;
+      const { description, email } = args;
       const feedback = {
-        title,
         description,
         email,
       };
 
       const feedbackId = Feedback.insert(feedback);
       return Feedback.findOne(feedbackId);
-    }
-  }
+    },
+  },
 };
+
+export default resolvers;

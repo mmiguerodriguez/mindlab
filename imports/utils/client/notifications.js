@@ -19,8 +19,8 @@ const Notifications = {
         self.worker = worker;
         self.init();
       })
-      .catch((error) => {
-        console.error('Service Worker Error', error);
+      .catch((err) => {
+        console.error('Service Worker Error', err);
       });
     } else {
       console.warn('Push messaging is not supported');
@@ -34,7 +34,7 @@ const Notifications = {
       const _subscribed = !(subscription === null);
 
       self.subscribed = _subscribed;
-  
+
       if (self.subscribed) {
         // self.updateUserSubscription(subscription);
       } else {
@@ -48,14 +48,14 @@ const Notifications = {
 
     this.worker.pushManager.subscribe({
       userVisibleOnly: true,
-      applicationServerKey: applicationServerKey,
+      applicationServerKey,
     })
     .then((subscription) => {
       self.addSubscriber(subscription);
       self.subscribed = true;
     })
-    .catch(function(err) {
-      console.log('Failed to subscribe the user: ', err);
+    .catch((err) => {
+      console.error('Failed to subscribe the user', err);
     });
   },
   addSubscriber(_subscription) {
@@ -67,25 +67,25 @@ const Notifications = {
         endpoint,
         p256dh,
         auth,
-      }
+      },
     })
     .then(({ data }) => {
       console.log('Updated user subscription', data);
     })
-    .catch((error) => {
-      console.log('There was an error updating user subscription', error);
+    .catch((err) => {
+      console.error('There was an error updating user subscription', err);
     });
   },
   urlB64ToUint8Array(base64String) {
-    const padding = '='.repeat((4 - base64String.length % 4) % 4);
+    const padding = '='.repeat((4 - (base64String.length % 4)) % 4);
     const base64 = (base64String + padding)
-      .replace(/\-/g, '+')
+      .replace(/-/g, '+')
       .replace(/_/g, '/');
-  
+
     const rawData = window.atob(base64);
     const outputArray = new Uint8Array(rawData.length);
-  
-    for (let i = 0; i < rawData.length; ++i) {
+
+    for (let i = 0; i < rawData.length; i += 1) {
       outputArray[i] = rawData.charCodeAt(i);
     }
     return outputArray;

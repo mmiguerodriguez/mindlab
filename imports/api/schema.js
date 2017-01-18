@@ -1,6 +1,5 @@
-export const typeDefs = [`
+const typeDefs = [`
 type Feedback {
-  title: String!
   description: String!
   email: String
   _id: String!
@@ -24,7 +23,7 @@ type Query {
 
 type Mutation {
   addSubscriber(endpoint: String!, p256dh: String!, auth: String!): Subscriber
-  addFeedback(title: String!, description: String!, email: String): Feedback
+  addFeedback(description: String!, email: String): Feedback
 }
 
 schema {
@@ -32,3 +31,5 @@ schema {
   mutation: Mutation
 }
 `];
+
+export default typeDefs;

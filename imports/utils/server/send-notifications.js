@@ -17,7 +17,7 @@ const sendNotifications = (message) => {
     webpush.sendNotification(
       subscriber,
       message,
-      options
+      options,
     );
   });
 };

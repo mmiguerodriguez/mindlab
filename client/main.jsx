@@ -15,18 +15,19 @@ import CardsList from '../imports/ui/CardsList/CardsList';
 import CoursePage from '../imports/ui/CoursePage/CoursePage';
 import LessonPage from '../imports/ui/LessonPage/LessonPage';
 import FeedbackPage from '../imports/ui/FeedbackPage/FeedbackPage';
+import NotificationsTest from '../imports/ui/NotificationsTest';
 
 import './main.scss';
 
 const client = new ApolloClient(meteorClientConfig());
 
-/* Show WelcomePage only if it's the first time the user visits the site
+// Show WelcomePage only if it's the first time the user visits the site
 if (
   !localStorage.getItem('hasVisited') ||
   localStorage.getItem('hasVisited') === 'false'
 ) {
   browserHistory.push('/welcome');
-}*/
+}
 
 Meteor.startup(() => {
   render(
@@ -39,6 +40,7 @@ Meteor.startup(() => {
           <Route path="/course/:courseName/:lessonName" component={LessonPage} />
           <Route path="/lesson" component={CardsList} />
           <Route path="/feedback" component={FeedbackPage} />
+          <Route path="/test" component={NotificationsTest} />
         </Route>
       </Router>
     </ApolloProvider>,
