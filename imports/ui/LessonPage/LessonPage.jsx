@@ -56,6 +56,12 @@ class LessonPage extends React.Component {
         title: 'Tercera card',
         text: 'Esto es otro texto, un poco más largo que el anterior, y también que el primero.',
       },
+      {
+        type: 'content',
+        imageUrl: '/images/welcome/page1.png',
+        title: 'Haz finalizado la leccion',
+        text: 'Si quieres seguir conectado a este curso suscribete.',
+      },
     ];
     return (
       <div>
