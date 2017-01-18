@@ -5,7 +5,8 @@ import { Link } from 'react-router'
 import ContentCard from './Card/ContentCard/ContentCard';
 import FeedbackCard from './Card/FeedbackCard/FeedbackCard';
 import FinishCard from './Card/FinishCard/FinishCard';
-import QuizCard from './Card/QuizCard/QuizCard';
+import MultipleChoiceCard from './Card/QuizCard/MultipleChoiceCard/MultipleChoiceCard';
+import OrderCard from './Card/QuizCard/OrderCard/OrderCard';
 
 class CardsList extends React.Component {
   render() {
@@ -21,8 +22,11 @@ class CardsList extends React.Component {
         case 'finish':
           cardType = FinishCard;
           break;
-        case 'quiz':
-          cardType = QuizCard;
+        case 'multiple-choice':
+          cardType = MultipleChoiceCard;
+          break;
+        case 'order':
+          cardType = OrderCard;
           break;
         default:
           cardType = ContentCard;
