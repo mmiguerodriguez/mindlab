@@ -24,7 +24,10 @@ class LessonPage extends React.Component {
         text: 'Esto es otro texto, un poco más largo que el anterior, y también que el primero.',
       },
       {
-        type: 'quiz',
+        type: 'order',
+      },
+      {
+        type: 'multiple-choice',
       },
       {
         type: 'content',
