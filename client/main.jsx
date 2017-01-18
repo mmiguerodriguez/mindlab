@@ -44,3 +44,5 @@ Meteor.startup(() => {
     document.getElementById('app')
   );
 });
+
+/*global localStorage*/
