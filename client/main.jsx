@@ -1,6 +1,7 @@
 import { Meteor } from 'meteor/meteor';
-import { render } from 'react-dom';
+
 import React from 'react';
+import { render } from 'react-dom';
 import { Router, Route, IndexRoute, browserHistory } from 'react-router';
 
 import ApolloClient from 'apollo-client';
@@ -13,6 +14,7 @@ import HomePage from '../imports/ui/HomePage/HomePage';
 import NotificationsTest from '../imports/ui/NotificationsTest';
 import CoursePage from '../imports/ui/CoursePage/CoursePage';
 import LessonPage from '../imports/ui/LessonPage/LessonPage';
+import FeedbackPage from '../imports/ui/FeedbackPage/FeedbackPage';
 
 import './main.scss';
 
@@ -37,6 +39,7 @@ Meteor.startup(() => {
           <IndexRoute component={HomePage} />
           <Route path="/course/:courseName" component={CoursePage} />
           <Route path="/course/:courseName/:lessonName" component={LessonPage} />
+          <Route path="/feedback" component={FeedbackPage} />
           <Route path="/test" component={NotificationsTest} />
         </Route>
       </Router>
