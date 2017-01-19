@@ -3,31 +3,30 @@ import { Meteor } from 'meteor/meteor';
 const Notifications = {
   PUBLIC_API_KEY: Meteor.settings.public.publicKey,
   worker: null,
+  mutator: null,
   subscribed: false,
-  askForPermission() {
-    this.registerWorker();
+
+  askForPermission(mutator) {
+    this.mutator = mutator;
+    this.register();
   },
-  registerWorker() {
+  register() {
     const self = this;
 
     if ('serviceWorker' in window.navigator && 'PushManager' in window) {
-      window.navigator.serviceWorker
-      .register('worker.js')
+      window.navigator.serviceWorker.register('worker.js')
       .then((worker) => {
-        console.log('Service Worker is registered', worker);
-    
         self.worker = worker;
-        self.initialiseUI();
+        self.init();
       })
-      .catch((error) => {
-        console.error('Service Worker Error', error);
+      .catch((err) => {
+        console.error('Service Worker Error', err);
       });
     } else {
       console.warn('Push messaging is not supported');
-      // Show error
     }
   },
-  initialiseUI() {
+  init() {
     const self = this;
 
     this.worker.pushManager.getSubscription()
@@ -35,9 +34,9 @@ const Notifications = {
       const _subscribed = !(subscription === null);
 
       self.subscribed = _subscribed;
-  
+
       if (self.subscribed) {
-        self.updateUserSubscription(subscription);
+        // self.updateUserSubscription(subscription);
       } else {
         self.subscribe();
       }
@@ -49,39 +48,48 @@ const Notifications = {
 
     this.worker.pushManager.subscribe({
       userVisibleOnly: true,
-      applicationServerKey: applicationServerKey,
+      applicationServerKey,
     })
     .then((subscription) => {
-      self.updateUserSubscription(subscription);
+      self.addSubscriber(subscription);
       self.subscribed = true;
     })
-    .catch(function(err) {
-      console.log('Failed to subscribe the user: ', err);
+    .catch((err) => {
+      console.error('Failed to subscribe the user', err);
     });
   },
-  updateUserSubscription(subscription) {
-    // JSON Stringify
-    // Set user subscription on server
-    // document.querySelector('#data').innerHTML = JSON.stringify(subscription, null, 2);
-    console.log(JSON.stringify(subscription));
-    
-    
-    
+  addSubscriber(_subscription) {
+    const subscription = JSON.parse(JSON.stringify(_subscription));
+    const { endpoint, keys: { p256dh, auth } } = subscription;
+
+    this.mutator({
+      variables: {
+        endpoint,
+        p256dh,
+        auth,
+      },
+    })
+    .then(({ data }) => {
+      console.log('Updated user subscription', data);
+    })
+    .catch((err) => {
+      console.error('There was an error updating user subscription', err);
+    });
   },
   urlB64ToUint8Array(base64String) {
-    const padding = '='.repeat((4 - base64String.length % 4) % 4);
+    const padding = '='.repeat((4 - (base64String.length % 4)) % 4);
     const base64 = (base64String + padding)
-      .replace(/\-/g, '+')
+      .replace(/-/g, '+')
       .replace(/_/g, '/');
-  
+
     const rawData = window.atob(base64);
     const outputArray = new Uint8Array(rawData.length);
-  
-    for (let i = 0; i < rawData.length; ++i) {
+
+    for (let i = 0; i < rawData.length; i += 1) {
       outputArray[i] = rawData.charCodeAt(i);
     }
     return outputArray;
-  }
+  },
 };
 
 export default Notifications;

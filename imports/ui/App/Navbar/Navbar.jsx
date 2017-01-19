@@ -8,7 +8,7 @@ class Navbar extends React.Component {
         <div className="container-fluid">
           <div className="navbar-header">
             <Link className="navbar-brand" to="/">Diamond Knowledge</Link>
-            <Link id="navbar-feedback-button" to="#">Feedback</Link>
+            <Link id="navbar-feedback-button" to="/feedback">Feedback</Link>
           </div>
         </div>
       </div>

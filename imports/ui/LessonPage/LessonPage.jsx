@@ -1,4 +1,5 @@
 import React from 'react';
+
 import CardsList from '../CardsList/CardsList';
 import {
   IntroduccionLesson,
@@ -35,6 +36,10 @@ LessonPage.propTypes = {
   params: React.PropTypes.shape({
     lessonName: React.PropTypes.string.isRequired,
   }),
+};
+
+LessonPage.defaultProps = {
+  params: null,
 };
 
 export default LessonPage;

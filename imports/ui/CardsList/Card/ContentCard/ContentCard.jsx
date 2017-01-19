@@ -13,23 +13,23 @@ const ContentCard = ({
 }) => {
   const content =
     (
-    <div className="content-card">
-      {imageUrl &&
-        <img
-          src={imageUrl}
-          alt=""
-          className="content-card-img"
-        />
-      }
-      {title &&
-        <h2 className="content-card-title">
-          {title}
-        </h2>
-      }
-      {text &&
-        <ReactMarkdown source={text} className="content-card-text" />
-      }
-    </div>
+      <div className="card-body">
+        { imageUrl &&
+          <img
+            src={imageUrl}
+            alt=""
+            className="card-img"
+          />
+        }
+        { title &&
+          <h2>
+            {title}
+          </h2>
+        }
+        { text &&
+          <ReactMarkdown source={text} className="content-card-text" />
+        }
+      </div>
     );
   return (
     <Card
@@ -44,10 +44,16 @@ const ContentCard = ({
 ContentCard.propTypes = {
   imageUrl: React.PropTypes.string,
   title: React.PropTypes.string,
-  text: React.PropTypes.string, // markdown string
-  index: React.PropTypes.number,
-  cardsCount: React.PropTypes.number,
+  text: React.PropTypes.string,
+  index: React.PropTypes.number.isRequired,
+  cardsCount: React.PropTypes.number.isRequired,
   cardPassed: React.PropTypes.func,
+};
+ContentCard.defaultProps = {
+  imageUrl: null,
+  title: null,
+  text: null,
+  cardPassed: () => {},
 };
 
 export default ContentCard;
