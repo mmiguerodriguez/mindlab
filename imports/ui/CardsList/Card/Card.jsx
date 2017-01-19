@@ -16,12 +16,13 @@ class Card extends React.Component {
       displacement: {
         x: 0, // Used to animate card movement
       },
+      passed: false,
     };
     this.cardSliderApplied = false;
   }
 
   shouldComponentUpdate(nextProps, nextState) {
-    if (!this.cardSliderApplied) {
+    if (!this.cardSliderApplied || nextState.passed !== this.state.passed) {
       return true;
     }
     if (nextState.displacement.x === this.state.displacement.x) {
@@ -47,10 +48,16 @@ class Card extends React.Component {
           },
         });
       };
+      const finishHandler = () => {
+        this.setState({
+          passed: true,
+        });
+        this.props.cardPassed();
+      };
       const slideHelperProps = {
         $element: $card,
         size: this.state.dimensions.width,
-        finishHandler: this.props.cardPassed,
+        finishHandler,
         stateUpdateHandler,
       };
       this.cardSlider = new SlideHelper(slideHelperProps);
@@ -69,7 +76,9 @@ class Card extends React.Component {
       zIndex: this.props.cardsCount - this.props.index,
       transform: this.props.cardsCount ?
         `translate(${this.state.displacement.x}px, ${10 * (this.props.index)}px) rotateZ(${(this.state.displacement.x / this.state.dimensions.width) * 35}deg)` : null,
+      display: this.state.passed ? 'none' : undefined,
     };
+    console.log(cardStyle);
     return (
       <Measure
         onMeasure={(dimensions) => {
