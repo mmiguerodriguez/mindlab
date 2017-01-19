@@ -13,7 +13,7 @@ class HomePage extends React.Component {
       {
         name: 'Qué curso te gustaría que agreguemos?',
         description: 'Necesitamos tu ayuda para poder seguir creciendo',
-        courseUrl: '/feedback',
+        courseUrl: '/feedback/%2F/new-course',
       },
     ];
     const coursesArray = coursesContent.map(({ name, description, courseUrl }, index) =>

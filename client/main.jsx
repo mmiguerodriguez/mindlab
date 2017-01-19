@@ -38,7 +38,7 @@ Meteor.startup(() => {
           <IndexRoute component={HomePage} />
           <Route path="/course/:courseName" component={CoursePage} />
           <Route path="/course/:courseName/:lessonName" component={LessonPage} />
-          <Route path="/feedback" component={FeedbackPage} />
+          <Route path="/feedback(/:nextUrl)(/:type)" component={FeedbackPage} />
         </Route>
       </Router>
     </ApolloProvider>,
