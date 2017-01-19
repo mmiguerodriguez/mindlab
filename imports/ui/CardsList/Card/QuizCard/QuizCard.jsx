@@ -1,4 +1,5 @@
 import React from 'react';
+import ReactMarkdown from 'react-markdown';
 
 import Card from '../Card';
 
@@ -22,9 +23,7 @@ const QuizCard = ({
           />
         }
         { question &&
-          <h2 className="quiz-card-question">
-            {question}
-          </h2>
+          <ReactMarkdown source={question} className="quiz-card-question" />
         }
         { options &&
           <div className="quiz-card-option">

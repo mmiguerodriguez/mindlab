@@ -98,8 +98,8 @@ OrderCard.propTypes = {
 
 OrderCard.defaultProps = {
   imageUrl: null,
-  correctMessage: 'Correcto',
-  incorrectMessage: 'Incorrecto',
+  correctMessage: 'Muy bien!',
+  incorrectMessage: 'Tenés algo mal...',
 };
 
 export default OrderCard;
