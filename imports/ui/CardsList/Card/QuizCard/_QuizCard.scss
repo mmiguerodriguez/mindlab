@@ -1,2 +1,8 @@
 @import 'MultipleChoiceCard/MultipleChoiceCard';
 @import 'OrderCard/OrderCard';
+
+.quiz-card-options {
+  width: calc(100% - 40px);
+  margin: 12px 0;
+  display: flex;
+}

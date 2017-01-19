@@ -36,22 +36,31 @@ class MultipleChoiceCard extends React.Component {
   }
 
   render() {
-    const optionsArray = this.props.options.map((option, index) => (
-      <div
-        className="multiple-choice-card-option"
-        key={`option-${index}`}
-      >
-        <input
-          className="multiple-choice-card-radio"
-          type="radio"
-          name="multiple-choice-card-quiz"
-          value={index}
-          checked={this.state.selectedOption === `${index}`}
-          onChange={this.handleChange}
-        />
-        <h4 className="multiple-choice-card-content">{option.content}</h4>
-      </div>
-    ));
+    const optionsArray =
+      (
+        <div className="multiple-choice-card-options">
+          {
+            this.props.options.map((option, index) => (
+              <div
+                className="multiple-choice-card-option radio"
+                key={`option-${index}`}
+              >
+                <label>
+                  <input
+                    className="multiple-choice-card-radio"
+                    type="radio"
+                    name="multiple-choice-card-quiz"
+                    value={index}
+                    checked={this.state.selectedOption === `${index}`}
+                    onChange={this.handleChange}
+                  />
+                  <h4 className="multiple-choice-card-content">{option.content}</h4>
+                </label>
+              </div>
+            ))
+          }
+        </div>
+      );
 
     return (
       <QuizCard

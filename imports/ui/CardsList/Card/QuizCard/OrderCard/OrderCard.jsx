@@ -6,7 +6,8 @@ import QuizCard from '../QuizCard';
 const SortableItem = SortableElement(({ content, zIndex }) => (
   // zIndex is needed because card component have custom zIndex
   <div className="order-card-option" style={{ zIndex: zIndex + 1 }}>
-    <h4>{content}</h4>
+    <i className="material-icons">reorder</i>
+    <h4 className="order-card-content">{content}</h4>
   </div>
 ));
 

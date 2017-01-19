@@ -7,35 +7,42 @@ class LessonPage extends React.Component {
     // TODO: add real cards
     const cardsContent = [
       {
-        type: 'order',
-        imageUrl: '/images/welcome/page1.png',
-        question: 'Tercera card',
-        options: [{
-          content: 'Opción 1',
-          step: 1,
-        },
-        {
-          content: 'Opción 2',
-          step: 2,
-        },
-        {
-          content: 'Opción 3',
-          step: 3,
-        }],
-      },
-      {
         type: 'multiple-choice',
         imageUrl: '/images/welcome/page1.png',
         question: 'Tercera card',
         options: [{
-          content: 'Opción 1',
+          content: 'cantidadApariciones',
           correct: true,
         },
         {
-          content: 'Opción 2',
+          content: 'vecesQueAparece',
         },
         {
-          content: 'Opción 3',
+          content: 'numero',
+        }],
+      },
+      {
+        type: 'order',
+        question: 'Tercera card',
+        options: [{
+          content: 'Enchufar licuadora',
+          step: 1,
+        },
+        {
+          content: 'Meter ingredientes en la licuadora',
+          step: 2,
+        },
+        {
+          content: 'Licuar',
+          step: 3,
+        },
+        {
+          content: 'Servir licuado en el vaso',
+          step: 4,
+        },
+        {
+          content: 'Tomar el licuado',
+          step: 5,
         }],
       },
       {
