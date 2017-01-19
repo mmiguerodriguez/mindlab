@@ -93,7 +93,7 @@ class CardsList extends React.Component {
     cards.forEach((card) => {
       const currentCardIsQuiz = card.type === 'order' ||
                                 card.type === 'multiple-choice';
-      if (currentCardIsQuiz === currentStackIsQuizes) {
+      if (currentCardIsQuiz === currentStackIsQuizes && !card.forceNewStack) {
         const currentStackCount = stacks[stacks.length - 1].length;
         // Current card should be in the same stack as the previous, so push it
         stacks[stacks.length - 1].push(
