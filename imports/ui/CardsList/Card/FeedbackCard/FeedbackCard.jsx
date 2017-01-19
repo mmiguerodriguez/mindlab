@@ -35,6 +35,7 @@ class FeedbackCard extends React.Component {
     .then(({ data }) => {
       // data inserted correctly
       // data.addFeedback to get _id
+      $.snackbar({ content: '¡Muchas gracias! La sugerencia se envió correctamente' });
     })
     .catch((error) => {
       console.error(error);
@@ -44,18 +45,24 @@ class FeedbackCard extends React.Component {
   render() {
     const content =
       (
-        <div>
+        <div className="card-body">
           <h2>Tu sugerencia nos es de gran ayuda</h2>
-          <p>Descripcion</p>
-          <textarea
-            className="form-control"
-            onKeyDown={e => this.onKeyDown(e, 'description')}
-          />
-          <p>Email</p>
-          <input
-            className="form-control"
-            onKeyDown={e => this.onKeyDown(e, 'email')}
-          />
+          <div className="form-group label-floating">
+            <label htmlFor="description" className="control-label">Descripción</label>
+            <textarea
+              className="form-control"
+              id="description"
+              onKeyDown={e => this.onKeyDown(e, 'description')}
+            />
+          </div>
+          <div className="form-group label-floating">
+            <label htmlFor="email" className="control-label">Email</label>
+            <input
+              className="form-control"
+              id="email"
+              onKeyDown={e => this.onKeyDown(e, 'email')}
+            />
+          </div>
           <button onClick={this.sendFeedback}>Enviar</button>
         </div>
       );
@@ -91,4 +98,4 @@ const addFeedback = gql`
 
 const FeedbackCardWithMutation = graphql(addFeedback)(FeedbackCard);
 
-export default FeedbackCardWithMutation;
+export default FeedbackCard = FeedbackCardWithMutation;

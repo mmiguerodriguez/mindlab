@@ -3,9 +3,9 @@ import React from 'react';
 import CardsList from '../CardsList/CardsList';
 
 const FeedbackPage = () => {
-  const cardsContent = {
+  const cardsContent = [{
     type: 'feedback',
-  };
+  }];
 
   return (
     <div>
