@@ -5,8 +5,6 @@ import SlideHelper from './SlideHelper';
 
 class Card extends React.Component {
 
-  // TODO: implement slideHelper and pass cardPassed callback
-
   constructor(props) {
     super(props);
     this.state = {
