@@ -56,6 +56,16 @@ class LessonPage extends React.Component {
         title: 'Tercera card',
         text: 'Esto es otro texto, un poco más largo que el anterior, y también que el primero.',
       },
+      {
+        type: 'order',
+      },
+      {
+        type: 'multiple-choice',
+      },
+      {
+        type: 'content',
+        title: 'nuevo stack',
+      },
     ];
     return (
       <div>

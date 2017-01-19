@@ -18,7 +18,7 @@ import FeedbackPage from '../imports/ui/FeedbackPage/FeedbackPage';
 
 import './main.scss';
 
-//import slideHelper from '../imports/utils/client/slideHelper.js';
+// import slideHelper from '../imports/utils/client/slideHelper.js';
 
 const client = new ApolloClient(meteorClientConfig());
 
@@ -44,7 +44,7 @@ Meteor.startup(() => {
         </Route>
       </Router>
     </ApolloProvider>,
-    document.getElementById('app')
+    document.getElementById('app'),
   );
 });
 
