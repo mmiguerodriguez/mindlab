@@ -12,12 +12,12 @@ const ContentCard = ({
 }) => {
   const content =
     (
-      <div className="content-card">
+      <div className="card-body">
         { imageUrl &&
           <img
             src={imageUrl}
             alt=""
-            className="content-card-img"
+            className="card-img"
           />
         }
         { title &&

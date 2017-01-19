@@ -3,7 +3,8 @@ import React from 'react';
 import ContentCard from './Card/ContentCard/ContentCard';
 import FeedbackCard from './Card/FeedbackCard/FeedbackCard';
 import FinishCard from './Card/FinishCard/FinishCard';
-import QuizCard from './Card/QuizCard/QuizCard';
+import MultipleChoiceCard from './Card/QuizCard/MultipleChoiceCard/MultipleChoiceCard';
+import OrderCard from './Card/QuizCard/OrderCard/OrderCard';
 
 /**
  * CardsList: Shows stacks of cards.
@@ -62,8 +63,11 @@ class CardsList extends React.Component {
       case 'finish':
         cardType = FinishCard;
         break;
-      case 'quiz':
-        cardType = QuizCard;
+      case 'multiple-choice':
+        cardType = MultipleChoiceCard;
+        break;
+      case 'order':
+        cardType = OrderCard;
         break;
       default:
         cardType = ContentCard;
@@ -89,7 +93,7 @@ class CardsList extends React.Component {
     cards.forEach((card) => {
       const currentCardIsQuiz = card.type === 'order' ||
                                 card.type === 'multiple-choice';
-      if (currentCardIsQuiz === currentStackIsQuizes) {
+      if (currentCardIsQuiz === currentStackIsQuizes && !card.forceNewStack) {
         const currentStackCount = stacks[stacks.length - 1].length;
         // Current card should be in the same stack as the previous, so push it
         stacks[stacks.length - 1].push(

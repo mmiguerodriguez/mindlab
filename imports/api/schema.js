@@ -1,43 +1,35 @@
-import Notifications from './notifications/notifications';
+const typeDefs = [`
+type Feedback {
+  description: String!
+  email: String
+  _id: String!
+}
 
-export const typeDefs = [`
 type Keys {
-  p256dh: String
-  auth: String
+  p256dh: String!
+  auth: String!
 }
 
-type Notification {
-  endpoint: String
+type Subscriber {
+  endpoint: String!
   keys: Keys
-  _id: ID!
-}
-
-type Mutation {
-  addNotification(notification: Notification): Notification,
+  _id: String!
 }
 
 type Query {
-  notification(id: String!): Notification
+  subscriber(id: String!): Subscriber
+  feedback(id: String!): Feedback
+}
+
+type Mutation {
+  addSubscriber(endpoint: String!, p256dh: String!, auth: String!): Subscriber
+  addFeedback(description: String!, email: String): Feedback
 }
 
 schema {
   query: Query
+  mutation: Mutation
 }
 `];
 
-export const resolvers = {
-  Query: {
-    user(root, args, context) {
-      // Only return the current user, for security
-      if (context.userId === args.id) {
-        return context.user;
-      }
-    },
-  },
-  Mutation: {
-    addNotification(_, args) {
-      const notificationId = Notifications.insert(args.notification);
-      return Notifications.findOne(notificationId);
-    }
-  }
-};
+export default typeDefs;

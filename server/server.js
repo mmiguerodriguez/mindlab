@@ -1,7 +1,8 @@
-/*import { createApolloServer } from 'meteor/apollo';
+import { createApolloServer } from 'meteor/apollo';
 import { makeExecutableSchema, addMockFunctionsToSchema } from 'graphql-tools';
 
-import { typeDefs, resolvers } from '/imports/api/schema';
+import typeDefs from '/imports/api/schema';
+import { resolvers } from '/imports/api/resolvers';
 
 const schema = makeExecutableSchema({
   typeDefs,
@@ -11,4 +12,3 @@ const schema = makeExecutableSchema({
 createApolloServer({
   schema,
 });
-*/
