@@ -1,6 +1,5 @@
 import React from 'react';
 import Measure from 'react-measure';
-import $ from 'jquery';
 import SlideHelper from './SlideHelper';
 
 class Card extends React.Component {

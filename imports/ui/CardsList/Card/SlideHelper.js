@@ -1,5 +1,3 @@
-import $ from 'jquery';
-
 const NAMESPACE = 'SlideHelper';
 
 class SlideHelper {
