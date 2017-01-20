@@ -51,7 +51,7 @@ QuizCard.propTypes = {
   checkAnswer: React.PropTypes.func.isRequired,
   index: React.PropTypes.number.isRequired,
   cardsCount: React.PropTypes.number.isRequired,
-  cardPassed: React.PropTypes.func.isRequired,
+  cardPassed: React.PropTypes.func,
 };
 
 QuizCard.defaultProps = {

@@ -1,4 +1,6 @@
 import React from 'react';
+import Card from './Card/Card';
+import { Link } from 'react-router'
 
 import ContentCard from './Card/ContentCard/ContentCard';
 import FeedbackCard from './Card/FeedbackCard/FeedbackCard';
@@ -34,6 +36,7 @@ import OrderCard from './Card/QuizCard/OrderCard/OrderCard';
  *  ]
  */
 class CardsList extends React.Component {
+<<<<<<< HEAD
   constructor(props) {
     super(props);
     this.state = {
@@ -105,6 +108,37 @@ class CardsList extends React.Component {
         stacks.push([this.getCardFromCardContent(card, 0)]);
         currentStackIsQuizes = currentCardIsQuiz;
       }
+=======
+  render() {
+    let cardsCount = this.props.cards.length;
+    const cardsArray = this.props.cards.map((card, index) => {
+      let cardType = null;
+      switch (card.type) {
+        case 'content':
+          cardType = ContentCard;
+          break;
+        case 'feedback':
+          cardType = FeedbackCard;
+          break;
+        case 'finish':
+          cardType = FinishCard;
+          break;
+        case 'multiple-choice':
+          cardType = MultipleChoiceCard;
+          break;
+        case 'order':
+          cardType = OrderCard;
+          break;
+        default:
+          cardType = ContentCard;
+      }
+      return React.createElement(cardType, {
+        key: `card-${index}`,
+        ...card,
+        index,
+        cardsCount: cardsCount, // we pass this for the positioning
+      });
+>>>>>>> progressBar
     });
     return stacks;
   }
