@@ -94,13 +94,14 @@ OrderCard.propTypes = {
   })).isRequired,
   index: React.PropTypes.number.isRequired,
   cardsCount: React.PropTypes.number.isRequired,
-  cardPassed: React.PropTypes.func.isRequired,
+  cardPassed: React.PropTypes.func,
 };
 
 OrderCard.defaultProps = {
   imageUrl: null,
   correctMessage: 'Correcto',
   incorrectMessage: 'Incorrecto',
+  cardPassed: () => {},
 };
 
 export default OrderCard;

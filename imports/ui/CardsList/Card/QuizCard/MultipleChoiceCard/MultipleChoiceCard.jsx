@@ -15,7 +15,7 @@ class MultipleChoiceCard extends React.Component {
 
   handleChange(event) {
     this.setState({
-      selectedOption: parseInt(event.target.value),
+      selectedOption: parseInt(event.target.value, 10),
     });
   }
 
@@ -86,11 +86,12 @@ MultipleChoiceCard.propTypes = {
   })).isRequired,
   index: React.PropTypes.number.isRequired,
   cardsCount: React.PropTypes.number.isRequired,
-  cardPassed: React.PropTypes.func.isRequired,
+  cardPassed: React.PropTypes.func,
 };
 
 MultipleChoiceCard.defaultProps = {
   imageUrl: null,
+  cardPassed: () => {},
 };
 
 export default MultipleChoiceCard;
