@@ -5,7 +5,7 @@ import Card from '../Card';
 const QuizCard = ({
   imageUrl,
   question,
-  options,
+  quizBody,
   checkAnswer,
   index,
   cardsCount,
@@ -26,9 +26,9 @@ const QuizCard = ({
             {question}
           </h2>
         }
-        { options &&
-          <div className="quiz-card-option">
-            {options}
+        { quizBody &&
+          <div className="quiz-card-body">
+            {quizBody}
           </div>
         }
         <button onClick={checkAnswer}>Enviar</button>
@@ -47,7 +47,10 @@ const QuizCard = ({
 QuizCard.propTypes = {
   imageUrl: React.PropTypes.string,
   question: React.PropTypes.string.isRequired,
-  options: React.PropTypes.arrayOf(React.PropTypes.element).isRequired,
+  quizBody: React.PropTypes.oneOfType([
+    React.PropTypes.arrayOf(React.PropTypes.element),
+    React.PropTypes.element,
+  ]).isRequired,
   checkAnswer: React.PropTypes.func.isRequired,
   index: React.PropTypes.number.isRequired,
   cardsCount: React.PropTypes.number.isRequired,

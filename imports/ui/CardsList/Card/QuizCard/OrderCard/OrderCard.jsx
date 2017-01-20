@@ -72,7 +72,7 @@ class OrderCard extends React.Component {
       <QuizCard
         imageUrl={this.props.imageUrl}
         question={this.props.question}
-        options={optionsElement}
+        quizBody={optionsElement}
         checkAnswer={this.checkAnswer}
         index={this.props.index}
         cardsCount={this.props.cardsCount}

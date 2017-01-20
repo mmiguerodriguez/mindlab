@@ -1,4 +1,9 @@
 import React from 'react';
+import brace from 'brace'; // for react-ace
+import AceEditor from 'react-ace';
+import 'brace/mode/javascript';
+import 'brace/theme/github';
+
 
 import QuizCard from '../QuizCard';
 
@@ -6,25 +11,29 @@ class CodeCard extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      selectedOption: '',
+      code: '',
     };
 
-    this.handleChange = this.handleChange.bind(this);
     this.checkAnswer = this.checkAnswer.bind(this);
+    this.onChange = this.onChange.bind(this);
   }
 
-  handleChange(event) {
-    this.setState({
-      selectedOption: event.target.value,
-    });
+  onChange(newValue) {
+    this.setState({ code: newValue });
   }
 
   checkAnswer() {
-    const selectedOption = this.state.selectedOption;
+    let result = null; // the result of the user's code
+    // We use try and catch to prevent syntax errors
+    try {
+      result = eval(this.state.code);
+    } catch (error) {
+      result = error;
+    }
 
-    if (!selectedOption) {
-      $.snackbar({ content: 'No seleccionaste ninguna respuesta' });
-    } else if (!this.props.options[selectedOption].correct) {
+    console.log(result);
+    /*
+    ese if (!this.props.options[selectedOption].correct) {
       const content = this.props.options[selectedOption].message || 'Incorrecto';
       $.snackbar({ content });
     } else {
@@ -33,35 +42,33 @@ class CodeCard extends React.Component {
 
       // TODO: continue to the next card
     }
+    */
   }
 
   render() {
-    const optionsArray = this.props.options.map((option, index) => (
-      <div
-        className="multiple-choice-card-option"
-        key={`option-${index}`}
-      >
-        <input
-          className="multiple-choice-card-radio"
-          type="radio"
-          name="multiple-choice-card-quiz"
-          value={index}
-          checked={this.state.selectedOption === `${index}`}
-          onChange={this.handleChange}
-        />
-        <h4 className="multiple-choice-card-content">{option.content}</h4>
-      </div>
-    ));
+    const editor = (
+      <AceEditor
+        mode="javascript"
+        theme="github"
+        name="editor"
+        value={this.state.code}
+        onChange={this.onChange}
+        className="code-editor"
+        editorProps={{ $blockScrolling: true }}
+      />
+    );
 
     return (
-      <QuizCard
-        question={this.props.task}
-        options={optionsArray}
-        checkAnswer={this.checkAnswer}
-        index={this.props.index}
-        cardsCount={this.props.cardsCount}
-        cardPassed={this.props.cardPassed}
-      />
+      <div>        
+        <QuizCard
+          question={this.props.task}
+          quizBody={editor}
+          checkAnswer={this.checkAnswer}
+          index={this.props.index}
+          cardsCount={this.props.cardsCount}
+          cardPassed={this.props.cardPassed}
+        />
+      </div>
     );
   }
 }
