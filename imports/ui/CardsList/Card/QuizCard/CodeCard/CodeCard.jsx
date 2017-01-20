@@ -12,25 +12,36 @@ class CodeCard extends React.Component {
     super(props);
     this.state = {
       code: '',
+      result: null, // the result of the code
     };
 
-    this.checkAnswer = this.checkAnswer.bind(this);
     this.onChange = this.onChange.bind(this);
+    this.checkAnswer = this.checkAnswer.bind(this);
   }
 
   onChange(newValue) {
     this.setState({ code: newValue });
   }
 
+  /**
+   * checks if the code the user entered works, and messages him accordingly
+   */
   checkAnswer() {
-    let result = null; // the result of the user's code
+    let result = null;
+    // Function that simply returns the inputs
+    const consoleLogReplacement = input => input;
+    // Users give the result using console.log
+    // so we temporarily save the original console.log function
+    // and replace it with our own
+    const originalConsoleLog = console.log;
+    console.log = consoleLogReplacement;
     // We use try and catch to prevent syntax errors
     try {
       result = eval(this.state.code);
     } catch (error) {
       result = error;
     }
-
+    console.log = originalConsoleLog;
     console.log(result);
     /*
     ese if (!this.props.options[selectedOption].correct) {
