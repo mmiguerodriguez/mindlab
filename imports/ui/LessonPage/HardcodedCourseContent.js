@@ -312,8 +312,41 @@ En este ejemplo, el código adentro del if va a ser ejecutado una sola vez, cuan
 ];
 const PrimerosConceptosLesson = replaceNewLineInCards(PrimerosConceptosLessonRaw);
 
-const LenguajesLesson = [
-
+const LenguajesLessonRaw = [
+  {
+    type: 'content',
+    //imageUrl: '/images/',
+    text: 'Ahora que ya aprendimos los primeros conceptos de la programación, vamos a aprender la sintaxis de un lenguaje muy usado hoy en día, **JavaScript**.',
+  },
+  {
+    type: 'content',
+    //imageUrl: '/images/',
+    text: 'Con JavaScript se pueden hacer desde cosas simples como un formulario, hasta juegos en realidad virtual.',
+  },
+  {
+    type: 'content',
+    //imageUrl: '/images/',
+    text: 'En los lenguajes de programación, el código se divide en líneas. Por cada línea, le podemos dar al programa diversas instrucciones, como por ejemplo, empezar una estructura condicional o declarar una variable.',
+  },
+  {
+    type: 'content',
+    //imageUrl: '/images/',
+    text: 'El programa lee las líneas de arriba para abajo. Entonces si tenemos que declarar una variable que vamos a usar después, se tiene que primero declarar la variable y sólo después de declararla la podemos usar.',
+  },
+  {
+    type: 'content',
+    //imageUrl: '/images/',
+    text: 'En la mayoría de las líneas que no son estructuras condicionales o repetitivas, el último caracter de la línea es un punto y coma ;  que sirve para darle a entender a la computadora que la línea se termina ahí.',
+  },
+  {
+    type: 'content',
+    //imageUrl: '/images/',
+    title: 'Alert',
+    text: `En JavaScript es muy común usar la palabra clave \`\`\`alert\`\`\` que sirve para darle mensajes al usuario. La sintaxis es la siguiente:
+\`\`\`alert(“Hello world!”);\`\`\``,
+    forceNewStack: true,
+  },
 ];
+const LenguajesLesson = replaceNewLineInCards(LenguajesLessonRaw);
 
 export { IntroduccionLesson, PrimerosConceptosLesson, LenguajesLesson };
