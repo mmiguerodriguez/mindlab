@@ -27,11 +27,11 @@ const QuizCard = ({
           </h2>
         }
         { options &&
-          <div className="quiz-card-option">
+          <div className="quiz-card-options">
             {options}
           </div>
         }
-        <button onClick={checkAnswer}>Enviar</button>
+        <button className="btn btn-raised card-btn-primary" onClick={checkAnswer}>Enviar</button>
       </div>
     );
   return (
@@ -58,6 +58,7 @@ QuizCard.defaultProps = {
   imageUrl: null,
   question: null,
   options: null,
+  cardPassed: () => {},
 };
 
 export default QuizCard;

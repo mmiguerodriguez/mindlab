@@ -1,3 +1,15 @@
-.multiple-choice-card-radio, .multiple-choice-card-content {
-  display: inline;
+.multiple-choice-card-content {
+  color: black;
+
+  &, .multiple-choice-card-radio {
+    display: inline;
+  }
+}
+
+.multiple-choice-card-option {
+  margin-bottom: 15px !important;
+}
+
+.multiple-choice-card-options {
+  margin: 0 auto;
 }

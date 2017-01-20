@@ -6,7 +6,7 @@ class MultipleChoiceCard extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      selectedOption: '',
+      selectedOption: null,
     };
 
     this.handleChange = this.handleChange.bind(this);
@@ -15,14 +15,14 @@ class MultipleChoiceCard extends React.Component {
 
   handleChange(event) {
     this.setState({
-      selectedOption: event.target.value,
+      selectedOption: parseInt(event.target.value, 10),
     });
   }
 
   checkAnswer() {
     const selectedOption = this.state.selectedOption;
-
-    if (!selectedOption) {
+    // selectedOption can be 0
+    if (selectedOption === null) {
       $.snackbar({ content: 'No seleccionaste ninguna respuesta' });
     } else if (!this.props.options[selectedOption].correct) {
       const content = this.props.options[selectedOption].message || 'Incorrecto';
@@ -36,22 +36,31 @@ class MultipleChoiceCard extends React.Component {
   }
 
   render() {
-    const optionsArray = this.props.options.map((option, index) => (
-      <div
-        className="multiple-choice-card-option"
-        key={`option-${index}`}
-      >
-        <input
-          className="multiple-choice-card-radio"
-          type="radio"
-          name="multiple-choice-card-quiz"
-          value={index}
-          checked={this.state.selectedOption === `${index}`}
-          onChange={this.handleChange}
-        />
-        <h4 className="multiple-choice-card-content">{option.content}</h4>
-      </div>
-    ));
+    const optionsArray =
+      (
+        <div className="multiple-choice-card-options">
+          {
+            this.props.options.map((option, index) => (
+              <div
+                className="multiple-choice-card-option radio"
+                key={`option-${index}`}
+              >
+                <label>
+                  <input
+                    className="multiple-choice-card-radio"
+                    type="radio"
+                    name="multiple-choice-card-quiz"
+                    value={index}
+                    checked={this.state.selectedOption === index}
+                    onChange={this.handleChange}
+                  />
+                  <h4 className="multiple-choice-card-content">{option.content}</h4>
+                </label>
+              </div>
+            ))
+          }
+        </div>
+      );
 
     return (
       <QuizCard
@@ -77,11 +86,12 @@ MultipleChoiceCard.propTypes = {
   })).isRequired,
   index: React.PropTypes.number.isRequired,
   cardsCount: React.PropTypes.number.isRequired,
-  cardPassed: React.PropTypes.func.isRequired,
+  cardPassed: React.PropTypes.func,
 };
 
 MultipleChoiceCard.defaultProps = {
   imageUrl: null,
+  cardPassed: () => {},
 };
 
 export default MultipleChoiceCard;
