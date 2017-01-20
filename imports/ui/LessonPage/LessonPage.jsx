@@ -9,6 +9,12 @@ class LessonPage extends React.Component {
     // TODO: add real cards
     const cardsContent = [
       {
+        type: 'finish',
+        imageUrl: '/images/welcome/page1.png',
+        title: 'Tercera card',
+        text: 'asdf asdf hasdhjas hdk ashdf',
+      },
+      {
         type: 'order',
         imageUrl: '/images/welcome/page1.png',
         question: 'Tercera card',
