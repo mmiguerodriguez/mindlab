@@ -10,12 +10,9 @@ import OrderCard from './Card/QuizCard/OrderCard/OrderCard';
 
 class CardsList extends React.Component {
   render() {
-    let cardIndex;
     let cardsCount = this.props.cards.length;
     const cardsArray = this.props.cards.map((card, index) => {
       let cardType = null;
-      cardIndex = cardsCount - index;
-      
       switch (card.type) {
         case 'content':
           cardType = ContentCard;
@@ -42,24 +39,10 @@ class CardsList extends React.Component {
         cardsCount: cardsCount, // we pass this for the positioning
       });
     });
-    console.log(cardIndex, cardsCount);
-    const progressStyle = {
-      width: `${(cardIndex / cardsCount) * 100}%`,
-    };
     // TODO: separate content by quizes
     return (
-      <div>
-        <div className="lesson-data">
-          <Link to="course/programacion/" className="close-lesson close">
-            <i className="material-icons">close</i>
-          </Link>
-          <div className="progress">
-            <div className="progress-bar progress-bar-info" style={progressStyle}></div>
-          </div>
-          </div>
-        <div className="cards-list">
-          {cardsArray}
-        </div>
+      <div className="cards-list">
+        {cardsArray}
       </div>
     );
   }
