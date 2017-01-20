@@ -6,7 +6,7 @@ class MultipleChoiceCard extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      selectedOption: '',
+      selectedOption: null,
     };
 
     this.handleChange = this.handleChange.bind(this);
@@ -15,14 +15,14 @@ class MultipleChoiceCard extends React.Component {
 
   handleChange(event) {
     this.setState({
-      selectedOption: event.target.value,
+      selectedOption: parseInt(event.target.value),
     });
   }
 
   checkAnswer() {
     const selectedOption = this.state.selectedOption;
-
-    if (!selectedOption) {
+    // selectedOption can be 0
+    if (selectedOption === null) {
       $.snackbar({ content: 'No seleccionaste ninguna respuesta' });
     } else if (!this.props.options[selectedOption].correct) {
       const content = this.props.options[selectedOption].message || 'Incorrecto';
@@ -51,7 +51,7 @@ class MultipleChoiceCard extends React.Component {
                     type="radio"
                     name="multiple-choice-card-quiz"
                     value={index}
-                    checked={this.state.selectedOption === `${index}`}
+                    checked={this.state.selectedOption === index}
                     onChange={this.handleChange}
                   />
                   <h4 className="multiple-choice-card-content">{option.content}</h4>
