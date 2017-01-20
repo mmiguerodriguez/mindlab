@@ -296,3 +296,5 @@ class SlideHelper {
 }
 
 export default SlideHelper;
+
+/* global $ */
