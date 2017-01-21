@@ -93,7 +93,7 @@ FeedbackCard.propTypes = {
 };
 
 FeedbackCard.defaultProps = {
-  cardPassed: null,
+  cardPassed: () => {},
 };
 
 const addFeedback = gql`
