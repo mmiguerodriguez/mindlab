@@ -1,5 +1,3 @@
-import $ from 'jquery';
-
 const NAMESPACE = 'SlideHelper';
 
 class SlideHelper {
@@ -12,7 +10,7 @@ class SlideHelper {
    * @param {float} size The size of the element
    * @param {float} frictionAcceleration Used to determine if upon release the element should exit
    * @param {float} returnVelocity  Sets the speed with which the state returns to rest position
-   * @param {float} animationFrameHandler Called every frame with the state, used by user to animate
+   * @param {float} stateUpdateHandler Called every frame with the state, used by user to animate
    * @param {float} finishHandler Called when the state reaches passed size
    * @param {float} rightHandler Called when the state reaches passed size, on the right
    * @param {float} leftHandler Called when the state reaches passed size, on the left
@@ -23,7 +21,7 @@ class SlideHelper {
     size,
     frictionAcceleration = -7,
     returnVelocity = 80,
-    animationFrameHandler = null,
+    stateUpdateHandler = null,
     finishHandler = null,
     rightHandler = null,
     leftHandler = null,
@@ -51,7 +49,7 @@ class SlideHelper {
     this.size = size;
     this.returnVelocity = returnVelocity;
     this.frictionAcceleration = frictionAcceleration;
-    this.animationFrameHandler = animationFrameHandler;
+    this.stateUpdateHandler = stateUpdateHandler;
     this.finishHandler = finishHandler;
     this.rightHandler = rightHandler;
     this.leftHandler = leftHandler;
@@ -86,6 +84,15 @@ class SlideHelper {
    */
   setReturnVelocity(returnVelocity) {
     this.returnVelocity = Math.abs(returnVelocity);
+  }
+
+  /**
+   * Sets the size, which is used to calculate stateX
+   * @param {float} size the new size value
+   * @return {undefined}
+   */
+  setSize(size) {
+    this.size = size;
   }
 
   /**
@@ -250,9 +257,9 @@ class SlideHelper {
       this.stateX += positionDisplacement;
     }
 
-    // Call handler if an animationFrameHandler was supplied
-    if (this.animationFrameHandler) {
-      this.animationFrameHandler(this.stateX);
+    // Call handler if an stateUpdateHandler was supplied
+    if (this.stateUpdateHandler) {
+      this.stateUpdateHandler(this.stateX);
     }
 
     // Call this function once per frame
@@ -289,3 +296,5 @@ class SlideHelper {
 }
 
 export default SlideHelper;
+
+/* global $ */
