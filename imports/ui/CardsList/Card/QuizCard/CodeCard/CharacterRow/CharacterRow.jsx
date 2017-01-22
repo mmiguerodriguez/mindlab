@@ -8,6 +8,7 @@ class CharacterRow extends React.Component {
    */
   insertCharacter(character) {
     this.props.editor.editor.insert(character);
+    this.props.editor.editor.textInput.focus();
   }
 
   render() {
@@ -18,6 +19,11 @@ class CharacterRow extends React.Component {
       ')',
       ';',
       '"',
+      '=',
+      '+',
+      '-',
+      '<',
+      '>',
       'tab',
     ];
     return (
@@ -26,6 +32,7 @@ class CharacterRow extends React.Component {
           {
             characterList.map(character =>
               <button
+                key={`character-${character}`}
                 className="btn"
                 onClick={
                   () => {
