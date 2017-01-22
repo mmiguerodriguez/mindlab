@@ -10,10 +10,10 @@ class LessonPage extends React.Component {
     const cardsContent = [
       {
         type: 'code',
-        task: 'Test',
+        task: 'Devolvé la suma de los números del 1 al 100',
         results: [
           {
-            result: 'Opción 1',
+            result: '5050',
             correct: true,
           },
         ],
