@@ -4,8 +4,8 @@ import AceEditor from 'react-ace';
 import 'brace/mode/javascript';
 import 'brace/theme/github';
 
-
 import QuizCard from '../QuizCard';
+import CharacterRow from './CharacterRow/CharacterRow';
 
 class CodeCard extends React.Component {
   constructor(props) {
@@ -16,6 +16,7 @@ class CodeCard extends React.Component {
         content: null,
         error: null,
       }, // the result of the code
+      editorInitialized: false, // this.editor is set
     };
 
     this.onChange = this.onChange.bind(this);
@@ -72,17 +73,6 @@ class CodeCard extends React.Component {
                                       defaultAnswer;
       $.snackbar({ content });
     }
-    /*
-    ese if (!this.props.options[selectedOption].correct) {
-      const content = this.props.options[selectedOption].message || 'Incorrecto';
-      $.snackbar({ content });
-    } else {
-      const content = this.props.options[selectedOption].message || 'Correcto';
-      $.snackbar({ content });
-
-      // TODO: continue to the next card
-    }
-    */
   }
 
   render() {
@@ -104,6 +94,14 @@ class CodeCard extends React.Component {
         onChange={this.onChange}
         className="code-editor"
         editorProps={{ $blockScrolling: true }}
+        ref={(editorRef) => {
+          if (!this.state.editorInitialized) {
+            this.editor = editorRef;
+            this.setState({
+              editorInitialized: true,
+            });
+          }
+        }}
       />
     );
     const content = (
@@ -114,6 +112,7 @@ class CodeCard extends React.Component {
             codeResult || 'Cuando ejecutes tu código, acá va a aparecer el resultado!'
           }
         </div>
+        <CharacterRow editor={this.editor} />
       </div>
     );
     return (
