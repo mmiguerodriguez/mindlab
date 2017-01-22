@@ -95,17 +95,20 @@ class CodeCard extends React.Component {
         codeResult = `Tu código devolvió: ${this.state.result.content}`;
       }
     }
+    const editor = (
+      <AceEditor
+        mode="javascript"
+        theme="github"
+        name="editor"
+        value={this.state.code}
+        onChange={this.onChange}
+        className="code-editor"
+        editorProps={{ $blockScrolling: true }}
+      />
+    );
     const content = (
       <div className="code-card-body">
-        <AceEditor
-          mode="javascript"
-          theme="github"
-          name="editor"
-          value={this.state.code}
-          onChange={this.onChange}
-          className="code-editor"
-          editorProps={{ $blockScrolling: true }}
-        />
+        {editor}
         <div className="code-card-result">
           {
             codeResult || 'Cuando ejecutes tu código, acá va a aparecer el resultado!'
@@ -113,7 +116,6 @@ class CodeCard extends React.Component {
         </div>
       </div>
     );
-
     return (
       <div>        
         <QuizCard
