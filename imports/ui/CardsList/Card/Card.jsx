@@ -7,26 +7,42 @@ class Card extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+      // The dimensions of the card, used internally
       dimensions: {
         width: 1, // Default value only
         height: 1, // Default value only
         measured: false,
       },
+      // Used by the sliding movement of the card
       displacement: {
         x: 0, // Used to animate card movement
       },
+      // Updated when the card is sl
       passed: false,
     };
     this.cardSliderApplied = false;
   }
 
+  /**
+   * Prevent update if the xDisplacemente is the same as before
+   */
   shouldComponentUpdate(nextProps, nextState) {
+    // If slider not implemented, allow every update until it is
     if (!this.cardSliderApplied || nextState.passed !== this.state.passed) {
       return true;
     }
+    // If dimensions changed, update
+    const currentDimensions = this.state.dimensions;
+    if (nextState.dimensions.width !== currentDimensions.width ||
+        nextState.dimensions.height !== currentDimensions.height ||
+        nextState.dimensions.passed !== currentDimensions.passed) {
+      return true;
+    }
+
     if (nextState.displacement.x === this.state.displacement.x) {
       return false;
     }
+
     return true;
   }
 
@@ -73,11 +89,11 @@ class Card extends React.Component {
 
     const cardStyle = {
       zIndex: this.props.cardsCount - this.props.index,
-      transform: this.props.cardsCount ?
-        `translate(${this.state.displacement.x}px, ${10 * (this.props.index)}px) rotateZ(${(this.state.displacement.x / this.state.dimensions.width) * 35}deg)` : null,
+      transform:
+        `translate(${this.state.displacement.x}px, ${10 * (this.props.index)}px) rotateZ(${(this.state.displacement.x / this.state.dimensions.width) * 35}deg)`,
       display: this.state.passed ? 'none' : undefined,
     };
-    console.log(cardStyle);
+
     return (
       <Measure
         onMeasure={(dimensions) => {
