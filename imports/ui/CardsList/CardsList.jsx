@@ -2,6 +2,8 @@ import React from 'react';
 import Card from './Card/Card';
 import { Link } from 'react-router'
 
+import ProgressBar from './ProgressBar/ProgressBar';
+
 import ContentCard from './Card/ContentCard/ContentCard';
 import FeedbackCard from './Card/FeedbackCard/FeedbackCard';
 import FinishCard from './Card/FinishCard/FinishCard';
@@ -133,8 +135,11 @@ class CardsList extends React.Component {
   }
   render() {
     return (
-      <div className="cards-list">
-        {this.state.cardStacks[this.state.currentStackIndex]}
+      <div>
+        <div className="cards-list">
+          {this.state.cardStacks[this.state.currentStackIndex]}
+        </div>
+        <ProgressBar progress={this.state.currentCardIndex / (this.props.cards.length - 1)} />
       </div>
     );
   }

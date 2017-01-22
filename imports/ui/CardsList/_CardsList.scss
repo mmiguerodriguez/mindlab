@@ -3,3 +3,23 @@
   flex-direction: column;
   padding: 0 15px;
 }
+
+.lesson-data {
+  display: flex;
+  justify-content: center;
+  
+  .close-lesson {
+    i {
+      margin-top: 5px;
+    }
+  }
+  .progress {
+    height: 4px;
+    width: calc(100% - 80px);
+    margin: 15px 0 15px 15px !important;
+    
+    .progress-bar {
+      width: 0%;
+    }
+  }
+}

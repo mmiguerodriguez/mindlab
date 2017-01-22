@@ -18,26 +18,6 @@
   overflow: hidden;
 }
 
-.lesson-data {
-  display: flex;
-  justify-content: center;
-  
-  .close-lesson {
-    i {
-      margin-top: 5px;
-    }
-  }
-  .progress {
-    height: 4px;
-    width: calc(100% - 80px);
-    margin: 15px 0 15px 15px !important;
-    
-    .progress-bar {
-      width: 0%;
-    }
-  }
-}
-
 /**
  * TODO:
  *  Find out why the position absolute here, makes lesson-page fill whole page
