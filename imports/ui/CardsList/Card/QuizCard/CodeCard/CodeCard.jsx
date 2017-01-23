@@ -53,7 +53,7 @@ class CodeCard extends React.Component {
       this.setState({
         result: {
           content: result,
-          error: false,
+          error: true,
         },
       });
     }
