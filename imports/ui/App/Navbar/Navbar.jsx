@@ -41,7 +41,7 @@ Navbar.propTypes = {
 };
 
 Navbar.defaultProps = {
-  className: null,
+  className: undefined,
 };
 
 export default Navbar;

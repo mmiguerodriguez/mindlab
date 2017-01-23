@@ -85,7 +85,7 @@ class FeedbackCard extends React.Component {
 
 FeedbackCard.propTypes = {
   title: React.PropTypes.string.isRequired,
-  nextUrl: React.PropTypes.string.isRequired,
+  nextUrl: React.PropTypes.string,
   mutate: React.PropTypes.func.isRequired,
   index: React.PropTypes.number.isRequired,
   cardsCount: React.PropTypes.number.isRequired,
@@ -93,6 +93,7 @@ FeedbackCard.propTypes = {
 };
 
 FeedbackCard.defaultProps = {
+  nextUrl: '/',
   cardPassed: () => {},
 };
 
