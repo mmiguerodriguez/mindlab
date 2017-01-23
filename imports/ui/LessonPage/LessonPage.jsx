@@ -9,6 +9,15 @@ class LessonPage extends React.Component {
     // TODO: add real cards
     const cardsContent = [
       {
+        type: 'content',
+        imageUrl: '/images/welcome/page1.png',
+        title: 'HOLA',
+        text: 'Esto es un texto',
+      },
+    ];
+    /*
+    const cardsContent = [
+      {
         type: 'multiple-choice',
         imageUrl: '/images/welcome/page1.png',
         question: 'Tercera card',
@@ -76,6 +85,7 @@ class LessonPage extends React.Component {
         title: 'nuevo stack',
       },
     ];
+    */
     return (
       <div>
         <ProgressBar progress={progress} /> {/* ProgressBar component where progress is passed */}
