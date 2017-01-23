@@ -1,5 +1,4 @@
 .character-row {
-
   .btn-group {
     display: flex;
     justify-content: space-between;
@@ -9,8 +8,6 @@
   button:focus, button:active {
     outline:0 !important;
   }
-
-
 }
 
 .character-row .btn-group::-webkit-scrollbar {
