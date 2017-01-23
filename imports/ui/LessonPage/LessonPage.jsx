@@ -9,6 +9,16 @@ class LessonPage extends React.Component {
     // TODO: add real cards
     const cardsContent = [
       {
+        type: 'code',
+        task: 'ASD',
+        results: [
+          {
+            result: 1,
+            correct: true,
+          },
+        ],
+      },
+      {
         type: 'multiple-choice',
         imageUrl: '/images/welcome/page1.png',
         question: 'Tercera card',
@@ -64,12 +74,6 @@ class LessonPage extends React.Component {
         imageUrl: '/images/welcome/page1.png',
         title: 'Tercera card',
         text: 'Esto es otro texto, un poco más largo que el anterior, y también que el primero.',
-      },
-      {
-        type: 'order',
-      },
-      {
-        type: 'multiple-choice',
       },
       {
         type: 'content',

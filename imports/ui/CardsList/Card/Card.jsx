@@ -24,29 +24,6 @@ class Card extends React.Component {
   }
 
   /**
-   * Prevent update if the xDisplacemente is the same as before
-   */
-  shouldComponentUpdate(nextProps, nextState) {
-    // If slider not implemented, allow every update until it is
-    if (!this.cardSliderApplied || nextState.passed !== this.state.passed) {
-      return true;
-    }
-    // If dimensions changed, update
-    const currentDimensions = this.state.dimensions;
-    if (nextState.dimensions.width !== currentDimensions.width ||
-        nextState.dimensions.height !== currentDimensions.height ||
-        nextState.dimensions.passed !== currentDimensions.passed) {
-      return true;
-    }
-
-    if (nextState.displacement.x === this.state.displacement.x) {
-      return false;
-    }
-
-    return true;
-  }
-
-  /**
    * Updates or sets a sliding helper for the cards.
    * WARNING:
    *  Requires dimensions to be measured

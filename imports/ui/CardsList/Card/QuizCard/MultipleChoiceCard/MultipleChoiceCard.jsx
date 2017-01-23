@@ -66,7 +66,7 @@ class MultipleChoiceCard extends React.Component {
       <QuizCard
         imageUrl={this.props.imageUrl}
         question={this.props.question}
-        options={optionsArray}
+        quizBody={optionsArray}
         checkAnswer={this.checkAnswer}
         index={this.props.index}
         cardsCount={this.props.cardsCount}

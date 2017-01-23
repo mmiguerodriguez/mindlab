@@ -1,0 +1,15 @@
+@import './CharacterRow/CharacterRow';
+
+.code-card-body {
+  display: flex;
+  flex-flow: column;
+  width: 100%;
+}
+.code-editor {
+  flex: 1;
+  height: initial !important;
+  width: 100% !important;
+}
+.code-card-result {
+  background-color: $white-1-color;
+}

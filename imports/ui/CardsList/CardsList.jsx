@@ -7,6 +7,7 @@ import FeedbackCard from './Card/FeedbackCard/FeedbackCard';
 import FinishCard from './Card/FinishCard/FinishCard';
 import MultipleChoiceCard from './Card/QuizCard/MultipleChoiceCard/MultipleChoiceCard';
 import OrderCard from './Card/QuizCard/OrderCard/OrderCard';
+import CodeCard from './Card/QuizCard/CodeCard/CodeCard';
 
 /**
  * CardsList: Shows stacks of cards.
@@ -70,6 +71,9 @@ class CardsList extends React.Component {
         break;
       case 'order':
         cardType = OrderCard;
+        break;
+      case 'code':
+        cardType = CodeCard;
         break;
       default:
         cardType = ContentCard;
