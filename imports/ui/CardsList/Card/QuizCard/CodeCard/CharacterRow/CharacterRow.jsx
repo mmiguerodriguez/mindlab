@@ -7,8 +7,9 @@ class CharacterRow extends React.Component {
    * @param {Character} character
    */
   insertCharacter(character) {
-    this.props.editor.editor.insert(character);
-    this.props.editor.editor.textInput.focus();
+    const { editor } = this.props.editor.editor;
+    editor.insert(character);
+    editor.textInput.focus();
   }
 
   render() {
