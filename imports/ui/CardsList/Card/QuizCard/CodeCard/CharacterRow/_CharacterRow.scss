@@ -4,9 +4,30 @@
     display: flex;
     justify-content: space-between;
     width: 100%;
-    overflow-x: auto;
+    overflow: auto;
   }
   button:focus, button:active {
     outline:0 !important;
   }
+
+
+}
+
+.character-row .btn-group::-webkit-scrollbar {
+  -webkit-appearance: none;
+}
+
+.character-row .btn-group::-webkit-scrollbar:horizontal {
+  height: 12px;
+}
+
+.character-row .btn-group::-webkit-scrollbar-thumb {
+  background-color: rgba(0, 0, 0, .5);
+  border-radius: 10px;
+  border: 2px solid #ffffff;
+}
+
+.character-row .btn-group::-webkit-scrollbar-track {
+  border-radius: 10px;
+  background-color: #ffffff;
 }

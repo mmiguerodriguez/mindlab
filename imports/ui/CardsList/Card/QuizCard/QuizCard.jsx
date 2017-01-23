@@ -22,9 +22,9 @@ const QuizCard = ({
           />
         }
         { question &&
-          <h2 className="quiz-card-question">
+          <h3 className="quiz-card-question">
             {question}
-          </h2>
+          </h3>
         }
         { quizBody &&
           <div className="quiz-card-body">
