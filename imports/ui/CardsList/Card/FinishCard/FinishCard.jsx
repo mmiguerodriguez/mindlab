@@ -13,8 +13,6 @@ class FinishCard extends React.Component {
   }
 
   render() {
-    const nextUrl = encodeURIComponent('/course/programacion');
-
     const content =
       (
         <div className="card-body">
@@ -35,10 +33,8 @@ class FinishCard extends React.Component {
               {this.props.text}
             </h3>
           }
-          <Link
-            className="btn btn-raised card-btn-primary"
-            to={`/feedback/${nextUrl}/finished-lesson`}
-          >
+          <Link className="btn btn-raised card-btn-primary">
+            {/* TODO: pass to the next card */}
             Continuar
           </Link>
         </div>

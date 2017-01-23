@@ -7,12 +7,19 @@ class LessonPage extends React.Component {
   render() {
     let progress = 30; // For the moment the progress is constantly 30%, but this have to change
     // TODO: add real cards
+    // Get coursePage url from lessonPage url
+    const urlSplited = this.props.location.pathname.split('/');
+    const lessonUrl = `/${urlSplited[1]}/${urlSplited[2]}`;
     const cardsContent = [
       {
         type: 'finish',
         imageUrl: '/images/welcome/page1.png',
         title: 'Tercera card',
         text: 'asdf asdf hasdhjas hdk ashdf',
+      },
+      {
+        type: 'feedback',
+        title: 'give me some feedback',
       },
       {
         type: 'order',
@@ -78,7 +85,7 @@ class LessonPage extends React.Component {
     return (
       <div>
         <ProgressBar progress={progress} /> {/* ProgressBar component where progress is passed */}
-        <CardsList cards={cardsContent} />
+        <CardsList cards={cardsContent} lessonUrl={lessonUrl} />
       </div>
     );
   }
@@ -88,6 +95,9 @@ LessonPage.propTypes = {
   params: React.PropTypes.shape({
     lessonName: React.PropTypes.string.isRequired,
   }),
+  location: React.PropTypes.shape({
+    pathname: React.PropTypes.string.isRequired,
+  }).isRequired,
 };
 
 LessonPage.defaultProps = {
