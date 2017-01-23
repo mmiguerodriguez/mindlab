@@ -1,4 +1,5 @@
 @import 'QuizCard/QuizCard';
+@import 'FeedbackCard/FeedbackCard';
 
 ._card { // not card because bootstrap-material-design already uses it
   position: absolute;
@@ -25,4 +26,9 @@
 .card-img {
   height: 100px;
   width: 100px;
+}
+
+.card-btn-primary {
+  color: white !important;
+  background-color: $blue-2-color !important;
 }
