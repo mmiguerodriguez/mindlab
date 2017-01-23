@@ -85,6 +85,7 @@ class CodeCard extends React.Component {
         codeResult = `Tu código devolvió: ${this.state.result.content}`;
       }
     }
+
     const editor = (
       <AceEditor
         mode="javascript"
@@ -104,6 +105,7 @@ class CodeCard extends React.Component {
         }}
       />
     );
+
     const content = (
       <div className="code-card-body">
         {editor}
@@ -115,6 +117,7 @@ class CodeCard extends React.Component {
         <CharacterRow editor={this.editor} />
       </div>
     );
+
     return (
       <div>        
         <QuizCard
