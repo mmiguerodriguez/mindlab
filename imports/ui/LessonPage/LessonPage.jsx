@@ -5,7 +5,7 @@ import CardsList from '../CardsList/CardsList';
 
 class LessonPage extends React.Component {
   render() {
-    let progress = 30; // For the moment the progress is constantly 30%, but this have to change
+    const progress = 30; // The progress is constantly 30%, but it needs to be changed
     // TODO: add real cards
     const cardsContent = [
       {

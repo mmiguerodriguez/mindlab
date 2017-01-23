@@ -1,5 +1,4 @@
 import React from 'react';
-import { Link } from 'react-router';
 import Card from './Card/Card';
 
 // import ContentCard from './Card/ContentCard/ContentCard';
@@ -46,6 +45,7 @@ class CardsList extends React.Component {
     };
 
     this.cardPassed = this.cardPassed.bind(this);
+    this.getCard = this.getCard.bind(this);
   }
   /**
    * getCardFromCardContent: converts cards content to a card component
@@ -87,8 +87,8 @@ class CardsList extends React.Component {
     return (
       <Card
         key={`card-${index}`}
-        contentProps
-        index
+        contentProps={contentProps}
+        index={index}
         cardsCount={this.props.cards.length} // we pass this for the positioning
         cardPassed={this.cardPassed}
       />
@@ -111,12 +111,12 @@ class CardsList extends React.Component {
         const currentStackCount = stacks[stacks.length - 1].length;
         // Current card should be in the same stack as the previous, so push it
         stacks[stacks.length - 1].push(
-          this.getCard.bind(this)(card, currentStackCount),
+          this.getCard(card, currentStackCount),
         );
       } else {
         // Current card should be in a new stack
         // Push the new stack
-        stacks.push([this.getCard.bind(this)(card, 0)]);
+        stacks.push([this.getCard(card, 0)]);
         currentStackIsQuizes = currentCardIsQuiz;
       }
     });

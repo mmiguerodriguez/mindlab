@@ -26,6 +26,7 @@ class Card extends React.Component {
       // Updated when the card is sl
       passed: false,
     };
+
     this.cardSliderApplied = false;
   }
 
@@ -50,6 +51,30 @@ class Card extends React.Component {
     }
 
     return true;
+  }
+
+  getCardContent() {
+    let cardType = null;
+    switch (this.props.contentProps.type) {
+      case 'content':
+        cardType = ContentCard;
+        break;
+      case 'feedback':
+        cardType = FeedbackCard;
+        break;
+      case 'finish':
+        cardType = FinishCard;
+        break;
+      case 'multiple-choice':
+        cardType = MultipleChoiceCard;
+        break;
+      case 'order':
+        cardType = OrderCard;
+        break;
+      default:
+        cardType = ContentCard;
+    }
+    return React.createElement(cardType, { ...this.props.contentProps });
   }
 
   /**
@@ -87,30 +112,6 @@ class Card extends React.Component {
     }
   }
 
-  getCardContent() {
-    let cardType = null;
-    switch (this.props.contentProps.type) {
-      case 'content':
-        cardType = ContentCard;
-        break;
-      case 'feedback':
-        cardType = FeedbackCard;
-        break;
-      case 'finish':
-        cardType = FinishCard;
-        break;
-      case 'multiple-choice':
-        cardType = MultipleChoiceCard;
-        break;
-      case 'order':
-        cardType = OrderCard;
-        break;
-      default:
-        cardType = ContentCard;
-    }
-    return React.createElement(cardType, { ...this.props.contentProps });
-  }
-
   render() {
     if (this.state.dimensions.measured) {
       this.updateCardSlider();
@@ -124,6 +125,8 @@ class Card extends React.Component {
       display: this.state.passed ? 'none' : undefined,
     };
 
+    const cardContent = this.getCardContent();
+
     return (
       <Measure
         onMeasure={(dimensions) => {
@@ -131,7 +134,7 @@ class Card extends React.Component {
         }}
       >
         <div className="_card" style={cardStyle} ref={(card) => { this.card = card; }}>
-          {this.props.content}
+          {cardContent}
         </div>
       </Measure>
     );
@@ -139,8 +142,11 @@ class Card extends React.Component {
 }
 
 Card.propTypes = {
-  content: React.PropTypes.element.isRequired,
-  contentProps: React.PropTypes.object.isRequired,
+  contentProps: React.PropTypes.shape({
+    type: React.PropTypes.string.isRequired,
+    // May have much more props, but just the type is required here
+    // The other props are required in the cardType itself
+  }).isRequired,
   index: React.PropTypes.number.isRequired,
   cardsCount: React.PropTypes.number.isRequired,
   cardPassed: React.PropTypes.func,
