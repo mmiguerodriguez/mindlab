@@ -2,6 +2,12 @@ import React from 'react';
 import Measure from 'react-measure';
 import SlideHelper from './SlideHelper';
 
+import ContentCard from './ContentCard/ContentCard';
+import FeedbackCard from './FeedbackCard/FeedbackCard';
+import FinishCard from './FinishCard/FinishCard';
+import MultipleChoiceCard from './QuizCard/MultipleChoiceCard/MultipleChoiceCard';
+import OrderCard from './QuizCard/OrderCard/OrderCard';
+
 class Card extends React.Component {
 
   constructor(props) {
@@ -81,6 +87,30 @@ class Card extends React.Component {
     }
   }
 
+  getCardContent() {
+    let cardType = null;
+    switch (this.props.contentProps.type) {
+      case 'content':
+        cardType = ContentCard;
+        break;
+      case 'feedback':
+        cardType = FeedbackCard;
+        break;
+      case 'finish':
+        cardType = FinishCard;
+        break;
+      case 'multiple-choice':
+        cardType = MultipleChoiceCard;
+        break;
+      case 'order':
+        cardType = OrderCard;
+        break;
+      default:
+        cardType = ContentCard;
+    }
+    return React.createElement(cardType, { ...this.props.contentProps });
+  }
+
   render() {
     if (this.state.dimensions.measured) {
       this.updateCardSlider();
@@ -110,6 +140,7 @@ class Card extends React.Component {
 
 Card.propTypes = {
   content: React.PropTypes.element.isRequired,
+  contentProps: React.PropTypes.object.isRequired,
   index: React.PropTypes.number.isRequired,
   cardsCount: React.PropTypes.number.isRequired,
   cardPassed: React.PropTypes.func,

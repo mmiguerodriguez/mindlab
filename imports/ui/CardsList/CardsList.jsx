@@ -1,12 +1,12 @@
 import React from 'react';
+import { Link } from 'react-router';
 import Card from './Card/Card';
-import { Link } from 'react-router'
 
-import ContentCard from './Card/ContentCard/ContentCard';
-import FeedbackCard from './Card/FeedbackCard/FeedbackCard';
-import FinishCard from './Card/FinishCard/FinishCard';
-import MultipleChoiceCard from './Card/QuizCard/MultipleChoiceCard/MultipleChoiceCard';
-import OrderCard from './Card/QuizCard/OrderCard/OrderCard';
+// import ContentCard from './Card/ContentCard/ContentCard';
+// import FeedbackCard from './Card/FeedbackCard/FeedbackCard';
+// import FinishCard from './Card/FinishCard/FinishCard';
+// import MultipleChoiceCard from './Card/QuizCard/MultipleChoiceCard/MultipleChoiceCard';
+// import OrderCard from './Card/QuizCard/OrderCard/OrderCard';
 
 /**
  * CardsList: Shows stacks of cards.
@@ -53,7 +53,7 @@ class CardsList extends React.Component {
    * @param {Integer} index: index of the card within the stack
    * @return {Component} card
    */
-  getCardFromCardContent(cardContent, index) {
+  /* getCardFromCardContent(cardContent, index) {
     let cardType = null;
     switch (cardContent.type) {
       case 'content':
@@ -81,6 +81,18 @@ class CardsList extends React.Component {
       cardsCount: this.props.cards.length, // we pass this for the positioning
       cardPassed: this.cardPassed,
     });
+  }*/
+
+  getCard(contentProps, index) {
+    return (
+      <Card
+        key={`card-${index}`}
+        contentProps
+        index
+        cardsCount={this.props.cards.length} // we pass this for the positioning
+        cardPassed={this.cardPassed}
+      />
+    );
   }
   /**
    * getCardStacks: converts cards content to an array of card stacks
@@ -99,12 +111,12 @@ class CardsList extends React.Component {
         const currentStackCount = stacks[stacks.length - 1].length;
         // Current card should be in the same stack as the previous, so push it
         stacks[stacks.length - 1].push(
-          this.getCardFromCardContent(card, currentStackCount),
+          this.getCard.bind(this)(card, currentStackCount),
         );
       } else {
         // Current card should be in a new stack
         // Push the new stack
-        stacks.push([this.getCardFromCardContent(card, 0)]);
+        stacks.push([this.getCard.bind(this)(card, 0)]);
         currentStackIsQuizes = currentCardIsQuiz;
       }
     });
