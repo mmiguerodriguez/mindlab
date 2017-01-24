@@ -23,8 +23,8 @@ const client = new ApolloClient(meteorClientConfig());
 
 // Show WelcomePage only if it's the first time the user visits the site
 if (
-  !localStorage.getItem('hasVisited') ||
-  localStorage.getItem('hasVisited') === 'false'
+  !window.localStorage.getItem('hasVisited') ||
+  window.localStorage.getItem('hasVisited') === 'false'
 ) {
   browserHistory.push('/welcome');
 }
@@ -45,5 +45,3 @@ Meteor.startup(() => {
     document.getElementById('app'),
   );
 });
-
-/* global localStorage */

@@ -78,4 +78,4 @@ const addSubscriber = gql`
 
 const FinishCardWithMutation = graphql(addSubscriber)(FinishCard);
 
-export default FinishCardWithMutation;
+export default FinishCard = FinishCardWithMutation;
