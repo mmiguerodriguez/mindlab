@@ -41,8 +41,7 @@ class CardsList extends React.Component {
     this.state = {
       cardStacks: this.getCardStacks(props.cards),
       currentStackIndex: 0, // The index of the currently visible card stack.
-      currentCardIndex: 0, // The index withing the stack of the currently
-                           // visible card.
+      currentCardIndex: 0, // The index withing the stack of the currently visible card.
     };
 
     this.cardPassed = this.cardPassed.bind(this);

@@ -33,6 +33,10 @@ class OrderCard extends React.Component {
     this.checkAnswer = this.checkAnswer.bind(this);
   }
 
+  componentWillMount() {
+    this.props.setCheckAnswerFunction(this.checkAnswer);
+  }
+
   onSortEnd({ oldIndex, newIndex }) {
     this.setState({
       options: arrayMove(this.state.options, oldIndex, newIndex),
@@ -44,7 +48,7 @@ class OrderCard extends React.Component {
     let wrongOrder = false;
 
     options.forEach((option, index) => {
-      if (option.step !== index + 1) {
+      if (option.correctPosition !== index + 1) {
         wrongOrder = true;
       }
     });
@@ -74,10 +78,11 @@ OrderCard.propTypes = {
   incorrectMessage: React.PropTypes.string,
   options: React.PropTypes.arrayOf(React.PropTypes.shape({
     content: React.PropTypes.string.isRequired,
-    step: React.PropTypes.number.isRequired,
+    correctPosition: React.PropTypes.number.isRequired,
   })).isRequired,
   index: React.PropTypes.number.isRequired,
   cardsCount: React.PropTypes.number.isRequired,
+  setCheckAnswerFunction: React.PropTypes.func.isRequired,
 };
 
 OrderCard.defaultProps = {

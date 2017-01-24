@@ -11,6 +11,10 @@ class MultipleChoiceCard extends React.Component {
     this.checkAnswer = this.checkAnswer.bind(this);
   }
 
+  componentWillMount() {
+    this.props.setCheckAnswerFunction(this.checkAnswer);
+  }
+
   handleChange(event) {
     this.setState({
       selectedOption: parseInt(event.target.value, 10),
@@ -67,6 +71,7 @@ MultipleChoiceCard.propTypes = {
     message: React.PropTypes.string,
     correct: React.PropTypes.bool,
   })).isRequired,
+  setCheckAnswerFunction: React.PropTypes.func.isRequired,
 };
 
 MultipleChoiceCard.defaultProps = {

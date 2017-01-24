@@ -23,6 +23,22 @@ class LessonPage extends React.Component {
     const lessonUrl = `/${urlSplited[1]}/${urlSplited[2]}`;
     const cardsContent = [
       {
+        type: 'code',
+        question: 'Esta es la pregunta?',
+        possibleResults: [
+          {
+            result: 'possible answer',
+            message: 'capo',
+            correct: true,
+          },
+          {
+            result: 'wrong possibility',
+            message: 'Nope, la cagaste',
+            correct: false,
+          },
+        ],
+      }, /*
+      {
         type: 'finish',
         imageUrl: '/images/welcome/page1.png',
         title: 'Tercera card',
@@ -38,7 +54,7 @@ class LessonPage extends React.Component {
         question: 'Tercera card',
         options: [{
           content: 'cantidadApariciones',
-          correct: true,
+          correctPosition: 2,
         },
         {
           content: 'vecesQueAparece',
@@ -52,23 +68,23 @@ class LessonPage extends React.Component {
         question: 'Tercera card',
         options: [{
           content: 'Enchufar licuadora',
-          step: 1,
+          correctPosition: 1,
         },
         {
           content: 'Meter ingredientes en la licuadora',
-          step: 2,
+          correctPosition: 2,
         },
         {
           content: 'Licuar',
-          step: 3,
+          correctPosition: 3,
         },
         {
           content: 'Servir licuado en el vaso',
-          step: 4,
+          correctPosition: 4,
         },
         {
           content: 'Tomar el licuado',
-          step: 5,
+          correctPosition: 5,
         }],
       },
       {
@@ -92,7 +108,7 @@ class LessonPage extends React.Component {
       {
         type: 'content',
         title: 'nuevo stack',
-      },
+      },*/
     ];
     // */
     return (

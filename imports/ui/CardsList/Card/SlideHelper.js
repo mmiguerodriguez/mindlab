@@ -69,6 +69,8 @@ class SlideHelper {
     // The animation frame calls the animation frame handler and deals with setting the state upon
     // touch release.
     window.requestAnimationFrame(this.animationFrame);
+
+    this.enabled = true;
   }
 
   /**
@@ -104,7 +106,8 @@ class SlideHelper {
    * Private Functions
    * */
   /**
-   * disable disables the helper. called when the state reaches the limit
+   * Disables the helper. Automatically called when the state reaches the limit.
+   * If called externally, completely halts execution.
    * @return {undefined}
    */
   disable() {
@@ -114,6 +117,8 @@ class SlideHelper {
     this.pressed = false;
     this.shouldExit = false;
     this.shouldReturn = false;
+
+    this.enabled = false;
   }
 
   /**
@@ -226,6 +231,9 @@ class SlideHelper {
    * @return {undefined}
    */
   animationFrame() {
+    if (!this.enabled) {
+      return;
+    }
     if (Math.abs(this.stateX) >= 1) {
       // Reached the limit, disable the helper and call corresponding handlers
       this.disable();

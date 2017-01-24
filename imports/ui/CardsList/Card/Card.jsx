@@ -9,7 +9,6 @@ import QuizCard from './QuizCard/QuizCard';
 
 
 class Card extends React.Component {
-
   constructor(props) {
     super(props);
     this.state = {
@@ -27,7 +26,16 @@ class Card extends React.Component {
       passed: false,
     };
 
-    this.cardSliderApplied = false;
+    this.cardSlider = null;
+    const type = this.props.contentProps.type;
+    this.shouldSlide = !(type === 'code' || type === 'order' || type === 'multiple-choice' || type === 'feedback' || type === 'finish');
+  }
+
+  componentWillUnmount() {
+    if (this.cardSlider) {
+      this.cardSlider.disable();
+      this.cardSlider = null;
+    }
   }
 
   getCardContent() {
@@ -44,6 +52,7 @@ class Card extends React.Component {
         break;
       case 'multiple-choice':
       case 'order':
+      case 'code':
         cardType = QuizCard;
         break;
       default:
@@ -104,9 +113,8 @@ class Card extends React.Component {
   }
 
   render() {
-    if (this.state.dimensions.measured) {
+    if (this.shouldSlide && this.state.dimensions.measured) {
       this.updateCardSlider();
-      this.cardSliderApplied = true;
     }
 
     const cardStyle = {

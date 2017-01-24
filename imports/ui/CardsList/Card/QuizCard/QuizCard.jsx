@@ -1,8 +1,15 @@
 import React from 'react';
 import MultipleChoiceCard from './MultipleChoiceCard/MultipleChoiceCard';
 import OrderCard from './OrderCard/OrderCard';
+import CodeCard from './CodeCard/CodeCard';
 
 class QuizCard extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      checkAnswer: () => {}, // Checks the answer
+    };
+  }
 
   getQuizContent() {
     let cardType = null;
@@ -13,17 +20,23 @@ class QuizCard extends React.Component {
       case 'order':
         cardType = OrderCard;
         break;
+      case 'code':
+        cardType = CodeCard;
+        break;
       default:
         console.error('cardType not accepted by QuizCard');
         break;
     }
-    return React.createElement(cardType, { ...this.props });
+    return React.createElement(cardType, {
+      ...this.props,
+      setCheckAnswerFunction: (checkAnswer => this.setState({ checkAnswer })),
+    });
   }
 
   render() {
     const imageUrl = this.props.imageUrl;
     const question = this.props.question;
-    const checkAnswer = this.props.checkAnswer;
+    const checkAnswer = this.state.checkAnswer;
     const quizBody = this.getQuizContent();
 
     return (
@@ -55,11 +68,6 @@ QuizCard.propTypes = {
   type: React.PropTypes.string.isRequired,
   imageUrl: React.PropTypes.string,
   question: React.PropTypes.string.isRequired,
-  quizBody: React.PropTypes.oneOfType([
-    React.PropTypes.arrayOf(React.PropTypes.element),
-    React.PropTypes.element,
-  ]).isRequired,
-  checkAnswer: React.PropTypes.func.isRequired,
 };
 
 QuizCard.defaultProps = {

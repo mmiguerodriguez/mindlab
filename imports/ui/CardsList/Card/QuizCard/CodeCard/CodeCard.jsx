@@ -4,7 +4,6 @@ import AceEditor from 'react-ace';
 import 'brace/mode/javascript';
 import 'brace/theme/github';
 
-import QuizCard from '../QuizCard';
 import CharacterRow from './CharacterRow/CharacterRow';
 
 class CodeCard extends React.Component {
@@ -21,6 +20,10 @@ class CodeCard extends React.Component {
 
     this.onChange = this.onChange.bind(this);
     this.checkAnswer = this.checkAnswer.bind(this);
+  }
+
+  componentWillMount() {
+    this.props.setCheckAnswerFunction(this.checkAnswer);
   }
 
   onChange(newValue) {
@@ -59,9 +62,10 @@ class CodeCard extends React.Component {
     }
     console.log = originalConsoleLog;
     // Try to find the user's result in the posible results array
-    const resultInProps = this.props.results.find(
-      object => object.result == result,
+    const resultInProps = this.props.possibleResults.find(
+      object => object.result === result, // == is desired behaviour
     );
+
     // if the answer is correct
     if (resultInProps && resultInProps.correct) {
       const content = resultInProps.message || 'Muy bien! Anduvo!';
@@ -106,7 +110,7 @@ class CodeCard extends React.Component {
       />
     );
 
-    const content = (
+    return (
       <div className="code-card-body">
         {editor}
         <div className="code-card-result">
@@ -117,36 +121,20 @@ class CodeCard extends React.Component {
         <CharacterRow editor={this.editor} />
       </div>
     );
-
-    return (
-      <div>        
-        <QuizCard
-          question={this.props.task}
-          quizBody={content}
-          checkAnswer={this.checkAnswer}
-          index={this.props.index}
-          cardsCount={this.props.cardsCount}
-          cardPassed={this.props.cardPassed}
-        />
-      </div>
-    );
   }
 }
 
 CodeCard.propTypes = {
-  task: React.PropTypes.string.isRequired,
   // results array for defining different messages for each result
-  results: React.PropTypes.arrayOf(React.PropTypes.shape({
+  possibleResults: React.PropTypes.arrayOf(React.PropTypes.shape({
     result: React.PropTypes.oneOfType([
       React.PropTypes.string,
       React.PropTypes.number,
     ]).isRequired,
     message: React.PropTypes.string,
-    correct: React.PropTypes.bool,
+    correct: React.PropTypes.bool, // If this possible result is the correct answer
   })).isRequired,
-  index: React.PropTypes.number.isRequired,
-  cardsCount: React.PropTypes.number.isRequired,
-  cardPassed: React.PropTypes.func.isRequired,
+  setCheckAnswerFunction: React.PropTypes.func.isRequired,
 };
 
 export default CodeCard;
