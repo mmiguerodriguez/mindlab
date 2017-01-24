@@ -1,6 +1,4 @@
 import React from 'react';
-import Card from './Card/Card';
-import { Link } from 'react-router'
 
 import ContentCard from './Card/ContentCard/ContentCard';
 import FeedbackCard from './Card/FeedbackCard/FeedbackCard';
@@ -62,6 +60,8 @@ class CardsList extends React.Component {
         break;
       case 'feedback':
         cardType = FeedbackCard;
+        // TODO: if it is the last lesson, redirect to '/'
+        cardContent.nextUrl = cardContent.nextUrl || this.props.lessonUrl;
         break;
       case 'finish':
         cardType = FinishCard;
@@ -146,6 +146,7 @@ class CardsList extends React.Component {
 
 CardsList.propTypes = {
   cards: React.PropTypes.arrayOf(React.PropTypes.object).isRequired,
+  lessonUrl: React.PropTypes.string.isRequired,
 };
 
 export default CardsList;
