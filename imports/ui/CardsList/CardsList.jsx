@@ -45,8 +45,6 @@ class CardsList extends React.Component {
       currentCardIndex: 0, // The index withing the stack of the currently
                            // visible card.
     };
-
-    this.cardPassed = this.cardPassed.bind(this);
   }
   /**
    * getCardFromCardContent: converts cards content to a card component
@@ -83,7 +81,7 @@ class CardsList extends React.Component {
       ...cardContent,
       index,
       cardsCount: this.props.cards.length, // we pass this for the positioning
-      cardPassed: this.cardPassed,
+      cardPassed: this.cardPassed.bind(this),
     });
   }
   /**
@@ -118,6 +116,7 @@ class CardsList extends React.Component {
    * cardPassed: callback that triggers when a card is passed
    */
   cardPassed() {
+    window.asdasd = this;
     // If the current stack is out of cards, show the next stack
     if (
       this.state.currentCardIndex ===
