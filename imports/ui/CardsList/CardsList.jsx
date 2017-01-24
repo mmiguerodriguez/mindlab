@@ -116,7 +116,6 @@ class CardsList extends React.Component {
    * cardPassed: callback that triggers when a card is passed
    */
   cardPassed() {
-    window.asdasd = this;
     // If the current stack is out of cards, show the next stack
     if (
       this.state.currentCardIndex ===
