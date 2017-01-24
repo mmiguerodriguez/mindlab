@@ -48,41 +48,11 @@ class CardsList extends React.Component {
     this.getCard = this.getCard.bind(this);
   }
   /**
-   * getCardFromCardContent: converts cards content to a card component
+   * Returns a card component with the passed properties and index
    * @param {Object} cardContent: the props of the card
    * @param {Integer} index: index of the card within the stack
    * @return {Component} card
    */
-  /* getCardFromCardContent(cardContent, index) {
-    let cardType = null;
-    switch (cardContent.type) {
-      case 'content':
-        cardType = ContentCard;
-        break;
-      case 'feedback':
-        cardType = FeedbackCard;
-        break;
-      case 'finish':
-        cardType = FinishCard;
-        break;
-      case 'multiple-choice':
-        cardType = MultipleChoiceCard;
-        break;
-      case 'order':
-        cardType = OrderCard;
-        break;
-      default:
-        cardType = ContentCard;
-    }
-    return React.createElement(cardType, {
-      key: `card-${index}`, // TODO: change index for cardId
-      ...cardContent,
-      index,
-      cardsCount: this.props.cards.length, // we pass this for the positioning
-      cardPassed: this.cardPassed,
-    });
-  }*/
-
   getCard(contentProps, index) {
     return (
       <Card
@@ -94,6 +64,7 @@ class CardsList extends React.Component {
       />
     );
   }
+
   /**
    * getCardStacks: converts cards content to an array of card stacks
    * @param {Array} cards: array of cards content

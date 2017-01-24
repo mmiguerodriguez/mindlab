@@ -5,8 +5,8 @@ import SlideHelper from './SlideHelper';
 import ContentCard from './ContentCard/ContentCard';
 import FeedbackCard from './FeedbackCard/FeedbackCard';
 import FinishCard from './FinishCard/FinishCard';
-import MultipleChoiceCard from './QuizCard/MultipleChoiceCard/MultipleChoiceCard';
-import OrderCard from './QuizCard/OrderCard/OrderCard';
+import QuizCard from './QuizCard/QuizCard';
+
 
 class Card extends React.Component {
 
@@ -66,15 +66,27 @@ class Card extends React.Component {
         cardType = FinishCard;
         break;
       case 'multiple-choice':
-        cardType = MultipleChoiceCard;
-        break;
       case 'order':
-        cardType = OrderCard;
+        cardType = QuizCard;
         break;
       default:
         cardType = ContentCard;
     }
-    return React.createElement(cardType, { ...this.props.contentProps });
+    return React.createElement(cardType, {
+      ...this.props.contentProps,
+      /**
+       * LO DE ABAJO ES NECESITADO POR OrderCard y MultipleChoiceCard !!
+       * Lo de abajo es horrible, no lo puedo sacar porque es necesario con la implementacion
+       *  actual. Si le pasamos estos parametros, estas haciendo que piense con cosas que solo
+       *  deberian ser usadas por Card.
+       * Lo correcto sería que la propiedad que pidan sea lo que realmente necesiten, no lo que usan
+       *  para carcularlo. Por ejemplo, si use index y cardsCount para sacar el zIndex, directamente
+       *  deberiamos pasarle el zIndex.
+       *  TODO: Fix
+       */
+      index: this.props.index,
+      cardsCount: this.props.cardsCount,
+    });
   }
 
   /**

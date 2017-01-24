@@ -1,18 +1,32 @@
 import React from 'react';
+import MultipleChoiceCard from './MultipleChoiceCard/MultipleChoiceCard';
+import OrderCard from './OrderCard/OrderCard';
 
-import Card from '../Card';
+class QuizCard extends React.Component {
 
-const QuizCard = ({
-  imageUrl,
-  question,
-  options,
-  checkAnswer,
-  index,
-  cardsCount,
-  cardPassed,
-}) => {
-  const content =
-    (
+  getQuizContent() {
+    let cardType = null;
+    switch (this.props.type) {
+      case 'multiple-choice':
+        cardType = MultipleChoiceCard;
+        break;
+      case 'order':
+        cardType = OrderCard;
+        break;
+      default:
+        console.error('cardType not accepted by QuizCard');
+        break;
+    }
+    return React.createElement(cardType, { ...this.props });
+  }
+
+  render() {
+    const imageUrl = this.props.imageUrl;
+    const question = this.props.question;
+    const checkAnswer = this.props.checkAnswer;
+    const optionsBody = this.getQuizContent();
+
+    return (
       <div className="card-body">
         { imageUrl &&
           <img
@@ -26,38 +40,28 @@ const QuizCard = ({
             {question}
           </h2>
         }
-        { options &&
+        { optionsBody &&
           <div className="quiz-card-options">
-            {options}
+            {optionsBody}
           </div>
         }
         <button className="btn btn-raised card-btn-primary" onClick={checkAnswer}>Enviar</button>
       </div>
     );
-  return (
-    <Card
-      content={content}
-      index={index}
-      cardsCount={cardsCount}
-      cardPassed={cardPassed}
-    />
-  );
-};
+  }
+}
 
 QuizCard.propTypes = {
+  type: React.PropTypes.string.isRequired,
   imageUrl: React.PropTypes.string,
   question: React.PropTypes.string.isRequired,
-  options: React.PropTypes.arrayOf(React.PropTypes.element).isRequired,
   checkAnswer: React.PropTypes.func.isRequired,
-  index: React.PropTypes.number.isRequired,
-  cardsCount: React.PropTypes.number.isRequired,
-  cardPassed: React.PropTypes.func,
 };
 
 QuizCard.defaultProps = {
-  imageUrl: null,
-  question: null,
-  options: null,
+  imageUrl: undefined,
+  question: undefined,
+  options: undefined,
   cardPassed: () => {},
 };
 

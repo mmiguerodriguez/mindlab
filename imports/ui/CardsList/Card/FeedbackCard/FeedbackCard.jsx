@@ -2,8 +2,6 @@ import React from 'react';
 import { graphql } from 'react-apollo';
 import gql from 'graphql-tag';
 
-import Card from '../Card';
-
 class FeedbackCard extends React.Component {
   constructor(props) {
     super(props);
@@ -42,39 +40,27 @@ class FeedbackCard extends React.Component {
   }
 
   render() {
-    const content =
-      (
-        <div>
-          <h2>Tu sugerencia nos es de gran ayuda</h2>
-          <p>Descripcion</p>
-          <textarea
-            className="form-control"
-            onKeyDown={e => this.onKeyDown(e, 'description')}
-          />
-          <p>Email</p>
-          <input
-            className="form-control"
-            onKeyDown={e => this.onKeyDown(e, 'email')}
-          />
-          <button onClick={this.sendFeedback}>Enviar</button>
-        </div>
-      );
     return (
-      <Card
-        content={content}
-        index={this.props.index}
-        cardsCount={this.props.cardsCount}
-        cardPassed={this.props.cardPassed}
-      />
+      <div>
+        <h2>Tu sugerencia nos es de gran ayuda</h2>
+        <p>Descripcion</p>
+        <textarea
+          className="form-control"
+          onKeyDown={e => this.onKeyDown(e, 'description')}
+        />
+        <p>Email</p>
+        <input
+          className="form-control"
+          onKeyDown={e => this.onKeyDown(e, 'email')}
+        />
+        <button onClick={this.sendFeedback}>Enviar</button>
+      </div>
     );
   }
 }
 
 FeedbackCard.propTypes = {
   mutate: React.PropTypes.func.isRequired,
-  index: React.PropTypes.number.isRequired,
-  cardsCount: React.PropTypes.number.isRequired,
-  cardPassed: React.PropTypes.func,
 };
 
 FeedbackCard.defaultProps = {

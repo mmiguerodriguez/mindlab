@@ -7,6 +7,7 @@ class LessonPage extends React.Component {
   render() {
     const progress = 30; // The progress is constantly 30%, but it needs to be changed
     // TODO: add real cards
+    /*
     const cardsContent = [
       {
         type: 'content',
@@ -15,7 +16,7 @@ class LessonPage extends React.Component {
         text: 'Esto es un texto',
       },
     ];
-    /*
+    // */
     const cardsContent = [
       {
         type: 'multiple-choice',
@@ -85,7 +86,7 @@ class LessonPage extends React.Component {
         title: 'nuevo stack',
       },
     ];
-    */
+    // */
     return (
       <div>
         <ProgressBar progress={progress} /> {/* ProgressBar component where progress is passed */}
