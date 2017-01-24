@@ -30,29 +30,6 @@ class Card extends React.Component {
     this.cardSliderApplied = false;
   }
 
-  /**
-   * Prevent update if the xDisplacemente is the same as before
-   */
-  shouldComponentUpdate(nextProps, nextState) {
-    // If slider not implemented, allow every update until it is
-    if (!this.cardSliderApplied || nextState.passed !== this.state.passed) {
-      return true;
-    }
-    // If dimensions changed, update
-    const currentDimensions = this.state.dimensions;
-    if (nextState.dimensions.width !== currentDimensions.width ||
-        nextState.dimensions.height !== currentDimensions.height ||
-        nextState.dimensions.passed !== currentDimensions.passed) {
-      return true;
-    }
-
-    if (nextState.displacement.x === this.state.displacement.x) {
-      return false;
-    }
-
-    return true;
-  }
-
   getCardContent() {
     let cardType = null;
     switch (this.props.contentProps.type) {
@@ -100,11 +77,13 @@ class Card extends React.Component {
       // Create and instantiate a SlideHelper
       const $card = $(this.card);
       const stateUpdateHandler = (stateX) => {
-        this.setState({
-          displacement: {
-            x: stateX * this.state.dimensions.width,
-          },
-        });
+        if (this.state.displacement.x !== stateX * this.state.dimensions.width) {
+          this.setState({
+            displacement: {
+              x: stateX * this.state.dimensions.width,
+            },
+          });
+        }
       };
       const finishHandler = () => {
         this.setState({

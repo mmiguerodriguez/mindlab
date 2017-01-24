@@ -31,7 +31,7 @@ class FeedbackCard extends React.Component {
         email,
       },
     })
-    .then(({ data }) => {
+    .then((/* { data } */) => {
       // data inserted correctly
       // data.addFeedback to get _id
       $.snackbar({ content: '¡Muchas gracias! La sugerencia se envió correctamente' });
@@ -43,47 +43,30 @@ class FeedbackCard extends React.Component {
   }
 
   render() {
-    const content =
-      (
-        <div className="card-body">
-          <h2>{this.props.title}</h2>
-          <div className="form-group label-floating feedback-card-input is-empty">
-            <label htmlFor="description" className="control-label">Descripción</label>
-            <textarea
-              className="form-control"
-              id="description"
-              onKeyDown={e => this.onKeyDown(e, 'description')}
-            />
-          </div>
-          <div className="form-group label-floating feedback-card-input is-empty">
-            <label htmlFor="email" className="control-label">Email</label>
-            <input
-              className="form-control"
-              id="email"
-              onKeyDown={e => this.onKeyDown(e, 'email')}
-            />
-          </div>
-          <div>
-            <button className="btn btn-raised card-btn-primary" onClick={this.sendFeedback}>
-              Enviar
-            </button>
-          </div>
-        </div>
-      );
     return (
-      <div>
-        <h2>Tu sugerencia nos es de gran ayuda</h2>
-        <p>Descripcion</p>
-        <textarea
-          className="form-control"
-          onKeyDown={e => this.onKeyDown(e, 'description')}
-        />
-        <p>Email</p>
-        <input
-          className="form-control"
-          onKeyDown={e => this.onKeyDown(e, 'email')}
-        />
-        <button onClick={this.sendFeedback}>Enviar</button>
+      <div className="card-body">
+        <h2>{this.props.title}</h2>
+        <div className="form-group label-floating feedback-card-input is-empty">
+          <label htmlFor="description" className="control-label">Descripción</label>
+          <textarea
+            className="form-control"
+            id="description"
+            onKeyDown={e => this.onKeyDown(e, 'description')}
+          />
+        </div>
+        <div className="form-group label-floating feedback-card-input is-empty">
+          <label htmlFor="email" className="control-label">Email</label>
+          <input
+            className="form-control"
+            id="email"
+            onKeyDown={e => this.onKeyDown(e, 'email')}
+          />
+        </div>
+        <div>
+          <button className="btn btn-raised card-btn-primary" onClick={this.sendFeedback}>
+            Enviar
+          </button>
+        </div>
       </div>
     );
   }
@@ -111,3 +94,5 @@ const addFeedback = gql`
 const FeedbackCardWithMutation = graphql(addFeedback)(FeedbackCard);
 
 export default FeedbackCard = FeedbackCardWithMutation;
+
+/* global $ */
