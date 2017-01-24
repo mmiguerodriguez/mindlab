@@ -150,3 +150,5 @@ CodeCard.propTypes = {
 };
 
 export default CodeCard;
+
+/* global $ */
