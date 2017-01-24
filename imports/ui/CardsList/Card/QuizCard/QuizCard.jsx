@@ -24,7 +24,7 @@ class QuizCard extends React.Component {
     const imageUrl = this.props.imageUrl;
     const question = this.props.question;
     const checkAnswer = this.props.checkAnswer;
-    const optionsBody = this.getQuizContent();
+    const quizBody = this.getQuizContent();
 
     return (
       <div className="card-body">
@@ -36,13 +36,13 @@ class QuizCard extends React.Component {
           />
         }
         { question &&
-          <h2 className="quiz-card-question">
+          <h3 className="quiz-card-question">
             {question}
-          </h2>
+          </h3>
         }
-        { optionsBody &&
-          <div className="quiz-card-options">
-            {optionsBody}
+        { quizBody &&
+          <div className="quiz-card-body">
+            {quizBody}
           </div>
         }
         <button className="btn btn-raised card-btn-primary" onClick={checkAnswer}>Enviar</button>
@@ -55,6 +55,10 @@ QuizCard.propTypes = {
   type: React.PropTypes.string.isRequired,
   imageUrl: React.PropTypes.string,
   question: React.PropTypes.string.isRequired,
+  quizBody: React.PropTypes.oneOfType([
+    React.PropTypes.arrayOf(React.PropTypes.element),
+    React.PropTypes.element,
+  ]).isRequired,
   checkAnswer: React.PropTypes.func.isRequired,
 };
 

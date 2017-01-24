@@ -6,6 +6,7 @@ import Card from './Card/Card';
 // import FinishCard from './Card/FinishCard/FinishCard';
 // import MultipleChoiceCard from './Card/QuizCard/MultipleChoiceCard/MultipleChoiceCard';
 // import OrderCard from './Card/QuizCard/OrderCard/OrderCard';
+// import CodeCard from './Card/QuizCard/CodeCard/CodeCard';
 
 /**
  * CardsList: Shows stacks of cards.
@@ -125,6 +126,7 @@ class CardsList extends React.Component {
 
 CardsList.propTypes = {
   cards: React.PropTypes.arrayOf(React.PropTypes.object).isRequired,
+  lessonUrl: React.PropTypes.string.isRequired,
 };
 
 export default CardsList;

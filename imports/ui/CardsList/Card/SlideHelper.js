@@ -58,12 +58,17 @@ class SlideHelper {
     this.stateX = 0;// i.e. element pressed then pointer moved to the right, stateX increases
     this.velocityX = 0;
 
-    SlideHelper.addTouchEvents(this.$element, this.press.bind(this));
+    // Bind the event handlers
+    this.pointerMoved = this.pointerMoved.bind(this);
+    this.press = this.press.bind(this);
+    this.release = this.release.bind(this);
+    this.animationFrame = this.animationFrame.bind(this);
 
+    SlideHelper.addTouchEvents(this.$element, this.press);
 
     // The animation frame calls the animation frame handler and deals with setting the state upon
     // touch release.
-    window.requestAnimationFrame(this.animationFrame.bind(this));
+    window.requestAnimationFrame(this.animationFrame);
   }
 
   /**
@@ -175,7 +180,7 @@ class SlideHelper {
 
     // Because the element was pressed, start listening for a release and a move
     SlideHelper.addTouchEvents(
-      this.$body, null, this.release.bind(this), this.pointerMoved.bind(this));
+      this.$body, null, this.release, this.pointerMoved);
   }
 
   /**
@@ -263,7 +268,7 @@ class SlideHelper {
     }
 
     // Call this function once per frame
-    window.requestAnimationFrame(this.animationFrame.bind(this));
+    window.requestAnimationFrame(this.animationFrame);
   }
 
   /**

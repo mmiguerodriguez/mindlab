@@ -7,6 +7,7 @@ class LessonPage extends React.Component {
   render() {
     const progress = 30; // The progress is constantly 30%, but it needs to be changed
     // TODO: add real cards
+
     /*
     const cardsContent = [
       {
@@ -17,9 +18,22 @@ class LessonPage extends React.Component {
       },
     ];
     // */
+    // Get coursePage url from lessonPage url
+    const urlSplited = this.props.location.pathname.split('/');
+    const lessonUrl = `/${urlSplited[1]}/${urlSplited[2]}`;
     const cardsContent = [
       {
-        type: 'multiple-choice',
+        type: 'finish',
+        imageUrl: '/images/welcome/page1.png',
+        title: 'Tercera card',
+        text: 'asdf asdf hasdhjas hdk ashdf',
+      },
+      {
+        type: 'feedback',
+        title: 'give me some feedback',
+      },
+      {
+        type: 'order',
         imageUrl: '/images/welcome/page1.png',
         question: 'Tercera card',
         options: [{
@@ -76,12 +90,6 @@ class LessonPage extends React.Component {
         text: 'Esto es otro texto, un poco más largo que el anterior, y también que el primero.',
       },
       {
-        type: 'order',
-      },
-      {
-        type: 'multiple-choice',
-      },
-      {
         type: 'content',
         title: 'nuevo stack',
       },
@@ -90,7 +98,7 @@ class LessonPage extends React.Component {
     return (
       <div>
         <ProgressBar progress={progress} /> {/* ProgressBar component where progress is passed */}
-        <CardsList cards={cardsContent} />
+        <CardsList cards={cardsContent} lessonUrl={lessonUrl} />
       </div>
     );
   }
@@ -100,6 +108,9 @@ LessonPage.propTypes = {
   params: React.PropTypes.shape({
     lessonName: React.PropTypes.string.isRequired,
   }),
+  location: React.PropTypes.shape({
+    pathname: React.PropTypes.string.isRequired,
+  }).isRequired,
 };
 
 LessonPage.defaultProps = {
