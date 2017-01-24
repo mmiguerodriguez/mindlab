@@ -25,6 +25,8 @@ class CharacterRow extends React.Component {
       '-',
       '<',
       '>',
+      '&',
+      '|',
       'tab',
     ];
     return (
