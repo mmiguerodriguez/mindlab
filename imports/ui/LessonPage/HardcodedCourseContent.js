@@ -331,20 +331,153 @@ const LenguajesLessonRaw = [
   {
     type: 'content',
     //imageUrl: '/images/',
-    text: 'El programa lee las líneas de arriba para abajo. Entonces si tenemos que declarar una variable que vamos a usar después, se tiene que primero declarar la variable y sólo después de declararla la podemos usar.',
+    text: 'El programa lee las líneas de arriba para abajo. Entonces, si necesitamos una variable, primero tenemos que declararla (crear), y solo después de declararla la podemos usar.',
   },
   {
     type: 'content',
     //imageUrl: '/images/',
-    text: 'En la mayoría de las líneas que no son estructuras condicionales o repetitivas, el último caracter de la línea es un punto y coma ;  que sirve para darle a entender a la computadora que la línea se termina ahí.',
+    text: 'En la mayoría de las líneas que no son estructuras condicionales o repetitivas, el último caracter de la línea es un punto y coma ```;```  que sirve para darle a entender a la computadora que la línea se termina ahí.',
   },
   {
     type: 'content',
     //imageUrl: '/images/',
-    title: 'Alert',
-    text: `En JavaScript es muy común usar la palabra clave \`\`\`alert\`\`\` que sirve para darle mensajes al usuario. La sintaxis es la siguiente:
-\`\`\`alert(“Hello world!”);\`\`\``,
+    title: 'console.log()',
+    text: 'Supongamos que tenemos un programa que hace la suma de los números del 1 al 50 y nos queremos fijar si está funcionando como lo planeado. Sabemos que el valor de la suma está almacenado en la variable ```sumaTotal```.',
     forceNewStack: true,
+  },
+  {
+    type: 'content',
+    //imageUrl: '/images/',
+    text: 'Entonces, lo que queremos hacer es que por algún lado se muestre el valor de esa variable para poder darnos cuenta si el programa hace lo que queremos o si hay algún error. Para esto usamos la herramienta console.log',
+  },
+  {
+    type: 'content',
+    //imageUrl: '/images/',
+    text: `La sintaxis para usar el console.log es la siguiente: \`\`\`console.log(sumaTotal)\`\`\`;
+Se escribe \`\`\`console.log\`\`\` y entre paréntesis la variable que queremos enviar.`,
+  },
+  {
+    type: 'content',
+    //imageUrl: '/images/',
+    text: 'Ahora vas a poder escribir tu propio código en este ejercicio',
+    forceNewStack: true,
+  },
+  {
+    type: 'code',
+    task: 'Devolvé el mensaje "Hello World!" usando console.log',
+    results: [
+      {
+        result: 'Hello World!',
+        correct: true,
+      },
+    ],
+  },
+  {
+    type: 'content',
+    //imageUrl: '/images/',
+    title: 'Tipos de datos',
+    text: 'Como vimos anteriormente, una variable es un pedazo de memoria que usamos para guardar cualquier tipo de información. En las variables podemos almacenar distintos tipos de datos.',
+  },
+  {
+    type: 'content',
+    //imageUrl: '/images/',
+    text: 'Por ejemplo, podemos tener una variable que almacene el nombre de un usuario, que sería una palabra, y otra variable para la edad de ese usuario, que sería un número.',
+  },
+  {
+    type: 'content',
+    //imageUrl: '/images/',
+    text: 'Primero tenemos el tipo de dato **number** (número). Todas las variables que almacenan un número son de este tipo; el número puede ser tanto positivo como negativo, y puede tener coma.',
+  },
+  {
+    type: 'content',
+    //imageUrl: '/images/',
+    text: 'Por ejemplo, si definimos la variable ```peso``` a ```30,5``` y la variable ```temperatura``` igual a ```-5```, ambas tienen el tipo de dato **number**.',
+  },
+  {
+    type: 'content',
+    //imageUrl: '/images/',
+    text: 'Después está el tipo de dato **string** (cadena). Se llama así porque representa una cadena de caracteres. Cualquier variable que almacene una o más palabras es de este tipo. Puede tener espacios o cualquier letra, número o símbolo.',
+  },
+  {
+    type: 'content',
+    //imageUrl: '/images/',
+    text: 'Por ejemplo, si tenemos la variable ```nombre```, que es igual a ```“Juan Pérez”```, y la variable contraseña que es igual ```“1234_(qwer)#”```, entonces ambas tienen el tipo de dato **string**.',
+  },
+  {
+    type: 'content',
+    //imageUrl: '/images/',
+    text: 'Por otro lado tenemos el tipo de dato **boolean** (booleano). Una variable con este tipo de dato tiene solo dos valores posibles: ```true``` (verdadero) o ```false``` (falso).',
+  },
+  {
+    type: 'content',
+    //imageUrl: '/images/',
+    text: 'Si por ejemplo definimos la variable ```terminoElSecundario``` igual a ```true``` o la variable aprobo igual a ```false```, las dos van a tener el tipo de dato boolean.',
+  },
+  {
+    type: 'multiple-choice',
+    question: 'Qué tipo de dato es ```"42"```',
+    options: [
+      {
+        content: "String",
+        message: 'Bien! Aunque su contenido sea un número, como está dentro de comillas es un string.',
+        correct: true,
+      },
+      {
+        content: "Number",
+        message: 'Mal. Como el 42 está dentro de comillas, es un string.',
+        correct: true,
+      },
+      {
+        content: "Boolean",
+        message: 'Mal. Como el 42 está dentro de comillas, es un string.',
+        correct: true,
+      },
+    ],
+  },
+  {
+    type: 'content',
+    //imageUrl: '/images/',
+    title: 'Operadores de comparación',
+    text: 'Cuando estamos usando un if, necesitamos una forma de comparar dos variables. Por ejemplo, hay veces que nos queremos fijar si dos variables son iguales o si un número almacenado en una variable es menor que otro.',
+  },
+  {
+    type: 'content',
+    //imageUrl: '/images/',
+    text: `Para poder comparar dos variables, existen los operadores de comparación. Si queremos ver si la variable \`\`\`comidaRestante\`\`\` es igual a 0, usamos el operador \`\`\`===\`\`\`. En un if quedaría de la siguiente forma:
+if comidaRestante === 0
+  avisar al jugador que se quedo sin comida`,
+  },
+  {
+    type: 'content',
+    //imageUrl: '/images/',
+    text: `Si queremos verificar que dos variables no sean iguales, por ejemplo para ver si el usuario tuvo algún error al poner su contraseña, usamos el operador \`\`\`!==\`\`\`.
+if contraseñaIngresada !== “12345678”
+    alertar al usuario que hubo un error`,
+  },
+  {
+    type: 'content',
+    //imageUrl: '/images/',
+    text: 'Cuando queremos comparar si un número es mayor que otro, usamos el operador ```>```. Un ejemplo de uso sería para ver si la variable ```edadIngresada``` es mayor que 18.',
+  },
+  {
+    type: 'content',
+    //imageUrl: '/images/',
+    text: 'También tenemos el operador ```<``` para ver si una variable es menor que otra. Por último tenemos los operadores ```>=``` para ver si una variable es mayor o igual que otra y ```<=``` para ver si una variable es menor o igual que otra.',
+  },
+  {
+    type: 'multiple-choice',
+    question: `Qué devuelve el siguiente código?
+\`\`\`console.log(18 >= 20)\`\`\``,
+    options: [
+      {
+
+      },
+    ]
+  },
+  {
+    type: 'content',
+    //imageUrl: '/images/',
+    text: '',
   },
 ];
 const LenguajesLesson = replaceNewLineInCards(LenguajesLessonRaw);
