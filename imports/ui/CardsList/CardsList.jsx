@@ -1,6 +1,4 @@
 import React from 'react';
-import Card from './Card/Card';
-import { Link } from 'react-router'
 
 import ProgressBar from './ProgressBar/ProgressBar';
 
@@ -9,6 +7,7 @@ import FeedbackCard from './Card/FeedbackCard/FeedbackCard';
 import FinishCard from './Card/FinishCard/FinishCard';
 import MultipleChoiceCard from './Card/QuizCard/MultipleChoiceCard/MultipleChoiceCard';
 import OrderCard from './Card/QuizCard/OrderCard/OrderCard';
+import CodeCard from './Card/QuizCard/CodeCard/CodeCard';
 
 /**
  * CardsList: Shows stacks of cards.
@@ -46,8 +45,6 @@ class CardsList extends React.Component {
       currentCardIndex: 0, // The index withing the stack of the currently
                            // visible card.
     };
-
-    this.cardPassed = this.cardPassed.bind(this);
   }
   /**
    * getCardFromCardContent: converts cards content to a card component
@@ -63,6 +60,8 @@ class CardsList extends React.Component {
         break;
       case 'feedback':
         cardType = FeedbackCard;
+        // TODO: if it is the last lesson, redirect to '/'
+        cardContent.nextUrl = cardContent.nextUrl || this.props.lessonUrl;
         break;
       case 'finish':
         cardType = FinishCard;
@@ -73,6 +72,9 @@ class CardsList extends React.Component {
       case 'order':
         cardType = OrderCard;
         break;
+      case 'code':
+        cardType = CodeCard;
+        break;
       default:
         cardType = ContentCard;
     }
@@ -81,7 +83,7 @@ class CardsList extends React.Component {
       ...cardContent,
       index,
       cardsCount: this.props.cards.length, // we pass this for the positioning
-      cardPassed: this.cardPassed,
+      cardPassed: this.cardPassed.bind(this),
     });
   }
   /**
@@ -93,10 +95,12 @@ class CardsList extends React.Component {
   getCardStacks(cards) {
     const stacks = [[]];
     let currentStackIsQuizes = cards[0].type === 'order' ||
-                               cards[0].type === 'multiple-choice';
+                               cards[0].type === 'multiple-choice' ||
+                               cards[0].type === 'code';
     cards.forEach((card) => {
       const currentCardIsQuiz = card.type === 'order' ||
-                                card.type === 'multiple-choice';
+                                card.type === 'multiple-choice' ||
+                                card.type === 'code';
       if (currentCardIsQuiz === currentStackIsQuizes && !card.forceNewStack) {
         const currentStackCount = stacks[stacks.length - 1].length;
         // Current card should be in the same stack as the previous, so push it
@@ -134,12 +138,19 @@ class CardsList extends React.Component {
     }
   }
   render() {
+    let allPassedCards = this.state.currentCardIndex;
+    for (let i = 0; i < this.state.currentStackIndex; i++) {
+      allPassedCards += this.state.cardStacks[i].length;
+    }
+
     return (
-      <div>
+      <div className="cards-list-container">
         <div className="cards-list">
           {this.state.cardStacks[this.state.currentStackIndex]}
         </div>
-        <ProgressBar progress={this.state.currentCardIndex / (this.props.cards.length - 1)} />
+        { this.props.showProgressBar &&
+          <ProgressBar progress={(allPassedCards / (this.props.cards.length - 2)) * 100} />
+        }
       </div>
     );
   }
@@ -147,6 +158,12 @@ class CardsList extends React.Component {
 
 CardsList.propTypes = {
   cards: React.PropTypes.arrayOf(React.PropTypes.object).isRequired,
+  lessonUrl: React.PropTypes.string.isRequired,
+  showProgressBar: React.PropTypes.boolean,
+};
+
+CardsList.defaultProps = {
+  showProgressBar: true,
 };
 
 export default CardsList;

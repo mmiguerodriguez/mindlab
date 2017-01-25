@@ -30,7 +30,6 @@ class CoursePage extends React.Component { // TODO: fix $.material.init()
     );
     return (
       <div id="coursepage">
-        <p className="course-title">Curso de Programación</p>
         <div id="coursepage-lessons-list">
           {lessonsArray}
         </div>

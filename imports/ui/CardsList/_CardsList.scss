@@ -1,25 +1,17 @@
-.cards-list {
+@import 'ProgressBar/ProgressBar';
+
+.cards-list-container {
   display: flex;
   flex-direction: column;
+}
+
+.cards-list {
   padding: 0 15px;
+  flex: 1;
+  height: calc(100vh - 100px);
 }
 
 .lesson-data {
   display: flex;
   justify-content: center;
-  
-  .close-lesson {
-    i {
-      margin-top: 5px;
-    }
-  }
-  .progress {
-    height: 4px;
-    width: calc(100% - 80px);
-    margin: 15px 0 15px 15px !important;
-    
-    .progress-bar {
-      width: 0%;
-    }
-  }
 }
