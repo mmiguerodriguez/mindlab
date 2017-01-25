@@ -166,8 +166,8 @@ class LessonPage extends React.Component {
           lessonUrl={lessonUrl}
           incrementCurrentCardGlobalIndex={this.incrementCurrentCardGlobalIndex}
         />
-        <ProgressBar progress={(this.state.currentCardGlobalIndex /
-                                (cardsContent.length - 2)) * 100}
+        <ProgressBar
+          progress={(this.state.currentCardGlobalIndex / (cardsContent.length - 2)) * 100}
         />
       </div>
     );
