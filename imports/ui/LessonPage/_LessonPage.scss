@@ -1,41 +1,22 @@
 @import '../CardsList/CardsList';
+@import 'ProgressBar/ProgressBar';
 
 #lesson-page{
   height: 100%;
   width: 100%;
-  
+
   display: flex;
-  
+
   position: absolute;
-  
+
   background-image: url(http://i.imgur.com/V6qkU4g.png);
   flex-direction: row;
   justify-content: center;
   align-items: center;
-  
-  user-select: none;
-  
-  overflow: hidden;
-}
 
-.lesson-data {
-  display: flex;
-  justify-content: center;
-  
-  .close-lesson {
-    i {
-      margin-top: 5px;
-    }
-  }
-  .progress {
-    height: 4px;
-    width: calc(100% - 80px);
-    margin: 15px 0 15px 15px !important;
-    
-    .progress-bar {
-      width: 0%;
-    }
-  }
+  user-select: none;
+
+  overflow: hidden;
 }
 
 /**

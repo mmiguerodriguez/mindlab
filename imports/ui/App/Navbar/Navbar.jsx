@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link, browserHistory } from 'react-router';
+import { browserHistory } from 'react-router';
 
 class Navbar extends React.Component {
   constructor(props) {
@@ -13,19 +13,46 @@ class Navbar extends React.Component {
   }
 
   render() {
+    let title;
+    if (this.props.currentUrl.includes('feedback')) {
+      title = 'Sugerencia';
+    } else if (this.props.currentUrl.includes('course')) {
+      const urlSplited = this.props.currentUrl.split('/');
+      if (urlSplited.length === 3) {
+        title = `Curso de ${decodeURIComponent(urlSplited[2])}`;
+      } else if (urlSplited.length === 4) {
+        title = decodeURIComponent(urlSplited[3]);
+      }
+    } else if (this.props.currentUrl === '/') {
+      title = 'Lista de cursos';
+    }
+
+    const feedbackStyle = this.props.currentUrl.includes('feedback')
+                          ? { marginRight: '50px' } : {};
+
     return (
       <div className={`navbar navbar-default navbar-fixed-top ${this.props.className}`}>
         <div className="container-fluid">
           <div className="navbar-header">
-            <Link className="navbar-brand" to="/">Diamond Knowledge</Link>
-            { this.props.currentUrl.includes('feedback')
-              ? ''
-              : <a
-                href="#"
-                id="navbar-feedback-button"
+            { (this.props.currentUrl.includes('course') ||
+              this.props.currentUrl.includes('feedback'))
+              ? <a
+                onClick={browserHistory.goBack}
+              >
+                <i className="material-icons" id="navbar-arrow">arrow_back</i>
+              </a>
+              : <img
+                id="navbar-logo"
+                alt="logo"
+                src="/images/welcome/page1.png"
+              />
+            }
+            <p id="navbar-title" style={feedbackStyle}>{title}</p>
+            { !this.props.currentUrl.includes('feedback') &&
+              <a
                 onClick={this.redirectToFeedback}
               >
-                Feedback
+                <i className="material-icons" id="navbar-feedback">feedback</i>
               </a>
             }
           </div>

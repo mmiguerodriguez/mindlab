@@ -1,5 +1,15 @@
-.cards-list {
+.cards-list-container {
   display: flex;
   flex-direction: column;
+}
+
+.cards-list {
   padding: 0 15px;
+  flex: 1;
+  height: calc(100vh - 100px);
+}
+
+.lesson-data {
+  display: flex;
+  justify-content: center;
 }

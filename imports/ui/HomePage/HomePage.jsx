@@ -25,13 +25,15 @@ class HomePage extends React.Component {
       />
     );
     return (
-      <div id="homepage">
-        <p className="courses-title animated fadeInUp">Lista de cursos</p>
-        <div id="homepage-courses-list">
-          {
-            coursesArray
-          }
+      <div>
+        <div id="homepage">
+          <div id="homepage-courses-list">
+            {
+              coursesArray
+            }
+          </div>
         </div>
+        <div className="finish-element" id="home-page-finish-element"></div>
       </div>
     );
   }

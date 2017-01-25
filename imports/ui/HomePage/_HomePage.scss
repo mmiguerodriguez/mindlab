@@ -1,12 +1,15 @@
 #homepage {
   display: flex;
   flex-direction: column;
-  background-color: $white-1-color;
 }
-
 
 .courses-title {
   margin: 10px 10px 0;
   font-size: 20px;
   font-weight: bold;
+}
+
+#home-page-finish-element {
+  // navbar's z-index is 1030
+  z-index: 1040;
 }

@@ -118,6 +118,7 @@ class CardsList extends React.Component {
    * cardPassed: callback that triggers when a card is passed
    */
   cardPassed() {
+    this.props.incrementCurrentCardGlobalIndex();
     // If the current stack is out of cards, show the next stack
     if (
       this.state.currentCardIndex ===
@@ -135,10 +136,13 @@ class CardsList extends React.Component {
       });
     }
   }
+
   render() {
     return (
-      <div className="cards-list">
-        {this.state.cardStacks[this.state.currentStackIndex]}
+      <div className="cards-list-container">
+        <div className="cards-list">
+          {this.state.cardStacks[this.state.currentStackIndex]}
+        </div>
       </div>
     );
   }

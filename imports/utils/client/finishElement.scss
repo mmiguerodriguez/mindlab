@@ -1,0 +1,16 @@
+.finish-element {
+  position: fixed;
+  overflow: hidden;
+  bottom: 0;
+  left: 0;
+  z-index: 1;
+  background-color: $background-color;
+  width: 0;
+  border-radius: 50%;
+}
+
+.finish-element:after {
+  padding-top: 100%;
+  display: block;
+  content: '';
+}

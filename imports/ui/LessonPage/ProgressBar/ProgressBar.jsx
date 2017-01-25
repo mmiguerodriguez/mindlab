@@ -9,10 +9,7 @@ class ProgressBar extends React.Component {
     };
     return (
       <div className="lesson-data">
-        <Link to="course/programacion/" className="close-lesson close">
-          <i className="material-icons">close</i>
-        </Link>
-        <div className="progress">
+        <div className="progress" id="progress">
           <div className="progress-bar progress-bar-info" style={progressStyle}></div>
         </div>
       </div>

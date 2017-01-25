@@ -9,20 +9,3 @@
   display: flex;
   flex: 1;
 }
-
-.finish-element {
-  position: fixed;
-  overflow: hidden;
-  bottom: 0;
-  left: 0;
-  z-index: 1;
-  background-color: $white-1-color;
-  width: 0;
-  border-radius: 50%;
-}
-
-.finish-element:after {
-  padding-top: 100%;
-  display: block;
-  content: '';
-}
