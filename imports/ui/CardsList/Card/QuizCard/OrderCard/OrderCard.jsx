@@ -1,10 +1,8 @@
 import React from 'react';
 import { SortableContainer, SortableElement, arrayMove } from 'react-sortable-hoc';
 
-import QuizCard from '../QuizCard';
-
 const SortableItem = SortableElement(({ content, zIndex }) => (
-  // zIndex is needed because card component have custom zIndex
+  // zIndex is needed because card component has custom zIndex
   <div className="order-card-option" style={{ zIndex: zIndex + 1 }}>
     <i className="material-icons">reorder</i>
     <h4 className="order-card-content">{content}</h4>
@@ -35,6 +33,10 @@ class OrderCard extends React.Component {
     this.checkAnswer = this.checkAnswer.bind(this);
   }
 
+  componentWillMount() {
+    this.props.setCheckAnswerFunction(this.checkAnswer);
+  }
+
   onSortEnd({ oldIndex, newIndex }) {
     this.setState({
       options: arrayMove(this.state.options, oldIndex, newIndex),
@@ -46,7 +48,7 @@ class OrderCard extends React.Component {
     let wrongOrder = false;
 
     options.forEach((option, index) => {
-      if (option.step !== index + 1) {
+      if (option.correctPosition !== index + 1) {
         wrongOrder = true;
       }
     });
@@ -61,40 +63,26 @@ class OrderCard extends React.Component {
   }
 
   render() {
-    const optionsElement = (
+    return (
       <SortableList
         options={this.state.options}
         onSortEnd={this.onSortEnd}
         zIndex={this.props.cardsCount - this.props.index}
       />
     );
-
-    return (
-      <QuizCard
-        imageUrl={this.props.imageUrl}
-        question={this.props.question}
-        quizBody={optionsElement}
-        checkAnswer={this.checkAnswer}
-        index={this.props.index}
-        cardsCount={this.props.cardsCount}
-        cardPassed={this.props.cardPassed}
-      />
-    );
   }
 }
 
 OrderCard.propTypes = {
-  imageUrl: React.PropTypes.string,
-  question: React.PropTypes.string.isRequired,
   correctMessage: React.PropTypes.string,
   incorrectMessage: React.PropTypes.string,
   options: React.PropTypes.arrayOf(React.PropTypes.shape({
     content: React.PropTypes.string.isRequired,
-    step: React.PropTypes.number.isRequired,
+    correctPosition: React.PropTypes.number.isRequired,
   })).isRequired,
   index: React.PropTypes.number.isRequired,
   cardsCount: React.PropTypes.number.isRequired,
-  cardPassed: React.PropTypes.func,
+  setCheckAnswerFunction: React.PropTypes.func.isRequired,
 };
 
 OrderCard.defaultProps = {
@@ -105,3 +93,5 @@ OrderCard.defaultProps = {
 };
 
 export default OrderCard;
+
+/* global $ */

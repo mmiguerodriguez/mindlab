@@ -1,11 +1,12 @@
 import React from 'react';
+import Card from './Card/Card';
 
-import ContentCard from './Card/ContentCard/ContentCard';
-import FeedbackCard from './Card/FeedbackCard/FeedbackCard';
-import FinishCard from './Card/FinishCard/FinishCard';
-import MultipleChoiceCard from './Card/QuizCard/MultipleChoiceCard/MultipleChoiceCard';
-import OrderCard from './Card/QuizCard/OrderCard/OrderCard';
-import CodeCard from './Card/QuizCard/CodeCard/CodeCard';
+// import ContentCard from './Card/ContentCard/ContentCard';
+// import FeedbackCard from './Card/FeedbackCard/FeedbackCard';
+// import FinishCard from './Card/FinishCard/FinishCard';
+// import MultipleChoiceCard from './Card/QuizCard/MultipleChoiceCard/MultipleChoiceCard';
+// import OrderCard from './Card/QuizCard/OrderCard/OrderCard';
+// import CodeCard from './Card/QuizCard/CodeCard/CodeCard';
 
 /**
  * CardsList: Shows stacks of cards.
@@ -40,50 +41,30 @@ class CardsList extends React.Component {
     this.state = {
       cardStacks: this.getCardStacks(props.cards),
       currentStackIndex: 0, // The index of the currently visible card stack.
-      currentCardIndex: 0, // The index withing the stack of the currently
-                           // visible card.
+      currentCardIndex: 0, // The index withing the stack of the currently visible card.
     };
+
+    this.cardPassed = this.cardPassed.bind(this);
+    this.getCard = this.getCard.bind(this);
   }
   /**
-   * getCardFromCardContent: converts cards content to a card component
+   * Returns a card component with the passed properties and index
    * @param {Object} cardContent: the props of the card
    * @param {Integer} index: index of the card within the stack
    * @return {Component} card
    */
-  getCardFromCardContent(cardContent, index) {
-    let cardType = null;
-    switch (cardContent.type) {
-      case 'content':
-        cardType = ContentCard;
-        break;
-      case 'feedback':
-        cardType = FeedbackCard;
-        // TODO: if it is the last lesson, redirect to '/'
-        cardContent.nextUrl = cardContent.nextUrl || this.props.lessonUrl;
-        break;
-      case 'finish':
-        cardType = FinishCard;
-        break;
-      case 'multiple-choice':
-        cardType = MultipleChoiceCard;
-        break;
-      case 'order':
-        cardType = OrderCard;
-        break;
-      case 'code':
-        cardType = CodeCard;
-        break;
-      default:
-        cardType = ContentCard;
-    }
-    return React.createElement(cardType, {
-      key: `card-${index}`, // TODO: change index for cardId
-      ...cardContent,
-      index,
-      cardsCount: this.props.cards.length, // we pass this for the positioning
-      cardPassed: this.cardPassed.bind(this),
-    });
+  getCard(contentProps, index) {
+    return (
+      <Card
+        key={`card-${index}`}
+        contentProps={contentProps}
+        index={index}
+        cardsCount={this.props.cards.length} // we pass this for the positioning
+        cardPassed={this.cardPassed}
+      />
+    );
   }
+
   /**
    * getCardStacks: converts cards content to an array of card stacks
    * @param {Array} cards: array of cards content
@@ -103,12 +84,12 @@ class CardsList extends React.Component {
         const currentStackCount = stacks[stacks.length - 1].length;
         // Current card should be in the same stack as the previous, so push it
         stacks[stacks.length - 1].push(
-          this.getCardFromCardContent(card, currentStackCount),
+          this.getCard(card, currentStackCount),
         );
       } else {
         // Current card should be in a new stack
         // Push the new stack
-        stacks.push([this.getCardFromCardContent(card, 0)]);
+        stacks.push([this.getCard(card, 0)]);
         currentStackIsQuizes = currentCardIsQuiz;
       }
     });

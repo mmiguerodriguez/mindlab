@@ -1,18 +1,45 @@
 import React from 'react';
+import MultipleChoiceCard from './MultipleChoiceCard/MultipleChoiceCard';
+import OrderCard from './OrderCard/OrderCard';
+import CodeCard from './CodeCard/CodeCard';
 
-import Card from '../Card';
+class QuizCard extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      checkAnswer: () => {}, // Checks the answer
+    };
+  }
 
-const QuizCard = ({
-  imageUrl,
-  question,
-  quizBody,
-  checkAnswer,
-  index,
-  cardsCount,
-  cardPassed,
-}) => {
-  const content =
-    (
+  getQuizContent() {
+    let cardType = null;
+    switch (this.props.type) {
+      case 'multiple-choice':
+        cardType = MultipleChoiceCard;
+        break;
+      case 'order':
+        cardType = OrderCard;
+        break;
+      case 'code':
+        cardType = CodeCard;
+        break;
+      default:
+        console.error('cardType not accepted by QuizCard');
+        break;
+    }
+    return React.createElement(cardType, {
+      ...this.props,
+      setCheckAnswerFunction: (checkAnswer => this.setState({ checkAnswer })),
+    });
+  }
+
+  render() {
+    const imageUrl = this.props.imageUrl;
+    const question = this.props.question;
+    const checkAnswer = this.state.checkAnswer;
+    const quizBody = this.getQuizContent();
+
+    return (
       <div className="card-body">
         { imageUrl &&
           <img
@@ -34,33 +61,19 @@ const QuizCard = ({
         <button className="btn btn-raised card-btn-primary" onClick={checkAnswer}>Enviar</button>
       </div>
     );
-  return (
-    <Card
-      content={content}
-      index={index}
-      cardsCount={cardsCount}
-      cardPassed={cardPassed}
-    />
-  );
-};
+  }
+}
 
 QuizCard.propTypes = {
+  type: React.PropTypes.string.isRequired,
   imageUrl: React.PropTypes.string,
   question: React.PropTypes.string.isRequired,
-  quizBody: React.PropTypes.oneOfType([
-    React.PropTypes.arrayOf(React.PropTypes.element),
-    React.PropTypes.element,
-  ]).isRequired,
-  checkAnswer: React.PropTypes.func.isRequired,
-  index: React.PropTypes.number.isRequired,
-  cardsCount: React.PropTypes.number.isRequired,
-  cardPassed: React.PropTypes.func,
 };
 
 QuizCard.defaultProps = {
-  imageUrl: null,
-  question: null,
-  options: null,
+  imageUrl: undefined,
+  question: undefined,
+  options: undefined,
   cardPassed: () => {},
 };
 

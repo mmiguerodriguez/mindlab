@@ -2,8 +2,13 @@ import React from 'react';
 import Measure from 'react-measure';
 import SlideHelper from './SlideHelper';
 
-class Card extends React.Component {
+import ContentCard from './ContentCard/ContentCard';
+import FeedbackCard from './FeedbackCard/FeedbackCard';
+import FinishCard from './FinishCard/FinishCard';
+import QuizCard from './QuizCard/QuizCard';
 
+
+class Card extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -20,7 +25,54 @@ class Card extends React.Component {
       // Updated when the card is sl
       passed: false,
     };
-    this.cardSliderApplied = false;
+
+    this.cardSlider = null;
+    const type = this.props.contentProps.type;
+    this.shouldSlide = !(type === 'code' || type === 'order' || type === 'multiple-choice' || type === 'feedback' || type === 'finish');
+  }
+
+  componentWillUnmount() {
+    if (this.cardSlider) {
+      this.cardSlider.disable();
+      this.cardSlider = null;
+    }
+  }
+
+  getCardContent() {
+    let cardType = null;
+    switch (this.props.contentProps.type) {
+      case 'content':
+        cardType = ContentCard;
+        break;
+      case 'feedback':
+        cardType = FeedbackCard;
+        break;
+      case 'finish':
+        cardType = FinishCard;
+        break;
+      case 'multiple-choice':
+      case 'order':
+      case 'code':
+        cardType = QuizCard;
+        break;
+      default:
+        cardType = ContentCard;
+    }
+    return React.createElement(cardType, {
+      ...this.props.contentProps,
+      /**
+       * LO DE ABAJO ES NECESITADO POR OrderCard y MultipleChoiceCard !!
+       * Lo de abajo es horrible, no lo puedo sacar porque es necesario con la implementacion
+       *  actual. Si le pasamos estos parametros, estas haciendo que piense con cosas que solo
+       *  deberian ser usadas por Card.
+       * Lo correcto sería que la propiedad que pidan sea lo que realmente necesiten, no lo que usan
+       *  para carcularlo. Por ejemplo, si use index y cardsCount para sacar el zIndex, directamente
+       *  deberiamos pasarle el zIndex.
+       *  TODO: Fix
+       */
+      index: this.props.index,
+      cardsCount: this.props.cardsCount,
+    });
   }
 
   /**
@@ -34,11 +86,13 @@ class Card extends React.Component {
       // Create and instantiate a SlideHelper
       const $card = $(this.card);
       const stateUpdateHandler = (stateX) => {
-        this.setState({
-          displacement: {
-            x: stateX * this.state.dimensions.width,
-          },
-        });
+        if (this.state.displacement.x !== stateX * this.state.dimensions.width) {
+          this.setState({
+            displacement: {
+              x: stateX * this.state.dimensions.width,
+            },
+          });
+        }
       };
       const finishHandler = () => {
         this.setState({
@@ -59,9 +113,8 @@ class Card extends React.Component {
   }
 
   render() {
-    if (this.state.dimensions.measured) {
+    if (this.shouldSlide && this.state.dimensions.measured) {
       this.updateCardSlider();
-      this.cardSliderApplied = true;
     }
 
     const cardStyle = {
@@ -71,6 +124,8 @@ class Card extends React.Component {
       display: this.state.passed ? 'none' : undefined,
     };
 
+    const cardContent = this.getCardContent();
+
     return (
       <Measure
         onMeasure={(dimensions) => {
@@ -78,7 +133,7 @@ class Card extends React.Component {
         }}
       >
         <div className="_card" style={cardStyle} ref={(card) => { this.card = card; }}>
-          {this.props.content}
+          {cardContent}
         </div>
       </Measure>
     );
@@ -86,7 +141,11 @@ class Card extends React.Component {
 }
 
 Card.propTypes = {
-  content: React.PropTypes.element.isRequired,
+  contentProps: React.PropTypes.shape({
+    type: React.PropTypes.string.isRequired,
+    // May have much more props, but just the type is required here
+    // The other props are required in the cardType itself
+  }).isRequired,
   index: React.PropTypes.number.isRequired,
   cardsCount: React.PropTypes.number.isRequired,
   cardPassed: React.PropTypes.func,

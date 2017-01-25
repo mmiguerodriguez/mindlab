@@ -3,8 +3,6 @@ import { graphql } from 'react-apollo';
 import gql from 'graphql-tag';
 import { browserHistory } from 'react-router';
 
-import Card from '../Card';
-
 class FeedbackCard extends React.Component {
   constructor(props) {
     super(props);
@@ -33,7 +31,7 @@ class FeedbackCard extends React.Component {
         email,
       },
     })
-    .then(({ data }) => {
+    .then((/* { data } */) => {
       // data inserted correctly
       // data.addFeedback to get _id
       $.snackbar({ content: '¡Muchas gracias! La sugerencia se envió correctamente' });
@@ -45,40 +43,31 @@ class FeedbackCard extends React.Component {
   }
 
   render() {
-    const content =
-      (
-        <div className="card-body">
-          <h2>{this.props.title}</h2>
-          <div className="form-group label-floating feedback-card-input is-empty">
-            <label htmlFor="description" className="control-label">Descripción</label>
-            <textarea
-              className="form-control"
-              id="description"
-              onKeyDown={e => this.onKeyDown(e, 'description')}
-            />
-          </div>
-          <div className="form-group label-floating feedback-card-input is-empty">
-            <label htmlFor="email" className="control-label">Email</label>
-            <input
-              className="form-control"
-              id="email"
-              onKeyDown={e => this.onKeyDown(e, 'email')}
-            />
-          </div>
-          <div>
-            <button className="btn btn-raised card-btn-primary" onClick={this.sendFeedback}>
-              Enviar
-            </button>
-          </div>
-        </div>
-      );
     return (
-      <Card
-        content={content}
-        index={this.props.index}
-        cardsCount={this.props.cardsCount}
-        cardPassed={this.props.cardPassed}
-      />
+      <div className="card-body">
+        <h2>{this.props.title}</h2>
+        <div className="form-group label-floating feedback-card-input is-empty">
+          <label htmlFor="description" className="control-label">Descripción</label>
+          <textarea
+            className="form-control"
+            id="description"
+            onKeyDown={e => this.onKeyDown(e, 'description')}
+          />
+        </div>
+        <div className="form-group label-floating feedback-card-input is-empty">
+          <label htmlFor="email" className="control-label">Email</label>
+          <input
+            className="form-control"
+            id="email"
+            onKeyDown={e => this.onKeyDown(e, 'email')}
+          />
+        </div>
+        <div>
+          <button className="btn btn-raised card-btn-primary" onClick={this.sendFeedback}>
+            Enviar
+          </button>
+        </div>
+      </div>
     );
   }
 }
@@ -87,9 +76,6 @@ FeedbackCard.propTypes = {
   title: React.PropTypes.string.isRequired,
   nextUrl: React.PropTypes.string,
   mutate: React.PropTypes.func.isRequired,
-  index: React.PropTypes.number.isRequired,
-  cardsCount: React.PropTypes.number.isRequired,
-  cardPassed: React.PropTypes.func,
 };
 
 FeedbackCard.defaultProps = {
@@ -108,3 +94,5 @@ const addFeedback = gql`
 const FeedbackCardWithMutation = graphql(addFeedback)(FeedbackCard);
 
 export default FeedbackCard = FeedbackCardWithMutation;
+
+/* global $ */

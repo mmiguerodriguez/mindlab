@@ -24,10 +24,37 @@ class LessonPage extends React.Component {
 
   render() {
     // TODO: add real cards
+
+    /*
+    const cardsContent = [
+      {
+        type: 'content',
+        imageUrl: '/images/welcome/page1.png',
+        title: 'HOLA',
+        text: 'Esto es un texto',
+      },
+    ];
+    // */
     // Get coursePage url from lessonPage url
     const urlSplited = this.props.location.pathname.split('/');
     const lessonUrl = `/${urlSplited[1]}/${urlSplited[2]}`;
     const cardsContent = [
+      {
+        type: 'code',
+        question: 'Esta es la pregunta?',
+        possibleResults: [
+          {
+            result: 'possible answer',
+            message: 'capo',
+            correct: true,
+          },
+          {
+            result: 'wrong possibility',
+            message: 'Nope, la cagaste',
+            correct: false,
+          },
+        ],
+      }, /*
       {
         type: 'finish',
         imageUrl: '/images/welcome/page1.png',
@@ -75,23 +102,23 @@ class LessonPage extends React.Component {
         question: 'Tercera card',
         options: [{
           content: 'Enchufar licuadora',
-          step: 1,
-        },
+          correctPosition: 1,
+        },m
         {
-          content: 'Meter ingredientes',
-          step: 2,
+          content: 'Meter ingredientes en la licuadora',
+          correctPosition: 2,
         },
         {
           content: 'Licuar',
-          step: 3,
+          correctPosition: 3,
         },
         {
           content: 'Servir licuado en el vaso',
-          step: 4,
+          correctPosition: 4,
         },
         {
           content: 'Tomar el licuado',
-          step: 5,
+          correctPosition: 5,
         }],
       },
       {
@@ -129,9 +156,9 @@ class LessonPage extends React.Component {
       {
         type: 'content',
         title: 'nuevo stack',
-      },
+      },*/
     ];
-
+    // */
     return (
       <div className="animated fadeInUp">
         <CardsList
