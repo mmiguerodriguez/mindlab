@@ -13,13 +13,18 @@ class LessonPage extends React.Component {
                                  // card
     };
 
-    this.incrementCurrentCardGlobalIndex = this.incrementCurrentCardGlobalIndex.bind(this);
+    this.setCurrentCardGlobalIndex = this.setCurrentCardGlobalIndex.bind(this);
+    this.getCurrentCardGlobalIndex = this.getCurrentCardGlobalIndex.bind(this);
   }
 
-  incrementCurrentCardGlobalIndex() {
+  setCurrentCardGlobalIndex(currentCardGlobalIndex) {
     this.setState({
-      currentCardGlobalIndex: this.state.currentCardGlobalIndex + 1,
+      currentCardGlobalIndex,
     });
+  }
+
+  getCurrentCardGlobalIndex() {
+    return this.state.currentCardGlobalIndex;
   }
 
   render() {
@@ -164,7 +169,8 @@ class LessonPage extends React.Component {
         <CardsList
           cards={cardsContent}
           lessonUrl={lessonUrl}
-          incrementCurrentCardGlobalIndex={this.incrementCurrentCardGlobalIndex}
+          setCurrentCardGlobalIndex={this.setCurrentCardGlobalIndex}
+          getCurrentCardGlobalIndex={this.getCurrentCardGlobalIndex}
         />
         <ProgressBar
           progress={(this.state.currentCardGlobalIndex / (cardsContent.length - 2)) * 100}
