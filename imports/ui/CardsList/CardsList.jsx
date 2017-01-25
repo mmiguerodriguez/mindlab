@@ -5,6 +5,7 @@ import FeedbackCard from './Card/FeedbackCard/FeedbackCard';
 import FinishCard from './Card/FinishCard/FinishCard';
 import MultipleChoiceCard from './Card/QuizCard/MultipleChoiceCard/MultipleChoiceCard';
 import OrderCard from './Card/QuizCard/OrderCard/OrderCard';
+import CodeCard from './Card/QuizCard/CodeCard/CodeCard';
 
 /**
  * CardsList: Shows stacks of cards.
@@ -42,8 +43,6 @@ class CardsList extends React.Component {
       currentCardIndex: 0, // The index withing the stack of the currently
                            // visible card.
     };
-
-    this.cardPassed = this.cardPassed.bind(this);
   }
   /**
    * getCardFromCardContent: converts cards content to a card component
@@ -51,7 +50,8 @@ class CardsList extends React.Component {
    * @param {Integer} index: index of the card within the stack
    * @return {Component} card
    */
-  getCardFromCardContent(cardContent, index) {
+  // TODO: remove totalIndex when we have a working db
+  getCardFromCardContent(cardContent, index, globalIndex) {
     let cardType = null;
     switch (cardContent.type) {
       case 'content':
@@ -59,6 +59,8 @@ class CardsList extends React.Component {
         break;
       case 'feedback':
         cardType = FeedbackCard;
+        // TODO: if it is the last lesson, redirect to '/'
+        cardContent.nextUrl = cardContent.nextUrl || this.props.lessonUrl;
         break;
       case 'finish':
         cardType = FinishCard;
@@ -69,15 +71,18 @@ class CardsList extends React.Component {
       case 'order':
         cardType = OrderCard;
         break;
+      case 'code':
+        cardType = CodeCard;
+        break;
       default:
         cardType = ContentCard;
     }
     return React.createElement(cardType, {
-      key: `card-${index}`, // TODO: change index for cardId
+      key: `card-${globalIndex}`, // TODO: change index for cardId
       ...cardContent,
       index,
       cardsCount: this.props.cards.length, // we pass this for the positioning
-      cardPassed: this.cardPassed,
+      cardPassed: this.cardPassed.bind(this),
     });
   }
   /**
@@ -89,20 +94,24 @@ class CardsList extends React.Component {
   getCardStacks(cards) {
     const stacks = [[]];
     let currentStackIsQuizes = cards[0].type === 'order' ||
-                               cards[0].type === 'multiple-choice';
-    cards.forEach((card) => {
+                               cards[0].type === 'multiple-choice' ||
+                               cards[0].type === 'code';
+    cards.forEach((card, index) => { // TODO: remove index when we have a working db
       const currentCardIsQuiz = card.type === 'order' ||
-                                card.type === 'multiple-choice';
+                                card.type === 'multiple-choice' ||
+                                card.type === 'code';
       if (currentCardIsQuiz === currentStackIsQuizes && !card.forceNewStack) {
         const currentStackCount = stacks[stacks.length - 1].length;
         // Current card should be in the same stack as the previous, so push it
         stacks[stacks.length - 1].push(
-          this.getCardFromCardContent(card, currentStackCount),
+          // TODO: remove index when we have a working db
+          this.getCardFromCardContent(card, currentStackCount, index),
         );
       } else {
         // Current card should be in a new stack
         // Push the new stack
-        stacks.push([this.getCardFromCardContent(card, 0)]);
+        // TODO: remove index when we have a working db
+        stacks.push([this.getCardFromCardContent(card, 0, index)]);
         currentStackIsQuizes = currentCardIsQuiz;
       }
     });
@@ -117,6 +126,7 @@ class CardsList extends React.Component {
       this.state.currentCardIndex ===
       this.state.cardStacks[this.state.currentStackIndex].length - 1
     ) {
+      console.log(this.state.cardStacks);
       this.setState({
         // If the stack is the last one, the render method will show
         // finish cards
@@ -124,6 +134,7 @@ class CardsList extends React.Component {
         currentCardIndex: 0, // Show the first card of the new stack
       });
     } else {
+      console.log('hola. paso de card');
       this.setState({
         currentCardIndex: this.state.currentCardIndex + 1,
       });
@@ -140,6 +151,7 @@ class CardsList extends React.Component {
 
 CardsList.propTypes = {
   cards: React.PropTypes.arrayOf(React.PropTypes.object).isRequired,
+  lessonUrl: React.PropTypes.string.isRequired,
 };
 
 export default CardsList;

@@ -2,7 +2,7 @@
   border: 1px solid #efefef;
   border-radius: 3px;
   background-color: #f3f3f3;
-  max-width: 500px;
+  width: 100%;
 }
 
 .order-card-option {
@@ -12,4 +12,13 @@
   border: 1px solid #efefef;
   background-color: #fff;
   align-items: center;
+  text-align: center;
+  i {
+    margin-right: 10px;
+    color: $gray-1-color;
+  }
+}
+
+.order-card-content {
+  margin: auto;
 }

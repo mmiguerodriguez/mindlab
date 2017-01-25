@@ -1,5 +1,13 @@
 @import 'MultipleChoiceCard/MultipleChoiceCard';
 @import 'OrderCard/OrderCard';
+@import 'CodeCard/CodeCard';
+
+.quiz-card-body {
+  display: flex;
+  flex: 1;
+  width: calc(100% - 40px);
+  margin: 12px 0;
+}
 
 .quiz-card-question {
   font-size: 2em;

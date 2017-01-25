@@ -6,7 +6,7 @@ import Card from '../Card';
 const QuizCard = ({
   imageUrl,
   question,
-  options,
+  quizBody,
   checkAnswer,
   index,
   cardsCount,
@@ -25,12 +25,12 @@ const QuizCard = ({
         { question &&
           <ReactMarkdown source={question} className="quiz-card-question" />
         }
-        { options &&
-          <div className="quiz-card-option">
-            {options}
+        { quizBody &&
+          <div className="quiz-card-body">
+            {quizBody}
           </div>
         }
-        <button onClick={checkAnswer}>Enviar</button>
+        <button className="btn btn-raised card-btn-primary" onClick={checkAnswer}>Enviar</button>
       </div>
     );
   return (
@@ -46,17 +46,21 @@ const QuizCard = ({
 QuizCard.propTypes = {
   imageUrl: React.PropTypes.string,
   question: React.PropTypes.string.isRequired,
-  options: React.PropTypes.arrayOf(React.PropTypes.element).isRequired,
+  quizBody: React.PropTypes.oneOfType([
+    React.PropTypes.arrayOf(React.PropTypes.element),
+    React.PropTypes.element,
+  ]).isRequired,
   checkAnswer: React.PropTypes.func.isRequired,
   index: React.PropTypes.number.isRequired,
   cardsCount: React.PropTypes.number.isRequired,
-  cardPassed: React.PropTypes.func.isRequired,
+  cardPassed: React.PropTypes.func,
 };
 
 QuizCard.defaultProps = {
   imageUrl: null,
   question: null,
   options: null,
+  cardPassed: () => {},
 };
 
 export default QuizCard;

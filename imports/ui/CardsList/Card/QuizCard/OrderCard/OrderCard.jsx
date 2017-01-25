@@ -6,7 +6,8 @@ import QuizCard from '../QuizCard';
 const SortableItem = SortableElement(({ content, zIndex }) => (
   // zIndex is needed because card component have custom zIndex
   <div className="order-card-option" style={{ zIndex: zIndex + 1 }}>
-    <h4>{content}</h4>
+    <i className="material-icons">reorder</i>
+    <h4 className="order-card-content">{content}</h4>
   </div>
 ));
 
@@ -72,7 +73,7 @@ class OrderCard extends React.Component {
       <QuizCard
         imageUrl={this.props.imageUrl}
         question={this.props.question}
-        options={optionsElement}
+        quizBody={optionsElement}
         checkAnswer={this.checkAnswer}
         index={this.props.index}
         cardsCount={this.props.cardsCount}
@@ -93,13 +94,14 @@ OrderCard.propTypes = {
   })).isRequired,
   index: React.PropTypes.number.isRequired,
   cardsCount: React.PropTypes.number.isRequired,
-  cardPassed: React.PropTypes.func.isRequired,
+  cardPassed: React.PropTypes.func,
 };
 
 OrderCard.defaultProps = {
   imageUrl: null,
   correctMessage: 'Muy bien!',
   incorrectMessage: 'Tenés algo mal...',
+  cardPassed: () => {},
 };
 
 export default OrderCard;

@@ -1,14 +1,16 @@
 @import 'QuizCard/QuizCard';
 @import 'ContentCard/ContentCard';
+@import 'FeedbackCard/FeedbackCard';
 
 ._card { // not card because bootstrap-material-design already uses it
   position: absolute;
-  top: 65px;
+  top: 85px;
   display: flex;
   width: calc(100% - 30px);
   flex-flow: column;
   align-items: center;
   min-height: 450px;
+  margin-bottom: 10px;
   border-radius: 5px;
   background-color: white;
   box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.3);
@@ -17,6 +19,7 @@
 .card-body {
   display: flex;
   flex-direction: column;
+  flex: 1;
   width: 100%;
   align-items: center;
   padding: 15px;
@@ -25,4 +28,9 @@
 .card-img {
   height: 100px;
   width: 100px;
+}
+
+.card-btn-primary {
+  color: white !important;
+  background-color: $blue-2-color !important;
 }
