@@ -126,7 +126,6 @@ class CardsList extends React.Component {
       this.state.currentCardIndex ===
       this.state.cardStacks[this.state.currentStackIndex].length - 1
     ) {
-      console.log(this.state.cardStacks);
       this.setState({
         // If the stack is the last one, the render method will show
         // finish cards
@@ -134,7 +133,6 @@ class CardsList extends React.Component {
         currentCardIndex: 0, // Show the first card of the new stack
       });
     } else {
-      console.log('hola. paso de card');
       this.setState({
         currentCardIndex: this.state.currentCardIndex + 1,
       });

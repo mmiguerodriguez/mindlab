@@ -59,7 +59,6 @@ class Card extends React.Component {
   }
 
   render() {
-    console.log(this.state.passed)
     if (this.state.dimensions.measured) {
       this.updateCardSlider();
       this.cardSliderApplied = true;
