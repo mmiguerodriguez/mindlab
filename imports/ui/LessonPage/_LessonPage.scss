@@ -1,20 +1,21 @@
 @import '../CardsList/CardsList';
+@import 'ProgressBar/ProgressBar';
 
 #lesson-page{
   height: 100%;
   width: 100%;
-  
+
   display: flex;
-  
+
   position: absolute;
-  
+
   background-image: url(http://i.imgur.com/V6qkU4g.png);
   flex-direction: row;
   justify-content: center;
   align-items: center;
-  
+
   user-select: none;
-  
+
   overflow: hidden;
 }
 

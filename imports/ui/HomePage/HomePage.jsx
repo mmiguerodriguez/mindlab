@@ -25,12 +25,15 @@ class HomePage extends React.Component {
       />
     );
     return (
-      <div id="homepage">
-        <div id="homepage-courses-list">
-          {
-            coursesArray
-          }
+      <div>
+        <div id="homepage">
+          <div id="homepage-courses-list">
+            {
+              coursesArray
+            }
+          </div>
         </div>
+        <div className="finish-element" id="home-page-finish-element"></div>
       </div>
     );
   }

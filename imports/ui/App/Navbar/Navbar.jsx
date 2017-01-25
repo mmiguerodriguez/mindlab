@@ -39,20 +39,20 @@ class Navbar extends React.Component {
               ? <a
                 onClick={browserHistory.goBack}
               >
-                <i className="material-icons navbar-arrow">arrow_back</i>
+                <i className="material-icons" id="navbar-arrow">arrow_back</i>
               </a>
               : <img
-                className="navbar-logo"
+                id="navbar-logo"
                 alt="logo"
                 src="/images/welcome/page1.png"
               />
             }
-            <p className="navbar-title" style={feedbackStyle}>{title}</p>
+            <p id="navbar-title" style={feedbackStyle}>{title}</p>
             { !this.props.currentUrl.includes('feedback') &&
               <a
                 onClick={this.redirectToFeedback}
               >
-                <i className="material-icons navbar-feedback">feedback</i>
+                <i className="material-icons" id="navbar-feedback">feedback</i>
               </a>
             }
           </div>

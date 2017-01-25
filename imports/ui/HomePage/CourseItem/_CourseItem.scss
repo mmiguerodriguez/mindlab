@@ -8,11 +8,13 @@
   border-radius: 5px;
   background-color: #fff;
   box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.3);
+  justify-content: center;
+  height: 100%;
   
   p {
     text-align: center;
   }
-  
+
   .course-item-img {
     height: 100px;
     width: 100%;
@@ -23,24 +25,24 @@
     background-position: center;
     background-repeat: no-repeat;
   }
-  
+
   .course-item-info {
     display: flex;
     justify-content: center;
     align-items: center;
     flex-flow: column;
     flex: 1;
-    
+
     .course-item-name {
       margin: 15px 5px;
       font-size: 25px;
     }
-    
+
     .course-item-description {
       margin: 0px 5px 5px;
     }
   }
-  
+
   .course-item-enter-button {
     margin: 5px !important;
     align-self: flex-end;

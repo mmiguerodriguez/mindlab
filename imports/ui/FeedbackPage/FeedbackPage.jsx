@@ -18,7 +18,7 @@ const FeedbackPage = ({ params }) => {
 
   return (
     <div>
-      <CardsList cards={cardsContent} showProgressBar={false} />
+      <CardsList cards={cardsContent} />
     </div>
   );
 };

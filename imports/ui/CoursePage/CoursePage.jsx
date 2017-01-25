@@ -29,7 +29,7 @@ class CoursePage extends React.Component { // TODO: fix $.material.init()
       />
     );
     return (
-      <div id="coursepage">
+      <div id="coursepage" className="animated fadeInUp">
         <div id="coursepage-lessons-list">
           {lessonsArray}
         </div>

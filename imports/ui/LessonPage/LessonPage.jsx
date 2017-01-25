@@ -2,7 +2,26 @@ import React from 'react';
 
 import CardsList from '../CardsList/CardsList';
 
+import ProgressBar from './ProgressBar/ProgressBar';
+
 class LessonPage extends React.Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      currentCardGlobalIndex: 0, // The global index of the currently visible
+                                 // card
+    };
+
+    this.incrementCurrentCardGlobalIndex = this.incrementCurrentCardGlobalIndex.bind(this);
+  }
+
+  incrementCurrentCardGlobalIndex() {
+    this.setState({
+      currentCardGlobalIndex: this.state.currentCardGlobalIndex + 1,
+    });
+  }
+
   render() {
     // TODO: add real cards
     // Get coursePage url from lessonPage url
@@ -16,12 +35,40 @@ class LessonPage extends React.Component {
         text: 'asdf asdf hasdhjas hdk ashdf',
       },
       {
-        type: 'feedback',
-        title: 'give me some feedback',
+        type: 'finish',
+        imageUrl: '/images/welcome/page1.png',
+        title: 'Tercera card',
+        text: 'asdf asdf hasdhjas hdk ashdf',
       },
       {
-        type: 'feedback',
-        title: 'give me some feedback',
+        type: 'finish',
+        imageUrl: '/images/welcome/page1.png',
+        title: 'Tercera card',
+        text: 'asdf asdf hasdhjas hdk ashdf',
+      },
+      {
+        type: 'finish',
+        imageUrl: '/images/welcome/page1.png',
+        title: 'Tercera card',
+        text: 'asdf asdf hasdhjas hdk ashdf',
+      },
+      {
+        type: 'finish',
+        imageUrl: '/images/welcome/page1.png',
+        title: 'Tercera card',
+        text: 'asdf asdf hasdhjas hdk ashdf',
+      },
+      {
+        type: 'finish',
+        imageUrl: '/images/welcome/page1.png',
+        title: 'Tercera card',
+        text: 'asdf asdf hasdhjas hdk ashdf',
+      },
+      {
+        type: 'finish',
+        imageUrl: '/images/welcome/page1.png',
+        title: 'Tercera card',
+        text: 'asdf asdf hasdhjas hdk ashdf',
       },
       {
         type: 'order',
@@ -31,7 +78,7 @@ class LessonPage extends React.Component {
           step: 1,
         },
         {
-          content: 'Meter ingredientes en la licuadora',
+          content: 'Meter ingredientes',
           step: 2,
         },
         {
@@ -46,6 +93,20 @@ class LessonPage extends React.Component {
           content: 'Tomar el licuado',
           step: 5,
         }],
+      },
+      {
+        type: 'finish',
+        imageUrl: '/images/welcome/page1.png',
+        title: 'Tercera card',
+        text: 'asdf asdf hasdhjas hdk ashdf',
+      },
+      {
+        type: 'feedback',
+        title: 'give me some feedback',
+      },
+      {
+        type: 'feedback',
+        title: 'give me some feedback',
       },
       {
         type: 'content',
@@ -70,8 +131,18 @@ class LessonPage extends React.Component {
         title: 'nuevo stack',
       },
     ];
+
     return (
-      <CardsList cards={cardsContent} lessonUrl={lessonUrl} />
+      <div className="animated fadeInUp">
+        <CardsList
+          cards={cardsContent}
+          lessonUrl={lessonUrl}
+          incrementCurrentCardGlobalIndex={this.incrementCurrentCardGlobalIndex}
+        />
+        <ProgressBar progress={(this.state.currentCardGlobalIndex /
+                                (cardsContent.length - 2)) * 100}
+        />
+      </div>
     );
   }
 }

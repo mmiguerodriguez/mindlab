@@ -6,21 +6,21 @@
   display: flex;
 }
 
-.navbar-title {
+#navbar-title {
   font-size: 21px;
   margin-top: 10px !important;
   flex: 1;
   text-align: center;
 }
 
-.navbar-logo {
+#navbar-logo {
   width: 36px !important;
   height: 36px !important;
   margin-top: 8px;
   margin-left: 15px;
 }
 
-.navbar-feedback {
+#navbar-feedback {
   font-size: 34px !important;
   color: $white-1-color;
   margin-left: auto;
@@ -28,7 +28,7 @@
   margin-right: 15px;
 }
 
-.navbar-arrow {
+#navbar-arrow {
   font-size: 34px !important;
   color: $white-1-color;
   margin-left: auto;

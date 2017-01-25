@@ -1,7 +1,5 @@
 import React from 'react';
 
-import ProgressBar from './ProgressBar/ProgressBar';
-
 import ContentCard from './Card/ContentCard/ContentCard';
 import FeedbackCard from './Card/FeedbackCard/FeedbackCard';
 import FinishCard from './Card/FinishCard/FinishCard';
@@ -120,6 +118,7 @@ class CardsList extends React.Component {
    * cardPassed: callback that triggers when a card is passed
    */
   cardPassed() {
+    this.props.incrementCurrentCardGlobalIndex();
     // If the current stack is out of cards, show the next stack
     if (
       this.state.currentCardIndex ===
@@ -137,20 +136,13 @@ class CardsList extends React.Component {
       });
     }
   }
-  render() {
-    let allPassedCards = this.state.currentCardIndex;
-    for (let i = 0; i < this.state.currentStackIndex; i++) {
-      allPassedCards += this.state.cardStacks[i].length;
-    }
 
+  render() {
     return (
       <div className="cards-list-container">
         <div className="cards-list">
           {this.state.cardStacks[this.state.currentStackIndex]}
         </div>
-        { this.props.showProgressBar &&
-          <ProgressBar progress={(allPassedCards / (this.props.cards.length - 2)) * 100} />
-        }
       </div>
     );
   }
@@ -159,11 +151,6 @@ class CardsList extends React.Component {
 CardsList.propTypes = {
   cards: React.PropTypes.arrayOf(React.PropTypes.object).isRequired,
   lessonUrl: React.PropTypes.string.isRequired,
-  showProgressBar: React.PropTypes.boolean,
-};
-
-CardsList.defaultProps = {
-  showProgressBar: true,
 };
 
 export default CardsList;
