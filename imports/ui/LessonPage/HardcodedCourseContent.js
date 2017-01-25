@@ -470,14 +470,224 @@ if contraseñaIngresada !== “12345678”
 \`\`\`console.log(18 >= 20)\`\`\``,
     options: [
       {
-
+        content: 'true',
+        message: 'Mal. 18 no es mayor o igual que 20, entonces va a devolver false.',
       },
-    ]
+      {
+        content: 'false',
+        correct: true,
+      },
+    ],
   },
   {
     type: 'content',
     //imageUrl: '/images/',
-    text: '',
+    title: 'Operadores lógicos',
+    text: 'Otra clase de operadores son los lógicos. Por ejemplo, si queremos en un if ver que una variable numérica esté entre dos valores, en vez de usar dos if, usamos un if que contenga las dos comparaciones.',
+  },
+  {
+    type: 'content',
+    //imageUrl: '/images/',
+    text: `Para juntar dos comparaciones en un if usamos el operador **and** (y), que devuelve verdadero si ambos valores son \`\`\`true\`\`\`. La forma de escribirlo es \`\`\`&&\`\`\`, y nos quedaría así:
+if edad > 18 && edad < 50`,
+  },
+  {
+    type: 'content',
+    //imageUrl: '/images/',
+    text: `Por otro lado, cuando queremos ver si una variable es igual a un valor **o** al otro, usamos el operador lógico **or** (o). La forma de escribirlo es \`\`\`||\`\`\`, y nos quedaría de la siguiente forma en código:
+if contraseña === “123” || contraseña === “1234”`,
+  },
+  {
+    type: 'multiple-choice',
+    question: `Qué devuelve el siguiente código?
+
+\`\`\`inicializamos la variable edad con valor 18
+console.log(edad > 8 && edad <= 18)\`\`\``,
+    options: [
+      {
+        content: 'true',
+        correct: true,
+      },
+      {
+        content: 'false',
+        message: 'Mal. Edad es 18, que es mayor a 8 y a la vez menor o igual a 18. Entonces, como ambas condiciones son verdaderas, el and va a devolver true.',
+      }
+    ],
+  },
+  {
+    type: 'multiple-choice',
+    question: `Qué devuelve el siguiente código?
+
+\`\`\`inicializamos la variable edad con valor 18
+console.log(edad > 8 && edad <= 18)\`\`\``,
+    options: [
+      {
+        content: 'true',
+        message: 'Mal. las dos variables son falsas, entonces el || va a devolver false',
+      },
+      {
+        content: 'false',
+        correct: true,
+      }
+    ],
+  },
+  {
+    type: 'content',
+    //imageUrl: '/images/',
+    title: 'Variables',
+    text: `Veamos cómo se usan las variables en JavaScript. Si, por ejemplo, queremos declarar una variable que se llame \`\`\`edad\`\`\` y queremos que sea igual a \`\`\`20\`\`\` (años), se escribiría de la siguiente forma:
+\`\`\`let edad = 20;\`\`\``,
+  },
+  {
+    type: 'content',
+    //imageUrl: '/images/',
+    text: 'La sintaxis es primero poner la palabra ```let```, después el nombre de la variable, a continuación el signo igual ```=```, luego el valor y por último el punto y coma ```;```',
+  },
+  {
+    type: 'code',
+    task: 'Carlitos tiene 20 años, y queremos saber en qué año nació. Usá variables para devolver el año.',
+    possibleResults: [
+      {
+        result: 1997,
+        correct: true,
+      },
+      {
+        result: '1997',
+        message: 'Mal. En vez de devolver un número devolviste un string.',
+      },
+    ],
+  },
+  {
+    type: 'content',
+    //imageUrl: '/images/',
+    title: 'If y else',
+    text: 'Supongamos que queremos no dejar pasar al usuario si es mayor de edad. Para eso tenemos que usar una estructura condicional.',
+  },
+  {
+    type: 'content',
+    //imageUrl: '/images/',
+    text: `Usando la sintaxis de JavaScript, el condicional sería así:
+\`\`\`if (edad > 18) {
+	console.log(“Sos mayor de edad, no podés entrar!”);
+}\`\`\`
+Primero se pone la palabra clave \`\`\`if\`\`\`, para indicarle a la computadora que viene un condicional. Después entre paréntesis va la pregunta que le hacemos al \`\`\`if\`\`\`, ¿Es \`\`\`edad\`\`\` mayor a \`\`\`18\`\`\`?`,
+  },
+  {
+    type: 'content',
+    //imageUrl: '/images/',
+    text: 'En el caso de que la respuesta sea que sí, el programa va a ejecutar lo que esté dentro de las llaves ```{ }```, que en este caso es no dejar pasar al usuario.',
+  },
+  {
+    type: 'content',
+    //imageUrl: '/images/',
+    text: `¿Qué pasa si queremos ejecutar algo cuando el usuario **no** es mayor de edad? Hay que agregar la palabra clave \`\`\`else\`\`\`
+\`\`\`if (edad > 18) {
+	console.log(“Sos mayor de edad, no podés entrar!”);
+}
+else {
+	console.log(“Sos menor de edad. Podés entrar tranquilo!”);
+}\`\`\``,
+  },
+  {
+    type: 'content',
+    //imageUrl: '/images/',
+    text: 'En este caso si el usuario es menor de edad, lo vamos a dejar pasar.',
+  },
+  {
+    type: 'multiple-choice',
+    question: `Qué devuelve este código?
+\`\`\`let contraseña = "hola123";
+let contraseñaIngresada = "hola" + "123";
+if (contraseña === contraseñaIngresada) {
+console.log("Acceso permitido");
+}
+else {
+console.log("Acceso denegado");
+}\`\`\``,
+    options: [
+      {
+        content: '"Acceso permitido"',
+        correct: true,
+      },
+      {
+        content: '"Acceso denegado"',
+        message: 'Mal. El + une a los strings, entonces va a quedar "hola123", que es la contraseña correcta.',
+      },
+    ],
+  },
+  {
+    type: 'content',
+    //imageUrl: '/images/',
+    title: 'Loops',
+    text: `Antes habíamos visto que el for era de la siguiente forma
+let sumaTotal = 0;
+let pasoActual = 1;
+if (pasoActual === 1) {
+sumaTotal = sumaTotal + pasoActual;
+pasoActual = pasoActual + 1;
+(volver al if)
+}
+terminar el for`,
+  },
+  {
+    type: 'content',
+    //imageUrl: '/images/',
+    text: `Veamos como es con la sintaxis de JavaScript.
+En programación se acostumbra a llamar i (de iterador) a la variable que recorre todos los valores del for. En este caso pasoActual se pasaría a llamar i.`,
+  },
+  {
+    type: 'content',
+    //imageUrl: '/images/',
+    text: `La palabra clave que se usa es \`\`\`for\`\`\`. el paso 1), 2) y 4) se ponen entre paréntesis después del for.
+\`\`\`for (let i = 1; i < 100; i = i + 1) {
+	sumaTotal = sumaTotal + i;
+}\`\`\``,
+  },
+  {
+    type: 'content',
+    //imageUrl: '/images/',
+    text: `Cuando la condición (\`\`\`i < 100\`\`\`) es verdadera, se ejecuta el código entre paréntesis. En caso de que no, se termina el for.
+\`\`\`for (let i = 1; i < 100; i = i + 1) {
+	sumaTotal = sumaTotal + i;
+}\`\`\``,
+  },
+  {
+    type: 'multiple-choice',
+    question: 'Cuál es el for con la sintaxis correcta para mostrar los números los números 1000, 900, 800 … 200, 100?',
+    options: [
+      {
+        content: `\`\`\`for (i = 1000; i > 0; i = i - 100) {
+	console.log( i );
+}\`\`\``,
+        message: 'Mal. Al declarar la variable ```i``` falta usar ```let```.',
+      },
+      {
+        content: `\`\`\`for (let i = 1000; i > 0; i = i - 100) {
+	console.log( i );
+}\`\`\``,
+        correct: true,
+      },
+      {
+        content: `\`\`\`for (let i = 1000; i > 0; i = i + 100) {
+	console.log( i );
+}\`\`\``,
+        message: 'Mal. Si a i se le suma 100 en cada paso, el for nunca va a terminar.',
+      },
+    ],
+  },
+  {
+    type: 'code',
+    task: 'Devolver la suma de los números del 1 al 1000 usando un for.',
+    possibleResults: [
+      {
+        result: 500500,
+        correct: true,
+      },
+      {
+        result: '500500',
+        message: 'Mal. En vez de devolver el número, devolviste un string.',
+      },
+    ],
   },
 ];
 const LenguajesLesson = replaceNewLineInCards(LenguajesLessonRaw);
