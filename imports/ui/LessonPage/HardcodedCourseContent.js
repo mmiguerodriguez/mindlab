@@ -10,6 +10,7 @@ const replaceNewLineInCards = (cards) => {
     {
       ...card,
       text: card.text ? card.text.replace('\n', '\n\n') : null,
+      question: card.question ? card.question.replace('\n', '\n\n') : null,
     }
   ));
 };
@@ -210,20 +211,21 @@ const PrimerosConceptosLessonRaw = [
   * mostrarle al usuario el secreto
 * else
   * mostrarle al usuario el mensaje de error
-mostrarle al usuario el mensaje de error
 `,
   },
   {
     type: 'multiple-choice',
     question: `Cuál es el valor de la variable \`\`\`resultado\`\`\` al final del código?
-* \`\`\`variable resultado = 0\`\`\`
-* \`\`\`variable x = 7\`\`\`
-* \`\`\`if x > 10\`\`\`
-  * \`\`\`resultado = 1\`\`\`
-* \`\`\`else if x < 8\`\`\`
-  * \`\`\`resultado = 2\`\`\`
-* \`\`\`else\`\`\`
-  * \`\`\`resultado = 3\`\`\``,
+\`\`\`
+variable resultado = 0
+variable x = 7
+if x > 10
+  resultado = 1
+else if x < 8
+  resultado = 2
+else
+  resultado = 3
+\`\`\``,
     options: [
       {
         content: '1',
@@ -288,12 +290,14 @@ En este ejemplo, el código adentro del if va a ser ejecutado una sola vez, cuan
   {
     type: 'multiple-choice',
     question: `Qué valor tiene la variable \`\`\`carga\`\`\` cuando se termina de ejecutar el programa?
-* inicializamos la variable \`\`\`carga\`\`\` en 40
-* \`\`\`for\`\`\` desde 1 hasta 100 guardando el valor en \`\`\`pasoActual\`\`\`
-  * \`\`\`if carga es igual a pasoActual\`\`\`
-    * \`\`\`carga = carga + 1\`\`\`
-  * \`\`\`if carga > 60\`\`\`
-    * \`\`\`carga = 60\`\`\``,
+\`\`\`
+variable carga = 40
+for desde 1 hasta 100 guardando el valor en pasoActual
+  if carga es igual a pasoActual
+    carga = carga + 1
+  if carga > 60
+    carga = 60
+\`\`\``,
     options: [
       {
         content: '59',
@@ -365,7 +369,7 @@ Se escribe \`\`\`console.log\`\`\` y entre paréntesis la variable que queremos 
   {
     type: 'code',
     task: 'Devolvé el mensaje "Hello World!" usando console.log',
-    results: [
+    possibleResults: [
       {
         result: 'Hello World!',
         correct: true,
@@ -500,9 +504,10 @@ if contraseña === “123” || contraseña === “1234”`,
   {
     type: 'multiple-choice',
     question: `Qué devuelve el siguiente código?
-
-\`\`\`inicializamos la variable edad con valor 18
-console.log(edad > 8 && edad <= 18)\`\`\``,
+\`\`\`
+inicializamos la variable edad con valor 18
+console.log(edad > 8 && edad <= 18)
+\`\`\``,
     options: [
       {
         content: 'true',
@@ -517,9 +522,11 @@ console.log(edad > 8 && edad <= 18)\`\`\``,
   {
     type: 'multiple-choice',
     question: `Qué devuelve el siguiente código?
-
-\`\`\`inicializamos la variable edad con valor 18
-console.log(edad > 8 && edad <= 18)\`\`\``,
+\`\`\`
+inicializamos la variable ventanaEstaAbierta con valor false
+inicializamos la variable puertaEstaAbierta con valor false
+console.log(ventanaEstaAbierta || puertaEstaAbierta)
+\`\`\``,
     options: [
       {
         content: 'true',
@@ -567,9 +574,11 @@ console.log(edad > 8 && edad <= 18)\`\`\``,
     type: 'content',
     //imageUrl: '/images/',
     text: `Usando la sintaxis de JavaScript, el condicional sería así:
-\`\`\`if (edad > 18) {
+\`\`\`js
+if (edad > 18) {
 	console.log(“Sos mayor de edad, no podés entrar!”);
-}\`\`\`
+}
+\`\`\`
 Primero se pone la palabra clave \`\`\`if\`\`\`, para indicarle a la computadora que viene un condicional. Después entre paréntesis va la pregunta que le hacemos al \`\`\`if\`\`\`, ¿Es \`\`\`edad\`\`\` mayor a \`\`\`18\`\`\`?`,
   },
   {
@@ -581,12 +590,14 @@ Primero se pone la palabra clave \`\`\`if\`\`\`, para indicarle a la computadora
     type: 'content',
     //imageUrl: '/images/',
     text: `¿Qué pasa si queremos ejecutar algo cuando el usuario **no** es mayor de edad? Hay que agregar la palabra clave \`\`\`else\`\`\`
-\`\`\`if (edad > 18) {
+\`\`\`
+if (edad > 18) {
 	console.log(“Sos mayor de edad, no podés entrar!”);
 }
 else {
 	console.log(“Sos menor de edad. Podés entrar tranquilo!”);
-}\`\`\``,
+}
+\`\`\``,
   },
   {
     type: 'content',
@@ -596,14 +607,16 @@ else {
   {
     type: 'multiple-choice',
     question: `Qué devuelve este código?
-\`\`\`let contraseña = "hola123";
+\`\`\`
+let contraseña = "hola123";
 let contraseñaIngresada = "hola" + "123";
 if (contraseña === contraseñaIngresada) {
-console.log("Acceso permitido");
+  console.log("Acceso permitido");
 }
 else {
-console.log("Acceso denegado");
-}\`\`\``,
+  console.log("Acceso denegado");
+}
+\`\`\``,
     options: [
       {
         content: '"Acceso permitido"',
@@ -639,38 +652,48 @@ En programación se acostumbra a llamar i (de iterador) a la variable que recorr
     type: 'content',
     //imageUrl: '/images/',
     text: `La palabra clave que se usa es \`\`\`for\`\`\`. el paso 1), 2) y 4) se ponen entre paréntesis después del for.
-\`\`\`for (let i = 1; i < 100; i = i + 1) {
+\`\`\`
+for (let i = 1; i < 100; i = i + 1) {
 	sumaTotal = sumaTotal + i;
-}\`\`\``,
+}
+\`\`\``,
   },
   {
     type: 'content',
     //imageUrl: '/images/',
     text: `Cuando la condición (\`\`\`i < 100\`\`\`) es verdadera, se ejecuta el código entre paréntesis. En caso de que no, se termina el for.
-\`\`\`for (let i = 1; i < 100; i = i + 1) {
+\`\`\`
+for (let i = 1; i < 100; i = i + 1) {
 	sumaTotal = sumaTotal + i;
-}\`\`\``,
+}
+\`\`\``,
   },
   {
     type: 'multiple-choice',
     question: 'Cuál es el for con la sintaxis correcta para mostrar los números los números 1000, 900, 800 … 200, 100?',
     options: [
       {
-        content: `\`\`\`for (i = 1000; i > 0; i = i - 100) {
+        content: `\`\`\`
+for (i = 1000; i > 0; i = i - 100) {
 	console.log( i );
-}\`\`\``,
+}
+\`\`\``,
         message: 'Mal. Al declarar la variable ```i``` falta usar ```let```.',
       },
       {
-        content: `\`\`\`for (let i = 1000; i > 0; i = i - 100) {
+        content: `\`\`\`
+for (let i = 1000; i > 0; i = i - 100) {
 	console.log( i );
-}\`\`\``,
+}
+\`\`\``,
         correct: true,
       },
       {
-        content: `\`\`\`for (let i = 1000; i > 0; i = i + 100) {
+        content: `\`\`\`
+for (let i = 1000; i > 0; i = i + 100) {
 	console.log( i );
-}\`\`\``,
+}
+\`\`\``,
         message: 'Mal. Si a i se le suma 100 en cada paso, el for nunca va a terminar.',
       },
     ],
