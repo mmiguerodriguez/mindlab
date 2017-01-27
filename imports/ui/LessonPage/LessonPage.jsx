@@ -22,7 +22,7 @@ class LessonPage extends React.Component {
       case 'Primeros conceptos':
         cardsContent = PrimerosConceptosLesson;
         break;
-      case 'Lenguages':
+      case 'Lenguajes':
         cardsContent = LenguajesLesson;
         break;
       default:

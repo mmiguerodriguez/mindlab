@@ -20,7 +20,7 @@ const IntroduccionLessonRaw = [
     type: 'content',
     //imageUrl: '/images/',
     title: 'Empecemos!',
-    text: 'Hoy en día,todo es programable. Desde donde estás viendo esto, hasta algunos relojes. Además, por cada persona en el mundo hay siete dispositivos tecnológicos.',
+    text: 'Hoy en día, todo es programable. Desde donde estás viendo esto, hasta algunos relojes. Además, por cada persona en el mundo hay siete dispositivos tecnológicos.',
   },
   {
     type: 'content',
@@ -35,13 +35,13 @@ const IntroduccionLessonRaw = [
   {
     type: 'content',
     //imageUrl: '/images/',
-    text: 'La programación es lo que se viene ¿Sabías que para el 2020 va a haber un millón de puestos de trabajo sin cubrir de programación? Además, los trabajos de programación son de los mejores pagos.',
+    text: 'La programación es lo que se viene. Sabías que para el 2020 va a haber un millón de puestos de trabajo sin cubrir de programación? Además, los trabajos de programación son de los mejores pagos.',
   },
   {
     type: 'content',
     //imageUrl: '/images/',
     title: 'Funcionamiento de las compus',
-    text: `Ahora que ya sabés lo bueno de la programación, adentrémonos en lo técnico: ¿Cómo funcionan las computadoras?
+    text: `Ahora que ya sabés lo bueno de la programación, adentrémonos en lo técnico: Cómo funcionan las computadoras?
 Las computadoras son torpes, lo único que saben hacer es seguir instrucciones.`,
     forceNewStack: true,
   },
@@ -89,7 +89,7 @@ Las computadoras son torpes, lo único que saben hacer es seguir instrucciones.`
   {
     type: 'content',
     //imageUrl: '/images/',
-    text: 'Ahora que ya conocemos qué so los algoritmos, podemos explicar las cosas más fácilmente, como por ejemplo, el funcionamiento de las búsquedas en Google',
+    text: 'Ahora que ya conocemos qué son los algoritmos, podemos explicar las cosas más fácilmente, como por ejemplo, el funcionamiento de las búsquedas en Google.',
   },
   {
     type: 'content',
@@ -104,8 +104,8 @@ Las computadoras son torpes, lo único que saben hacer es seguir instrucciones.`
   {
     type: 'content',
     //imageUrl: '/images/',
-    title: 'Lenguages y algoritmos',
-    text: 'Pero, ¿Cómo hacemos para que la computadora entienda un algoritmo? Tenemos que hablarle en uno de los muchos lenguajes que ella entiende.',
+    title: 'Lenguajes y algoritmos',
+    text: 'Pero, cómo hacemos para que la computadora entienda un algoritmo? Tenemos que hablarle en uno de los muchos lenguajes que ella entiende.',
     forceNewStack: true,
   },
   {
@@ -137,7 +137,7 @@ const PrimerosConceptosLessonRaw = [
   {
     type: 'content',
     //imageUrl: '/images/',
-    text: '¿Cuándo vamos a necesitar una variable? Por ejemplo, cuando estamos viendo un video en  YouTube, tenemos que guardar en qué minuto estamos. Esto lo guardaríamos en una variable numérica.',
+    text: 'Cuándo vamos a necesitar una variable? Por ejemplo, cuando estamos viendo un video en YouTube, tenemos que guardar en qué minuto estamos. Esto lo guardaríamos en una variable numérica.',
   },
   {
     type: 'content',
@@ -150,7 +150,7 @@ const PrimerosConceptosLessonRaw = [
   {
     type: 'content',
     //imageUrl: '/images/',
-    text: 'Siempre es importante poner nombres expresivos a las variables. Si alguien la ve por primera vez, tiene que entender exactamente para qué sirve, y qué guarda. Por ejemplo a, que, variable y cosa no son buenos nombres!',
+    text: 'Siempre es importante poner nombres expresivos a las variables. Si alguien la ve por primera vez, tiene que entender exactamente para qué sirve, y qué guarda. Por ejemplo ```a```, ```que```, ```variable``` y ```cosa``` no son buenos nombres!',
   },
   {
     type: 'multiple-choice',
@@ -182,7 +182,7 @@ const PrimerosConceptosLessonRaw = [
         correct: true,
       },
       {
-        content: 'vecesQueApareceLaPalabraEnElTexto',
+        content: 'vecesQueApareceLaPalabra',
         message: 'Mal. El nombre es demasiado largo!',
       },
       {
@@ -205,11 +205,11 @@ const PrimerosConceptosLessonRaw = [
   {
     type: 'content',
     //imageUrl: '/images/',
-    text: `Como todos los lenguajes de programación están en inglés, las palabras clave son if y else.
+    text: `Como todos los lenguajes de programación están en inglés, las palabras clave son \`\`\`if\`\`\` y \`\`\`else\`\`\`.
 * Pedirle al usuario la contraseña y guardarla en \`\`\`contraseñaIngresada\`\`\`
 * \`\`\`if contraseñaIngresada\`\`\` es igual a \`\`\`"12345678"\`\`\`
   * mostrarle al usuario el secreto
-* else
+* \`\`\`else\`\`\`
   * mostrarle al usuario el mensaje de error
 `,
   },
@@ -245,7 +245,7 @@ else
     type: 'content',
     //imageUrl: '/images/',
     title: 'Loops',
-    text: 'Avanzando un poco más, ¿Cómo podríamos hacer para sumar los números del 1 al 100? Para esto están las estructuras repetitivas.',
+    text: 'Avanzando un poco más, cómo podríamos hacer para sumar los números del 1 al 100? Para esto están las estructuras repetitivas.',
   },
   {
     type: 'content',
@@ -282,9 +282,11 @@ else
     type: 'content',
     //imageUrl: '/images/',
     text: `Veamos otro ejemplo
-* \`\`\`for\`\`\` desde 1 hasta 100 guardando el valor en \`\`\`pasoActual\`\`\`
-  * If pasoActual es igual a 99
-    * alertar al usuario que el for se está por terminar
+\`\`\`
+for desde 1 hasta 100 guardando el valor en pasoActual
+  If pasoActual es igual a 99
+    saludar al usuario
+\`\`\`
 En este ejemplo, el código adentro del if va a ser ejecutado una sola vez, cuando pasoActual sea igual a 99. En el resto de las ejecuciones no pasará nada, ya que \`\`\`pasoActual\`\`\` será diferente de 99`,
   },
   {
@@ -352,12 +354,12 @@ const LenguajesLessonRaw = [
   {
     type: 'content',
     //imageUrl: '/images/',
-    text: 'Entonces, lo que queremos hacer es que por algún lado se muestre el valor de esa variable para poder darnos cuenta si el programa hace lo que queremos o si hay algún error. Para esto usamos la herramienta console.log',
+    text: 'Entonces, lo que queremos hacer es que por algún lado se muestre el valor de esa variable para poder darnos cuenta si el programa hace lo que queremos o si hay algún error. Para esto usamos la herramienta ```console.log```.',
   },
   {
     type: 'content',
     //imageUrl: '/images/',
-    text: `La sintaxis para usar el console.log es la siguiente: \`\`\`console.log(sumaTotal)\`\`\`;
+    text: `La sintaxis para usar el console.log es la siguiente: \`\`\`console.log(sumaTotal);\`\`\`
 Se escribe \`\`\`console.log\`\`\` y entre paréntesis la variable que queremos enviar.`,
   },
   {
@@ -415,7 +417,7 @@ Se escribe \`\`\`console.log\`\`\` y entre paréntesis la variable que queremos 
   {
     type: 'content',
     //imageUrl: '/images/',
-    text: 'Si por ejemplo definimos la variable ```terminoElSecundario``` igual a ```true``` o la variable aprobo igual a ```false```, las dos van a tener el tipo de dato boolean.',
+    text: 'Si por ejemplo definimos la variable ```terminoElSecundario``` igual a ```true``` o la variable ```aprobo``` igual a ```false```, las dos van a tener el tipo de dato **boolean**.',
   },
   {
     type: 'multiple-choice',
@@ -448,15 +450,21 @@ Se escribe \`\`\`console.log\`\`\` y entre paréntesis la variable que queremos 
     type: 'content',
     //imageUrl: '/images/',
     text: `Para poder comparar dos variables, existen los operadores de comparación. Si queremos ver si la variable \`\`\`comidaRestante\`\`\` es igual a 0, usamos el operador \`\`\`===\`\`\`. En un if quedaría de la siguiente forma:
-if comidaRestante === 0
-  avisar al jugador que se quedo sin comida`,
+\`\`\`
+if (comidaRestante === 0) {
+  avisar al jugador que se quedó sin comida
+}
+\`\`\``,
   },
   {
     type: 'content',
     //imageUrl: '/images/',
     text: `Si queremos verificar que dos variables no sean iguales, por ejemplo para ver si el usuario tuvo algún error al poner su contraseña, usamos el operador \`\`\`!==\`\`\`.
-if contraseñaIngresada !== “12345678”
-    alertar al usuario que hubo un error`,
+\`\`\`
+if (contraseñaIngresada !== “12345678”) {
+  alertar al usuario que hubo un error
+}
+\`\`\``,
   },
   {
     type: 'content',
@@ -493,19 +501,23 @@ if contraseñaIngresada !== “12345678”
     type: 'content',
     //imageUrl: '/images/',
     text: `Para juntar dos comparaciones en un if usamos el operador **and** (y), que devuelve verdadero si ambos valores son \`\`\`true\`\`\`. La forma de escribirlo es \`\`\`&&\`\`\`, y nos quedaría así:
-if edad > 18 && edad < 50`,
+\`\`\`
+if (edad >= 18 && edad < 50)
+\`\`\``,
   },
   {
     type: 'content',
     //imageUrl: '/images/',
     text: `Por otro lado, cuando queremos ver si una variable es igual a un valor **o** al otro, usamos el operador lógico **or** (o). La forma de escribirlo es \`\`\`||\`\`\`, y nos quedaría de la siguiente forma en código:
-if contraseña === “123” || contraseña === “1234”`,
+\`\`\`
+if (contraseña === “123” || contraseña === “1234”)
+\`\`\``,
   },
   {
     type: 'multiple-choice',
     question: `Qué devuelve el siguiente código?
 \`\`\`
-inicializamos la variable edad con valor 18
+variable edad = 18
 console.log(edad > 8 && edad <= 18)
 \`\`\``,
     options: [
@@ -523,8 +535,8 @@ console.log(edad > 8 && edad <= 18)
     type: 'multiple-choice',
     question: `Qué devuelve el siguiente código?
 \`\`\`
-inicializamos la variable ventanaEstaAbierta con valor false
-inicializamos la variable puertaEstaAbierta con valor false
+variable ventanaEstaAbierta = false
+variable puertaEstaAbierta = false
 console.log(ventanaEstaAbierta || puertaEstaAbierta)
 \`\`\``,
     options: [
@@ -552,7 +564,7 @@ console.log(ventanaEstaAbierta || puertaEstaAbierta)
   },
   {
     type: 'code',
-    task: 'Carlitos tiene 20 años, y queremos saber en qué año nació. Usá variables para devolver el año.',
+    task: 'Carlitos tiene 20 años, y queremos saber en qué año nació. Usá variables para devolver el año usando console.log.',
     possibleResults: [
       {
         result: 1997,
@@ -575,11 +587,11 @@ console.log(ventanaEstaAbierta || puertaEstaAbierta)
     //imageUrl: '/images/',
     text: `Usando la sintaxis de JavaScript, el condicional sería así:
 \`\`\`js
-if (edad > 18) {
+if (edad >= 18) {
 	console.log(“Sos mayor de edad, no podés entrar!”);
 }
 \`\`\`
-Primero se pone la palabra clave \`\`\`if\`\`\`, para indicarle a la computadora que viene un condicional. Después entre paréntesis va la pregunta que le hacemos al \`\`\`if\`\`\`, ¿Es \`\`\`edad\`\`\` mayor a \`\`\`18\`\`\`?`,
+Primero se pone la palabra clave \`\`\`if\`\`\`, para indicarle a la computadora que viene un condicional. Después entre paréntesis va la pregunta que le hacemos al \`\`\`if\`\`\`: es \`\`\`edad\`\`\` mayor a \`\`\`18\`\`\`?`,
   },
   {
     type: 'content',
@@ -589,9 +601,9 @@ Primero se pone la palabra clave \`\`\`if\`\`\`, para indicarle a la computadora
   {
     type: 'content',
     //imageUrl: '/images/',
-    text: `¿Qué pasa si queremos ejecutar algo cuando el usuario **no** es mayor de edad? Hay que agregar la palabra clave \`\`\`else\`\`\`
+    text: `Qué pasa si queremos ejecutar algo cuando el usuario **no** es mayor de edad? Hay que agregar la palabra clave \`\`\`else\`\`\`
 \`\`\`
-if (edad > 18) {
+if (edad >= 18) {
 	console.log(“Sos mayor de edad, no podés entrar!”);
 }
 else {
@@ -633,14 +645,16 @@ else {
     //imageUrl: '/images/',
     title: 'Loops',
     text: `Antes habíamos visto que el for era de la siguiente forma
+\`\`\`
 let sumaTotal = 0;
-let pasoActual = 1;
-if (pasoActual === 1) {
-sumaTotal = sumaTotal + pasoActual;
-pasoActual = pasoActual + 1;
-(volver al if)
+let pasoActual = 1; (paso 1)
+if (pasoActual === 1) { (paso 2)
+  sumaTotal = sumaTotal + pasoActual; (paso 3)
+  pasoActual = pasoActual + 1; (paso 4)
+  (volver al if)
 }
-terminar el for`,
+terminar el for
+\`\`\``,
   },
   {
     type: 'content',
@@ -678,7 +692,7 @@ for (i = 1000; i > 0; i = i - 100) {
 	console.log( i );
 }
 \`\`\``,
-        message: 'Mal. Al declarar la variable ```i``` falta usar ```let```.',
+        message: 'Mal. Al declarar la variable i falta usar let.',
       },
       {
         content: `\`\`\`
