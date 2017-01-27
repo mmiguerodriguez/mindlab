@@ -165,7 +165,7 @@ class LessonPage extends React.Component {
     ];
     // */
     return (
-      <div className="animated fadeInUp">
+      <div>
         <CardsList
           cards={cardsContent}
           lessonUrl={lessonUrl}

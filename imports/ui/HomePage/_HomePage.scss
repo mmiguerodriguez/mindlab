@@ -3,13 +3,12 @@
   flex-direction: column;
 }
 
+#homepage-courses-list {
+  animation-duration: .75s;
+}
+
 .courses-title {
   margin: 10px 10px 0;
   font-size: 20px;
   font-weight: bold;
-}
-
-#home-page-finish-element {
-  // navbar's z-index is 1030
-  z-index: 1040;
 }
