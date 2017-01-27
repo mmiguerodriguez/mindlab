@@ -1,4 +1,5 @@
 import React from 'react';
+import ReactMarkdown from 'react-markdown';
 
 const ContentCard = ({
   imageUrl,
@@ -19,9 +20,7 @@ const ContentCard = ({
       </h2>
     }
     { text &&
-      <h3 className="content-card-text">
-        {text}
-      </h3>
+      <ReactMarkdown source={text} className="content-card-text" />
     }
   </div>;
 

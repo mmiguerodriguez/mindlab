@@ -1,4 +1,5 @@
 import React from 'react';
+import ReactMarkdown from 'react-markdown';
 import MultipleChoiceCard from './MultipleChoiceCard/MultipleChoiceCard';
 import OrderCard from './OrderCard/OrderCard';
 import CodeCard from './CodeCard/CodeCard';
@@ -49,9 +50,7 @@ class QuizCard extends React.Component {
           />
         }
         { question &&
-          <h3 className="quiz-card-question">
-            {question}
-          </h3>
+          <ReactMarkdown source={question} className="quiz-card-question" />
         }
         { quizBody &&
           <div className="quiz-card-body">

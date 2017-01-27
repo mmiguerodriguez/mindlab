@@ -60,7 +60,7 @@ class CardsList extends React.Component {
         contentProps={contentProps}
         index={index}
         cardsCount={this.props.cards.length} // we pass this for the positioning
-        cardPassed={this.cardPassed}
+        cardPassed={this.cardPassed.bind(this)} // TODO: investigate this
       />
     );
   }
@@ -76,7 +76,7 @@ class CardsList extends React.Component {
     let currentStackIsQuizes = cards[0].type === 'order' ||
                                cards[0].type === 'multiple-choice' ||
                                cards[0].type === 'code';
-    cards.forEach((card) => {
+    cards.forEach((card, index) => { // TODO: remove index when we have a working db
       const currentCardIsQuiz = card.type === 'order' ||
                                 card.type === 'multiple-choice' ||
                                 card.type === 'code';

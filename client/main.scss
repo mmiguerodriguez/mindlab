@@ -25,6 +25,13 @@ body,
 #app {
   height: 100vh;
   margin: 0;
+  font-size: 12px;
+  @media (min-width: 800px) {
+    font-size: 16px;
+  }
+  @media (min-width: 1200px) {
+    font-size: 18px;
+  } // TODO: fix this
   overflow-x: hidden;
 }
 

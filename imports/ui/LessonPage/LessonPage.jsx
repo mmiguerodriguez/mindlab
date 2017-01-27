@@ -1,6 +1,11 @@
 import React from 'react';
 
 import CardsList from '../CardsList/CardsList';
+import {
+  IntroduccionLesson,
+  PrimerosConceptosLesson,
+  LenguajesLesson,
+} from './HardcodedCourseContent';
 
 import ProgressBar from './ProgressBar/ProgressBar';
 
@@ -28,142 +33,24 @@ class LessonPage extends React.Component {
   }
 
   render() {
-    // TODO: add real cards
-
-    /*
-    const cardsContent = [
-      {
-        type: 'content',
-        imageUrl: '/images/welcome/page1.png',
-        title: 'HOLA',
-        text: 'Esto es un texto',
-      },
-    ];
-    // */
     // Get coursePage url from lessonPage url
     const urlSplited = this.props.location.pathname.split('/');
     const lessonUrl = `/${urlSplited[1]}/${urlSplited[2]}`;
-    const cardsContent = [
-      {
-        type: 'code',
-        question: 'Esta es la pregunta?',
-        possibleResults: [
-          {
-            result: 'possible answer',
-            message: 'capo',
-            correct: true,
-          },
-          {
-            result: 'wrong possibility',
-            message: 'Nope, la cagaste',
-            correct: false,
-          },
-        ],
-      }, /*
-      {
-        type: 'finish',
-        imageUrl: '/images/welcome/page1.png',
-        title: 'Tercera card',
-        text: 'asdf asdf hasdhjas hdk ashdf',
-      },
-      {
-        type: 'finish',
-        imageUrl: '/images/welcome/page1.png',
-        title: 'Tercera card',
-        text: 'asdf asdf hasdhjas hdk ashdf',
-      },
-      {
-        type: 'finish',
-        imageUrl: '/images/welcome/page1.png',
-        title: 'Tercera card',
-        text: 'asdf asdf hasdhjas hdk ashdf',
-      },
-      {
-        type: 'finish',
-        imageUrl: '/images/welcome/page1.png',
-        title: 'Tercera card',
-        text: 'asdf asdf hasdhjas hdk ashdf',
-      },
-      {
-        type: 'finish',
-        imageUrl: '/images/welcome/page1.png',
-        title: 'Tercera card',
-        text: 'asdf asdf hasdhjas hdk ashdf',
-      },
-      {
-        type: 'finish',
-        imageUrl: '/images/welcome/page1.png',
-        title: 'Tercera card',
-        text: 'asdf asdf hasdhjas hdk ashdf',
-      },
-      {
-        type: 'finish',
-        imageUrl: '/images/welcome/page1.png',
-        title: 'Tercera card',
-        text: 'asdf asdf hasdhjas hdk ashdf',
-      },
-      {
-        type: 'order',
-        question: 'Tercera card',
-        options: [{
-          content: 'Enchufar licuadora',
-          correctPosition: 1,
-        },m
-        {
-          content: 'Meter ingredientes en la licuadora',
-          correctPosition: 2,
-        },
-        {
-          content: 'Licuar',
-          correctPosition: 3,
-        },
-        {
-          content: 'Servir licuado en el vaso',
-          correctPosition: 4,
-        },
-        {
-          content: 'Tomar el licuado',
-          correctPosition: 5,
-        }],
-      },
-      {
-        type: 'finish',
-        imageUrl: '/images/welcome/page1.png',
-        title: 'Tercera card',
-        text: 'asdf asdf hasdhjas hdk ashdf',
-      },
-      {
-        type: 'feedback',
-        title: 'give me some feedback',
-      },
-      {
-        type: 'feedback',
-        title: 'give me some feedback',
-      },
-      {
-        type: 'content',
-        imageUrl: '/images/welcome/page1.png',
-        title: 'HOLA',
-        text: 'Esto es un texto',
-      },
-      {
-        type: 'content',
-        imageUrl: '/images/welcome/page2.png',
-        title: 'Segunda card',
-        text: 'Esto es otro texto, un poco más largo que el anterior',
-      },
-      {
-        type: 'content',
-        imageUrl: '/images/welcome/page1.png',
-        title: 'Tercera card',
-        text: 'Esto es otro texto, un poco más largo que el anterior, y también que el primero.',
-      },
-      {
-        type: 'content',
-        title: 'nuevo stack',
-      },*/
-    ];
-    // */
+    let cardsContent = [];
+    switch (this.props.params.lessonName) {
+      case 'Introducción':
+        cardsContent = IntroduccionLesson;
+        break;
+      case 'Primeros conceptos':
+        cardsContent = PrimerosConceptosLesson;
+        break;
+      case 'Lenguajes':
+        cardsContent = LenguajesLesson;
+        break;
+      default:
+        cardsContent = IntroduccionLesson;
+        break;
+    }
     return (
       <div className="animated fadeInUp">
         <CardsList

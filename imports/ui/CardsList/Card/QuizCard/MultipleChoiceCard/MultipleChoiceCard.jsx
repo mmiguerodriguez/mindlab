@@ -1,4 +1,5 @@
 import React from 'react';
+import ReactMarkdown from 'react-markdown';
 
 class MultipleChoiceCard extends React.Component {
   constructor(props) {
@@ -30,7 +31,7 @@ class MultipleChoiceCard extends React.Component {
       const content = this.props.options[selectedOption].message || 'Incorrecto';
       $.snackbar({ content });
     } else {
-      const content = this.props.options[selectedOption].message || 'Correcto';
+      const content = this.props.options[selectedOption].message || 'Muy bien!';
       $.snackbar({ content });
 
       // TODO: continue to the next card
@@ -38,30 +39,36 @@ class MultipleChoiceCard extends React.Component {
   }
 
   render() {
-    return (
-      <div className="multiple-choice-card-options">
-        {
-          this.props.options.map((option, index) => (
-            <div
-              className="multiple-choice-card-option radio"
-              key={`option-${index}`}
-            >
-              <label>
-                <input
-                  className="multiple-choice-card-radio"
-                  type="radio"
-                  name="multiple-choice-card-quiz"
-                  value={index}
-                  checked={this.state.selectedOption === index}
-                  onChange={this.handleChange}
-                />
-                <h4 className="multiple-choice-card-content">{option.content}</h4>
-              </label>
-            </div>
-          ))
-        }
-      </div>
-    );
+    const optionsArray =
+      (
+        <div className="multiple-choice-card-options">
+          {
+            this.props.options.map((option, index) => (
+              <div
+                className="multiple-choice-card-option radio"
+                key={`option-${index}`}
+              >
+                <label>
+                  <input
+                    className="multiple-choice-card-radio"
+                    type="radio"
+                    name="multiple-choice-card-quiz"
+                    value={index}
+                    checked={this.state.selectedOption === index}
+                    onChange={this.handleChange}
+                  />
+                  <ReactMarkdown
+                    source={option.content}
+                    className="multiple-choice-card-content"
+                  />
+                </label>
+              </div>
+            ))
+          }
+        </div>
+      );
+
+    return optionsArray;
   }
 }
 

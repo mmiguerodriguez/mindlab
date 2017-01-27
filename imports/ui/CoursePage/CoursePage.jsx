@@ -15,7 +15,7 @@ class CoursePage extends React.Component { // TODO: fix $.material.init()
         icon: 'child_friendly',
       },
       {
-        name: 'Lenguages',
+        name: 'Lenguajes',
         icon: 'language',
       },
     ];
