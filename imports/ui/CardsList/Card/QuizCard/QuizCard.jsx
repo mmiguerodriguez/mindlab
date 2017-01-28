@@ -9,7 +9,9 @@ class QuizCard extends React.Component {
     super(props);
     this.state = {
       checkAnswer: () => {}, // Checks the answer
+      answeredCorrectly: false,
     };
+    this.handleCheckAnswer = this.handleCheckAnswer.bind(this);
   }
 
   getQuizContent() {
@@ -34,10 +36,18 @@ class QuizCard extends React.Component {
     });
   }
 
+  handleCheckAnswer() {
+    // if the answer is correct
+    if (this.state.checkAnswer()) {
+      this.setState({
+        answeredCorrectly: true,
+      });
+    }
+  }
+
   render() {
     const imageUrl = this.props.imageUrl;
     const question = this.props.question;
-    const checkAnswer = this.state.checkAnswer;
     const quizBody = this.getQuizContent();
 
     return (
@@ -57,7 +67,21 @@ class QuizCard extends React.Component {
             {quizBody}
           </div>
         }
-        <button className="btn btn-raised card-btn-primary" onClick={checkAnswer}>Enviar</button>
+        {
+          this.state.answeredCorrectly ?
+            <button
+              className="btn btn-raised btn-success"
+              onClick={this.props.passCard}
+            >
+              Continuar
+            </button> :
+            <button
+              className="btn btn-raised card-btn-primary"
+              onClick={this.handleCheckAnswer}
+            >
+              Enviar
+            </button>
+        }
       </div>
     );
   }
@@ -67,6 +91,7 @@ QuizCard.propTypes = {
   type: React.PropTypes.string.isRequired,
   imageUrl: React.PropTypes.string,
   question: React.PropTypes.string.isRequired,
+  passCard: React.PropTypes.func.isRequired,
 };
 
 QuizCard.defaultProps = {

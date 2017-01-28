@@ -22,19 +22,24 @@ class MultipleChoiceCard extends React.Component {
     });
   }
 
+  /**
+   * shows error or success message, and returns whether the answer is correct
+   * @returns {Boolean} answerIsCorrect
+   */
   checkAnswer() {
     const selectedOption = this.state.selectedOption;
     // selectedOption can be 0
     if (selectedOption === null) {
       $.snackbar({ content: 'No seleccionaste ninguna respuesta' });
+      return false;
     } else if (!this.props.options[selectedOption].correct) {
       const content = this.props.options[selectedOption].message || 'Incorrecto';
       $.snackbar({ content });
+      return false;
     } else {
       const content = this.props.options[selectedOption].message || 'Muy bien!';
       $.snackbar({ content });
-
-      // TODO: continue to the next card
+      return true;
     }
   }
 
