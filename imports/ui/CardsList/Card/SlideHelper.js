@@ -128,18 +128,9 @@ class SlideHelper {
    */
   pointerMoved(data) {
     // Get the position of the pointer
-    let x;
-    let y;
-    // If not mobile the position is stored in screenX and screenY
-    if (data.screenX) {
-      x = data.screenX;
-      y = data.screenY;
-    }
-    // If mobile the position of the touch is stored in a list of touches (may be many fingers)
-    if (data.touches && data.touches.item(0).screenX) {
-      x = data.touches.item(0).screenX;
-      y = data.touches.item(0).screenY;
-    }
+    let position = SlideHelper.getPointerEventPosition(data);
+    let x = position.x;
+    let y = position.y;
 
     // Velocity = distance/time
     this.velocityX = (x - this.pointerX) /
@@ -161,18 +152,9 @@ class SlideHelper {
    */
   press(data) {
     // Get the position of the pointer
-    let x;
-    let y;
-    // If not mobile the position is stored in screenX and screenY
-    if (data.screenX) {
-      x = data.screenX;
-      y = data.screenY;
-    }
-    // If mobile the position of the touch is stored in a list of touches (may be many fingers)
-    if (data.touches && data.touches.item(0).screenX) {
-      x = data.touches.item(0).screenX;
-      y = data.touches.item(0).screenY;
-    }
+    let position = SlideHelper.getPointerEventPosition(data);
+    let x = position.x;
+    let y = position.y;
 
     // Save pointer position
     this.pressX = x;
@@ -305,6 +287,30 @@ class SlideHelper {
    */
   static removeTouchEvents($element) {
     $element.off(`.${NAMESPACE}`);
+  }
+  
+  /**
+   * Returns the screen's position where a pointer event ocurred
+   * @param {object} $element jQuery Event data
+   * @return {object} The position object. Two properties: x and y
+   */
+  static getPointerEventPosition(data) {
+    let x;
+    let y;
+    let ret = undefined;
+    // If not mobile the position is stored in screenX and screenY
+    if (data.screenX) {
+      x = data.screenX;
+      y = data.screenY;
+    } else if (data.touches && data.touches.item(0).screenX) {
+      // If mobile the position of the touch is stored in a list of touches (may be many fingers)
+      x = data.touches.item(0).screenX;
+      y = data.touches.item(0).screenY;
+    } else if (data.originalEvent) {
+      ret = SlideHelper.getPointerEventPosition(data.originalEvent);
+    }
+    
+    return ret || {x, y};
   }
 }
 
