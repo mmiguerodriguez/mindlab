@@ -128,9 +128,9 @@ class SlideHelper {
    */
   pointerMoved(data) {
     // Get the position of the pointer
-    let position = SlideHelper.getPointerEventPosition(data);
-    let x = position.x;
-    let y = position.y;
+    const position = SlideHelper.getPointerEventPosition(data);
+    const x = position.x;
+    const y = position.y;
 
     // Velocity = distance/time
     this.velocityX = (x - this.pointerX) /
@@ -152,9 +152,9 @@ class SlideHelper {
    */
   press(data) {
     // Get the position of the pointer
-    let position = SlideHelper.getPointerEventPosition(data);
-    let x = position.x;
-    let y = position.y;
+    const position = SlideHelper.getPointerEventPosition(data);
+    const x = position.x;
+    const y = position.y;
 
     // Save pointer position
     this.pressX = x;
@@ -288,16 +288,16 @@ class SlideHelper {
   static removeTouchEvents($element) {
     $element.off(`.${NAMESPACE}`);
   }
-  
+
   /**
    * Returns the screen's position where a pointer event ocurred
-   * @param {object} $element jQuery Event data
+   * @param {object} data jQuery Event data
    * @return {object} The position object. Two properties: x and y
    */
   static getPointerEventPosition(data) {
     let x;
     let y;
-    let ret = undefined;
+    let ret = null;
     // If not mobile the position is stored in screenX and screenY
     if (data.screenX) {
       x = data.screenX;
@@ -309,8 +309,8 @@ class SlideHelper {
     } else if (data.originalEvent) {
       ret = SlideHelper.getPointerEventPosition(data.originalEvent);
     }
-    
-    return ret || {x, y};
+
+    return ret || { x, y };
   }
 }
 
