@@ -1,6 +1,6 @@
 import React from 'react';
 import Measure from 'react-measure';
-import SlideHelper from './SlideHelper';
+import SlideHelper from './../../../utils/client/SlideHelper';
 
 import ContentCard from './ContentCard/ContentCard';
 import FeedbackCard from './FeedbackCard/FeedbackCard';
