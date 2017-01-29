@@ -51,11 +51,17 @@ class WelcomePage extends React.Component {
       const rightHandler = () => {
         this.setState({
           currentPosition: this.state.currentPosition - 1,
+          displacement: {
+            x: 0,
+          },
         });
       };
       const leftHandler = () => {
         this.setState({
           currentPosition: this.state.currentPosition + 1,
+          displacement: {
+            x: 0,
+          },
         });
       };
       const finishHandler = () => {
