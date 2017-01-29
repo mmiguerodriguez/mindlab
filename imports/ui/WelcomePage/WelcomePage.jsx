@@ -1,4 +1,7 @@
 import React from 'react';
+import Measure from 'react-measure';
+import ColorInterpolation from 'color-interpolate';
+import SlideHelper from './../../utils/client/SlideHelper';
 
 import WelcomeItem from './WelcomeItem/WelcomeItem';
 import WelcomeMenu from './WelcomeMenu/WelcomeMenu';
@@ -8,9 +11,80 @@ class WelcomePage extends React.Component {
     super(props);
     this.state = {
       currentPosition: 0, // current visible item number
+      // The dimensions of the card, used internally
+      dimensions: {
+        width: 1, // Default value only
+        height: 1, // Default value only
+        measured: false,
+      },
+      // Used by the sliding movement
+      displacement: {
+        x: 0, // Used to animate  movement
+      },
     };
+
+    this.slider = null;
   }
+
+  componentWillUnmount() {
+    if (this.slider) {
+      this.slider.disable();
+      this.slider = null;
+    }
+  }
+
+  updateSlider() {
+    if (!this.slider) {
+      console.log('Setting slider');
+      // Create and instantiate a SlideHelper
+      const disableLeft = this.state.currentPosition === 1;
+      const disableRight = this.state.currentPosition === 0;
+      const $welcomePageItems = $(this.welcomePageItems);
+      const stateUpdateHandler = (stateX) => {
+        if (this.state.displacement.x !== stateX * this.state.dimensions.width) {
+          this.setState({
+            displacement: {
+              x: stateX * this.state.dimensions.width,
+            },
+          });
+        }
+      };
+      const rightHandler = () => {
+        this.setState({
+          currentPosition: this.state.currentPosition - 1,
+        });
+        console.log('Slid');
+      };
+      const leftHandler = () => {
+        this.setState({
+          currentPosition: this.state.currentPosition + 1,
+        });
+        console.log('Slid');
+      };
+      const finishHandler = () => {
+        this.slider = null;
+      };
+      const slideHelperProps = {
+        $element: $welcomePageItems,
+        size: this.state.dimensions.width,
+        rightHandler,
+        leftHandler,
+        finishHandler,
+        stateUpdateHandler,
+        disableLeft,
+        disableRight,
+      };
+      this.slider = new SlideHelper(slideHelperProps);
+    } else {
+      this.slider.setSize(this.state.dimensions.width);
+    }
+  }
+
   render() {
+    if (this.state.dimensions.measured) {
+      this.updateSlider();
+    }
+
     const welcomeItemsContent = [
       {
         imageUrl: 'page1.png',
@@ -41,20 +115,41 @@ class WelcomePage extends React.Component {
       <WelcomeItem
         key={`welcome-item-${index}`}
         {...item}
-      />
-    );
+      />);
+
+    // Creates a color palette from the array of colors constructed with welcomeItemsContent
+    const colorPalette = ColorInterpolation(welcomeItemsContent.map(item => item.backgroundColor));
 
     const welcomePageStyle = {
-      backgroundColor: welcomeItemsContent[this.state.currentPosition].backgroundColor,
+      backgroundColor: colorPalette(
+        this.state.currentPosition + (-this.state.displacement.x / this.state.dimensions.width)),
+    };
+    console.log(
+      this.state.currentPosition + (-this.state.displacement.x / this.state.dimensions.width),
+      colorPalette(
+        this.state.currentPosition + (-this.state.displacement.x / this.state.dimensions.width)));
+
+    const welcomePageItemsStyle = {
+      transform: `translateX(${this.state.displacement.x + (-this.state.currentPosition * this.state.dimensions.width)}px)`,
     };
 
     return (
       <div style={welcomePageStyle} className="welcome-page">
-        <div id="welcome-page-items-container">
-          {
-            welcomeItemsArray
-          }
-        </div>
+        <Measure
+          onMeasure={(dimensions) => {
+            this.setState({ dimensions: { ...dimensions, measured: true } });
+          }}
+        >
+          <div
+            id="welcome-page-items-container"
+            style={welcomePageItemsStyle}
+            ref={(welcomePageItems) => { this.welcomePageItems = welcomePageItems; }}
+          >
+            {
+              welcomeItemsArray
+            }
+          </div>
+        </Measure>
         <WelcomeMenu
           pagesCount={welcomeItemsArray.length}
           currentPosition={this.state.currentPosition}
@@ -65,3 +160,5 @@ class WelcomePage extends React.Component {
 }
 
 export default WelcomePage;
+
+/* global $ */
