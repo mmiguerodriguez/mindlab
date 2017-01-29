@@ -35,7 +35,6 @@ class WelcomePage extends React.Component {
 
   updateSlider() {
     if (!this.slider) {
-      console.log('Setting slider');
       // Create and instantiate a SlideHelper
       const disableLeft = this.state.currentPosition === 1;
       const disableRight = this.state.currentPosition === 0;
@@ -53,13 +52,11 @@ class WelcomePage extends React.Component {
         this.setState({
           currentPosition: this.state.currentPosition - 1,
         });
-        console.log('Slid');
       };
       const leftHandler = () => {
         this.setState({
           currentPosition: this.state.currentPosition + 1,
         });
-        console.log('Slid');
       };
       const finishHandler = () => {
         this.slider = null;
@@ -124,10 +121,6 @@ class WelcomePage extends React.Component {
       backgroundColor: colorPalette(
         this.state.currentPosition + (-this.state.displacement.x / this.state.dimensions.width)),
     };
-    console.log(
-      this.state.currentPosition + (-this.state.displacement.x / this.state.dimensions.width),
-      colorPalette(
-        this.state.currentPosition + (-this.state.displacement.x / this.state.dimensions.width)));
 
     const welcomePageItemsStyle = {
       transform: `translateX(${this.state.displacement.x + (-this.state.currentPosition * this.state.dimensions.width)}px)`,
