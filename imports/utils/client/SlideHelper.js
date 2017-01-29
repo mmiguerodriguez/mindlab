@@ -14,6 +14,8 @@ class SlideHelper {
    * @param {float} finishHandler Called when the state reaches passed size
    * @param {float} rightHandler Called when the state reaches passed size, on the right
    * @param {float} leftHandler Called when the state reaches passed size, on the left
+   * @param {float} disableRight Does not slide to the right (more than initially)
+   * @param {float} disableLeft Does not slide to the left (more than initially)
    * @return {SlideHelper}
    */
   constructor({
@@ -25,6 +27,8 @@ class SlideHelper {
     finishHandler = null,
     rightHandler = null,
     leftHandler = null,
+    disableLeft = false,
+    disableRight = false,
   }) {
     if (this.$element) {
       console.error('Applying while already applied to another element!');
@@ -49,6 +53,8 @@ class SlideHelper {
     this.size = size;
     this.returnVelocity = returnVelocity;
     this.frictionAcceleration = frictionAcceleration;
+    this.allowLeft = !disableLeft; // Should move more to the left than initial position ?
+    this.allowRight = !disableRight; // Should move more to the right than initial position ?
     this.stateUpdateHandler = stateUpdateHandler;
     this.finishHandler = finishHandler;
     this.rightHandler = rightHandler;
@@ -151,6 +157,11 @@ class SlideHelper {
 
     // Update the state
     this.stateX = (this.pointerX - this.pressX) / this.size;
+
+    // If movement in one direction is disabled, disable
+    if ((!this.allowLeft && this.stateX < 0) || (!this.allowRight && this.stateX > 0)) {
+      this.stateX = 0;
+    }
   }
 
   /**

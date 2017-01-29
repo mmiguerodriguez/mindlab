@@ -22,7 +22,7 @@ class Card extends React.Component {
       displacement: {
         x: 0, // Used to animate card movement
       },
-      // Updated when the card is sl
+      // Updated when the card gets slid
       passed: false,
     };
 
