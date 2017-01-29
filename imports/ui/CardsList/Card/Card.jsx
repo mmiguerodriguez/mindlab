@@ -131,7 +131,7 @@ class Card extends React.Component {
       } else {
         this.setState({
           displacement: {
-            x: this.state.displacement.x - (0.05 * this.state.dimensions.width),
+            x: this.state.displacement.x - (0.1 * this.state.dimensions.width),
           },
         }, () => {
           requestAnimationFrame(this.passCard);
