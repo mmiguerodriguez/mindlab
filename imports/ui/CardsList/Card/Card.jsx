@@ -29,6 +29,7 @@ class Card extends React.Component {
     this.cardSlider = null;
     const type = this.props.contentProps.type;
     this.shouldSlide = !(type === 'code' || type === 'order' || type === 'multiple-choice' || type === 'feedback' || type === 'finish');
+    this.passCard = this.passCard.bind(this);
   }
 
   componentWillUnmount() {
@@ -72,6 +73,7 @@ class Card extends React.Component {
        */
       index: this.props.index,
       cardsCount: this.props.cardsCount,
+      passCard: this.passCard,
     });
   }
 
@@ -112,8 +114,36 @@ class Card extends React.Component {
     }
   }
 
+  /**
+   * programatically passes the card with the animation
+   */
+  passCard() {
+    if (this.cardSlider && this.cardSlider.enabled) {
+      this.cardSlider.disable();
+    }
+    if (!this.state.passed) {
+      // Check if card reached the limit
+      if (Math.abs(this.state.displacement.x) >= this.state.dimensions.width) {
+        this.setState({
+          passed: true,
+        });
+        this.props.cardPassed();
+      } else {
+        this.setState({
+          displacement: {
+            x: this.state.displacement.x - (0.1 * this.state.dimensions.width),
+          },
+        }, () => {
+          requestAnimationFrame(this.passCard);
+        });
+      }
+    }
+  }
+
   render() {
-    if (this.shouldSlide && this.state.dimensions.measured) {
+    if (this.shouldSlide && this.state.dimensions.measured &&
+        (!this.cardSlider || this.cardSlider.size !== this.state.dimensions.width)
+    ) {
       this.updateCardSlider();
     }
 

@@ -31,7 +31,8 @@ class CodeCard extends React.Component {
   }
 
   /**
-   * checks if the code the user entered works, and messages him accordingly
+   * shows error or success message, and returns whether the answer is correct
+   * @returns {Boolean} answerIsCorrect
    */
   checkAnswer() {
     let result = null;
@@ -70,13 +71,14 @@ class CodeCard extends React.Component {
     if (resultInProps && resultInProps.correct) {
       const content = resultInProps.message || 'Muy bien! Anduvo!';
       $.snackbar({ content });
-    } else {
-      // answer is Incorrecto
-      const defaultAnswer = 'El código no devolvió lo que se esperaba... Probá de nuevo';
-      const content = resultInProps ? resultInProps.message || defaultAnswer :
-                                      defaultAnswer;
-      $.snackbar({ content });
+      return true;
     }
+    // answer is incorrect
+    const defaultAnswer = 'El código no devolvió lo que se esperaba... Probá de nuevo';
+    const content = resultInProps ? resultInProps.message || defaultAnswer :
+                                    defaultAnswer;
+    $.snackbar({ content });
+    return false;
   }
 
   render() {

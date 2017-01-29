@@ -66,23 +66,23 @@ Las computadoras son torpes, lo único que saben hacer es seguir instrucciones.`
     options: [
       {
         content: 'Meter ingredientes en la licuadora',
-        step: 2,
+        correctPosition: 2,
       },
       {
         content: 'Enchufar la licuadora',
-        step: 1,
+        correctPosition: 1,
       },
       {
         content: 'Disfrutar el licuado',
-        step: 5,
+        correctPosition: 5,
       },
       {
         content: 'Servir licuado en el vaso',
-        step: 4,
+        correctPosition: 4,
       },
       {
         content: 'Licuar',
-        step: 3,
+        correctPosition: 3,
       },
     ],
   },
@@ -370,7 +370,7 @@ Se escribe \`\`\`console.log\`\`\` y entre paréntesis la variable que queremos 
   },
   {
     type: 'code',
-    task: 'Devolvé el mensaje "Hello World!" usando console.log',
+    question: 'Devolvé el mensaje "Hello World!" usando console.log',
     possibleResults: [
       {
         result: 'Hello World!',
@@ -431,12 +431,10 @@ Se escribe \`\`\`console.log\`\`\` y entre paréntesis la variable que queremos 
       {
         content: "Number",
         message: 'Mal. Como el 42 está dentro de comillas, es un string.',
-        correct: true,
       },
       {
         content: "Boolean",
         message: 'Mal. Como el 42 está dentro de comillas, es un string.',
-        correct: true,
       },
     ],
   },
@@ -564,7 +562,7 @@ console.log(ventanaEstaAbierta || puertaEstaAbierta)
   },
   {
     type: 'code',
-    task: 'Carlitos tiene 20 años, y queremos saber en qué año nació. Usá variables para devolver el año usando console.log.',
+    question: 'Carlitos tiene 20 años, y queremos saber en qué año nació. Usá variables para devolver el año usando console.log.',
     possibleResults: [
       {
         result: 1997,
@@ -714,7 +712,7 @@ for (let i = 1000; i > 0; i = i + 100) {
   },
   {
     type: 'code',
-    task: 'Devolver la suma de los números del 1 al 1000 usando un for.',
+    question: 'Devolver la suma de los números del 1 al 1000 usando un for.',
     possibleResults: [
       {
         result: 500500,
