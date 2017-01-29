@@ -1,14 +1,8 @@
-#homepage {
+#home-page {
   display: flex;
   flex-direction: column;
 }
 
-#homepage-courses-list {
+#home-page-courses-list {
   animation-duration: .75s;
-}
-
-.courses-title {
-  margin: 10px 10px 0;
-  font-size: 20px;
-  font-weight: bold;
 }

@@ -9,19 +9,23 @@ class CourseItem extends React.Component {
   }
 
   showEndAnimation() {
-    let courseId = $.escapeSelector(`course-${this.props.name}`);
-    courseId = `#${courseId}`
-    // We add the class to start the transition of the home page container
-    $('#homepage-courses-list > .course-item').not(courseId).addClass('animated fadeOutDown');
-    $(courseId).addClass('animated fadeOut');
+    // TODO: Change to real id
+    const courseId = `#course-${this.props.name.substr(0, 2)}`;
+    // The course item selected will fade out, the previous ones will fade out
+    // up and the next ones will fade out down
+    $(courseId).prevAll().addClass('fast-animated animated fadeOutUp');
+    $(courseId).nextAll().addClass('fast-animated animated fadeOutDown');
+    $(courseId).addClass('fast-animated animated zoomOut');
     // When the animation finishes, we redirect to the course url
-    $('#homepage-courses-list').one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend', () => {
+    $('#home-page-courses-list').one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend', () => {
       browserHistory.push(this.props.courseUrl);
     });
   }
 
   render() {
-    const courseId = `course-${$.escapeSelector(this.props.name)}`;
+    // TODO: Change to real id
+    const courseId = `course-${this.props.name.substr(0, 2)}`;
+
     return (
       <div className="course-item animated fadeInUp" id={courseId}>
         <div className="course-item-img" />

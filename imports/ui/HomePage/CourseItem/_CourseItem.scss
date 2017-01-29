@@ -1,3 +1,7 @@
+.fast-animated {
+  animation-duration: 0.5s;
+}
+
 .course-item {
   display: flex;
   flex: 0 0 100%;
@@ -10,7 +14,7 @@
   box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.3);
   justify-content: center;
   height: 100%;
-  
+
   p {
     text-align: center;
   }
