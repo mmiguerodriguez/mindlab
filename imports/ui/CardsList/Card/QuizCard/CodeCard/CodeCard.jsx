@@ -92,6 +92,7 @@ class CodeCard extends React.Component {
 
     const editorOptions = {
       mode: 'javascript',
+      inputStyle: 'textarea', // turns off auto capitalization
       lineNumbers: true,
       tabSize: 2,
     };
