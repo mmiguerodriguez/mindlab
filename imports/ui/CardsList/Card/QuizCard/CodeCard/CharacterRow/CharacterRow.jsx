@@ -1,15 +1,17 @@
 import React from 'react';
-import ReactAce from 'react-ace';
+import CodeMirror from 'react-codemirror';
 
 class CharacterRow extends React.Component {
   /**
-   * inserts given character in ace editor
+   * inserts given character in codemirror
    * @param {Character} character
    */
   insertCharacter(character) {
-    const editor = this.props.editor.editor;
-    editor.insert(character);
-    editor.textInput.focus();
+    const editor = this.props.editor.getCodeMirror();
+    editor.doc.replaceSelection(character);
+    const newCursorPosition = editor.getCursor();
+    editor.focus();
+    editor.setCursor(newCursorPosition);
   }
 
   render() {
@@ -40,7 +42,7 @@ class CharacterRow extends React.Component {
                 onClick={
                   () => {
                     this.insertCharacter(
-                      character === 'tab' ? '    ' : character,
+                      character === 'tab' ? '  ' : character,
                     );
                   }
                 }
@@ -56,7 +58,7 @@ class CharacterRow extends React.Component {
 }
 
 CharacterRow.propTypes = {
-  editor: React.PropTypes.instanceOf(ReactAce),
+  editor: React.PropTypes.instanceOf(CodeMirror),
 };
 
 CharacterRow.defaultProps = {

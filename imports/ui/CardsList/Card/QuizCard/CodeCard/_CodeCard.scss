@@ -6,10 +6,8 @@
   width: 100%;
 }
 .code-editor {
-  flex: 1;
-  width: 100% !important;
   .CodeMirror {
-    height: initial !important;
+    height: 200px !important;
   }
 }
 .code-card-result {

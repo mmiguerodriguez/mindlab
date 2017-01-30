@@ -3,7 +3,7 @@ import CodeMirror from 'react-codemirror';
 
 require('codemirror/mode/javascript/javascript');
 
-//import CharacterRow from './CharacterRow/CharacterRow';
+import CharacterRow from './CharacterRow/CharacterRow';
 
 class CodeCard extends React.Component {
   constructor(props) {
@@ -91,16 +91,18 @@ class CodeCard extends React.Component {
       }
     }
 
-    /*const editor = (
-      <AceEditor
-        mode="javascript"
-        theme="github"
-        name="editor"
-        value={this.state.code}
-        onChange={this.onChange}
+    const editorOptions = {
+      mode: 'javascript',
+      lineNumbers: true,
+      tabSize: 2,
+    };
+    const editor = (
+      <CodeMirror
         className="code-editor"
-        editorProps={{ $blockScrolling: true }}
+        onChange={this.onChange}
+        options={editorOptions}
         ref={(editorRef) => {
+          // prevent multiple initializations
           if (!this.state.editorInitialized) {
             this.editor = editorRef;
             this.setState({
@@ -109,14 +111,6 @@ class CodeCard extends React.Component {
           }
         }}
       />
-    );*/
-    const editorOptions = {
-      mode: 'javascript',
-      lineNumbers: true,
-      tabSize: 2,
-    };
-    const editor = (
-      <CodeMirror className="code-editor" onChange={this.onChange} options={editorOptions} />
     );
 
     return (
@@ -127,7 +121,13 @@ class CodeCard extends React.Component {
             codeResult || 'Cuando ejecutes tu código, acá va a aparecer el resultado!'
           }
         </div>
-        {/*<CharacterRow editor={this.editor} />*/}
+        <CharacterRow
+          editor={
+            this.editor ?
+              this.editor :
+              null
+          }
+        />
       </div>
     );
   }
