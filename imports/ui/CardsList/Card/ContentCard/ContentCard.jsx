@@ -27,7 +27,7 @@ const ContentCard = ({
         className="content-card-text"
         renderers={{
           ...ReactMarkdown.renderers,
-          CodeBlock: CodeRenderer,
+          CodeBlock: CodeRenderer, // used for code-highlighting
         }}
       />
     }

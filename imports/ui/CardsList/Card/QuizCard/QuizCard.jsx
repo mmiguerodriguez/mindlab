@@ -57,7 +57,7 @@ class QuizCard extends React.Component {
             className="quiz-card-question"
             renderers={{
               ...ReactMarkdown.renderers,
-              CodeBlock: CodeRenderer,
+              CodeBlock: CodeRenderer, // used for code-highlighting
             }}
           />
         }

@@ -64,7 +64,7 @@ class MultipleChoiceCard extends React.Component {
                     className="multiple-choice-card-content"
                     renderers={{
                       ...ReactMarkdown.renderers,
-                      CodeBlock: CodeRenderer,
+                      CodeBlock: CodeRenderer, // used for code-highlighting
                     }}
                   />
                 </label>
