@@ -424,16 +424,16 @@ Se escribe \`\`\`console.log\`\`\` y entre paréntesis la variable que queremos 
     question: 'Qué tipo de dato es ```"42"```',
     options: [
       {
-        content: "String",
+        content: 'String',
         message: 'Bien! Aunque su contenido sea un número, como está dentro de comillas es un string.',
         correct: true,
       },
       {
-        content: "Number",
+        content: 'Number',
         message: 'Mal. Como el 42 está dentro de comillas, es un string.',
       },
       {
-        content: "Boolean",
+        content: 'Boolean',
         message: 'Mal. Como el 42 está dentro de comillas, es un string.',
       },
     ],
@@ -477,7 +477,9 @@ if (contraseñaIngresada !== “12345678”) {
   {
     type: 'multiple-choice',
     question: `Qué devuelve el siguiente código?
-\`\`\`console.log(18 >= 20)\`\`\``,
+\`\`\`
+console.log(18 >= 20);
+\`\`\``,
     options: [
       {
         content: 'true',
@@ -526,7 +528,7 @@ console.log(edad > 8 && edad <= 18)
       {
         content: 'false',
         message: 'Mal. Edad es 18, que es mayor a 8 y a la vez menor o igual a 18. Entonces, como ambas condiciones son verdaderas, el and va a devolver true.',
-      }
+      },
     ],
   },
   {
@@ -545,7 +547,7 @@ console.log(ventanaEstaAbierta || puertaEstaAbierta)
       {
         content: 'false',
         correct: true,
-      }
+      },
     ],
   },
   {
@@ -553,7 +555,9 @@ console.log(ventanaEstaAbierta || puertaEstaAbierta)
     //imageUrl: '/images/',
     title: 'Variables',
     text: `Veamos cómo se usan las variables en JavaScript. Si, por ejemplo, queremos declarar una variable que se llame \`\`\`edad\`\`\` y queremos que sea igual a \`\`\`20\`\`\` (años), se escribiría de la siguiente forma:
-\`\`\`let edad = 20;\`\`\``,
+\`\`\`
+let edad = 20;
+\`\`\``,
   },
   {
     type: 'content',
@@ -586,7 +590,7 @@ console.log(ventanaEstaAbierta || puertaEstaAbierta)
     text: `Usando la sintaxis de JavaScript, el condicional sería así:
 \`\`\`js
 if (edad >= 18) {
-	console.log(“Sos mayor de edad, no podés entrar!”);
+  console.log(“Sos mayor de edad, no podés entrar!”);
 }
 \`\`\`
 Primero se pone la palabra clave \`\`\`if\`\`\`, para indicarle a la computadora que viene un condicional. Después entre paréntesis va la pregunta que le hacemos al \`\`\`if\`\`\`: es \`\`\`edad\`\`\` mayor a \`\`\`18\`\`\`?`,
@@ -602,10 +606,10 @@ Primero se pone la palabra clave \`\`\`if\`\`\`, para indicarle a la computadora
     text: `Qué pasa si queremos ejecutar algo cuando el usuario **no** es mayor de edad? Hay que agregar la palabra clave \`\`\`else\`\`\`
 \`\`\`
 if (edad >= 18) {
-	console.log(“Sos mayor de edad, no podés entrar!”);
+  console.log(“Sos mayor de edad, no podés entrar!”);
 }
 else {
-	console.log(“Sos menor de edad. Podés entrar tranquilo!”);
+  console.log(“Sos menor de edad. Podés entrar tranquilo!”);
 }
 \`\`\``,
   },
@@ -666,7 +670,7 @@ En programación se acostumbra a llamar i (de iterador) a la variable que recorr
     text: `La palabra clave que se usa es \`\`\`for\`\`\`. el paso 1), 2) y 4) se ponen entre paréntesis después del for.
 \`\`\`
 for (let i = 1; i < 100; i = i + 1) {
-	sumaTotal = sumaTotal + i;
+  sumaTotal = sumaTotal + i;
 }
 \`\`\``,
   },
@@ -676,7 +680,7 @@ for (let i = 1; i < 100; i = i + 1) {
     text: `Cuando la condición (\`\`\`i < 100\`\`\`) es verdadera, se ejecuta el código entre paréntesis. En caso de que no, se termina el for.
 \`\`\`
 for (let i = 1; i < 100; i = i + 1) {
-	sumaTotal = sumaTotal + i;
+  sumaTotal = sumaTotal + i;
 }
 \`\`\``,
   },
@@ -687,7 +691,7 @@ for (let i = 1; i < 100; i = i + 1) {
       {
         content: `\`\`\`
 for (i = 1000; i > 0; i = i - 100) {
-	console.log( i );
+  console.log( i );
 }
 \`\`\``,
         message: 'Mal. Al declarar la variable i falta usar let.',
@@ -695,7 +699,7 @@ for (i = 1000; i > 0; i = i - 100) {
       {
         content: `\`\`\`
 for (let i = 1000; i > 0; i = i - 100) {
-	console.log( i );
+  console.log( i );
 }
 \`\`\``,
         correct: true,
@@ -703,7 +707,7 @@ for (let i = 1000; i > 0; i = i - 100) {
       {
         content: `\`\`\`
 for (let i = 1000; i > 0; i = i + 100) {
-	console.log( i );
+  console.log( i );
 }
 \`\`\``,
         message: 'Mal. Si a i se le suma 100 en cada paso, el for nunca va a terminar.',

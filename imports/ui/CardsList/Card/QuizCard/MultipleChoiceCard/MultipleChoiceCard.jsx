@@ -1,6 +1,8 @@
 import React from 'react';
 import ReactMarkdown from 'react-markdown';
 
+import CodeRenderer from '../../../../../utils/client/CodeRenderer';
+
 class MultipleChoiceCard extends React.Component {
   constructor(props) {
     super(props);
@@ -65,6 +67,10 @@ class MultipleChoiceCard extends React.Component {
                   <ReactMarkdown
                     source={option.content}
                     className="multiple-choice-card-content"
+                    renderers={{
+                      ...ReactMarkdown.renderers,
+                      CodeBlock: CodeRenderer, // used for code-highlighting
+                    }}
                   />
                 </label>
               </div>
