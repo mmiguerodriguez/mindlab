@@ -1,7 +1,6 @@
 import React from 'react';
 import CodeMirror from 'react-codemirror';
-
-require('codemirror/mode/javascript/javascript');
+import 'codemirror/mode/javascript/javascript';
 
 import CharacterRow from './CharacterRow/CharacterRow';
 
@@ -121,13 +120,7 @@ class CodeCard extends React.Component {
             codeResult || 'Cuando ejecutes tu código, acá va a aparecer el resultado!'
           }
         </div>
-        <CharacterRow
-          editor={
-            this.editor ?
-              this.editor :
-              null
-          }
-        />
+        <CharacterRow editor={this.editor || null} />
       </div>
     );
   }
