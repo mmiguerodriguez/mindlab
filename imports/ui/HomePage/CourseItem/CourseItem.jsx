@@ -10,12 +10,12 @@ class CourseItem extends React.Component {
 
   showEndAnimation() {
     // TODO: Change to real id
-    const courseId = `#course-${this.props.name.substr(0, 2)}`;
+    const $courseId = $(`#course-${this.props.name.substr(0, 2)}`);
     // The course item selected will fade out, the previous ones will fade out
     // up and the next ones will fade out down
-    $(courseId).prevAll().addClass('fast-animated animated fadeOutUp');
-    $(courseId).nextAll().addClass('fast-animated animated fadeOutDown');
-    $(courseId).addClass('fast-animated animated zoomOut');
+    $courseId.prevAll().addClass('fast-animated animated fadeOutUp');
+    $courseId.nextAll().addClass('fast-animated animated fadeOutDown');
+    $courseId.addClass('fast-animated animated zoomOut');
     // When the animation finishes, we redirect to the course url
     $('#home-page-courses-list').one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend', () => {
       browserHistory.push(this.props.courseUrl);
