@@ -52,7 +52,7 @@ class LessonPage extends React.Component {
         break;
     }
     return (
-      <div className="animated fadeInUp">
+      <div>
         <CardsList
           cards={cardsContent}
           lessonUrl={lessonUrl}

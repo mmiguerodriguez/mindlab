@@ -15,13 +15,15 @@
     overflow: hidden;
     text-overflow: ellipsis;
   }
+  animation-duration: 0.55s;
 }
 
-.lesson-item:not(:last-child) hr{
+.lesson-item:not(:last-child) hr {
   width: 100%;
   height: 0;
   margin: 0 10px 0 80px;
   border-color: $white-2-color;
+  animation-duration: 0.2s;
 }
 
 .lesson-item-icon {

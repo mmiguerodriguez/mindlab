@@ -162,7 +162,7 @@ class Card extends React.Component {
           this.setState({ dimensions: { ...dimensions, measured: true } });
         }}
       >
-        <div className="_card" style={cardStyle} ref={(card) => { this.card = card; }}>
+        <div className="_card animated fadeInUp" style={cardStyle} ref={(card) => { this.card = card; }}>
           {cardContent}
         </div>
       </Measure>

@@ -26,6 +26,8 @@
   margin-left: auto;
   margin-top: 10px;
   margin-right: 15px;
+  // Flip horizontally the feedback icon
+  transform: scaleX(-1);
 }
 
 #navbar-arrow {
