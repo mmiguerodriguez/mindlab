@@ -1,10 +1,9 @@
 import React from 'react';
-import brace from 'brace'; // for react-ace
-import AceEditor from 'react-ace';
-import 'brace/mode/javascript';
-import 'brace/theme/github';
+import CodeMirror from 'react-codemirror';
 
-import CharacterRow from './CharacterRow/CharacterRow';
+require('codemirror/mode/javascript/javascript');
+
+//import CharacterRow from './CharacterRow/CharacterRow';
 
 class CodeCard extends React.Component {
   constructor(props) {
@@ -92,7 +91,7 @@ class CodeCard extends React.Component {
       }
     }
 
-    const editor = (
+    /*const editor = (
       <AceEditor
         mode="javascript"
         theme="github"
@@ -110,6 +109,14 @@ class CodeCard extends React.Component {
           }
         }}
       />
+    );*/
+    const editorOptions = {
+      mode: 'javascript',
+      lineNumbers: true,
+      tabSize: 2,
+    };
+    const editor = (
+      <CodeMirror className="code-editor" onChange={this.onChange} options={editorOptions} />
     );
 
     return (
@@ -120,7 +127,7 @@ class CodeCard extends React.Component {
             codeResult || 'Cuando ejecutes tu código, acá va a aparecer el resultado!'
           }
         </div>
-        <CharacterRow editor={this.editor} />
+        {/*<CharacterRow editor={this.editor} />*/}
       </div>
     );
   }

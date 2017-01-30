@@ -7,8 +7,10 @@
 }
 .code-editor {
   flex: 1;
-  height: initial !important;
   width: 100% !important;
+  .CodeMirror {
+    height: initial !important;
+  }
 }
 .code-card-result {
   background-color: $white-1-color;
