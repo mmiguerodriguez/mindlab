@@ -28,7 +28,7 @@ class CoursePage extends React.Component { // TODO: fix $.material.init()
       />
     );
     return (
-      <div id="course-page" className="animated fadeInUp">
+      <div id="course-page" className="animated zoomIn">
         <div id="course-page-lessons-list">
           {lessonsArray}
         </div>
