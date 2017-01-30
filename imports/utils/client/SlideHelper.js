@@ -216,11 +216,23 @@ class SlideHelper {
      * Determinar si se deberia pasar a la siguiente tarjeta o volver
      * CUIDADO: Matematica
      * */
-    const timeToStop = -this.velocityX / this.frictionAcceleration;
-    const finalPositionX = (this.stateX * this.size) +
-      (this.velocityX * timeToStop) +
-        ((this.frictionAcceleration * timeToStop * timeToStop) / 2);
-    if (Math.abs(finalPositionX) > 500) {
+    const timeToStop = Math.abs(this.velocityX / this.frictionAcceleration);
+
+    // if the velocity is negative, the frictionAcceleration should
+    //  be positive (friction is against movement)
+    let finalPositionX = 0;
+    if (this.velocityX > 0) {
+      finalPositionX = (this.stateX * this.size) +
+        (this.velocityX * timeToStop) +
+          ((this.frictionAcceleration * timeToStop * timeToStop) / 2);
+    } else {
+      finalPositionX = (this.stateX * this.size) +
+        (this.velocityX * timeToStop) +
+          ((-this.frictionAcceleration * timeToStop * timeToStop) / 2);
+    }
+
+    if ((finalPositionX < -this.size && this.allowLeft) ||
+        (finalPositionX > this.size && this.allowRight)) {
       // The state would reach the limit, therefore it should continue to the exit
       // (shouldExit = true)
       this.shouldReturn = false;
