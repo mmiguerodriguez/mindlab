@@ -1,8 +1,6 @@
 import React from 'react';
-import brace from 'brace'; // for react-ace
-import AceEditor from 'react-ace';
-import 'brace/mode/javascript';
-import 'brace/theme/github';
+import CodeMirror from 'react-codemirror';
+import 'codemirror/mode/javascript/javascript';
 
 import CharacterRow from './CharacterRow/CharacterRow';
 
@@ -92,16 +90,19 @@ class CodeCard extends React.Component {
       }
     }
 
+    const editorOptions = {
+      mode: 'javascript',
+      inputStyle: 'textarea', // turns off auto capitalization
+      lineNumbers: true,
+      tabSize: 2,
+    };
     const editor = (
-      <AceEditor
-        mode="javascript"
-        theme="github"
-        name="editor"
-        value={this.state.code}
-        onChange={this.onChange}
+      <CodeMirror
         className="code-editor"
-        editorProps={{ $blockScrolling: true }}
+        onChange={this.onChange}
+        options={editorOptions}
         ref={(editorRef) => {
+          // prevent multiple initializations
           if (!this.state.editorInitialized) {
             this.editor = editorRef;
             this.setState({
@@ -120,7 +121,7 @@ class CodeCard extends React.Component {
             codeResult || 'Cuando ejecutes tu código, acá va a aparecer el resultado!'
           }
         </div>
-        <CharacterRow editor={this.editor} />
+        <CharacterRow editor={this.editor || null} />
       </div>
     );
   }
