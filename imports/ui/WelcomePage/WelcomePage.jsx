@@ -159,5 +159,3 @@ class WelcomePage extends React.Component {
 }
 
 export default WelcomePage;
-
-/* global $ */

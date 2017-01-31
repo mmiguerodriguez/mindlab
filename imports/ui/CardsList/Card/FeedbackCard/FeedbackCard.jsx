@@ -94,5 +94,3 @@ const addFeedback = gql`
 const FeedbackCardWithMutation = graphql(addFeedback)(FeedbackCard);
 
 export default FeedbackCard = FeedbackCardWithMutation;
-
-/* global $ */

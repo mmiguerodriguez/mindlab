@@ -93,5 +93,3 @@ OrderCard.defaultProps = {
 };
 
 export default OrderCard;
-
-/* global $ */
