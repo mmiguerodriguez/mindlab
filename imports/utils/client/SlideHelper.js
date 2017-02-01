@@ -191,8 +191,8 @@ class SlideHelper {
     this.pressed = false;
 
     /**
-     * Determinar si se deberia pasar a la siguiente tarjeta o volver
-     * CUIDADO: Matematica
+     * Determine if should exit or return
+     * BEWARE: Maths ahead
      * */
     const timeToStop = Math.abs(this.velocityX / this.frictionAcceleration);
 

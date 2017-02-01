@@ -39,6 +39,7 @@ class WelcomePage extends React.Component {
       const disableLeft = this.state.currentPosition === 1;
       const disableRight = this.state.currentPosition === 0;
       const $welcomePageItems = $(this.welcomePageItems);
+
       const stateUpdateHandler = (stateX) => {
         if (this.state.displacement.x !== stateX * this.state.dimensions.width) {
           this.setState({
@@ -48,6 +49,7 @@ class WelcomePage extends React.Component {
           });
         }
       };
+
       const rightHandler = () => {
         this.setState({
           currentPosition: this.state.currentPosition - 1,
@@ -56,6 +58,7 @@ class WelcomePage extends React.Component {
           },
         });
       };
+
       const leftHandler = () => {
         this.setState({
           currentPosition: this.state.currentPosition + 1,
@@ -64,9 +67,11 @@ class WelcomePage extends React.Component {
           },
         });
       };
+
       const finishHandler = () => {
         this.slider = null;
       };
+
       const slideHelperProps = {
         $element: $welcomePageItems,
         size: this.state.dimensions.width,
@@ -77,6 +82,7 @@ class WelcomePage extends React.Component {
         disableLeft,
         disableRight,
       };
+
       this.slider = new SlideHelper(slideHelperProps);
     } else {
       this.slider.setSize(this.state.dimensions.width);
