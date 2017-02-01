@@ -298,10 +298,10 @@ class SlideHelper {
     let y;
     let ret = null;
     // If not mobile the position is stored in screenX and screenY
-    if (data.screenX) {
+    if (Number.isFinite(data.screenX)) {
       x = data.screenX;
       y = data.screenY;
-    } else if (data.touches && data.touches.item(0).screenX) {
+    } else if (data.touches && Number.isFinite(data.touches.item(0).screenX)) {
       // If mobile the position of the touch is stored in a list of touches (may be many fingers)
       x = data.touches.item(0).screenX;
       y = data.touches.item(0).screenY;
