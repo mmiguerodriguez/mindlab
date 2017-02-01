@@ -75,6 +75,8 @@ class WelcomePage extends React.Component {
       const slideHelperProps = {
         $element: $welcomePageItems,
         size: this.state.dimensions.width,
+        frictionAcceleration: -.1,
+        returnVelocity: Math.ceil(this.state.dimensions.width/30),
         rightHandler,
         leftHandler,
         finishHandler,
@@ -86,6 +88,7 @@ class WelcomePage extends React.Component {
       this.slider = new SlideHelper(slideHelperProps);
     } else {
       this.slider.setSize(this.state.dimensions.width);
+      this.slider.setReturnVelocity(Math.ceil(this.state.dimensions.width/30));
     }
   }
 

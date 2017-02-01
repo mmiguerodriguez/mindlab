@@ -137,8 +137,8 @@ class SlideHelper {
     const { x, y } = SlideHelper.getPointerEventPosition(data);
 
     // Velocity = distance/time
-    this.velocityX = (x - this.pointerX) /
-     ((performance.now() - this.lastPointerPositionTimestamp) / 100);
+    this.velocityX = ((x - this.pointerX) /
+     ((performance.now() - this.lastPointerPositionTimestamp) / 1000)) / 50 ;
     // Save pointer position
     this.pointerX = x;
     this.pointerY = y;
