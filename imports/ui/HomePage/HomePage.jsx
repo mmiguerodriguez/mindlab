@@ -22,18 +22,17 @@ class HomePage extends React.Component {
         description={description}
         courseUrl={courseUrl}
         key={`course-item-${index}`}
-      />
+      />,
     );
     return (
       <div>
-        <div id="homepage">
-          <div id="homepage-courses-list">
+        <div id="home-page">
+          <div id="home-page-courses-list">
             {
               coursesArray
             }
           </div>
         </div>
-        <div className="finish-element" id="home-page-finish-element"></div>
       </div>
     );
   }

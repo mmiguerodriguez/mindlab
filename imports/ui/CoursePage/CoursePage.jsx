@@ -25,12 +25,11 @@ class CoursePage extends React.Component { // TODO: fix $.material.init()
         key={`lesson-item-${index}`}
         name={name}
         icon={icon}
-        index={index}
       />
     );
     return (
-      <div id="coursepage" className="animated fadeInUp">
-        <div id="coursepage-lessons-list">
+      <div id="course-page" className="animated zoomIn">
+        <div id="course-page-lessons-list">
           {lessonsArray}
         </div>
       </div>

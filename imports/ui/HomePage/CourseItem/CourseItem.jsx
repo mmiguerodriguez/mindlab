@@ -5,50 +5,29 @@ class CourseItem extends React.Component {
   constructor(props) {
     super(props);
 
-    this.state = {
-      finished: false,
-    };
-
     this.showEndAnimation = this.showEndAnimation.bind(this);
   }
 
-  showEndAnimation(elementId) {
-    this.setState({
-      finished: true,
-    }, () => {
-      const button = document.getElementById(`btn-${this.props.courseUrl}`);
-      const element = document.getElementById(elementId);
-
-      const diagonalWindowSize = Math.sqrt(
-        Math.pow(window.innerWidth, 2) + Math.pow(window.innerHeight, 2),
-      );
-      // We disable animatios temporarily
-      element.style.transitionProperty = 'none';
-      // And prepare the circle
-      element.style.top = `${button.offsetTop + (button.offsetHeight / 2)}px`;
-      element.style.left = `${button.offsetLeft + (button.offsetWidth / 2)}px`;
-      element.style.width = '0px';
-      element.style.height = '0px';
-      // We draw the circle with animations inside a setTimeout to
-      // give time for the previous modifications to finish
-
-      setTimeout(() => {
-        element.style.transition = 'width 75s linear, height 75s linear, top 75s linear, left 75s linear';
-        element.style.top = `-${diagonalWindowSize / 2}px`;
-        element.style.left = `-${diagonalWindowSize / 2}px`;
-        element.style.width = `${diagonalWindowSize * 2}px`;
-        element.style.height = `${diagonalWindowSize * 2}px`;
-        // Finally, when the animation finishes, we redirect to homescreen
-        setTimeout(() => {
-          browserHistory.push(this.props.courseUrl);
-        }, 75000);
-      });
+  showEndAnimation() {
+    // TODO: Change to real id
+    const $courseId = $(`#course-${this.props.name.substr(0, 2)}`);
+    // The course item selected will fade out, the previous ones will fade out
+    // up and the next ones will fade out down
+    $courseId.prevAll().addClass('fast-animated animated fadeOutUp');
+    $courseId.nextAll().addClass('fast-animated animated fadeOutDown');
+    $courseId.addClass('fast-animated animated zoomOut');
+    // When the animation finishes, we redirect to the course url
+    $('#home-page-courses-list').one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend', () => {
+      browserHistory.push(this.props.courseUrl);
     });
   }
 
   render() {
+    // TODO: Change to real id
+    const courseId = `course-${this.props.name.substr(0, 2)}`;
+
     return (
-      <div className="course-item animated fadeInUp">
+      <div className="course-item animated fadeInUp" id={courseId}>
         <div className="course-item-img" />
         <div className="course-item-info">
           <p className="course-item-name">
@@ -60,10 +39,7 @@ class CourseItem extends React.Component {
         </div>
         <button
           className="btn btn-success btn-fab course-item-enter-button"
-          id={`btn-${this.props.courseUrl}`}
-          onClick={() => {
-            this.showEndAnimation('home-page-finish-element');
-          }}
+          onClick={this.showEndAnimation}
         >
           <i className="material-icons">keyboard_arrow_right</i>
         </button>

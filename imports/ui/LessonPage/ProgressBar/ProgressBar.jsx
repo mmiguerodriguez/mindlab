@@ -1,24 +1,25 @@
 import React from 'react';
-import { Link } from 'react-router'
 
-class ProgressBar extends React.Component {
-  render() {
-    const progressStyle = {
-      width: `${this.props.progress}%`,
-      // This determines the width of the progressBar that will be changing
-    };
-    return (
-      <div className="lesson-data">
-        <div className="progress" id="progress">
-          <div className="progress-bar progress-bar-info" style={progressStyle}></div>
-        </div>
+const ProgressBar = ({ progress }) => {
+  const progressStyle = {
+    width: `${progress}%`,
+    // This determines the width of the progressBar that will be changing
+  };
+
+  return (
+    <div id="progress-bar-container" className="animated fadeInUp">
+      <div className="progress" id="progress">
+        <div
+          className="progress-bar progress-bar-info"
+          style={progressStyle}
+        />
       </div>
-    );
-  }
-}
+    </div>
+  );
+};
 
 ProgressBar.propTypes = {
-  progress: React.PropTypes.number,
+  progress: React.PropTypes.number.isRequired,
 };
 
 export default ProgressBar;

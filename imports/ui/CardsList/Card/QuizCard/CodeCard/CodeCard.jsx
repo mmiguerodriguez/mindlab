@@ -1,8 +1,6 @@
 import React from 'react';
-import brace from 'brace'; // for react-ace
-import AceEditor from 'react-ace';
-import 'brace/mode/javascript';
-import 'brace/theme/github';
+import CodeMirror from 'react-codemirror';
+import 'codemirror/mode/javascript/javascript';
 
 import CharacterRow from './CharacterRow/CharacterRow';
 
@@ -31,7 +29,8 @@ class CodeCard extends React.Component {
   }
 
   /**
-   * checks if the code the user entered works, and messages him accordingly
+   * shows error or success message, and returns whether the answer is correct
+   * @returns {Boolean} answerIsCorrect
    */
   checkAnswer() {
     let result = null;
@@ -70,13 +69,14 @@ class CodeCard extends React.Component {
     if (resultInProps && resultInProps.correct) {
       const content = resultInProps.message || 'Muy bien! Anduvo!';
       $.snackbar({ content });
-    } else {
-      // answer is Incorrecto
-      const defaultAnswer = 'El código no devolvió lo que se esperaba... Probá de nuevo';
-      const content = resultInProps ? resultInProps.message || defaultAnswer :
-                                      defaultAnswer;
-      $.snackbar({ content });
+      return true;
     }
+    // answer is incorrect
+    const defaultAnswer = 'El código no devolvió lo que se esperaba... Probá de nuevo';
+    const content = resultInProps ? resultInProps.message || defaultAnswer :
+                                    defaultAnswer;
+    $.snackbar({ content });
+    return false;
   }
 
   render() {
@@ -90,16 +90,19 @@ class CodeCard extends React.Component {
       }
     }
 
+    const editorOptions = {
+      mode: 'javascript',
+      inputStyle: 'textarea', // turns off auto capitalization
+      lineNumbers: true,
+      tabSize: 2,
+    };
     const editor = (
-      <AceEditor
-        mode="javascript"
-        theme="github"
-        name="editor"
-        value={this.state.code}
-        onChange={this.onChange}
+      <CodeMirror
         className="code-editor"
-        editorProps={{ $blockScrolling: true }}
+        onChange={this.onChange}
+        options={editorOptions}
         ref={(editorRef) => {
+          // prevent multiple initializations
           if (!this.state.editorInitialized) {
             this.editor = editorRef;
             this.setState({
@@ -118,7 +121,7 @@ class CodeCard extends React.Component {
             codeResult || 'Cuando ejecutes tu código, acá va a aparecer el resultado!'
           }
         </div>
-        <CharacterRow editor={this.editor} />
+        <CharacterRow editor={this.editor || null} />
       </div>
     );
   }

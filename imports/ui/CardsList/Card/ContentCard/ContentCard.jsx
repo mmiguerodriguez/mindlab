@@ -1,6 +1,8 @@
 import React from 'react';
 import ReactMarkdown from 'react-markdown';
 
+import CodeRenderer from '../../../../utils/client/CodeRenderer';
+
 const ContentCard = ({
   imageUrl,
   title,
@@ -20,7 +22,14 @@ const ContentCard = ({
       </h2>
     }
     { text &&
-      <ReactMarkdown source={text} className="content-card-text" />
+      <ReactMarkdown
+        source={text}
+        className="content-card-text"
+        renderers={{
+          ...ReactMarkdown.renderers,
+          CodeBlock: CodeRenderer, // used for code-highlighting
+        }}
+      />
     }
   </div>;
 

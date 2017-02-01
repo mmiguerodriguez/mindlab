@@ -1,15 +1,10 @@
-#coursepage {
+#course-page {
   display: flex;
   flex-direction: column;
+  animation-duration: 0.8s;
 }
 
-#coursepage-lessons-list {
+#course-page-lessons-list {
   display: flex;
   flex-wrap: wrap;
-}
-
-.course-title {
-  margin: 10px 10px 0;
-  font-size: 20px;
-  font-weight: bold;
 }

@@ -43,6 +43,10 @@ class OrderCard extends React.Component {
     });
   }
 
+  /**
+   * shows error or success message, and returns whether the answer is correct
+   * @returns {Boolean} answerIsCorrect
+   */
   checkAnswer() {
     const options = this.state.options;
     let wrongOrder = false;
@@ -53,13 +57,12 @@ class OrderCard extends React.Component {
       }
     });
 
-    if (wrongOrder) {
-      $.snackbar({ content: this.props.incorrectMessage });
-    } else {
-      $.snackbar({ content: this.props.correctMessage });
-    }
-
-    // TODO: continue to the next card
+    const snackbarContent = (wrongOrder ? this.props.incorrectMessage :
+                                          this.props.correctMessage);
+    $.snackbar({
+      content: snackbarContent,
+    });
+    return !wrongOrder;
   }
 
   render() {

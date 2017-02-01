@@ -1,6 +1,8 @@
 import React from 'react';
 import ReactMarkdown from 'react-markdown';
 
+import CodeRenderer from '../../../../../utils/client/CodeRenderer';
+
 class MultipleChoiceCard extends React.Component {
   constructor(props) {
     super(props);
@@ -22,19 +24,24 @@ class MultipleChoiceCard extends React.Component {
     });
   }
 
+  /**
+   * shows error or success message, and returns whether the answer is correct
+   * @returns {Boolean} answerIsCorrect
+   */
   checkAnswer() {
     const selectedOption = this.state.selectedOption;
     // selectedOption can be 0
     if (selectedOption === null) {
       $.snackbar({ content: 'No seleccionaste ninguna respuesta' });
+      return false;
     } else if (!this.props.options[selectedOption].correct) {
       const content = this.props.options[selectedOption].message || 'Incorrecto';
       $.snackbar({ content });
+      return false;
     } else {
       const content = this.props.options[selectedOption].message || 'Muy bien!';
       $.snackbar({ content });
-
-      // TODO: continue to the next card
+      return true;
     }
   }
 
@@ -60,6 +67,10 @@ class MultipleChoiceCard extends React.Component {
                   <ReactMarkdown
                     source={option.content}
                     className="multiple-choice-card-content"
+                    renderers={{
+                      ...ReactMarkdown.renderers,
+                      CodeBlock: CodeRenderer, // used for code-highlighting
+                    }}
                   />
                 </label>
               </div>
