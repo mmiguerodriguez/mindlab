@@ -27,8 +27,16 @@
 }
 
 .card-img {
-  height: 100px;
-  width: 100px;
+  height: 64px;
+  width: 64px;
+  filter: invert(1);
+}
+
+.card-img-container {
+  padding: 18px;
+  border-radius: 50%;
+  background-color: rgba(26, 188, 156, 0.7);
+  margin-bottom: 18px;
 }
 
 .card-btn-primary {
