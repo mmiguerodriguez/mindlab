@@ -40,7 +40,10 @@ class WelcomePage extends React.Component {
       const disableRight = this.state.currentPosition === 0;
       const $welcomePageItems = $(this.welcomePageItems);
 
-      const stateUpdateHandler = (stateX) => {
+      const stateUpdateHandler = (stateXRaw) => {
+        // Avoid bounce when stateX is above limits; makes an upper bound of 1
+        const stateX = Math.sign(stateXRaw) * Math.min(Math.abs(stateXRaw), 1);
+
         if (this.state.displacement.x !== stateX * this.state.dimensions.width) {
           this.setState({
             displacement: {
@@ -91,7 +94,7 @@ class WelcomePage extends React.Component {
       this.slider = new SlideHelper(slideHelperProps);
     } else {
       this.slider.setSize(this.state.dimensions.width);
-      this.slider.setreturnSpeed(Math.ceil(this.state.dimensions.width / 30));
+      this.slider.setReturnSpeed(Math.ceil(this.state.dimensions.width / 30));
     }
   }
 

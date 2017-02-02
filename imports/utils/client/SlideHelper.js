@@ -103,11 +103,11 @@ class SlideHelper {
 
   /**
    * Sets the velocity with which a released element will return to rest state,
-   *  if it should return element would exit after a swipe. The default returnSpeed value is 80
+   *  if it should return. The default returnSpeed value is 80
    * @param {float} returnSpeed the new returnSpeed value
    * @return {undefined}
    */
-  setreturnSpeed(returnSpeed) {
+  setReturnSpeed(returnSpeed) {
     this.returnSpeed = Math.abs(returnSpeed);
   }
 
@@ -130,11 +130,11 @@ class SlideHelper {
   }
 
   /**
-   * Sets the exitThresholdSpeed, an used when exiting because of the exit threshold
+   * Sets the exitThresholdSpeed, used when exiting because of the exit threshold
    * @param {float} exitThresholdSpeed the new exitThresholdSpeed value
    * @return {undefined}
    */
-  setexitThresholdSpeed(exitThresholdSpeed) {
+  setExitThresholdSpeed(exitThresholdSpeed) {
     this.exitThresholdSpeed = exitThresholdSpeed;
   }
 
@@ -212,12 +212,11 @@ class SlideHelper {
    *  corresponding variables. Does not accept the jquery event object because not used.
    *  @return {undefined}
    */
-  release(data) {
+  release() {
     // Check for a buggy release (a release when the element was not actually being touched)
     if (!this.pressed) {
       return;
     }
-    console.log(SlideHelper.getPointerEventPosition(data));
 
     this.pressed = false;
 
