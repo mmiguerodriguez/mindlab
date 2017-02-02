@@ -228,7 +228,7 @@ class SlideHelper {
 
     // if the velocity is negative, the frictionAcceleration should
     //  be positive (friction is against movement)
-    let finalPositionX = 0;
+    let finalPositionX;
     if (this.velocityX > 0) {
       finalPositionX = (this.stateX * this.size) +
         (this.velocityX * timeToStop) +
@@ -365,7 +365,7 @@ class SlideHelper {
   static getPointerEventPosition(data) {
     let x;
     let y;
-    let ret = null;
+    let ret;
     // If not mobile the position is stored in screenX and screenY
     if (Number.isFinite(data.screenX)) {
       x = data.screenX;

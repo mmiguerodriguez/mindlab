@@ -40,7 +40,7 @@ class Card extends React.Component {
   }
 
   getCardContent() {
-    let cardType = null;
+    let cardType;
     switch (this.props.contentProps.type) {
       case 'content':
         cardType = ContentCard;

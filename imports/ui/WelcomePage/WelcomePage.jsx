@@ -95,6 +95,7 @@ class WelcomePage extends React.Component {
     } else {
       this.slider.setSize(this.state.dimensions.width);
       this.slider.setReturnSpeed(Math.ceil(this.state.dimensions.width / 30));
+      this.slider.setExitThresholdSpeed(Math.ceil(this.state.dimensions.width / 30));
     }
   }
 
