@@ -75,7 +75,7 @@ class WelcomePage extends React.Component {
       const slideHelperProps = {
         $element: $welcomePageItems,
         size: this.state.dimensions.width,
-        exitThreshold: this.state.dimensions.width * 0.65,
+        exitThreshold: this.state.dimensions.width * 0.55,
         exitThresholdSpeed: Math.ceil(this.state.dimensions.width / 30),
         velocityModifier: 50,
         frictionAcceleration: -0.001,
