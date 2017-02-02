@@ -212,11 +212,12 @@ class SlideHelper {
    *  corresponding variables. Does not accept the jquery event object because not used.
    *  @return {undefined}
    */
-  release() {
+  release(data) {
     // Check for a buggy release (a release when the element was not actually being touched)
     if (!this.pressed) {
       return;
     }
+    console.log(SlideHelper.getPointerEventPosition(data));
 
     this.pressed = false;
 
@@ -249,7 +250,11 @@ class SlideHelper {
 
       this.shouldReturn = false;
       this.shouldExit = true;
-      this.exitVelocity = this.velocityX;
+      // Sets the exitVelocity to the maximum between exitThresholdSpeed and velocityX,
+      //  to avoid super slow movement
+      this.exitVelocity = Number.isFinite(this.exitThreshold) ?
+       Math.sign(this.velocityX) * Math.max(Math.abs(this.velocityX), this.exitThresholdSpeed) :
+        this.velocityX;
     } else if (Math.abs(this.stateX) * this.size > this.exitThreshold) {
       // The exit threshold was reached, therefore state should exit
       // (shouldExit = true)
@@ -366,7 +371,8 @@ class SlideHelper {
     if (Number.isFinite(data.screenX)) {
       x = data.screenX;
       y = data.screenY;
-    } else if (data.touches && Number.isFinite(data.touches.item(0).screenX)) {
+    } else if (data.touches && data.touches.length > 0 &&
+       Number.isFinite(data.touches.item(0).screenX)) {
       // If mobile the position of the touch is stored in a list of touches (may be many fingers)
       x = data.touches.item(0).screenX;
       y = data.touches.item(0).screenY;
