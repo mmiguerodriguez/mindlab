@@ -76,7 +76,7 @@ class WelcomePage extends React.Component {
         $element: $welcomePageItems,
         size: this.state.dimensions.width,
         exitThreshold: this.state.dimensions.width * 0.65,
-        exitThresholdSpeed: this.state.dimensions.width / 40,
+        exitThresholdSpeed: Math.ceil(this.state.dimensions.width / 30),
         velocityModifier: 50,
         frictionAcceleration: -0.001,
         returnSpeed: Math.ceil(this.state.dimensions.width / 30),
