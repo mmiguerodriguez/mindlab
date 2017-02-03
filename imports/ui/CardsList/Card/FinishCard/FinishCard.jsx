@@ -1,5 +1,4 @@
 import React, { PropTypes } from 'react';
-import { Link } from 'react-router';
 import { graphql } from 'react-apollo';
 import gql from 'graphql-tag';
 
@@ -30,10 +29,12 @@ class FinishCard extends React.Component {
             {this.props.text}
           </h3>
         }
-        <Link className="btn btn-raised card-btn-primary">
-          {/* TODO: pass to the next card */}
+        <button
+          className="btn btn-raised card-btn-primary"
+          onClick={this.props.passCard}
+        >
           Continuar
-        </Link>
+        </button>
       </div>
     );
   }
@@ -45,6 +46,7 @@ FinishCard.propTypes = {
   title: React.PropTypes.string,
   text: React.PropTypes.string,
   mutate: PropTypes.func.isRequired,
+  passCard: PropTypes.func.isRequired,
 };
 
 FinishCard.defaultProps = {

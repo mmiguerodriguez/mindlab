@@ -17,6 +17,18 @@ const replaceNewLineInCards = (cards) => {
 
 const IntroduccionLessonRaw = [
   {
+    type: 'finish',
+    imageUrl: '/images/lessons/code-window.png',
+    title: 'Felicitaciones!',
+    text: 'Terminaste el curso',
+  },
+  {
+    type: 'feedback',
+    title: 'Empecemos!',
+    nextUrl: 'courses/Programación',
+  },
+  /*
+  {
     type: 'content',
     imageUrl: '/images/lessons/code-window.png',
     title: 'Empecemos!',
@@ -113,6 +125,7 @@ Las computadoras son torpes, lo único que saben hacer es seguir instrucciones.`
     imageUrl: '/images/lessons/write-code.png',
     text: 'Se le dice escribir código a usar cualquiera de estos lenguajes para comunicarse con la computadora.',
   },
+  */
 ];
 const IntroduccionLesson = replaceNewLineInCards(IntroduccionLessonRaw);
 
