@@ -6,7 +6,10 @@ import Notifications from '../../../../utils/client/notifications';
 
 class FinishCard extends React.Component {
   componentDidMount() {
-    Notifications.askForPermission(this.props.mutate);
+    // We wait one second to ask for permission
+    setTimeout(() => {
+      Notifications.askForPermission(this.props.mutate);
+    }, 1000);
   }
 
   render() {
