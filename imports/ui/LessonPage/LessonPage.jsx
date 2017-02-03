@@ -55,7 +55,7 @@ class LessonPage extends React.Component {
       <div>
         <CardsList
           cards={cardsContent}
-          lessonUrl={lessonUrl}
+          lessonName={this.props.params.lessonName}
           setCurrentCardGlobalIndex={this.setCurrentCardGlobalIndex}
           getCurrentCardGlobalIndex={this.getCurrentCardGlobalIndex}
         />

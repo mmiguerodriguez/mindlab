@@ -44,6 +44,9 @@ class CardsList extends React.Component {
       currentCardIndex: 0, // The index withing the stack of the currently visible card.
     };
 
+    // Second in which the card appeared; used to calculate time per card
+    this.initialCardTimer = Math.floor(Date.now() / 1000);
+
     this.cardPassed = this.cardPassed.bind(this);
     this.getCard = this.getCard.bind(this);
   }
@@ -99,7 +102,15 @@ class CardsList extends React.Component {
    * cardPassed: callback that triggers when a card is passed
    */
   cardPassed() {
-    this.props.setCurrentCardGlobalIndex(this.props.getCurrentCardGlobalIndex + 1);
+    const currentTime = Math.floor(Date.now() / 1000); // in seconds
+    const cardTime = currentTime - this.initialCardTimer;
+    this.initialCardTimer = currentTime;
+    mixpanel.track('Card passed', {
+      'Lesson name': this.props.lessonName,
+      'Card index': this.props.getCurrentCardGlobalIndex(),
+      'Card time': cardTime,
+    });
+    this.props.setCurrentCardGlobalIndex(this.props.getCurrentCardGlobalIndex() + 1);
     // If the current stack is out of cards, show the next stack
     if (
       this.state.currentCardIndex ===
@@ -131,7 +142,7 @@ class CardsList extends React.Component {
 
 CardsList.propTypes = {
   cards: React.PropTypes.arrayOf(React.PropTypes.object).isRequired,
-  lessonUrl: React.PropTypes.string.isRequired,
+  lessonName: React.PropTypes.string.isRequired,
   setCurrentCardGlobalIndex: React.PropTypes.func.isRequired,
   getCurrentCardGlobalIndex: React.PropTypes.func.isRequired,
 };
