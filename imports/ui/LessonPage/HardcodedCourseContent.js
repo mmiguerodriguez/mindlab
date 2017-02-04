@@ -17,15 +17,41 @@ const replaceNewLineInCards = (cards) => {
 
 const IntroduccionLessonRaw = [
   {
+    type: 'order',
+    question: 'Ordená las instrucciones como deberían ir para hacer un licuado',
+    options: [
+      {
+        content: 'Meter ingredientes en la licuadora',
+        correctPosition: 2,
+      },
+      {
+        content: 'Enchufar la licuadora',
+        correctPosition: 1,
+      },
+      {
+        content: 'Disfrutar el licuado',
+        correctPosition: 5,
+      },
+      {
+        content: 'Servir licuado en el vaso',
+        correctPosition: 4,
+      },
+      {
+        content: 'Licuar',
+        correctPosition: 3,
+      },
+    ],
+  },
+  {
     type: 'finish',
-    imageUrl: '/images/lessons/code-window.png',
+    imageUrl: '/images/lessons/tick.png',
     title: 'Felicitaciones!',
-    text: 'Terminaste el curso',
+    text: 'Terminaste la lección de introducción a la programación! En la próxima lección vamos a ver los primeros conceptos de cómo escribir código.',
   },
   {
     type: 'feedback',
-    title: 'Empecemos!',
-    nextUrl: 'courses/Programación',
+    title: 'Tenés alguna sugerencia del curso? Nos es de gran ayuda!',
+    nextUrl: '/course/Programación',
   },
   /*
   {
@@ -125,6 +151,17 @@ Las computadoras son torpes, lo único que saben hacer es seguir instrucciones.`
     imageUrl: '/images/lessons/write-code.png',
     text: 'Se le dice escribir código a usar cualquiera de estos lenguajes para comunicarse con la computadora.',
   },
+  {
+    type: 'finish',
+    imageUrl: '/images/lessons/tick.png',
+    title: 'Felicitaciones!',
+    text: 'Terminaste la lección de introducción a la programación! En la próxima lección vamos a ver los primeros conceptos de cómo escribir código.',
+  },
+  {
+    type: 'feedback',
+    title: 'Tenés alguna sugerencia del curso? Nos es de gran ayuda!',
+    nextUrl: '/course/Programación',
+  },
   */
 ];
 const IntroduccionLesson = replaceNewLineInCards(IntroduccionLessonRaw);
@@ -150,7 +187,7 @@ const PrimerosConceptosLessonRaw = [
   {
     type: 'content',
     imageUrl: '/images/lessons/video.png',
-    text: 'Cuándo vamos a necesitar una variable? Por ejemplo, cuando estamos viendo un video en YouTube, tenemos que guardar en qué minuto estamos. Esto lo guardaríamos en una variable numérica.',
+    text: 'Cuándo vamos a necesitar una variable? Por ejemplo, cuando estamos viendo un video en YouTube, tenemos que guardar en qué minuto estamos. Esto lo guardaríamos en una variable numérica.',
   },
   {
     type: 'content',
@@ -321,6 +358,17 @@ for desde 1 hasta 100 guardando el valor en pasoActual
         message: 'Mal. Carga deja de subir en 60 por el segundo if.',
       },
     ],
+  },
+  {
+    type: 'finish',
+    imageUrl: '/images/lessons/tick.png',
+    title: 'Felicitaciones!',
+    text: 'Terminaste la lección de primeros conceptos de la programación! En la próxima lección vas a aprender un lenguaje de programación, y vas a empezar a escribir código.',
+  },
+  {
+    type: 'feedback',
+    title: 'Tenés alguna sugerencia del curso? Nos es de gran ayuda!',
+    nextUrl: '/course/Programación',
   },
 ];
 const PrimerosConceptosLesson = replaceNewLineInCards(PrimerosConceptosLessonRaw);
@@ -727,6 +775,17 @@ for (let i = 1000; i > 0; i = i + 100) {
         message: 'Mal. En vez de devolver el número, devolviste un string.',
       },
     ],
+  },
+  {
+    type: 'finish',
+    imageUrl: '/images/lessons/tick.png',
+    title: 'Felicitaciones!',
+    text: 'Terminaste el curso de introducción a la programación! Esperamos que te haya gustado, próximamente se vienen más cursos sobre diferentes temas.',
+  },
+  {
+    type: 'feedback',
+    title: 'Qué te pareció el curso? Tu comentario nos es de gran ayuda!',
+    nextUrl: '/course/Programación',
   },
 ];
 const LenguajesLesson = replaceNewLineInCards(LenguajesLessonRaw);

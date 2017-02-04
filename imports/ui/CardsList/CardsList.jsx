@@ -75,9 +75,7 @@ class CardsList extends React.Component {
     const stacks = [[]];
     let currentStackIsQuizes = cards[0].type === 'order' ||
                                cards[0].type === 'multiple-choice' ||
-                               cards[0].type === 'code' ||
-                               cards[0].type === 'finish' ||
-                               cards[0].type === 'feedback';
+                               cards[0].type === 'code';
     cards.forEach((card, index) => { // TODO: remove index when we have a working db
       const currentCardIsQuiz = card.type === 'order' ||
                                 card.type === 'multiple-choice' ||
