@@ -1,7 +1,7 @@
 import React from 'react';
 import { graphql } from 'react-apollo';
 import gql from 'graphql-tag';
-import { browserHistory } from 'react-router';
+import { Link, browserHistory } from 'react-router';
 
 class FeedbackCard extends React.Component {
   constructor(props) {
@@ -25,27 +25,42 @@ class FeedbackCard extends React.Component {
   sendFeedback() {
     const { description, email } = this.state;
 
-    this.props.mutate({
-      variables: {
-        description,
-        email,
-      },
-    })
-    .then((/* { data } */) => {
-      // data inserted correctly
-      // data.addFeedback to get _id
-      $.snackbar({ content: '¡Muchas gracias! La sugerencia se envió correctamente' });
-      browserHistory.push(decodeURIComponent(this.props.nextUrl));
-    })
-    .catch((error) => {
-      console.error(error);
-    });
+    console.log(description);
+
+    if (!description) {
+      $.snackbar({ content: 'La descripción debe tener contenido.' });
+    } else {
+      this.props.mutate({
+        variables: {
+          description,
+          email,
+        },
+      })
+      .then((/* { data } */) => {
+        // data inserted correctly
+        // data.addFeedback to get _id
+        $.snackbar({ content: '¡Muchas gracias! La sugerencia se envió correctamente' });
+        browserHistory.push(decodeURIComponent(this.props.nextUrl));
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+    }
   }
 
   render() {
     return (
       <div className="card-body">
-        <h2>{this.props.title}</h2>
+        { this.props.title &&
+          <h2>
+            {this.props.title}
+          </h2>
+        }
+        { this.props.text &&
+          <h3 className="card-text">
+            {this.props.text}
+          </h3>
+        }
         <div className="form-group label-floating feedback-card-input is-empty">
           <label htmlFor="description" className="control-label">Descripción</label>
           <textarea
@@ -55,17 +70,20 @@ class FeedbackCard extends React.Component {
           />
         </div>
         <div className="form-group label-floating feedback-card-input is-empty">
-          <label htmlFor="email" className="control-label">Email</label>
+          <label htmlFor="email" className="control-label">Email (opcional)</label>
           <input
             className="form-control"
             id="email"
             onKeyDown={e => this.onKeyDown(e, 'email')}
           />
         </div>
-        <div>
+        <div className="feedback-card-actions">
           <button className="btn btn-raised card-btn-primary" onClick={this.sendFeedback}>
             Enviar
           </button>
+          <Link className="feedback-card-skip" to={decodeURIComponent(this.props.nextUrl)}>
+            Omitir
+          </Link>
         </div>
       </div>
     );
@@ -74,6 +92,7 @@ class FeedbackCard extends React.Component {
 
 FeedbackCard.propTypes = {
   title: React.PropTypes.string.isRequired,
+  text: React.PropTypes.string.isRequired,
   nextUrl: React.PropTypes.string,
   mutate: React.PropTypes.func.isRequired,
 };

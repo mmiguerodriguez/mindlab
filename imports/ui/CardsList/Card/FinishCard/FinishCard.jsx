@@ -7,13 +7,13 @@ import Notifications from '../../../../utils/client/notifications';
 class FinishCard extends React.Component {
   componentDidMount() {
     // We wait one second to ask for permission
-    mixpanel.track_links("#finish-card-continue-btn", "Finished lesson", {
-      'Lesson name': this.props.lessonName,
-      'Lesson time': Math.floor(Date.now() / 1000) - this.props.lessonTime,
-    });
     setTimeout(() => {
       Notifications.askForPermission(this.props.mutate);
     }, 1000);
+    mixpanel.track_links('#finish-card-continue-btn', 'Finished lesson', {
+      'Lesson name': this.props.lessonName,
+      'Lesson time': Math.floor(Date.now() / 1000) - this.props.lessonTime,
+    });
   }
 
   render() {

@@ -1,5 +1,3 @@
-// TODO: add images
-
 /**
  * replaceNewLineInCards: replaces \n for \n\n in text prop of every card
  * @param  {Array} cards
@@ -121,18 +119,8 @@ Las computadoras son torpes, lo único que saben hacer es seguir instrucciones.`
   },
   {
     type: 'feedback',
-    title: 'Tenés alguna sugerencia del curso? Nos es de gran ayuda!',
-    nextUrl: '/course/Programación',
-  },
-  {
-    type: 'finish',
-    imageUrl: '/images/lessons/tick.png',
-    title: 'Felicitaciones!',
-    text: 'Terminaste la lección de introducción a la programación! En la próxima lección vamos a ver los primeros conceptos de cómo escribir código.',
-  },
-  {
-    type: 'feedback',
-    title: 'Tenés alguna sugerencia del curso? Nos es de gran ayuda!',
+    title: 'Ayudanos!',
+    text: 'Necesitamos tu ayuda! Decinos todas las sugerencias o comentarios que tengas!',
     nextUrl: '/course/Programación',
   },
 ];
@@ -339,7 +327,8 @@ for desde 1 hasta 100 guardando el valor en pasoActual
   },
   {
     type: 'feedback',
-    title: 'Tenés alguna sugerencia del curso? Nos es de gran ayuda!',
+    title: 'Ayudanos!',
+    text: 'Necesitamos tu ayuda! Decinos todas las sugerencias o comentarios que tengas!',
     nextUrl: '/course/Programación',
   },
 ];
@@ -756,7 +745,8 @@ for (let i = 1000; i > 0; i = i + 100) {
   },
   {
     type: 'feedback',
-    title: 'Qué te pareció el curso? Tu comentario nos es de gran ayuda!',
+    title: 'Ayudanos!',
+    text: 'Qué te pareció el curso? Tu comentario nos es de gran ayuda!',
     nextUrl: '/course/Programación',
   },
 ];
