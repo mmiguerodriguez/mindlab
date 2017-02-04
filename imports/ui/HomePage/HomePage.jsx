@@ -8,7 +8,7 @@ class HomePage extends React.Component {
       {
         name: 'Programación',
         description: 'Vas a poder aprender a programar y a dominar cualquier lenguaje',
-        courseUrl: '/course/programacion',
+        courseUrl: '/course/Programación',
       },
       {
         name: 'Qué curso te gustaría que agreguemos?',

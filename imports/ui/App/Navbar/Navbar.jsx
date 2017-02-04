@@ -16,15 +16,19 @@ class Navbar extends React.Component {
     let title;
     if (this.props.currentUrl.includes('feedback')) {
       title = 'Sugerencia';
-    } else if (this.props.currentUrl.includes('course')) {
-      const urlSplited = this.props.currentUrl.split('/');
-      if (urlSplited.length === 3) {
-        title = `Curso de ${decodeURIComponent(urlSplited[2])}`;
-      } else if (urlSplited.length === 4) {
-        title = decodeURIComponent(urlSplited[3]);
-      }
     } else if (this.props.currentUrl === '/') {
       title = 'Lista de cursos';
+    } else if (this.props.currentUrl.includes('course')) {
+      const urlSplited = this.props.currentUrl.split('/');
+      if (urlSplited.length === 4) {
+        title = decodeURIComponent(urlSplited[3]);
+      } else if (urlSplited.length === 3) {
+        if (window.innerWidth < 350) {
+          title = decodeURIComponent(urlSplited[2]);
+        } else {
+          title = `Curso de ${decodeURIComponent(urlSplited[2])}`;
+        }
+      }
     }
 
     const feedbackStyle = this.props.currentUrl.includes('feedback')
