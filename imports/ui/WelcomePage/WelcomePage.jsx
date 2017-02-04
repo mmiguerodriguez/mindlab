@@ -182,6 +182,7 @@ class WelcomePage extends React.Component {
         <WelcomeMenu
           pagesCount={welcomeItemsArray.length}
           currentPosition={this.state.currentPosition}
+          next={this.slideLeft}
         />
       </div>
     );
