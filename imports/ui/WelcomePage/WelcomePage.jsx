@@ -24,6 +24,8 @@ class WelcomePage extends React.Component {
     };
 
     this.slider = null;
+
+    this.slideLeft = this.slideLeft.bind(this);
   }
 
   componentWillUnmount() {
@@ -96,6 +98,18 @@ class WelcomePage extends React.Component {
       this.slider.setSize(this.state.dimensions.width);
       this.slider.setReturnSpeed(Math.ceil(this.state.dimensions.width / 30));
       this.slider.setExitThresholdSpeed(Math.ceil(this.state.dimensions.width / 30));
+    }
+  }
+
+  /**
+   * Slides welcomePage to the left to show the next welcomeItem
+   * @return {undefined}
+   */
+  slideLeft() {
+    console.log('Slidden to the left');
+    if (this.slider) {
+      this.slider.disable();
+      this.slider = null;
     }
   }
 
