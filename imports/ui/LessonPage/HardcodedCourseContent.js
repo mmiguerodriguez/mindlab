@@ -17,44 +17,6 @@ const replaceNewLineInCards = (cards) => {
 
 const IntroduccionLessonRaw = [
   {
-    type: 'order',
-    question: 'Ordená las instrucciones como deberían ir para hacer un licuado',
-    options: [
-      {
-        content: 'Meter ingredientes en la licuadora',
-        correctPosition: 2,
-      },
-      {
-        content: 'Enchufar la licuadora',
-        correctPosition: 1,
-      },
-      {
-        content: 'Disfrutar el licuado',
-        correctPosition: 5,
-      },
-      {
-        content: 'Servir licuado en el vaso',
-        correctPosition: 4,
-      },
-      {
-        content: 'Licuar',
-        correctPosition: 3,
-      },
-    ],
-  },
-  {
-    type: 'finish',
-    imageUrl: '/images/lessons/tick.png',
-    title: 'Felicitaciones!',
-    text: 'Terminaste la lección de introducción a la programación! En la próxima lección vamos a ver los primeros conceptos de cómo escribir código.',
-  },
-  {
-    type: 'feedback',
-    title: 'Tenés alguna sugerencia del curso? Nos es de gran ayuda!',
-    nextUrl: '/course/Programación',
-  },
-  /*
-  {
     type: 'content',
     imageUrl: '/images/lessons/code-window.png',
     title: 'Empecemos!',
@@ -162,7 +124,17 @@ Las computadoras son torpes, lo único que saben hacer es seguir instrucciones.`
     title: 'Tenés alguna sugerencia del curso? Nos es de gran ayuda!',
     nextUrl: '/course/Programación',
   },
-  */
+  {
+    type: 'finish',
+    imageUrl: '/images/lessons/tick.png',
+    title: 'Felicitaciones!',
+    text: 'Terminaste la lección de introducción a la programación! En la próxima lección vamos a ver los primeros conceptos de cómo escribir código.',
+  },
+  {
+    type: 'feedback',
+    title: 'Tenés alguna sugerencia del curso? Nos es de gran ayuda!',
+    nextUrl: '/course/Programación',
+  },
 ];
 const IntroduccionLesson = replaceNewLineInCards(IntroduccionLessonRaw);
 

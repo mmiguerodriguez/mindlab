@@ -79,10 +79,12 @@ class CardsList extends React.Component {
     cards.forEach((card, index) => { // TODO: remove index when we have a working db
       const currentCardIsQuiz = card.type === 'order' ||
                                 card.type === 'multiple-choice' ||
-                                card.type === 'code' ||
-                                card.type === 'finish' ||
-                                card.type === 'feedback';
-      if (currentCardIsQuiz === currentStackIsQuizes && !card.forceNewStack) {
+                                card.type === 'code';
+      const forceNewStack = card.forceNewStack ||
+                            card.type === 'finish' ||
+                            card.type === 'feedback' ||
+                            currentCardIsQuiz !== currentStackIsQuizes;
+      if (!forceNewStack) {
         const currentStackCount = stacks[stacks.length - 1].length;
         // Current card should be in the same stack as the previous, so push it
         stacks[stacks.length - 1].push(
