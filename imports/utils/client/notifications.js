@@ -14,7 +14,8 @@ const Notifications = {
     const self = this;
 
     if ('serviceWorker' in window.navigator && 'PushManager' in window) {
-      window.navigator.serviceWorker.register('worker.js')
+      // Worker.js has an absolute path because the location of notifications.js can vary
+      window.navigator.serviceWorker.register('/worker.js')
       .then((worker) => {
         self.worker = worker;
         self.init();

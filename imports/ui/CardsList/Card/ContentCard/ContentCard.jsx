@@ -19,14 +19,14 @@ const ContentCard = ({
       </div>
     }
     { title &&
-      <h2 className="content-card-title">
+      <h2>
         {title}
       </h2>
     }
     { text &&
       <ReactMarkdown
         source={text}
-        className="content-card-text"
+        className="card-text"
         renderers={{
           ...ReactMarkdown.renderers,
           CodeBlock: CodeRenderer, // used for code-highlighting

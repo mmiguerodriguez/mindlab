@@ -1,3 +1,13 @@
 .feedback-card-input {
   width: calc(100% - 30px);
 }
+
+.feedback-card-actions {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+
+.feedback-card-skip {
+  color: $white-4-color;
+}
