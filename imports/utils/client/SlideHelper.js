@@ -159,12 +159,14 @@ class SlideHelper {
 
   /**
    * Called when the pointer moves, and updates the corresponding variables
-   * @param {object} data jquery event data object
+   * @param {object} event jquery event object
    * @return {undefined}
    */
-  pointerMoved(data) {
+  pointerMoved(event) {
+    // slide helper should not do anything else than intended
+    event.preventDefault();
     // Get the position of the pointer
-    const { x, y } = SlideHelper.getPointerEventPosition(data);
+    const { x, y } = SlideHelper.getPointerEventPosition(event);
 
     // Velocity = distance/time
     this.velocityX = ((x - this.pointerX) /
@@ -186,12 +188,14 @@ class SlideHelper {
   /**
    * Called when the pointer clicks or touches the screen, and updates the corresponding
    *  variables
-   * @param {object} data jquery event data object
+   * @param {object} event jquery event object
    * @return {undefined}
    */
-  press(data) {
+  press(event) {
+    // slide helper should not do anything else than intended
+    event.preventDefault();
     // Get the position of the pointer
-    const { x, y } = SlideHelper.getPointerEventPosition(data);
+    const { x, y } = SlideHelper.getPointerEventPosition(event);
 
     // Save pointer position
     this.pressX = x;
@@ -210,9 +214,12 @@ class SlideHelper {
   /**
    * Called when the pointer release or a finger leaves the screen, and updates the
    *  corresponding variables. Does not accept the jquery event object because not used.
+   *  @param {event} event jquery event object
    *  @return {undefined}
    */
-  release() {
+  release(event) {
+    // slide helper should not do anything else than intended
+    event.preventDefault();
     // Check for a buggy release (a release when the element was not actually being touched)
     if (!this.pressed) {
       return;
