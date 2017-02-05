@@ -1,6 +1,6 @@
 import React from 'react';
 import Measure from 'react-measure';
-import SlideHelper from './SlideHelper';
+import SlideHelper from './../../../utils/client/SlideHelper';
 
 import ContentCard from './ContentCard/ContentCard';
 import FeedbackCard from './FeedbackCard/FeedbackCard';
@@ -9,6 +9,17 @@ import QuizCard from './QuizCard/QuizCard';
 
 
 class Card extends React.Component {
+  /**
+   * returns if a card is or not a quiz
+   * @param  {object}  card A card object, not an element, just its properties
+   * @return {Boolean}      true if the card is a quiz, false if it is not
+   */
+  static isQuiz(card) {
+    return card.type === 'order' ||
+      card.type === 'multiple-choice' ||
+      card.type === 'code';
+  }
+
   constructor(props) {
     super(props);
     this.state = {
@@ -22,7 +33,7 @@ class Card extends React.Component {
       displacement: {
         x: 0, // Used to animate card movement
       },
-      // Updated when the card is sl
+      // Updated when the card gets slid
       passed: false,
     };
 
@@ -40,7 +51,7 @@ class Card extends React.Component {
   }
 
   getCardContent() {
-    let cardType = null;
+    let cardType;
     switch (this.props.contentProps.type) {
       case 'content':
         cardType = ContentCard;

@@ -25,10 +25,11 @@ class CourseItem extends React.Component {
   render() {
     // TODO: Change to real id
     const courseId = `course-${this.props.name.substr(0, 2)}`;
-
+    const courseItemImgStyle = { backgroundImage: `url(${this.props.imageUrl})` };
+    
     return (
       <div className="course-item animated fadeInUp" id={courseId}>
-        <div className="course-item-img" />
+        <div className="course-item-img" style={courseItemImgStyle} />
         <div className="course-item-info">
           <p className="course-item-name">
             {this.props.name}
@@ -51,6 +52,7 @@ class CourseItem extends React.Component {
 CourseItem.propTypes = {
   name: React.PropTypes.string.isRequired,
   description: React.PropTypes.string.isRequired,
+  imageUrl: React.PropTypes.string.isRequired,
   courseUrl: React.PropTypes.string.isRequired,
 };
 

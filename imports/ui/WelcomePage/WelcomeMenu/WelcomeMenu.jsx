@@ -3,8 +3,8 @@ import { browserHistory } from 'react-router';
 
 /**
  * WelcomeMenu: renders menu on the bottom of welcome page
- * @param {Integer} pagesCount      Quantity of items in welcomePage
- * @param {Integer} currentPosition Index of currently selected item
+ * @param {Integer} pagesCount  Quantity of items in welcomePage
+ * @param {Integer} position    Index of currently selected item
  */
 
  /**
@@ -34,8 +34,7 @@ class WelcomeMenu extends React.Component {
       const element = document.getElementById(elementId);
       // element.style.height = '5000px';
       const diagonalWindowSize = Math.sqrt(
-        Math.pow(window.innerWidth, 2) + Math.pow(window.innerHeight, 2)
-      );
+        (window.innerWidth ** 2) + (window.innerHeight ** 2));
       // We disable animatios temporarily
       element.style.transitionProperty = 'none';
       // And prepare the circle (it will be out of sight)
@@ -58,11 +57,15 @@ class WelcomeMenu extends React.Component {
       .map((_, index) =>
         <div
           key={index}
-          className={this.props.currentPosition === index ?
+          className={this.props.position === index ?
             'page-bubble-active' : 'page-bubble'
           }
-        />
-      );
+        />);
+
+    const nextButtonStyle = {
+      display: this.props.position === this.props.pagesCount - 1 ? 'none' : undefined,
+    };
+
     return (
       <div id="welcome-menu">
         <div className="welcome-menu-item">
@@ -76,7 +79,7 @@ class WelcomeMenu extends React.Component {
               >
                 SALTAR
               </button> :
-                <div id="welcome-menu-finish-element" className="finish-element" />
+              <div id="welcome-menu-finish-element" className="finish-element" />
           }
         </div>
         <div className="welcome-menu-item">
@@ -85,7 +88,12 @@ class WelcomeMenu extends React.Component {
           </div>
         </div>
         <div className="welcome-menu-item">
-          <button className="btn" id="welcome-menu-next-button"> &gt; </button> {/* > */}
+          <button
+            className="btn"
+            id="welcome-menu-next-button"
+            onClick={this.props.next}
+            style={nextButtonStyle}
+          > &gt; </button> {/* > */}
         </div>
       </div>
     );
@@ -94,7 +102,8 @@ class WelcomeMenu extends React.Component {
 
 WelcomeMenu.propTypes = {
   pagesCount: React.PropTypes.number.isRequired,
-  currentPosition: React.PropTypes.number.isRequired,
+  position: React.PropTypes.number.isRequired,
+  next: React.PropTypes.func.isRequired,
 };
 
 export default WelcomeMenu;

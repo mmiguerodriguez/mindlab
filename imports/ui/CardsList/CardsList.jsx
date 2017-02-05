@@ -38,6 +38,11 @@ import Card from './Card/Card';
 class CardsList extends React.Component {
   constructor(props) {
     super(props);
+    const currentTime = Math.floor(Date.now() / 1000); // in seconds
+    // Second in which the card appeared; used to calculate time per card
+    this.initialCardTimer = currentTime;
+    this.initialLessonTimer = currentTime;
+
     this.state = {
       cardStacks: this.getCardStacks(props.cards),
       currentStackIndex: 0, // The index of the currently visible card stack.
@@ -88,18 +93,17 @@ class CardsList extends React.Component {
       */
 
     const cardStacks = [[]]; // The cardStacks but not as react elements, just the data object
-    let currentStackIsQuizes = cards[0].type === 'order' ||
-                               cards[0].type === 'multiple-choice' ||
-                               cards[0].type === 'code';
+    let currentStackIsQuizes = Card.isQuiz(cards[0]);
+
     /**
      * Every stack either is of quizes or is not.
      * If a card is not the same type as the current stack, a new stack should be created.
      */
 
-    cards.forEach((card) => {
-      const currentCardIsQuiz = card.type === 'order' ||
-                                card.type === 'multiple-choice' ||
-                                card.type === 'code';
+    cards.forEach((rawCard) => {
+      const card = this.addMetaData(rawCard);
+
+      const currentCardIsQuiz = Card.isQuiz(card);
 
       if (currentCardIsQuiz === currentStackIsQuizes && !card.forceNewStack) {
         // Current card should be in the same stack as the previous, so push it
@@ -131,10 +135,35 @@ class CardsList extends React.Component {
     return reactCardStacks;
   }
 
+  /**
+   * Adds some data that is used for example by analytics
+   * @param {object} card A card object, not an element, just its properties
+   */
+  addMetaData(card) {
+    return {
+      ...card,
+      lessonName: Card.isQuiz(card) || card.type === 'finish' ?
+        this.props.lessonName : undefined,
+      lessonTime: this.initialLessonTimer,
+      getCurrentCardGlobalIndex: Card.isQuiz(card) ?
+        this.props.getCurrentCardGlobalIndex : undefined, // needed for analytics
+    };
+  }
+
   cardPassed() {
     /**
      * cardPassed: callback that triggers when a card is passed
      */
+
+    const currentTime = Math.floor(Date.now() / 1000); // in seconds
+    const cardTime = currentTime - this.initialCardTimer;
+    this.initialCardTimer = currentTime;
+    mixpanel.track('Card passed', {
+      'Lesson name': this.props.lessonName,
+      'Card index': this.props.getCurrentCardGlobalIndex(),
+      'Card time': cardTime,
+    });
+
     this.props.setCurrentCardGlobalIndex(this.props.getCurrentCardGlobalIndex() + 1);
     // Used by lessonPage in the progressBar
 
@@ -171,7 +200,7 @@ class CardsList extends React.Component {
 
 CardsList.propTypes = {
   cards: React.PropTypes.arrayOf(React.PropTypes.object).isRequired,
-  lessonUrl: React.PropTypes.string.isRequired,
+  lessonName: React.PropTypes.string.isRequired,
   setCurrentCardGlobalIndex: React.PropTypes.func.isRequired,
   getCurrentCardGlobalIndex: React.PropTypes.func.isRequired,
 };

@@ -12,6 +12,7 @@ class QuizCard extends React.Component {
     this.state = {
       checkAnswer: () => {}, // Checks the answer
       answeredCorrectly: false,
+      quizTries: 0, // times the user responded the quiz
     };
     this.handleCheckAnswer = this.handleCheckAnswer.bind(this);
   }
@@ -39,8 +40,18 @@ class QuizCard extends React.Component {
   }
 
   handleCheckAnswer() {
+    const isCorrect = this.state.checkAnswer();
+    mixpanel.track('Quiz responded', {
+      'Lesson name': this.props.lessonName,
+      'Card index': this.props.getCurrentCardGlobalIndex(),
+      'Answered correctly': isCorrect,
+      'Number of try': this.state.quizTries,
+    });
+    this.setState({
+      quizTries: this.state.quizTries + 1,
+    });
     // if the answer is correct
-    if (this.state.checkAnswer()) {
+    if (isCorrect) {
       this.setState({
         answeredCorrectly: true,
       });
@@ -98,6 +109,8 @@ class QuizCard extends React.Component {
 
 QuizCard.propTypes = {
   type: React.PropTypes.string.isRequired,
+  lessonName: React.PropTypes.string.isRequired,
+  getCurrentCardGlobalIndex: React.PropTypes.func.isRequired,
   imageUrl: React.PropTypes.string,
   question: React.PropTypes.string.isRequired,
   slideCard: React.PropTypes.func.isRequired,

@@ -3,6 +3,10 @@ import React from 'react';
 import Navbar from './Navbar/Navbar';
 
 class App extends React.Component {
+  componentDidMount() {
+    mixpanel.identify(); // Setup mixpanel profile
+  }
+
   render() {
     return (
       <div>

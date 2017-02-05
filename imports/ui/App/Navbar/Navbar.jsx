@@ -14,16 +14,27 @@ class Navbar extends React.Component {
 
   render() {
     let title;
+    // We generate the navbar title depending on the url
     if (this.props.currentUrl.includes('feedback')) {
+      // The user is in feedbackPage
       title = 'Sugerencia';
     } else if (this.props.currentUrl.includes('course')) {
+      // The user is coursePage or lessonPage
       const urlSplited = this.props.currentUrl.split('/');
-      if (urlSplited.length === 3) {
-        title = `Curso de ${decodeURIComponent(urlSplited[2])}`;
-      } else if (urlSplited.length === 4) {
+      if (urlSplited.length === 4) {
+        // The user is in lessonPage
         title = decodeURIComponent(urlSplited[3]);
+      } else if (urlSplited.length === 3) {
+        // The user is in coursePage
+        // We show 'Curso de' in the navbar depending on the width of the screen
+        if (window.innerWidth < 350) {
+          title = decodeURIComponent(urlSplited[2]);
+        } else {
+          title = `Curso de ${decodeURIComponent(urlSplited[2])}`;
+        }
       }
     } else if (this.props.currentUrl === '/') {
+      // The user is in homePage
       title = 'Lista de cursos';
     }
 
@@ -44,7 +55,7 @@ class Navbar extends React.Component {
               : <img
                 id="navbar-logo"
                 alt="logo"
-                src="/images/welcome/page1.png"
+                src="/images/logo.png"
               />
             }
             <p id="navbar-title" style={feedbackStyle}>{title}</p>
