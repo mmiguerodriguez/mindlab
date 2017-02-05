@@ -66,6 +66,14 @@ class CardsList extends React.Component {
   }
 
   /**
+   *  TODO
+   */
+  getCurrentCardStackIndex() {
+    const currentCardGlobalIndex = this.props.getCurrentCardGlobalIndex();
+    return currentCardGlobalIndex;
+  }
+
+  /**
    * getCardStacks: converts cards content to an array of card stacks
    * @param {Array} cards: array of cards content
    * @return {Array} cardsStacks: array of cards components
@@ -99,7 +107,7 @@ class CardsList extends React.Component {
    * cardPassed: callback that triggers when a card is passed
    */
   cardPassed() {
-    this.props.setCurrentCardGlobalIndex(this.props.getCurrentCardGlobalIndex + 1);
+    this.props.setCurrentCardGlobalIndex(this.props.getCurrentCardGlobalIndex() + 1);
     // If the current stack is out of cards, show the next stack
     if (
       this.state.currentCardIndex ===
