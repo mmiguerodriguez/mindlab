@@ -1,0 +1,23 @@
+.welcome-item {
+  display: flex;
+  flex-flow: column;
+  flex: 0 0 100%;
+  align-items: center;
+  justify-content: center;
+  padding: 0 20px 20px 20px;
+  text-align: center;
+  color: $white-1-color;
+}
+
+.welcome-image {
+  height: 100px;
+  width: 100px;
+  border-radius: 50%;
+  background-color: rgba(0, 0, 0, 0.3);
+  margin-bottom: 25px;
+  img {
+    height: 75px;
+    width: 75px;
+    margin: 12.5px;
+  }
+}

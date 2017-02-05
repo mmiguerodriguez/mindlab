@@ -1,0 +1,39 @@
+@import '../imports/utils/client/colors';
+
+@import '../imports/ui/App/App';
+@import '../imports/ui/App/Navbar/Navbar';
+
+@import '../imports/ui/WelcomePage/WelcomePage';
+@import '../imports/ui/WelcomePage/WelcomeItem/WelcomeItem';
+@import '../imports/ui/WelcomePage/WelcomeMenu/WelcomeMenu';
+@import '../imports/ui/LessonPage/LessonPage';
+
+@import '../imports/ui/HomePage/HomePage';
+@import '../imports/ui/HomePage/CourseItem/CourseItem';
+
+@import '../imports/ui/CoursePage/CoursePage';
+@import '../imports/ui/CoursePage/LessonItem/LessonItem';
+
+@import '../imports/ui/CardsList/CardsList';
+@import '../imports/ui/CardsList/Card/Card';
+
+@import url('https://fonts.googleapis.com/css?family=Quicksand:500');
+
+html,
+body,
+#app {
+  height: 100vh;
+  margin: 0;
+  font-size: 12px;
+  @media (min-width: 800px) {
+    font-size: 16px;
+  }
+  @media (min-width: 1200px) {
+    font-size: 18px;
+  } // TODO: fix this
+  overflow-x: hidden;
+}
+
+#app, h1, h2, h3, h4, h5, h6 {
+  font-family: 'Quicksand', sans-serif !important;
+}

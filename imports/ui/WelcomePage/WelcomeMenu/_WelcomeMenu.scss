@@ -1,0 +1,39 @@
+#welcome-menu {
+  display: flex;
+  //flex: 0 0 100%;
+  //align-self: flex-end;
+  height: 55px;
+  justify-content: space-around;
+  align-items: center;
+  button {
+    text-decoration: none;
+    color: $white-1-color;
+    font-size: 17px;
+  }
+}
+
+.welcome-menu-item {
+  flex: 0 0 33.33%;
+  display: flex;
+  justify-content: center;
+  height: 100%;
+}
+
+#bubbles-container {
+  align-self: center;
+}
+
+.page-bubble {
+  width: 10px;
+  height: 10px;
+  background-color: transparentize($white-1-color, 0.7);
+  display: inline-block;
+  border-radius: 50%;
+  margin-left: 2px;
+  margin-right: 2px;
+}
+
+.page-bubble-active {
+  @extend .page-bubble;
+  background-color: transparentize($white-1-color, 0.1);
+}

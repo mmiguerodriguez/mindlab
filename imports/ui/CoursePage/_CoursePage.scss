@@ -1,0 +1,10 @@
+#course-page {
+  display: flex;
+  flex-direction: column;
+  animation-duration: 0.8s;
+}
+
+#course-page-lessons-list {
+  display: flex;
+  flex-wrap: wrap;
+}
