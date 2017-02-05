@@ -18,7 +18,7 @@ const IntroduccionLessonRaw = [
     type: 'content',
     imageUrl: '/images/lessons/code-window.png',
     title: 'Empecemos!',
-    text: 'Hoy en día, todo es programable. Desde donde estás viendo esto, hasta algunos relojes. Además, por cada persona en el mundo hay siete dispositivos tecnológicos.',
+    text: 'Hoy en día, todo es programable. Desde donde estás viendo esto, hasta algunos relojes. Además, por cada persona en el mundo hay siete dispositivos tecnológicos. Cuando termines de leer esta tarjeta deslizala a un costado.',
   },
   {
     type: 'content',

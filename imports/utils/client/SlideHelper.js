@@ -60,7 +60,7 @@ class SlideHelper {
     this.$element = $element;
     this.size = size;
     this.exitThreshold = Number.isFinite(exitThreshold) ? Math.abs(exitThreshold) : size;
-    this.exitThresholdSpeed = exitThresholdSpeed;
+    this.exitThresholdSpeed = Number.isFinite(exitThresholdSpeed) ? exitThresholdSpeed : 0;
     this.velocityModifier = velocityModifier;
     this.returnSpeed = returnSpeed;
     this.frictionAcceleration = frictionAcceleration;
@@ -303,6 +303,7 @@ class SlideHelper {
       // Because the state should return to rest position, move to rest position a bit every frame
       const positionDisplacement =
        this.returnSpeed / this.size;// The distance that will be moved this frame
+
       // Move
       if (this.stateX > positionDisplacement) {
         this.stateX -= positionDisplacement;
