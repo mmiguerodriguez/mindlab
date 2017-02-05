@@ -21,12 +21,13 @@ class WelcomePage extends React.Component {
       displacement: {
         x: 0, // Used to animate  movement
       },
+      // When sliding left should not enable slideHelper (it should be disabled)
+      slidingLeft: false,
     };
 
     this.slider = null;
 
     this.slideLeft = this.slideLeft.bind(this);
-    this.slidingLeft = false;
   }
 
   componentWillUnmount() {
@@ -107,38 +108,58 @@ class WelcomePage extends React.Component {
    * @return {undefined}
    */
   slideLeft() {
+    if (this.state.slidingLeft) {
+      return;// If already moving left, do not accept
+    }
+
     console.log('Started slid to the left');
+    this.setState({ slidingLeft: true });
     if (this.slider) {
       this.slider.disable();
       this.slider = null;
     }
-    const animationDuration = 60;// The number of frames the animation lasts
+    const animationDuration = 15;// The number of frames the animation lasts
     let currentPosition = -this.state.position * this.state.dimensions.width;
-    const positionDisplacement = -this.state.dimensions.width / animationDuration;
-    const finalPosition = -(this.state.position + 1) * this.state.dimensions.width;
+    const framePositionDisplacement = -this.state.dimensions.width / animationDuration;
+    let finalPosition = -(this.state.position + 1) * this.state.dimensions.width;
 
     /**
      * Left sliding animation frame
      */
     const slideAnimationFrame = () => {
-      /*if (Math.abs(currentPosition) >= Math.abs(finalPosition)) {
+      finalPosition = -(this.state.position + 1) * this.state.dimensions.width;
+      // Updated every frame because width may change
+      // console.log(currentPosition, finalPosition);
+
+      if (currentPosition <= finalPosition) { // position is decreased because negative is left
         this.setState({
           position: this.state.position + 1,
+          displacement: {
+            x: 0,
+          },
+          slidingLeft: false,
         });
+
         console.log('Slidden to the left');
         return;
-      }*/
-      console.log(currentPosition);
-      /*this.setState({ displacement: { x: currentPosition } });
-      currentPosition += positionDisplacement;
-      requestAnimationFrame(slideAnimationFrame);*/
+      }
+
+      this.setState({ displacement: { x: currentPosition } });
+      currentPosition += framePositionDisplacement;
+
+      if (currentPosition <= finalPosition) { // position is decreased because negative is left
+        currentPosition = finalPosition;
+      }
+
+      requestAnimationFrame(slideAnimationFrame);
     };
 
     requestAnimationFrame(slideAnimationFrame);
   }
 
   render() {
-    if (this.state.dimensions.measured && !this.slidingLeft) {
+    console.log(this.state.dimensions.measured, !this.state.slidingLeft);
+    if (this.state.dimensions.measured && !this.state.slidingLeft) {
       this.updateSlider();
     }
 
@@ -186,8 +207,10 @@ class WelcomePage extends React.Component {
       transform: `translateX(${this.state.displacement.x + (-this.state.position * this.state.dimensions.width)}px)`,
     };
 
+    console.log(this.state.displacement.x);
+
     return (
-      <div style={welcomePageStyle} className="welcome-page">
+      <div style={welcomePageStyle} id="welcome-page">
         <Measure
           onMeasure={(dimensions) => {
             this.setState({ dimensions: { ...dimensions, measured: true } });

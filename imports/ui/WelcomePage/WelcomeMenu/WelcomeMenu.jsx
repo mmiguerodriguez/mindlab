@@ -3,8 +3,8 @@ import { browserHistory } from 'react-router';
 
 /**
  * WelcomeMenu: renders menu on the bottom of welcome page
- * @param {Integer} pagesCount      Quantity of items in welcomePage
- * @param {Integer} position Index of currently selected item
+ * @param {Integer} pagesCount  Quantity of items in welcomePage
+ * @param {Integer} position    Index of currently selected item
  */
 
  /**
@@ -61,6 +61,11 @@ class WelcomeMenu extends React.Component {
             'page-bubble-active' : 'page-bubble'
           }
         />);
+
+    const nextButtonStyle = {
+      display: this.props.position === this.props.pagesCount - 1 ? 'none' : undefined,
+    };
+
     return (
       <div id="welcome-menu">
         <div className="welcome-menu-item">
@@ -87,6 +92,7 @@ class WelcomeMenu extends React.Component {
             className="btn"
             id="welcome-menu-next-button"
             onClick={this.props.next}
+            style={nextButtonStyle}
           > &gt; </button> {/* > */}
         </div>
       </div>

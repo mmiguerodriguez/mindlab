@@ -4,7 +4,8 @@
   "scripts": {
     "start": "meteor run --port 8080 --settings settings.json",
     "migue": "ROOT_URL=https://cloud-migue-miguelrodriguez.c9users.io:8080 meteor run --port 8080 --settings settings.json",
-    "joel": "ROOT_URL=https://cursos-joelsobolmark.c9users.io:8080 meteor run --port 8080 --settings settings.json"
+    "joel": "ROOT_URL=https://cursos-joelsobolmark.c9users.io:8080 meteor run --port 8080 --settings settings.json",
+    "nic": "meteor run --port 8080"
   },
   "dependencies": {
     "apollo-client": "^0.5.26",
