@@ -46,76 +46,121 @@ class CardsList extends React.Component {
 
     this.cardPassed = this.cardPassed.bind(this);
     this.getCard = this.getCard.bind(this);
+    this.getCurrentCardIndex = this.getCurrentCardIndex.bind(this);
   }
-  /**
-   * Returns a card component with the passed properties and index
-   * @param {Object} cardContent: the props of the card
-   * @param {Integer} index: index of the card within the stack
-   * @return {Component} card
-   */
-  getCard(contentProps, index) {
+
+  getCard(contentProps, key, index, cardsCount, currentCardIndex) {
+    /**
+     * Returns a card component with the passed properties and index
+     * @param {Object} contentProps: the props of the card
+     * @param {Integer} index: index of the card within the stack
+     * @param {Integer} currentStackCardsCount: amount of cards in this stack
+     * @param {Integer} index: index of the card within the lesson's cards
+     * @return {Component} card
+     */
     return (
       <Card
-        key={`card-${index}`}
+        key={`card-${key}`}
         contentProps={contentProps}
         index={index}
-        cardsCount={this.props.cards.length} // we pass this for the positioning
+        cardsCount={cardsCount}
+        currentCardIndex={currentCardIndex}
         cardPassed={this.cardPassed.bind(this)} // TODO: investigate this
       />
     );
   }
 
-  /**
-   *  TODO
-   */
-  getCurrentCardStackIndex() {
-    const currentCardGlobalIndex = this.props.getCurrentCardGlobalIndex();
-    return currentCardGlobalIndex;
+  getCurrentCardIndex() {
+    return this.state.currentCardIndex;
   }
 
-  /**
-   * getCardStacks: converts cards content to an array of card stacks
-   * @param {Array} cards: array of cards content
-   * @return {Array} cardsStacks: array of cards components
-   *   example: [[contentCard], [quiz, quiz]]
-   */
   getCardStacks(cards) {
-    const stacks = [[]];
+    /**
+     * getCardStacks: converts cards content to an array of card stacks
+     * @param {Array} cards: array of cards content
+     * @return {Array} cardsStacks: array of cards components
+     *   example: [[contentCard], [quiz, quiz]]
+     */
+
+    /**
+      * First create a model of the stack, saving what each position will have, but just the data.
+      * So, save in cardStacks each card passed in the place of the stack where the card will be.
+      */
+
+    const cardStacks = [[]]; // The cardStacks but not as react elements, just the data object
     let currentStackIsQuizes = cards[0].type === 'order' ||
                                cards[0].type === 'multiple-choice' ||
                                cards[0].type === 'code';
-    cards.forEach((card, index) => { // TODO: remove index when we have a working db
+    /**
+     * Every stack either is of quizes or is not.
+     * If a card is not the same type as the current stack, a new stack should be created.
+     */
+
+    cards.forEach((card) => {
       const currentCardIsQuiz = card.type === 'order' ||
                                 card.type === 'multiple-choice' ||
                                 card.type === 'code';
+
       if (currentCardIsQuiz === currentStackIsQuizes && !card.forceNewStack) {
-        const currentStackCount = stacks[stacks.length - 1].length;
         // Current card should be in the same stack as the previous, so push it
-        stacks[stacks.length - 1].push(
-          this.getCard(card, currentStackCount),
-        );
+        cardStacks[cardStacks.length - 1].push(card);
       } else {
-        // Current card should be in a new stack
-        // Push the new stack
-        stacks.push([this.getCard(card, 0)]);
+        // Current card should be in a new stack => Push a new stack
+        cardStacks.push([card]);
         currentStackIsQuizes = currentCardIsQuiz;
       }
     });
-    return stacks;
+
+    /*
+    /**
+     * Now that the cardStacks was organized and everything saved where it should be,
+     * replace every data object by Card element containing the corresponding data
+     *//*
+    const reactCardStacks = []; // The cardStacks saves as react elements
+    let currentCardGlobalIndex = 0;
+    cardStacks.forEach((stack) => {
+      const currentCardStack = [];
+      reactCardStacks.push(currentCardStack);
+      stack.forEach((card, index) => {
+        currentCardStack.push(
+          this.getCard(card, index, currentCardStack.length, currentCardGlobalIndex));
+        currentCardGlobalIndex += 1;
+      });
+    });
+     */
+
+    /**
+      * Now that the cardStacks was organized and everything saved where it should be,
+      * replace every data object by Card element containing the corresponding data
+      */
+    const reactCardStacks = []; // The cardStacks saves as react elements
+    let currentCardGlobalIndex = 0;
+    cardStacks.forEach((stack) => {
+      const currentCardStack = [];
+      reactCardStacks.push(currentCardStack);
+      stack.forEach((card, index) => {
+        currentCardStack.push(
+          this.getCard(card, currentCardGlobalIndex, index, stack.length - 1, 0));
+        currentCardGlobalIndex += 1;
+      });
+    });
+
+    return reactCardStacks;
   }
-  /**
-   * cardPassed: callback that triggers when a card is passed
-   */
+
   cardPassed() {
+    /**
+     * cardPassed: callback that triggers when a card is passed
+     */
     this.props.setCurrentCardGlobalIndex(this.props.getCurrentCardGlobalIndex() + 1);
+    // Used by lessonPage in the progressBar
+
     // If the current stack is out of cards, show the next stack
     if (
       this.state.currentCardIndex ===
       this.state.cardStacks[this.state.currentStackIndex].length - 1
     ) {
       this.setState({
-        // If the stack is the last one, the render method will show
-        // finish cards
         currentStackIndex: this.state.currentStackIndex + 1,
         currentCardIndex: 0, // Show the first card of the new stack
       });
@@ -127,10 +172,19 @@ class CardsList extends React.Component {
   }
 
   render() {
+    /* // Convert cardStack to react elements stack
+    const cardStack = this.state.cardStacks[this.state.currentStackIndex].map((card, index) =>
+      this.getCard(card, index, Math.random(), this.state.currentCardIndex));
+    // This should use React.cloneElement*/
+
+    // Convert cardStack to react elements stack
+    const cardStack = this.state.cardStacks[this.state.currentStackIndex].map(card =>
+      React.cloneElement(card, { currentCardIndex: this.state.currentCardIndex }));
+
     return (
       <div className="cards-list-container">
         <div className="cards-list">
-          {this.state.cardStacks[this.state.currentStackIndex]}
+          {cardStack}
         </div>
       </div>
     );

@@ -111,6 +111,9 @@ class SlideHelper {
    * @return {undefined}
    */
   disable() {
+    if (!this.enabled) {
+      return;
+    }
     SlideHelper.removeTouchEvents(this.$element);
     this.$element = null;
 

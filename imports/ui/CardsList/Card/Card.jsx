@@ -72,21 +72,25 @@ class Card extends React.Component {
        *  TODO: Fix
        */
       index: this.props.index,
-      cardsCount: this.props.cardsCount,
       slideCard: this.slideCard,
     });
   }
 
-  /**
-   * Updates or sets a sliding helper for the cards.
-   * WARNING:
-   *  Requires dimensions to be measured
-   * @return {[type]} [description]
-   */
   updateCardSlider() {
+    /**
+     * Updates or sets a sliding helper for the cards.
+     * WARNING:
+     *  Requires dimensions to have been measured
+     * @return {undefined}
+     */
+
     if (!this.cardSlider) {
+      console.log(`Setting up a slider on card #${this.props.index}`);
+      // Is applied only to top card
+
       // Create and instantiate a SlideHelper
       const $card = $(this.card);
+      console.log($card);
       const stateUpdateHandler = (stateX) => {
         if (this.state.displacement.x !== stateX * this.state.dimensions.width) {
           this.setState({
@@ -114,10 +118,10 @@ class Card extends React.Component {
     }
   }
 
-  /**
-   * programatically passes the card with the animation
-   */
   slideCard() {
+    /**
+     * programatically passes the card with the animation
+     */
     if (this.cardSlider && this.cardSlider.enabled) {
       this.cardSlider.disable();
     }
@@ -141,17 +145,20 @@ class Card extends React.Component {
   }
 
   render() {
-    if (this.shouldSlide && this.state.dimensions.measured &&
+    if ((this.props.currentCardIndex === this.props.index) && // Only apply cardSlider on top card
+        this.shouldSlide && this.state.dimensions.measured &&
         (!this.cardSlider || this.cardSlider.size !== this.state.dimensions.width)
+        // TODO: Analize the !==, apparently it does not make sense
     ) {
       this.updateCardSlider();
     }
 
     const cardStyle = {
       zIndex: this.props.cardsCount - this.props.index,
+      // Another way is this.props.index - this.props.currentCardIndex
       transform:
-        `translate(${this.state.displacement.x}px, ${10 * (this.props.index)}px) rotateZ(${(this.state.displacement.x / this.state.dimensions.width) * 35}deg)`,
-      display: this.state.passed ? 'none' : undefined,
+        `translate(${this.state.displacement.x}px, ${10 * (this.props.index - this.props.currentCardIndex)}px) rotateZ(${(this.state.displacement.x / this.state.dimensions.width) * 35}deg)`,
+      display: (this.state.passed || this.props.index < this.props.currentCardIndex) ? 'none' : undefined,
     };
 
     const cardContent = this.getCardContent();
@@ -178,6 +185,7 @@ Card.propTypes = {
   }).isRequired,
   index: React.PropTypes.number.isRequired,
   cardsCount: React.PropTypes.number.isRequired,
+  currentCardIndex: React.PropTypes.number.isRequired,
   cardPassed: React.PropTypes.func,
 };
 Card.defaultProps = {
