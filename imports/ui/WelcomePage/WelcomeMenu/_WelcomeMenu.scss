@@ -12,6 +12,10 @@
   }
 }
 
+#welcome-menu-next-button {
+  outline: none; // Remove the browser's default outline in buttons
+}
+
 .welcome-menu-item {
   flex: 0 0 33.33%;
   display: flex;
