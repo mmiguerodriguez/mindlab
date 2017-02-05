@@ -1,5 +1,4 @@
 @import 'QuizCard/QuizCard';
-@import 'ContentCard/ContentCard';
 @import 'FeedbackCard/FeedbackCard';
 
 ._card { // not card because bootstrap-material-design already uses it
@@ -25,6 +24,12 @@
   align-items: center;
   padding: 15px;
 }
+
+.card-text {
+  margin-top: 4px;
+  font-size: 1.5em;
+}
+
 
 .card-img {
   height: 64px;

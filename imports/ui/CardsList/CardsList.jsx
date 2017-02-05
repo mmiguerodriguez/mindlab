@@ -47,7 +47,7 @@ class CardsList extends React.Component {
     const currentTime = Math.floor(Date.now() / 1000); // in seconds
     // Second in which the card appeared; used to calculate time per card
     this.initialCardTimer = currentTime;
-    this.initialLessonTimer = currentTime; // TODO: do this
+    this.initialLessonTimer = currentTime;
 
     this.cardPassed = this.cardPassed.bind(this);
     this.getCard = this.getCard.bind(this);
@@ -93,8 +93,11 @@ class CardsList extends React.Component {
         getCurrentCardGlobalIndex: currentCardIsQuiz ?
           this.props.getCurrentCardGlobalIndex : undefined, // needed for analytics
       };
-
-      if (currentCardIsQuiz === currentStackIsQuizes && !card.forceNewStack) {
+      const forceNewStack = card.forceNewStack ||
+                            card.type === 'finish' ||
+                            card.type === 'feedback' ||
+                            currentCardIsQuiz !== currentStackIsQuizes;
+      if (!forceNewStack) {
         const currentStackCount = stacks[stacks.length - 1].length;
         // Current card should be in the same stack as the previous, so push it
         stacks[stacks.length - 1].push(
