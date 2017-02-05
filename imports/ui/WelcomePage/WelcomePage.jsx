@@ -112,7 +112,6 @@ class WelcomePage extends React.Component {
       return;// If already moving left, do not accept
     }
 
-    console.log('Started slid to the left');
     this.setState({ slidingLeft: true });
     if (this.slider) {
       this.slider.disable();
@@ -129,7 +128,6 @@ class WelcomePage extends React.Component {
     const slideAnimationFrame = () => {
       finalPosition = -(this.state.position + 1) * this.state.dimensions.width;
       // Updated every frame because width may change
-      // console.log(currentPosition, finalPosition);
 
       if (currentPosition <= finalPosition) { // position is decreased because negative is left
         this.setState({
@@ -140,7 +138,6 @@ class WelcomePage extends React.Component {
           slidingLeft: false,
         });
 
-        console.log('Slidden to the left');
         return;
       }
 
@@ -158,7 +155,6 @@ class WelcomePage extends React.Component {
   }
 
   render() {
-    console.log(this.state.dimensions.measured, !this.state.slidingLeft);
     if (this.state.dimensions.measured && !this.state.slidingLeft) {
       this.updateSlider();
     }
@@ -206,8 +202,6 @@ class WelcomePage extends React.Component {
     const welcomePageItemsStyle = {
       transform: `translateX(${this.state.displacement.x + (-this.state.position * this.state.dimensions.width)}px)`,
     };
-
-    console.log(this.state.displacement.x);
 
     return (
       <div style={welcomePageStyle} id="welcome-page">
