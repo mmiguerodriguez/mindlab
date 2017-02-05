@@ -8,18 +8,21 @@ class HomePage extends React.Component {
       {
         name: 'Programación',
         description: 'Vas a poder aprender a programar y a dominar cualquier lenguaje',
+        imageUrl: '/images/courses/programming.svg',
         courseUrl: '/course/Programación',
       },
       {
         name: 'Qué curso te gustaría que agreguemos?',
         description: 'Necesitamos tu ayuda para poder seguir creciendo',
+        imageUrl: '/images/courses/feedback.png',
         courseUrl: '/feedback/%2F/new-course',
       },
     ];
-    const coursesArray = coursesContent.map(({ name, description, courseUrl }, index) =>
+    const coursesArray = coursesContent.map(({ name, description, imageUrl, courseUrl }, index) =>
       <CourseItem
         name={name}
         description={description}
+        imageUrl={imageUrl}
         courseUrl={courseUrl}
         key={`course-item-${index}`}
       />,
