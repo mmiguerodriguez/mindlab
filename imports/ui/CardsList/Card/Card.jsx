@@ -29,7 +29,7 @@ class Card extends React.Component {
     this.cardSlider = null;
     const type = this.props.contentProps.type;
     this.shouldSlide = !(type === 'code' || type === 'order' || type === 'multiple-choice' || type === 'feedback' || type === 'finish');
-    this.passCard = this.passCard.bind(this);
+    this.slideCard = this.slideCard.bind(this);
   }
 
   componentWillUnmount() {
@@ -73,7 +73,7 @@ class Card extends React.Component {
        */
       index: this.props.index,
       cardsCount: this.props.cardsCount,
-      passCard: this.passCard,
+      slideCard: this.slideCard,
     });
   }
 
@@ -117,7 +117,7 @@ class Card extends React.Component {
   /**
    * programatically passes the card with the animation
    */
-  passCard() {
+  slideCard() {
     if (this.cardSlider && this.cardSlider.enabled) {
       this.cardSlider.disable();
     }
@@ -134,7 +134,7 @@ class Card extends React.Component {
             x: this.state.displacement.x - (0.1 * this.state.dimensions.width),
           },
         }, () => {
-          requestAnimationFrame(this.passCard);
+          requestAnimationFrame(this.slideCard);
         });
       }
     }
