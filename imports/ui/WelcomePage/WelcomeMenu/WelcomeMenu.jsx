@@ -4,7 +4,7 @@ import { browserHistory } from 'react-router';
 /**
  * WelcomeMenu: renders menu on the bottom of welcome page
  * @param {Integer} pagesCount      Quantity of items in welcomePage
- * @param {Integer} currentPosition Index of currently selected item
+ * @param {Integer} position Index of currently selected item
  */
 
  /**
@@ -57,7 +57,7 @@ class WelcomeMenu extends React.Component {
       .map((_, index) =>
         <div
           key={index}
-          className={this.props.currentPosition === index ?
+          className={this.props.position === index ?
             'page-bubble-active' : 'page-bubble'
           }
         />);
@@ -96,7 +96,7 @@ class WelcomeMenu extends React.Component {
 
 WelcomeMenu.propTypes = {
   pagesCount: React.PropTypes.number.isRequired,
-  currentPosition: React.PropTypes.number.isRequired,
+  position: React.PropTypes.number.isRequired,
   next: React.PropTypes.func.isRequired,
 };
 

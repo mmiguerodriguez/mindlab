@@ -10,7 +10,7 @@ class WelcomePage extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      currentPosition: 0, // current visible item number
+      position: 0, // current visible item number
       // The dimensions of the card, used internally
       dimensions: {
         width: 1, // Default value only
@@ -26,6 +26,7 @@ class WelcomePage extends React.Component {
     this.slider = null;
 
     this.slideLeft = this.slideLeft.bind(this);
+    this.slidingLeft = false;
   }
 
   componentWillUnmount() {
@@ -38,8 +39,8 @@ class WelcomePage extends React.Component {
   updateSlider() {
     if (!this.slider) {
       // Create and instantiate a SlideHelper
-      const disableLeft = this.state.currentPosition === 1;
-      const disableRight = this.state.currentPosition === 0;
+      const disableLeft = this.state.position === 1;
+      const disableRight = this.state.position === 0;
       const $welcomePageItems = $(this.welcomePageItems);
 
       const stateUpdateHandler = (stateXRaw) => {
@@ -57,7 +58,7 @@ class WelcomePage extends React.Component {
 
       const rightHandler = () => {
         this.setState({
-          currentPosition: this.state.currentPosition - 1,
+          position: this.state.position - 1,
           displacement: {
             x: 0,
           },
@@ -66,7 +67,7 @@ class WelcomePage extends React.Component {
 
       const leftHandler = () => {
         this.setState({
-          currentPosition: this.state.currentPosition + 1,
+          position: this.state.position + 1,
           displacement: {
             x: 0,
           },
@@ -106,15 +107,38 @@ class WelcomePage extends React.Component {
    * @return {undefined}
    */
   slideLeft() {
-    console.log('Slidden to the left');
+    console.log('Started slid to the left');
     if (this.slider) {
       this.slider.disable();
       this.slider = null;
     }
+    const animationDuration = 60;// The number of frames the animation lasts
+    let currentPosition = -this.state.position * this.state.dimensions.width;
+    const positionDisplacement = -this.state.dimensions.width / animationDuration;
+    const finalPosition = -(this.state.position + 1) * this.state.dimensions.width;
+
+    /**
+     * Left sliding animation frame
+     */
+    const slideAnimationFrame = () => {
+      /*if (Math.abs(currentPosition) >= Math.abs(finalPosition)) {
+        this.setState({
+          position: this.state.position + 1,
+        });
+        console.log('Slidden to the left');
+        return;
+      }*/
+      console.log(currentPosition);
+      /*this.setState({ displacement: { x: currentPosition } });
+      currentPosition += positionDisplacement;
+      requestAnimationFrame(slideAnimationFrame);*/
+    };
+
+    requestAnimationFrame(slideAnimationFrame);
   }
 
   render() {
-    if (this.state.dimensions.measured) {
+    if (this.state.dimensions.measured && !this.slidingLeft) {
       this.updateSlider();
     }
 
@@ -155,11 +179,11 @@ class WelcomePage extends React.Component {
 
     const welcomePageStyle = {
       backgroundColor: colorPalette(
-        this.state.currentPosition + (-this.state.displacement.x / this.state.dimensions.width)),
+        this.state.position + (-this.state.displacement.x / this.state.dimensions.width)),
     };
 
     const welcomePageItemsStyle = {
-      transform: `translateX(${this.state.displacement.x + (-this.state.currentPosition * this.state.dimensions.width)}px)`,
+      transform: `translateX(${this.state.displacement.x + (-this.state.position * this.state.dimensions.width)}px)`,
     };
 
     return (
@@ -181,7 +205,7 @@ class WelcomePage extends React.Component {
         </Measure>
         <WelcomeMenu
           pagesCount={welcomeItemsArray.length}
-          currentPosition={this.state.currentPosition}
+          position={this.state.position}
           next={this.slideLeft}
         />
       </div>
