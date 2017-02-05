@@ -38,16 +38,16 @@ import Card from './Card/Card';
 class CardsList extends React.Component {
   constructor(props) {
     super(props);
+    const currentTime = Math.floor(Date.now() / 1000); // in seconds
+    // Second in which the card appeared; used to calculate time per card
+    this.initialCardTimer = currentTime;
+    this.initialLessonTimer = currentTime;
+
     this.state = {
       cardStacks: this.getCardStacks(props.cards),
       currentStackIndex: 0, // The index of the currently visible card stack.
       currentCardIndex: 0, // The index withing the stack of the currently visible card.
     };
-
-    const currentTime = Math.floor(Date.now() / 1000); // in seconds
-    // Second in which the card appeared; used to calculate time per card
-    this.initialCardTimer = currentTime;
-    this.initialLessonTimer = currentTime;
 
     this.cardPassed = this.cardPassed.bind(this);
     this.getCard = this.getCard.bind(this);
