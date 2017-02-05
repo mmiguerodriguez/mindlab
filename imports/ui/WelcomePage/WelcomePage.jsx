@@ -6,6 +6,8 @@ import SlideHelper from './../../utils/client/SlideHelper';
 import WelcomeItem from './WelcomeItem/WelcomeItem';
 import WelcomeMenu from './WelcomeMenu/WelcomeMenu';
 
+import welcomeItemsContent from './HardcodedWelcomeItemsContent';
+
 class WelcomePage extends React.Component {
   constructor(props) {
     super(props);
@@ -19,7 +21,7 @@ class WelcomePage extends React.Component {
       },
       // Used by the sliding movement
       displacement: {
-        x: 0, // Used to animate  movement
+        x: 0, // Used to animate movement
       },
       // When sliding left should not enable slideHelper (it should be disabled)
       slidingLeft: false,
@@ -40,7 +42,7 @@ class WelcomePage extends React.Component {
   updateSlider() {
     if (!this.slider) {
       // Create and instantiate a SlideHelper
-      const disableLeft = this.state.position === 1;
+      const disableLeft = this.state.position === welcomeItemsContent.length - 1;
       const disableRight = this.state.position === 0;
       const $welcomePageItems = $(this.welcomePageItems);
 
@@ -118,15 +120,15 @@ class WelcomePage extends React.Component {
       this.slider = null;
     }
     const animationDuration = 15;// The number of frames the animation lasts
-    let currentPosition = -this.state.position * this.state.dimensions.width;
+    let currentPosition = 0;
     const framePositionDisplacement = -this.state.dimensions.width / animationDuration;
-    let finalPosition = -(this.state.position + 1) * this.state.dimensions.width;
+    let finalPosition = -this.state.dimensions.width;
 
     /**
      * Left sliding animation frame
      */
     const slideAnimationFrame = () => {
-      finalPosition = -(this.state.position + 1) * this.state.dimensions.width;
+      finalPosition = -this.state.dimensions.width;
       // Updated every frame because width may change
 
       if (currentPosition <= finalPosition) { // position is decreased because negative is left
@@ -155,48 +157,26 @@ class WelcomePage extends React.Component {
   }
 
   render() {
+    const welcomeItemsArray = welcomeItemsContent.map((item, index) =>
+      <WelcomeItem
+        key={`welcome-item-${index}`}
+        lastItem={index === welcomeItemsContent.length - 1}
+        pagesCount={welcomeItemsContent.length}
+        {...item}
+      />);
+
     if (this.state.dimensions.measured && !this.state.slidingLeft) {
       this.updateSlider();
     }
 
-    const welcomeItemsContent = [
-      {
-        imageUrl: 'page1.png',
-        backgroundColor: 'rgba(46, 204, 113, 0.8)',
-        title: 'Bienvenido a Diamond Knowledge',
-        description: 'Vas a poder aprender a programar y a dominar cualquier lenguaje',
-      },
-      {
-        imageUrl: 'page2.png',
-        backgroundColor: 'rgba(52, 152, 219, 0.8)',
-        title: 'Aprendé de la mejor forma',
-        description: 'Los cursos son cortos y eficientes para aprender rápido en cualquier lugar',
-      },
-      /*{
-        imageUrl: 'a',
-        backgroundColor: 'rgba(155, 89, 182, 0.8)',
-        title: 'a',
-        description: 'a',
-      },
-      {
-        imageUrl: 'a',
-        backgroundColor: 'rgba(230, 126, 34, 0.8)',
-        title: 'a',
-        description: 'a',
-      },*/
-    ];
-    const welcomeItemsArray = welcomeItemsContent.map((item, index) =>
-      <WelcomeItem
-        key={`welcome-item-${index}`}
-        {...item}
-      />);
-
     // Creates a color palette from the array of colors constructed with welcomeItemsContent
     const colorPalette = ColorInterpolation(welcomeItemsContent.map(item => item.backgroundColor));
-
     const welcomePageStyle = {
+      // We pass as a parameter the actual position of the user screen, we
+      // normalize it, so it is between 0 and 1
       backgroundColor: colorPalette(
-        this.state.position + (-this.state.displacement.x / this.state.dimensions.width)),
+        (this.state.position + (-this.state.displacement.x / this.state.dimensions.width))
+        / (welcomeItemsContent.length - 1)),
     };
 
     const welcomePageItemsStyle = {
@@ -221,7 +201,7 @@ class WelcomePage extends React.Component {
           </div>
         </Measure>
         <WelcomeMenu
-          pagesCount={welcomeItemsArray.length}
+          pagesCount={welcomeItemsContent.length}
           position={this.state.position}
           next={this.slideLeft}
         />

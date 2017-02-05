@@ -62,14 +62,11 @@ class WelcomeMenu extends React.Component {
           }
         />);
 
-    const nextButtonStyle = {
-      display: this.props.position === this.props.pagesCount - 1 ? 'none' : undefined,
-    };
-
     return (
       <div id="welcome-menu">
         <div className="welcome-menu-item">
           {
+            this.props.position !== this.props.pagesCount - 1 &&
             !this.state.finished ?
               <button
                 className="btn"
@@ -77,7 +74,7 @@ class WelcomeMenu extends React.Component {
                   this.showEndAnimation('welcome-menu-finish-element');
                 }}
               >
-                SALTAR
+                Saltar
               </button> :
               <div id="welcome-menu-finish-element" className="finish-element" />
           }
@@ -88,12 +85,14 @@ class WelcomeMenu extends React.Component {
           </div>
         </div>
         <div className="welcome-menu-item">
-          <button
-            className="btn"
-            id="welcome-menu-next-button"
-            onClick={this.props.next}
-            style={nextButtonStyle}
-          > &gt; </button> {/* > */}
+          {
+            this.props.position !== this.props.pagesCount - 1 &&
+            <button
+              className="btn"
+              id="welcome-menu-next-button"
+              onClick={this.props.next}
+            > &gt; </button> /* > */
+          }
         </div>
       </div>
     );
