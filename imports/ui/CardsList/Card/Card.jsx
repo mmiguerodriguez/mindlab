@@ -99,6 +99,7 @@ class Card extends React.Component {
       // Create and instantiate a SlideHelper
       const $card = $(this.card);
       const stateUpdateHandler = (stateX) => {
+        console.log(stateX);
         if (this.state.displacement.x !== stateX * this.state.dimensions.width) {
           this.setState({
             displacement: {

@@ -276,7 +276,6 @@ class SlideHelper {
     SlideHelper.removeTouchEvents(this.$body);
   }
 
-  // Called every frame to update everything
   /**
    * Called every frame. Updates state variables and calls handlers. Disables if reached limit.
    * @return {undefined}
