@@ -111,23 +111,6 @@ class CardsList extends React.Component {
       }
     });
 
-    /*
-    /**
-     * Now that the cardStacks was organized and everything saved where it should be,
-     * replace every data object by Card element containing the corresponding data
-     *//*
-    const reactCardStacks = []; // The cardStacks saves as react elements
-    let currentCardGlobalIndex = 0;
-    cardStacks.forEach((stack) => {
-      const currentCardStack = [];
-      reactCardStacks.push(currentCardStack);
-      stack.forEach((card, index) => {
-        currentCardStack.push(
-          this.getCard(card, index, currentCardStack.length, currentCardGlobalIndex));
-        currentCardGlobalIndex += 1;
-      });
-    });
-     */
 
     /**
       * Now that the cardStacks was organized and everything saved where it should be,
@@ -172,11 +155,6 @@ class CardsList extends React.Component {
   }
 
   render() {
-    /* // Convert cardStack to react elements stack
-    const cardStack = this.state.cardStacks[this.state.currentStackIndex].map((card, index) =>
-      this.getCard(card, index, Math.random(), this.state.currentCardIndex));
-    // This should use React.cloneElement*/
-
     // Convert cardStack to react elements stack
     const cardStack = this.state.cardStacks[this.state.currentStackIndex].map(card =>
       React.cloneElement(card, { currentCardIndex: this.state.currentCardIndex }));

@@ -85,12 +85,8 @@ class Card extends React.Component {
      */
 
     if (!this.cardSlider) {
-      console.log(`Setting up a slider on card #${this.props.index}`);
-      // Is applied only to top card
-
       // Create and instantiate a SlideHelper
       const $card = $(this.card);
-      console.log($card);
       const stateUpdateHandler = (stateX) => {
         if (this.state.displacement.x !== stateX * this.state.dimensions.width) {
           this.setState({
@@ -120,7 +116,7 @@ class Card extends React.Component {
 
   slideCard() {
     /**
-     * programatically passes the card with the animation
+     * Programatically passes the card with the animation
      */
     if (this.cardSlider && this.cardSlider.enabled) {
       this.cardSlider.disable();
@@ -193,5 +189,3 @@ Card.defaultProps = {
 };
 
 export default Card;
-
-/* global $ */
