@@ -9,15 +9,6 @@ class LessonItem extends React.Component {
   }
 
   showEndAnimation() {
-    // Get the web fullscreen. Is here and not when the animation ends or when
-    // the lessonPage component mounts because the fullscreen needs to be requested
-    // in response to a user gesture.
-    const docEl = document.documentElement;
-    const requestFullScreen = docEl.requestFullscreen ||
-                              docEl.mozRequestFullScreen ||
-                              docEl.webkitRequestFullScreen ||
-                              docEl.msRequestFullscreen;
-    requestFullScreen.call(docEl);
     // TODO: Change to real id
     const $lessonId = $(`#lesson-${this.props.name.replace(/ /g, '-')}`);
     // First, we remove the lines between the lesson items
