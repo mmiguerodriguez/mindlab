@@ -22,7 +22,7 @@ class FinishCard extends React.Component {
       'Lesson name': this.props.lessonName,
       'Lesson time': Math.floor(Date.now() / 1000) - this.props.lessonTime,
     });
-    this.props.passCard();
+    this.props.slideCard();
   }
 
   render() {
@@ -65,7 +65,7 @@ FinishCard.propTypes = {
   title: React.PropTypes.string,
   text: React.PropTypes.string,
   mutate: PropTypes.func.isRequired,
-  passCard: PropTypes.func.isRequired,
+  slideCard: PropTypes.func.isRequired,
   lessonName: React.PropTypes.string.isRequired,
   lessonTime: React.PropTypes.number.isRequired,
 };

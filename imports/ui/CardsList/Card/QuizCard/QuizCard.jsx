@@ -91,7 +91,7 @@ class QuizCard extends React.Component {
           this.state.answeredCorrectly ?
             <button
               className="btn btn-raised btn-success"
-              onClick={this.props.passCard}
+              onClick={this.props.slideCard}
             >
               Continuar
             </button> :
@@ -113,7 +113,7 @@ QuizCard.propTypes = {
   getCurrentCardGlobalIndex: React.PropTypes.func.isRequired,
   imageUrl: React.PropTypes.string,
   question: React.PropTypes.string.isRequired,
-  passCard: React.PropTypes.func.isRequired,
+  slideCard: React.PropTypes.func.isRequired,
 };
 
 QuizCard.defaultProps = {
