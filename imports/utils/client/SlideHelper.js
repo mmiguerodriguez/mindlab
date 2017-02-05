@@ -60,7 +60,7 @@ class SlideHelper {
     this.$element = $element;
     this.size = size;
     this.exitThreshold = Number.isFinite(exitThreshold) ? Math.abs(exitThreshold) : size;
-    this.exitThresholdSpeed = exitThresholdSpeed;
+    this.exitThresholdSpeed = Number.isFinite(exitThresholdSpeed) ? exitThresholdSpeed : 0;
     this.velocityModifier = velocityModifier;
     this.returnSpeed = returnSpeed;
     this.frictionAcceleration = frictionAcceleration;
@@ -147,6 +147,9 @@ class SlideHelper {
    * @return {undefined}
    */
   disable() {
+    if (!this.enabled) {
+      return;
+    }
     SlideHelper.removeTouchEvents(this.$element);
     this.$element = null;
 
@@ -159,12 +162,14 @@ class SlideHelper {
 
   /**
    * Called when the pointer moves, and updates the corresponding variables
-   * @param {object} data jquery event data object
+   * @param {object} event jquery event object
    * @return {undefined}
    */
-  pointerMoved(data) {
+  pointerMoved(event) {
+    // slide helper should not do anything else than intended
+    event.preventDefault();
     // Get the position of the pointer
-    const { x, y } = SlideHelper.getPointerEventPosition(data);
+    const { x, y } = SlideHelper.getPointerEventPosition(event);
 
     // Velocity = distance/time
     this.velocityX = ((x - this.pointerX) /
@@ -186,12 +191,14 @@ class SlideHelper {
   /**
    * Called when the pointer clicks or touches the screen, and updates the corresponding
    *  variables
-   * @param {object} data jquery event data object
+   * @param {object} event jquery event object
    * @return {undefined}
    */
-  press(data) {
+  press(event) {
+    // slide helper should not do anything else than intended
+    event.preventDefault();
     // Get the position of the pointer
-    const { x, y } = SlideHelper.getPointerEventPosition(data);
+    const { x, y } = SlideHelper.getPointerEventPosition(event);
 
     // Save pointer position
     this.pressX = x;
@@ -210,9 +217,12 @@ class SlideHelper {
   /**
    * Called when the pointer release or a finger leaves the screen, and updates the
    *  corresponding variables. Does not accept the jquery event object because not used.
+   *  @param {event} event jquery event object
    *  @return {undefined}
    */
-  release() {
+  release(event) {
+    // slide helper should not do anything else than intended
+    event.preventDefault();
     // Check for a buggy release (a release when the element was not actually being touched)
     if (!this.pressed) {
       return;
@@ -273,7 +283,6 @@ class SlideHelper {
     SlideHelper.removeTouchEvents(this.$body);
   }
 
-  // Called every frame to update everything
   /**
    * Called every frame. Updates state variables and calls handlers. Disables if reached limit.
    * @return {undefined}
@@ -301,6 +310,7 @@ class SlideHelper {
       // Because the state should return to rest position, move to rest position a bit every frame
       const positionDisplacement =
        this.returnSpeed / this.size;// The distance that will be moved this frame
+
       // Move
       if (this.stateX > positionDisplacement) {
         this.stateX -= positionDisplacement;

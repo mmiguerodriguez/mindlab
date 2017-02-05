@@ -9,6 +9,17 @@ import QuizCard from './QuizCard/QuizCard';
 
 
 class Card extends React.Component {
+  /**
+   * returns if a card is or not a quiz
+   * @param  {object}  card A card object, not an element, just its properties
+   * @return {Boolean}      true if the card is a quiz, false if it is not
+   */
+  static isQuiz(card) {
+    return card.type === 'order' ||
+      card.type === 'multiple-choice' ||
+      card.type === 'code';
+  }
+
   constructor(props) {
     super(props);
     this.state = {
@@ -29,7 +40,7 @@ class Card extends React.Component {
     this.cardSlider = null;
     const type = this.props.contentProps.type;
     this.shouldSlide = !(type === 'code' || type === 'order' || type === 'multiple-choice' || type === 'feedback' || type === 'finish');
-    this.passCard = this.passCard.bind(this);
+    this.slideCard = this.slideCard.bind(this);
   }
 
   componentWillUnmount() {
@@ -72,18 +83,18 @@ class Card extends React.Component {
        *  TODO: Fix
        */
       index: this.props.index,
-      cardsCount: this.props.cardsCount,
-      passCard: this.passCard,
+      slideCard: this.slideCard,
     });
   }
 
-  /**
-   * Updates or sets a sliding helper for the cards.
-   * WARNING:
-   *  Requires dimensions to be measured
-   * @return {[type]} [description]
-   */
   updateCardSlider() {
+    /**
+     * Updates or sets a sliding helper for the cards.
+     * WARNING:
+     *  Requires dimensions to have been measured
+     * @return {undefined}
+     */
+
     if (!this.cardSlider) {
       // Create and instantiate a SlideHelper
       const $card = $(this.card);
@@ -114,10 +125,10 @@ class Card extends React.Component {
     }
   }
 
-  /**
-   * programatically passes the card with the animation
-   */
-  passCard() {
+  slideCard() {
+    /**
+     * Programatically passes the card with the animation
+     */
     if (this.cardSlider && this.cardSlider.enabled) {
       this.cardSlider.disable();
     }
@@ -134,24 +145,27 @@ class Card extends React.Component {
             x: this.state.displacement.x - (0.1 * this.state.dimensions.width),
           },
         }, () => {
-          requestAnimationFrame(this.passCard);
+          requestAnimationFrame(this.slideCard);
         });
       }
     }
   }
 
   render() {
-    if (this.shouldSlide && this.state.dimensions.measured &&
+    if ((this.props.currentCardIndex === this.props.index) && // Only apply cardSlider on top card
+        this.shouldSlide && this.state.dimensions.measured &&
         (!this.cardSlider || this.cardSlider.size !== this.state.dimensions.width)
+        // TODO: Analize the !==, apparently it does not make sense
     ) {
       this.updateCardSlider();
     }
 
     const cardStyle = {
       zIndex: this.props.cardsCount - this.props.index,
+      // Another way is this.props.index - this.props.currentCardIndex
       transform:
-        `translate(${this.state.displacement.x}px, ${10 * (this.props.index)}px) rotateZ(${(this.state.displacement.x / this.state.dimensions.width) * 35}deg)`,
-      display: this.state.passed ? 'none' : undefined,
+        `translate(${this.state.displacement.x}px, ${10 * (this.props.index - this.props.currentCardIndex)}px) rotateZ(${(this.state.displacement.x / this.state.dimensions.width) * 35}deg)`,
+      display: (this.state.passed || this.props.index < this.props.currentCardIndex) ? 'none' : undefined,
     };
 
     const cardContent = this.getCardContent();
@@ -178,6 +192,7 @@ Card.propTypes = {
   }).isRequired,
   index: React.PropTypes.number.isRequired,
   cardsCount: React.PropTypes.number.isRequired,
+  currentCardIndex: React.PropTypes.number.isRequired,
   cardPassed: React.PropTypes.func,
 };
 Card.defaultProps = {
