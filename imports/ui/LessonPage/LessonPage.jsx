@@ -53,14 +53,14 @@ class LessonPage extends React.Component {
     }
     return (
       <div>
+        <ProgressBar
+          progress={(this.state.currentCardGlobalIndex / (cardsContent.length - 2)) * 100}
+        />
         <CardsList
           cards={cardsContent}
           lessonName={this.props.params.lessonName}
           setCurrentCardGlobalIndex={this.setCurrentCardGlobalIndex}
           getCurrentCardGlobalIndex={this.getCurrentCardGlobalIndex}
-        />
-        <ProgressBar
-          progress={(this.state.currentCardGlobalIndex / (cardsContent.length - 2)) * 100}
         />
       </div>
     );

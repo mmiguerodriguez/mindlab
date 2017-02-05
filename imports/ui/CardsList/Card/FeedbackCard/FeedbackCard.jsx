@@ -25,8 +25,6 @@ class FeedbackCard extends React.Component {
   sendFeedback() {
     const { description, email } = this.state;
 
-    console.log(description);
-
     if (!description) {
       $.snackbar({ content: 'La descripción debe tener contenido.' });
     } else {

@@ -1,11 +1,5 @@
-#progress-bar-container {
-  display: flex;
-  justify-content: center;
-  animation-duration: .70s;
-}
-
 #progress {
   height: 4px;
-  width: calc(100% - 80px);
+  width: calc(100% - 32px);
   margin: 15px !important;
 }
