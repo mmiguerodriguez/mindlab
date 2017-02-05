@@ -1,6 +1,6 @@
 import React from 'react';
 import Measure from 'react-measure';
-import SlideHelper from './SlideHelper';
+import SlideHelper from './../../../utils/client/SlideHelper';
 
 import ContentCard from './ContentCard/ContentCard';
 import FeedbackCard from './FeedbackCard/FeedbackCard';
@@ -22,7 +22,7 @@ class Card extends React.Component {
       displacement: {
         x: 0, // Used to animate card movement
       },
-      // Updated when the card is sl
+      // Updated when the card gets slid
       passed: false,
     };
 
@@ -40,7 +40,7 @@ class Card extends React.Component {
   }
 
   getCardContent() {
-    let cardType = null;
+    let cardType;
     switch (this.props.contentProps.type) {
       case 'content':
         cardType = ContentCard;
@@ -185,5 +185,3 @@ Card.defaultProps = {
 };
 
 export default Card;
-
-/* global $ */

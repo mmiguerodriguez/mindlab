@@ -98,5 +98,3 @@ MultipleChoiceCard.defaultProps = {
 };
 
 export default MultipleChoiceCard;
-
-/* global $ */

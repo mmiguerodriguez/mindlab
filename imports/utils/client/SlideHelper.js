@@ -8,32 +8,44 @@ class SlideHelper {
    * Creates an instance and sets the corresponding values with the passed parameters
    * @param {float} $element The element on which to use the helper
    * @param {float} size The size of the element
+   * @param {float} exitThreshold
+   * The distance from the center that, if reached, the element will exit when released
+   * @param {float} exitThresholdSpeed The speed at which exit if the element reaches the threshold
+   * @param {float} velocityModifier
+   * A modifier for the velocity, because finger movement is perceibed as slower
    * @param {float} frictionAcceleration Used to determine if upon release the element should exit
-   * @param {float} returnVelocity  Sets the speed with which the state returns to rest position
+   * @param {float} returnSpeed  Sets the speed with which the state returns to rest position
    * @param {float} stateUpdateHandler Called every frame with the state, used by user to animate
    * @param {float} finishHandler Called when the state reaches passed size
    * @param {float} rightHandler Called when the state reaches passed size, on the right
    * @param {float} leftHandler Called when the state reaches passed size, on the left
+   * @param {float} disableRight Does not slide to the right (more than initially)
+   * @param {float} disableLeft Does not slide to the left (more than initially)
    * @return {SlideHelper}
    */
   constructor({
     $element,
     size,
+    exitThreshold,
+    exitThresholdSpeed,
+    velocityModifier = 10,
     frictionAcceleration = -7,
-    returnVelocity = 80,
+    returnSpeed = 80,
     stateUpdateHandler = null,
     finishHandler = null,
     rightHandler = null,
     leftHandler = null,
+    disableLeft = false,
+    disableRight = false,
   }) {
-    if (this.$element) {
-      console.error('Applying while already applied to another element!');
-    }
     if (!$element) {
-      console.error('Did not pass element');
+      console.error('Did not pass the element on which to apply the helper!');
     }
     if (!size) {
-      console.error('Did not pass size');
+      console.error('Did not pass the size of the element on which to apply the helper!');
+    }
+    if (Number.isFinite(exitThreshold) && !Number.isFinite(exitThresholdSpeed)) {
+      console.error('Indicated an exitThreshold but didn\'t pass the exit velocity');
     }
 
     this.$body = $(document.body);
@@ -47,8 +59,13 @@ class SlideHelper {
     this.pressY = null;// Last touch position
     this.$element = $element;
     this.size = size;
-    this.returnVelocity = returnVelocity;
+    this.exitThreshold = Number.isFinite(exitThreshold) ? Math.abs(exitThreshold) : size;
+    this.exitThresholdSpeed = exitThresholdSpeed;
+    this.velocityModifier = velocityModifier;
+    this.returnSpeed = returnSpeed;
     this.frictionAcceleration = frictionAcceleration;
+    this.allowLeft = !disableLeft; // Should move more to the left than initial position ?
+    this.allowRight = !disableRight; // Should move more to the right than initial position ?
     this.stateUpdateHandler = stateUpdateHandler;
     this.finishHandler = finishHandler;
     this.rightHandler = rightHandler;
@@ -57,6 +74,7 @@ class SlideHelper {
     // The current position of movement
     this.stateX = 0;// i.e. element pressed then pointer moved to the right, stateX increases
     this.velocityX = 0;
+    this.exitVelocity = 0;// Used when exiting
 
     // Bind the event handlers
     this.pointerMoved = this.pointerMoved.bind(this);
@@ -85,12 +103,12 @@ class SlideHelper {
 
   /**
    * Sets the velocity with which a released element will return to rest state,
-   *  if it should return element would exit after a swipe. The default returnVelocity value is 80
-   * @param {float} returnVelocity the new returnVelocity value
+   *  if it should return. The default returnSpeed value is 80
+   * @param {float} returnSpeed the new returnSpeed value
    * @return {undefined}
    */
-  setReturnVelocity(returnVelocity) {
-    this.returnVelocity = Math.abs(returnVelocity);
+  setReturnSpeed(returnSpeed) {
+    this.returnSpeed = Math.abs(returnSpeed);
   }
 
   /**
@@ -100,6 +118,24 @@ class SlideHelper {
    */
   setSize(size) {
     this.size = size;
+  }
+
+  /**
+   * Sets the exitThreshold, an optional parameter used to set an exit threshold
+   * @param {float} exitThreshold the new exitThreshold value
+   * @return {undefined}
+   */
+  setExitThreshold(exitThreshold) {
+    this.exitThreshold = exitThreshold;
+  }
+
+  /**
+   * Sets the exitThresholdSpeed, used when exiting because of the exit threshold
+   * @param {float} exitThresholdSpeed the new exitThresholdSpeed value
+   * @return {undefined}
+   */
+  setExitThresholdSpeed(exitThresholdSpeed) {
+    this.exitThresholdSpeed = exitThresholdSpeed;
   }
 
   /**
@@ -131,8 +167,8 @@ class SlideHelper {
     const { x, y } = SlideHelper.getPointerEventPosition(data);
 
     // Velocity = distance/time
-    this.velocityX = (x - this.pointerX) /
-     ((performance.now() - this.lastPointerPositionTimestamp) / 100);
+    this.velocityX = ((x - this.pointerX) /
+     ((performance.now() - this.lastPointerPositionTimestamp) / 1000)) / this.velocityModifier;
     // Save pointer position
     this.pointerX = x;
     this.pointerY = y;
@@ -140,6 +176,11 @@ class SlideHelper {
 
     // Update the state
     this.stateX = (this.pointerX - this.pressX) / this.size;
+
+    // If movement in one direction is disabled, disable
+    if ((!this.allowLeft && this.stateX < 0) || (!this.allowRight && this.stateX > 0)) {
+      this.stateX = 0;
+    }
   }
 
   /**
@@ -180,18 +221,46 @@ class SlideHelper {
     this.pressed = false;
 
     /**
-     * Determinar si se deberia pasar a la siguiente tarjeta o volver
-     * CUIDADO: Matematica
+     * Determine if should exit or return
+     * BEWARE: Maths ahead
      * */
-    const timeToStop = -this.velocityX / this.frictionAcceleration;
-    const finalPositionX = (this.stateX * this.size) +
-      (this.velocityX * timeToStop) +
-        ((this.frictionAcceleration * timeToStop * timeToStop) / 2);
-    if (Math.abs(finalPositionX) > 500) {
+    const timeToStop = Math.abs(this.velocityX / this.frictionAcceleration);
+
+    // if the velocity is negative, the frictionAcceleration should
+    //  be positive (friction is against movement)
+    let finalPositionX;
+    if (this.velocityX > 0) {
+      finalPositionX = (this.stateX * this.size) +
+        (this.velocityX * timeToStop) +
+          ((this.frictionAcceleration * timeToStop * timeToStop) / 2);
+    } else {
+      finalPositionX = (this.stateX * this.size) +
+        (this.velocityX * timeToStop) +
+          ((-this.frictionAcceleration * timeToStop * timeToStop) / 2);
+    }
+
+    if ((finalPositionX < 0 && !this.allowLeft) || (finalPositionX > 0 && !this.allowRight)) {
+      finalPositionX = 0;
+    }
+
+    if (Math.abs(finalPositionX) > this.size) {
       // The state would reach the limit, therefore it should continue to the exit
       // (shouldExit = true)
+
       this.shouldReturn = false;
       this.shouldExit = true;
+      // Sets the exitVelocity to the maximum between exitThresholdSpeed and velocityX,
+      //  to avoid super slow movement
+      this.exitVelocity = Number.isFinite(this.exitThreshold) ?
+       Math.sign(this.velocityX) * Math.max(Math.abs(this.velocityX), this.exitThresholdSpeed) :
+        this.velocityX;
+    } else if (Math.abs(this.stateX) * this.size > this.exitThreshold) {
+      // The exit threshold was reached, therefore state should exit
+      // (shouldExit = true)
+
+      this.shouldReturn = false;
+      this.shouldExit = true;
+      this.exitVelocity = Math.sign(this.stateX) * this.exitThresholdSpeed;
     } else {
       // The state would not reach the limit, therefore it should return to rest position
       // (shouldReturn = true)
@@ -231,7 +300,7 @@ class SlideHelper {
     if (this.shouldReturn) {
       // Because the state should return to rest position, move to rest position a bit every frame
       const positionDisplacement =
-       this.returnVelocity / this.size;// The distance that will be moved this frame
+       this.returnSpeed / this.size;// The distance that will be moved this frame
       // Move
       if (this.stateX > positionDisplacement) {
         this.stateX -= positionDisplacement;
@@ -245,7 +314,7 @@ class SlideHelper {
 
     if (this.shouldExit) {
       // Because the state should reach the limit (exit), move outside according to velocity
-      const positionDisplacement = this.velocityX / this.size;
+      const positionDisplacement = this.exitVelocity / this.size;
       this.stateX += positionDisplacement;
     }
 
@@ -296,12 +365,13 @@ class SlideHelper {
   static getPointerEventPosition(data) {
     let x;
     let y;
-    let ret = null;
+    let ret;
     // If not mobile the position is stored in screenX and screenY
     if (Number.isFinite(data.screenX)) {
       x = data.screenX;
       y = data.screenY;
-    } else if (data.touches && Number.isFinite(data.touches.item(0).screenX)) {
+    } else if (data.touches && data.touches.length > 0 &&
+       Number.isFinite(data.touches.item(0).screenX)) {
       // If mobile the position of the touch is stored in a list of touches (may be many fingers)
       x = data.touches.item(0).screenX;
       y = data.touches.item(0).screenY;
@@ -314,5 +384,3 @@ class SlideHelper {
 }
 
 export default SlideHelper;
-
-/* global $ */

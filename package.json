@@ -5,7 +5,8 @@
     "start": "meteor run --port 8080 --settings settings.json",
     "migue": "ROOT_URL=https://cloud-migue-miguelrodriguez.c9users.io:8080 meteor run --port 8080 --settings settings.json",
     "joel": "ROOT_URL=https://cursos-joelsobolmark.c9users.io:8080 meteor run --port 8080 --settings settings.json",
-    "santi": "ROOT_URL=https://courses-aranguri.c9users.io meteor run --port 8080 --settings settings.json"
+    "santi": "ROOT_URL=https://courses-aranguri.c9users.io meteor run --port 8080 --settings settings.json",
+    "nic": "meteor run --port 8080"
   },
   "dependencies": {
     "apollo-client": "^0.5.26",
@@ -15,6 +16,7 @@
     "bcrypt": "^0.8.7",
     "body-parser": "^1.15.2",
     "classnames": "^2.2.5",
+    "color-interpolate": "^1.0.2",
     "codemirror": "^5.23.0",
     "express": "^4.14.0",
     "graphql": "^0.7.0",
