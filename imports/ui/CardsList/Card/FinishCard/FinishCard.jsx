@@ -5,15 +5,24 @@ import gql from 'graphql-tag';
 import Notifications from '../../../../utils/client/notifications';
 
 class FinishCard extends React.Component {
+  constructor(props) {
+    super(props);
+
+    this.handleClick = this.handleClick.bind(this);
+  }
   componentDidMount() {
     // We wait one second to ask for permission
     setTimeout(() => {
       Notifications.askForPermission(this.props.mutate);
     }, 1000);
-    mixpanel.track_links('#finish-card-continue-btn', 'Finished lesson', {
+  }
+
+  handleClick() {
+    mixpanel.track('Finished lesson', {
       'Lesson name': this.props.lessonName,
       'Lesson time': Math.floor(Date.now() / 1000) - this.props.lessonTime,
     });
+    this.props.passCard();
   }
 
   render() {
@@ -41,7 +50,7 @@ class FinishCard extends React.Component {
         <button
           className="btn btn-raised card-btn-primary"
           id="finish-card-continue-btn"
-          onClick={this.props.passCard}
+          onClick={this.handleClick}
         >
           Continuar
         </button>
