@@ -39,7 +39,7 @@ class WelcomeItem extends React.Component {
       setTimeout(() => {
         browserHistory.push('/');
       }, 450);
-    });
+    }, 50);
   }
 
   render() {
