@@ -10,25 +10,25 @@
 }
 
 .welcome-item-title {
-  font-size: 2.4em;
+  font-size: 1.4em;
   line-height: 1.2;
 }
 
 .welcome-image {
-  height: 100px;
-  width: 100px;
+  height: 200px;
+  width: 200px;
   border-radius: 50%;
-  background-color: rgba(0, 0, 0, 0.3);
+  background-color: rgba(0, 0, 0, 0.1);
   margin-bottom: 25px;
   display: flex;
   align-items: center;
   img {
-    width: 66px;
-    margin: 17px;
+    width: 100px;
+    margin: 50px;
   }
 }
 
 #welcome-item-finish-btn {
-  margin-top: 25px;
+  margin-top: 15px;
   font-size: 18px;
 }

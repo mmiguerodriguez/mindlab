@@ -53,7 +53,7 @@ class WelcomeItem extends React.Component {
         </p>
         {
           this.props.lastItem &&
-          <div>
+          <div id="welcome-item-finish-btn-container">
             <button
               className="btn btn-raised btn-primary"
               id="welcome-item-finish-btn"

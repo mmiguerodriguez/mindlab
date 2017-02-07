@@ -158,11 +158,11 @@ class CardsList extends React.Component {
     const currentTime = Math.floor(Date.now() / 1000); // in seconds
     const cardTime = currentTime - this.initialCardTimer;
     this.initialCardTimer = currentTime;
-    mixpanel.track('Card passed', {
+    /* mixpanel.track('Card passed', {
       'Lesson name': this.props.lessonName,
       'Card index': this.props.getCurrentCardGlobalIndex(),
       'Card time': cardTime,
-    });
+    }); */
 
     this.props.setCurrentCardGlobalIndex(this.props.getCurrentCardGlobalIndex() + 1);
     // Used by lessonPage in the progressBar
