@@ -138,6 +138,7 @@ class CardsList extends React.Component {
   /**
    * Adds some data that is used for example by analytics
    * @param {object} card A card object, not an element, just its properties
+   * @return {object} card with metadata
    */
   addMetaData(card) {
     return {
