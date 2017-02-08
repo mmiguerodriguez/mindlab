@@ -5,12 +5,12 @@ import ApolloClient from 'apollo-client';
 import { meteorClientConfig } from 'meteor/apollo';
 import { ApolloProvider } from 'react-apollo';
 
-import App from '../../ui/App/App';
-import WelcomePage from '../../ui/WelcomePage/WelcomePage';
-import HomePage from '../../ui/HomePage/HomePage';
-import CoursePage from '../../ui/CoursePage/CoursePage';
-import LessonPage from '../../ui/LessonPage/LessonPage';
-import FeedbackPage from '../../ui/FeedbackPage/FeedbackPage';
+import App from '../../ui/app/App';
+import WelcomePage from '../../ui/welcome-page/WelcomePage';
+import HomePage from '../../ui/home-page/HomePage';
+import CoursePage from '../../ui/course-page/CoursePage';
+import LessonPage from '../../ui/lesson-page/LessonPage';
+import FeedbackPage from '../../ui/feedback-page/FeedbackPage';
 
 const client = new ApolloClient(meteorClientConfig());
 

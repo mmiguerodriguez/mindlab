@@ -1,0 +1,50 @@
+@import 'quiz-card/quiz-card';
+@import 'feedback-card/feedback-card';
+
+._card { // not card because bootstrap-material-design already uses it
+  position: absolute;
+  top: 85px;
+  display: flex;
+  width: calc(100% - 30px);
+  flex-flow: column;
+  align-items: center;
+  min-height: 450px;
+  margin-bottom: 10px;
+  border-radius: 5px;
+  background-color: white;
+  box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.3);
+  animation-duration: .70s;
+}
+
+.card-body {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  width: 100%;
+  align-items: center;
+  padding: 15px;
+}
+
+.card-text {
+  margin-top: 4px;
+  font-size: 1.5em;
+}
+
+
+.card-img {
+  height: 64px;
+  width: 64px;
+  filter: invert(1);
+}
+
+.card-img-container {
+  padding: 18px;
+  border-radius: 50%;
+  background-color: rgba(26, 188, 156, 0.7);
+  margin-bottom: 18px;
+}
+
+.card-btn-primary {
+  color: white !important;
+  background-color: $blue-2-color !important;
+}
