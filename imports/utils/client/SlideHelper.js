@@ -11,6 +11,8 @@ class SlideHelper {
    * @param {float} exitThreshold
    * The distance from the center that, if reached, the element will exit when released
    * @param {float} exitThresholdSpeed The speed at which exit if the element reaches the threshold
+   * @param {float} escapeThreshold
+   * The normalized distance from the tap needed to initialize the animation
    * @param {float} velocityModifier
    * A modifier for the velocity, because finger movement is perceibed as slower
    * @param {float} frictionAcceleration Used to determine if upon release the element should exit
@@ -28,6 +30,7 @@ class SlideHelper {
     size,
     exitThreshold,
     exitThresholdSpeed,
+    escapeThreshold = 0,
     velocityModifier = 10,
     frictionAcceleration = -7,
     returnSpeed = 80,
@@ -61,6 +64,8 @@ class SlideHelper {
     this.size = size;
     this.exitThreshold = Number.isFinite(exitThreshold) ? Math.abs(exitThreshold) : size;
     this.exitThresholdSpeed = Number.isFinite(exitThresholdSpeed) ? exitThresholdSpeed : 0;
+    this.escapeThreshold = escapeThreshold;
+    this.hasEscaped = false;
     this.velocityModifier = velocityModifier;
     this.returnSpeed = returnSpeed;
     this.frictionAcceleration = frictionAcceleration;
@@ -307,6 +312,8 @@ class SlideHelper {
     }
 
     if (this.shouldReturn) {
+      // Reset hasEscaped variable for the next touch
+      this.hasEscaped = false;
       // Because the state should return to rest position, move to rest position a bit every frame
       const positionDisplacement =
        this.returnSpeed / this.size;// The distance that will be moved this frame
@@ -328,8 +335,19 @@ class SlideHelper {
       this.stateX += positionDisplacement;
     }
 
-    // Call handler if an stateUpdateHandler was supplied
-    if (this.stateUpdateHandler) {
+    // Call handler if an stateUpdateHandler was supplied and if the card has
+    // already passed the escape threshold
+    if (this.stateUpdateHandler &&
+      (
+        Math.abs(this.stateX) > this.escapeThreshold ||
+        this.hasEscaped ||
+        this.shouldReturn ||
+        this.shouldExit
+      )
+    ) {
+      if (!this.shouldReturn) {
+        this.hasEscaped = true;
+      }
       this.stateUpdateHandler(this.stateX);
     }
 
