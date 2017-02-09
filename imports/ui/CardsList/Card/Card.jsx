@@ -53,6 +53,7 @@ class Card extends React.Component {
         },
         passed: false,
       });
+      this.cardSlider = null; // In order to reapply the slideHelper
     }
   }
 
