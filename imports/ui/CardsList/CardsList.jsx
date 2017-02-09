@@ -50,6 +50,7 @@ class CardsList extends React.Component {
     };
 
     this.cardPassed = this.cardPassed.bind(this);
+    this.previousCard = this.previousCard.bind(this);
     this.getCard = this.getCard.bind(this);
     this.getCurrentCardIndex = this.getCurrentCardIndex.bind(this);
   }
@@ -71,6 +72,7 @@ class CardsList extends React.Component {
         cardsCount={cardsCount}
         currentCardIndex={currentCardIndex}
         cardPassed={this.cardPassed.bind(this)} // TODO: investigate this
+        previousCard={this.previousCard.bind(this)}
       />
     );
   }
@@ -158,11 +160,11 @@ class CardsList extends React.Component {
     const currentTime = Math.floor(Date.now() / 1000); // in seconds
     const cardTime = currentTime - this.initialCardTimer;
     this.initialCardTimer = currentTime;
-    mixpanel.track('Card passed', {
+    /*mixpanel.track('Card passed', {
       'Lesson name': this.props.lessonName,
       'Card index': this.props.getCurrentCardGlobalIndex(),
       'Card time': cardTime,
-    });
+    });*/
 
     this.props.setCurrentCardGlobalIndex(this.props.getCurrentCardGlobalIndex() + 1);
     // Used by lessonPage in the progressBar
@@ -179,6 +181,42 @@ class CardsList extends React.Component {
     } else {
       this.setState({
         currentCardIndex: this.state.currentCardIndex + 1,
+      });
+    }
+  }
+
+  previousCard() {
+    /**
+     * previousCard: show the previous card
+     */
+
+    // Validate that the user is not in the first card
+    if (this.state.currentStackIndex === 0 && this.state.currentCardIndex === 0) {
+      return;
+    }
+
+    const currentTime = Math.floor(Date.now() / 1000); // in seconds
+    this.initialCardTimer = currentTime;
+    /*mixpanel.track('Previous card', {
+      'Lesson name': this.props.lessonName,
+      'Card index': this.props.getCurrentCardGlobalIndex(),
+    });*/
+
+    // Used by lessonPage in the progressBar
+    this.props.setCurrentCardGlobalIndex(this.props.getCurrentCardGlobalIndex() - 1);
+
+    // If the card is the first one of the stack, show previous stack
+    if (
+     this.state.currentCardIndex === 0
+    ) {
+      this.setState({
+        currentStackIndex: this.state.currentStackIndex - 1,
+         // Show the last card of the previous stack
+        currentCardIndex: this.state.cardStacks[this.state.currentStackIndex - 1].length - 1,
+      });
+    } else {
+      this.setState({
+        currentCardIndex: this.state.currentCardIndex - 1,
       });
     }
   }

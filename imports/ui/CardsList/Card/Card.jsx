@@ -43,6 +43,19 @@ class Card extends React.Component {
     this.slideCard = this.slideCard.bind(this);
   }
 
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.currentCardIndex === nextProps.index && this.state.passed) {
+      // User returned to the card by swiping downHandler
+      // Reset the state
+      this.setState({
+        displacement: {
+          x: 0,
+        },
+        passed: false,
+      });
+    }
+  }
+
   componentWillUnmount() {
     if (this.cardSlider) {
       this.cardSlider.disable();
@@ -118,6 +131,7 @@ class Card extends React.Component {
         size: this.state.dimensions.width,
         escapeThreshold: 0.05,
         finishHandler,
+        downHandler: this.props.previousCard,
         stateUpdateHandler,
       };
       this.cardSlider = new SlideHelper(slideHelperProps);
@@ -195,9 +209,11 @@ Card.propTypes = {
   cardsCount: React.PropTypes.number.isRequired,
   currentCardIndex: React.PropTypes.number.isRequired,
   cardPassed: React.PropTypes.func,
+  previousCard: React.PropTypes.func,
 };
 Card.defaultProps = {
   cardPassed: () => {},
+  previousCard: () => {},
 };
 
 export default Card;

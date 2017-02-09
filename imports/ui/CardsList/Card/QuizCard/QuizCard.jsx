@@ -41,12 +41,12 @@ class QuizCard extends React.Component {
 
   handleCheckAnswer() {
     const isCorrect = this.state.checkAnswer();
-    mixpanel.track('Quiz responded', {
+    /*mixpanel.track('Quiz responded', {
       'Lesson name': this.props.lessonName,
       'Card index': this.props.getCurrentCardGlobalIndex(),
       'Answered correctly': isCorrect,
       'Number of try': this.state.quizTries,
-    });
+    });*/
     this.setState({
       quizTries: this.state.quizTries + 1,
     });

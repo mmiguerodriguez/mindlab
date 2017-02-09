@@ -17,10 +17,12 @@ class SlideHelper {
    * A modifier for the velocity, because finger movement is perceibed as slower
    * @param {float} frictionAcceleration Used to determine if upon release the element should exit
    * @param {float} returnSpeed  Sets the speed with which the state returns to rest position
-   * @param {float} stateUpdateHandler Called every frame with the state, used by user to animate
-   * @param {float} finishHandler Called when the state reaches passed size
-   * @param {float} rightHandler Called when the state reaches passed size, on the right
-   * @param {float} leftHandler Called when the state reaches passed size, on the left
+   * @param {function} stateUpdateHandler Called every frame with the state, used by user to animate
+   * @param {function} finishHandler Called when the state reaches passed size
+   * @param {function} rightHandler Called when the state reaches passed size, on the right
+   * @param {function} leftHandler Called when the state reaches passed size, on the left
+   * @param {function} downHandler
+   * Called when tap hasn't passed the escape threshold but has passed the down threshold
    * @param {float} disableRight Does not slide to the right (more than initially)
    * @param {float} disableLeft Does not slide to the left (more than initially)
    * @return {SlideHelper}
@@ -38,6 +40,7 @@ class SlideHelper {
     finishHandler = null,
     rightHandler = null,
     leftHandler = null,
+    downHandler = null,
     disableLeft = false,
     disableRight = false,
   }) {
@@ -75,9 +78,13 @@ class SlideHelper {
     this.finishHandler = finishHandler;
     this.rightHandler = rightHandler;
     this.leftHandler = leftHandler;
+    this.downHandler = downHandler;
 
     // The current position of movement
     this.stateX = 0;// i.e. element pressed then pointer moved to the right, stateX increases
+    // normalized y component of the distance between
+    // current tap position and initial tap position
+    this.stateY = 0;
     this.velocityX = 0;
     this.exitVelocity = 0;// Used when exiting
 
@@ -117,7 +124,7 @@ class SlideHelper {
   }
 
   /**
-   * Sets the size, which is used to calculate stateX
+   * Sets the size, which is used to calculate stateX & stateY
    * @param {float} size the new size value
    * @return {undefined}
    */
@@ -186,6 +193,7 @@ class SlideHelper {
 
     // Update the state
     this.stateX = (this.pointerX - this.pressX) / this.size;
+    this.stateY = (this.pointerY - this.pressY) / this.size;
 
     // If movement in one direction is disabled, disable
     if ((!this.allowLeft && this.stateX < 0) || (!this.allowRight && this.stateX > 0)) {
@@ -276,9 +284,15 @@ class SlideHelper {
       this.shouldReturn = false;
       this.shouldExit = true;
       this.exitVelocity = Math.sign(this.stateX) * this.exitThresholdSpeed;
+    } else if ( // the state hasn't reached the limit
+      this.downHandler &&
+      !this.hasEscaped &&
+      this.stateY > 0.5 // check if there is a down swipe TODO: parametrize this
+    ) {
+      // call downHandler
+      this.downHandler();
     } else {
-      // The state would not reach the limit, therefore it should return to rest position
-      // (shouldReturn = true)
+      // It should return to rest position
       this.shouldReturn = true;
       this.shouldExit = false;
     }

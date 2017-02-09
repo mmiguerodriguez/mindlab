@@ -18,10 +18,10 @@ class FinishCard extends React.Component {
   }
 
   handleClick() {
-    mixpanel.track('Finished lesson', {
+    /*mixpanel.track('Finished lesson', {
       'Lesson name': this.props.lessonName,
       'Lesson time': Math.floor(Date.now() / 1000) - this.props.lessonTime,
-    });
+    });*/
     this.props.slideCard();
   }
 
