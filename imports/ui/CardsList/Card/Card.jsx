@@ -35,6 +35,7 @@ class Card extends React.Component {
       },
       // Updated when the card gets slid
       passed: false,
+      cardStyle: null,
     };
 
     this.cardSlider = null;
@@ -52,6 +53,16 @@ class Card extends React.Component {
           x: 0,
         },
         passed: false,
+        cardStyle: {
+          transition: 'transform 1s',
+        },
+      }, () => {
+        setTimeout(() => {
+          this.setState({
+            cardStyle: null,
+          });
+          console.log('hola');
+        }, 1000);
       });
       this.cardSlider = null; // In order to reapply the slideHelper
     }
@@ -177,6 +188,7 @@ class Card extends React.Component {
     }
 
     const cardStyle = {
+      ...this.state.cardStyle,
       zIndex: this.props.cardsCount - this.props.index,
       // Another way is this.props.index - this.props.currentCardIndex
       transform:
