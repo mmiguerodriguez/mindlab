@@ -287,7 +287,7 @@ class SlideHelper {
     } else if ( // the state hasn't reached the limit
       this.downHandler &&
       !this.hasEscaped &&
-      this.stateY > 0.5 // check if there is a down swipe TODO: parametrize this
+      this.stateY > 0.25 // check if there is a down swipe TODO: make stateY size.y dependent
     ) {
       // call downHandler
       this.downHandler();
