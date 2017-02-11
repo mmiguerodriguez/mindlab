@@ -34,7 +34,8 @@ class Card extends React.Component {
         x: 0, // Used to animate card movement
       },
       // Updated when the card gets slid
-      passed: false,
+      // true by default if cards has already passed
+      passed: props.currentCardIndex > props.index,
       cardStyle: null,
     };
 
@@ -42,27 +43,29 @@ class Card extends React.Component {
     const type = this.props.contentProps.type;
     this.shouldSlide = !(type === 'code' || type === 'order' || type === 'multiple-choice' || type === 'feedback' || type === 'finish');
     this.slideCard = this.slideCard.bind(this);
+    this.placeCardInOriginalPosition = this.placeCardInOriginalPosition.bind(this);
+    this.resetCardStyle = this.resetCardStyle.bind(this);
+  }
+
+  componentDidMount() {
+    // check if user went back to this card from the next stack
+    // and adjust the animation direction accordingly
+    const slideInDirection = (this.props.cardsCount === this.props.index && // is it the last card?
+                             // is it the currently visible card?
+                             this.props.currentCardIndex === this.props.index) ?
+                               'down' : // if user went back
+                               'up'; // if it is the first time
+    this.playSlideInAnimation(slideInDirection);
   }
 
   componentWillReceiveProps(nextProps) {
     if (nextProps.currentCardIndex === nextProps.index && this.state.passed) {
-      // User returned to the card by swiping downHandler
-      // Reset the state
+      // User returned to the card by swiping down
       this.setState({
-        displacement: {
-          x: 0,
-        },
+        ...this.state,
         passed: false,
-        cardStyle: {
-          transition: 'transform 1s',
-        },
       }, () => {
-        setTimeout(() => {
-          this.setState({
-            cardStyle: null,
-          });
-          console.log('hola');
-        }, 1000);
+        this.playSlideInAnimation('down'); // makes card visible and plays the animation
       });
       this.cardSlider = null; // In order to reapply the slideHelper
     }
@@ -112,6 +115,67 @@ class Card extends React.Component {
     });
   }
 
+  /**
+   * play the slide in down animation
+   * @param {string} direction ('up' or 'down') the direction of the slide in
+   */
+  playSlideInAnimation(direction = 'down') {
+    if (direction !== 'down' && direction !== 'up') {
+      return;
+    }
+    // initial top style property
+    // if direction is equal to 'down' put card on top of the screen
+    // otherwise, put the card beneath the screen
+    const cardTop = this.state.dimensions.measured ?
+      `${direction === 'down' ? '-' : ''}${this.state.dimensions.height}px` :
+      `${direction === 'down' ? '-' : ''}450px`; // the default height of the card
+
+    // Reset the state and place the card at the top of the screen
+    this.setState({
+      ...this.state,
+      displacement: { // reset the displacement
+        x: 0,
+      },
+      cardStyle: {
+        top: cardTop,
+      },
+    }, () => {
+      setTimeout(() => {
+        this.placeCardInOriginalPosition()
+          .then(() => {
+            setTimeout(this.resetCardStyle, 1000);
+          });
+      }, 10); // leave time to update the dom; needed for the animation
+    });
+  }
+
+  /**
+  * updates the card's style to place it in it's original position
+  * @return {Promise} promise
+  */
+  placeCardInOriginalPosition() {
+    return new Promise((resolve) => {
+      this.setState({
+        ...this.state,
+        cardStyle: {
+          transition: 'top 1s',
+          top: '85px',
+        },
+      }, resolve);
+    });
+  }
+
+  /**
+   * resets the card's style
+   */
+  resetCardStyle() {
+    this.setState({
+      ...this.state,
+      cardStyle: null,
+    });
+  }
+
+
   updateCardSlider() {
     /**
      * Updates or sets a sliding helper for the cards.
@@ -133,10 +197,14 @@ class Card extends React.Component {
         }
       };
       const finishHandler = () => {
-        this.setState({
-          passed: true,
-        });
-        this.props.cardPassed();
+        this.props.cardPassed()
+          .then((result) => {
+            if (result === 'newCard') { // do not update the state if there is a new stack
+              this.setState({
+                passed: true,
+              });
+            }
+          });
       };
       const slideHelperProps = {
         $element: $card,
@@ -162,10 +230,12 @@ class Card extends React.Component {
     if (!this.state.passed) {
       // Check if card reached the limit
       if (Math.abs(this.state.displacement.x) >= this.state.dimensions.width) {
-        this.setState({
-          passed: true,
-        });
-        this.props.cardPassed();
+        this.props.cardPassed()
+          .then(() => {
+            this.setState({
+              passed: true,
+            });
+          });
       } else {
         this.setState({
           displacement: {

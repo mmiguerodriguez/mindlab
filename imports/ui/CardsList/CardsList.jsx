@@ -155,34 +155,42 @@ class CardsList extends React.Component {
   cardPassed() {
     /**
      * cardPassed: callback that triggers when a card is passed
+     * @return {Promise} promise fulfills after state is updated
+     *   {string} result 'newCard' if passed to a new card,
+     *                   'newStack' if passed to a new stack
      */
+    return new Promise((resolve) => {
+      const currentTime = Math.floor(Date.now() / 1000); // in seconds
+      const cardTime = currentTime - this.initialCardTimer;
+      this.initialCardTimer = currentTime;
+      /* mixpanel.track('Card passed', {
+        'Lesson name': this.props.lessonName,
+        'Card index': this.props.getCurrentCardGlobalIndex(),
+        'Card time': cardTime,
+      });*/
 
-    const currentTime = Math.floor(Date.now() / 1000); // in seconds
-    const cardTime = currentTime - this.initialCardTimer;
-    this.initialCardTimer = currentTime;
-    /*mixpanel.track('Card passed', {
-      'Lesson name': this.props.lessonName,
-      'Card index': this.props.getCurrentCardGlobalIndex(),
-      'Card time': cardTime,
-    });*/
+      this.props.setCurrentCardGlobalIndex(this.props.getCurrentCardGlobalIndex() + 1);
+      // Used by lessonPage in the progressBar
 
-    this.props.setCurrentCardGlobalIndex(this.props.getCurrentCardGlobalIndex() + 1);
-    // Used by lessonPage in the progressBar
-
-    // If the current stack is out of cards, show the next stack
-    if (
-      this.state.currentCardIndex ===
-      this.state.cardStacks[this.state.currentStackIndex].length - 1
-    ) {
-      this.setState({
-        currentStackIndex: this.state.currentStackIndex + 1,
-        currentCardIndex: 0, // Show the first card of the new stack
-      });
-    } else {
-      this.setState({
-        currentCardIndex: this.state.currentCardIndex + 1,
-      });
-    }
+      // If the current stack is out of cards, show the next stack
+      if (
+        this.state.currentCardIndex ===
+        this.state.cardStacks[this.state.currentStackIndex].length - 1
+      ) {
+        this.setState({
+          currentStackIndex: this.state.currentStackIndex + 1,
+          currentCardIndex: 0, // Show the first card of the new stack
+        }, () => {
+          resolve('newStack');
+        }); // fulfill when state is updated
+      } else {
+        this.setState({
+          currentCardIndex: this.state.currentCardIndex + 1,
+        }, () => {
+          resolve('newCard');
+        }); // fulfill when state is updated
+      }
+    });
   }
 
   previousCard() {
