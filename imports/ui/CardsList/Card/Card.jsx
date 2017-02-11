@@ -209,7 +209,7 @@ class Card extends React.Component {
       const slideHelperProps = {
         $element: $card,
         size: this.state.dimensions.width,
-        escapeThreshold: 0.05,
+        escapeThreshold: 0.1,
         finishHandler,
         downHandler: this.props.previousCard,
         stateUpdateHandler,
