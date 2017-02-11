@@ -231,10 +231,12 @@ class Card extends React.Component {
       // Check if card reached the limit
       if (Math.abs(this.state.displacement.x) >= this.state.dimensions.width) {
         this.props.cardPassed()
-          .then(() => {
-            this.setState({
-              passed: true,
-            });
+          .then((result) => {
+            if (result === 'newCard') { // do not update the state if there is a new stack
+              this.setState({
+                passed: true,
+              });
+            }
           });
       } else {
         this.setState({
