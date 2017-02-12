@@ -178,6 +178,11 @@ class SlideHelper {
    * @return {undefined}
    */
   pointerMoved(event) {
+    // If a downHandler was provided, we preventDefault to prevent the reload
+    // gesture in chrome mobile
+    if (this.downHandler) {
+      event.preventDefault();
+    }
     // Get the position of the pointer
     const { x, y } = SlideHelper.getPointerEventPosition(event);
 
