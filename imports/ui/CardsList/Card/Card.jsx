@@ -159,7 +159,7 @@ class Card extends React.Component {
         ...this.state,
         cardStyle: {
           transition: 'top 1s',
-          top: '85px',
+          top: 0,
         },
       }, resolve);
     });
