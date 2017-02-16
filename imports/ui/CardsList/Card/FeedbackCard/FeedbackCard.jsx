@@ -55,9 +55,9 @@ class FeedbackCard extends React.Component {
           </h2>
         }
         { this.props.text &&
-          <h3 className="card-text">
+          <p className="card-text">
             {this.props.text}
-          </h3>
+          </p>
         }
         <div className="form-group label-floating feedback-card-input is-empty">
           <label htmlFor="description" className="control-label">Descripción</label>

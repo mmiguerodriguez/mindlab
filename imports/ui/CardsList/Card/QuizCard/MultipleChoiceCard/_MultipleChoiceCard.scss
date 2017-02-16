@@ -12,6 +12,9 @@
   margin-bottom: 15px !important;
   label {
     flex: 1;
+    .circle, .check {
+      margin-top: 2px;
+    }
   }
 }
 

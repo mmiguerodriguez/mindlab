@@ -1,43 +1,30 @@
-/**
- * replaceNewLineInCards: replaces \n for \n\n in text prop of every card
- * @param  {Array} cards
- * @return {Array} processedCards
- */
-const replaceNewLineInCards = (cards) => {
-  return cards.map(card => (
-    {
-      ...card,
-      text: card.text ? card.text.replace('\n', '\n\n') : null,
-      question: card.question ? card.question.replace('\n', '\n\n') : null,
-    }
-  ));
-};
+import replaceNewLineInCards from './../../utils/client/replaceNewLineInCards';
 
 const IntroduccionLessonRaw = [
   {
     type: 'content',
-    imageUrl: '/images/lessons/code-window.png',
+    imageUrl: '/images/courses/programming/code-window.png',
     title: 'Empecemos!',
     text: 'Hoy en día, todo es programable. Desde donde estás viendo esto, hasta algunos relojes. Además, por cada persona en el mundo hay siete dispositivos tecnológicos. Cuando termines de leer esta tarjeta deslizala a un costado.',
   },
   {
     type: 'content',
-    imageUrl: '/images/lessons/car.png',
+    imageUrl: '/images/courses/programming/car.png',
     text: 'Con la programación se pueden hacer cosas que hace unos años nadie pensaba, como autos que se manejen solos, viajar a Marte o hablar por WhatsApp.',
   },
   {
     type: 'content',
-    imageUrl: '/images/lessons/joystick.png',
+    imageUrl: '/images/courses/programming/joystick.png',
     text: 'Hacer estas cosas está a tu alcance, con un poco de práctica, vas a poder hacer los juegos, páginas o aplicaciones que usas todos los días.',
   },
   {
     type: 'content',
-    imageUrl: '/images/lessons/todo-list.png',
+    imageUrl: '/images/courses/programming/todo-list.png',
     text: 'La programación es lo que se viene. Sabías que para el 2020 va a haber un millón de puestos de trabajo sin cubrir de programación? Además, los trabajos de programación son de los mejores pagos.',
   },
   {
     type: 'content',
-    imageUrl: '/images/lessons/code-pc.png',
+    imageUrl: '/images/courses/programming/code-pc.png',
     title: 'Funcionamiento de las compus',
     text: `Ahora que ya sabés lo bueno de la programación, adentrémonos en lo técnico: Cómo funcionan las computadoras?
 Las computadoras son torpes, lo único que saben hacer es seguir instrucciones.`,
@@ -45,17 +32,17 @@ Las computadoras son torpes, lo único que saben hacer es seguir instrucciones.`
   },
   {
     type: 'content',
-    imageUrl: '/images/lessons/robot.png',
+    imageUrl: '/images/courses/programming/robot.png',
     text: 'Se las puede pensar como un robot al que hay que darle instrucciones específicas para hacer cosas, como por ejemplo, moverse para adelante, girar o saltar.',
   },
   {
     type: 'content',
-    imageUrl: '/images/lessons/steps.png',
+    imageUrl: '/images/courses/programming/steps.png',
     text: 'En cualquier cosa que hacemos, seguimos una serie de pasos. Si tenemos que poner la mesa, primero vamos a la cocina, abrimos el cajón, agarramos los utensilios, vamos a la mesa y ponemos las cosas donde vayan. ',
   },
   {
     type: 'content',
-    imageUrl: '/images/lessons/binary.png',
+    imageUrl: '/images/courses/programming/binary.png',
     text: 'A esta serie de pasos le decimos **algoritmo**. Ahora vamos a hacer nuestro propio algoritmo.',
   },
   {
@@ -86,34 +73,34 @@ Las computadoras son torpes, lo único que saben hacer es seguir instrucciones.`
   },
   {
     type: 'content',
-    imageUrl: '/images/lessons/google.png',
+    imageUrl: '/images/courses/programming/google.png',
     text: 'Ahora que ya conocemos qué son los algoritmos, podemos explicar las cosas más fácilmente, como por ejemplo, el funcionamiento de las búsquedas en Google.',
   },
   {
     type: 'content',
-    imageUrl: '/images/lessons/ranking.png',
+    imageUrl: '/images/courses/programming/ranking.png',
     text: 'Supongamos que una persona entra a Google y realiza una búsqueda. Google busca en su base de datos resultados de páginas que coincidan con la búsqueda y hace un ranking con las más destacadas.',
   },
   {
     type: 'content',
-    imageUrl: '/images/lessons/code-doc.png',
+    imageUrl: '/images/courses/programming/code-doc.png',
     text: 'Después de hacer el ranking, seleccioná los primeros diez resultados y finalmente se los muestra al usuario.',
   },
   {
     type: 'content',
-    imageUrl: '/images/lessons/languages.png',
+    imageUrl: '/images/courses/programming/languages.png',
     title: 'Lenguajes y algoritmos',
     text: 'Pero, cómo hacemos para que la computadora entienda un algoritmo? Tenemos que hablarle en uno de los muchos lenguajes que ella entiende.',
     forceNewStack: true,
   },
   {
     type: 'content',
-    imageUrl: '/images/lessons/write-code.png',
+    imageUrl: '/images/courses/programming/write-code.png',
     text: 'Se le dice escribir código a usar cualquiera de estos lenguajes para comunicarse con la computadora.',
   },
   {
     type: 'finish',
-    imageUrl: '/images/lessons/tick.png',
+    imageUrl: '/images/courses/programming/tick.png',
     title: 'Felicitaciones!',
     text: 'Terminaste la lección de introducción a la programación! En la próxima lección vamos a ver los primeros conceptos de cómo escribir código.',
   },
@@ -129,24 +116,24 @@ const IntroduccionLesson = replaceNewLineInCards(IntroduccionLessonRaw);
 const PrimerosConceptosLessonRaw = [
   {
     type: 'content',
-    imageUrl: '/images/lessons/people-thinking.png',
+    imageUrl: '/images/courses/programming/people-thinking.png',
     text: 'Antes de ponernos a escribir código, es muy importante saber qué queremos y cómo lo vamos a hacer.',
   },
   {
     type: 'content',
-    imageUrl: '/images/lessons/code-window-2.png',
+    imageUrl: '/images/courses/programming/code-window-2.png',
     text: 'El primer paso es pensar el algoritmo y escribir cómo funciona con nuestras palabras. Esto se llama pseudocódigo, lo vamos a usar para aprender conceptos de programación antes de escribir código.',
   },
   {
     type: 'content',
-    imageUrl: '/images/lessons/pendrive.png',
+    imageUrl: '/images/courses/programming/pendrive.png',
     title: 'Variables',
     text: 'Una variable es un pedazo de memoria en el que guardamos cosas, como números, letras, palabras y más. Las variables tienen un nombre y un valor.',
     forceNewStack: true,
   },
   {
     type: 'content',
-    imageUrl: '/images/lessons/video.png',
+    imageUrl: '/images/courses/programming/video.png',
     text: 'Cuándo vamos a necesitar una variable? Por ejemplo, cuando estamos viendo un video en YouTube, tenemos que guardar en qué minuto estamos. Esto lo guardaríamos en una variable numérica.',
   },
   {
@@ -158,7 +145,7 @@ const PrimerosConceptosLessonRaw = [
   },
   {
     type: 'content',
-    imageUrl: '/images/lessons/tag.png',
+    imageUrl: '/images/courses/programming/tag.png',
     text: 'Siempre es importante poner nombres expresivos a las variables. Si alguien la ve por primera vez, tiene que entender exactamente para qué sirve, y qué guarda. Por ejemplo ```a```, ```que```, ```variable``` y ```cosa``` no son buenos nombres!',
   },
   {
@@ -201,13 +188,13 @@ const PrimerosConceptosLessonRaw = [
   },
   {
     type: 'content',
-    imageUrl: '/images/lessons/decision.png',
+    imageUrl: '/images/courses/programming/decision.png',
     title: 'If y else',
     text: 'Llegó la hora de tomar decisiones. Más precisamente, en el flujo del programa. Usamos una estructura condicional cuando queremos que ocurra una acción si una condición es verdadera y otra acción si es falsa.',
   },
   {
     type: 'content',
-    imageUrl: '/images/lessons/key.png',
+    imageUrl: '/images/courses/programming/key.png',
     text: 'Supongamos que queremos guardar un secreto con contraseña. Si el usuario pone bien la contraseña, le mostramos el secreto. Si no, le mostramos un mensaje de error.',
   },
   {
@@ -250,7 +237,7 @@ else
   },
   {
     type: 'content',
-    imageUrl: '/images/lessons/help.png',
+    imageUrl: '/images/courses/programming/help.png',
     title: 'Loops',
     text: 'Avanzando un poco más, cómo podríamos hacer para sumar los números del 1 al 100? Para esto están las estructuras repetitivas.',
   },
@@ -261,17 +248,17 @@ else
   },
   {
     type: 'content',
-    imageUrl: '/images/lessons/loop.png',
+    imageUrl: '/images/courses/programming/loop.png',
     text: 'El segundo paso del for es una condición, por ejemplo que ```pasoActual``` sea menor a 100. Si esa condición se cumple, es decir que es verdadera, podemos seguir con el tercer paso del for.',
   },
   {
     type: 'content',
-    imageUrl: '/images/lessons/plus.png',
+    imageUrl: '/images/courses/programming/plus.png',
     text: 'La tercer parte del for es la acción que queremos hacer en cada paso. En este caso queremos hacer la suma de 1 hasta 100, así que la acción sería sumar a la variable ```sumaTotal``` el valor de la variable ```pasoActual```.',
   },
   {
     type: 'content',
-    imageUrl: '/images/lessons/finish.png',
+    imageUrl: '/images/courses/programming/finish.png',
     text: 'En el caso de que pasoActual no sea menor que 100, entonces el for se termina.',
   },
   {
@@ -321,7 +308,7 @@ for desde 1 hasta 100 guardando el valor en pasoActual
   },
   {
     type: 'finish',
-    imageUrl: '/images/lessons/tick.png',
+    imageUrl: '/images/courses/programming/tick.png',
     title: 'Felicitaciones!',
     text: 'Terminaste la lección de primeros conceptos de la programación! En la próxima lección vas a aprender un lenguaje de programación, y vas a empezar a escribir código.',
   },
@@ -337,50 +324,50 @@ const PrimerosConceptosLesson = replaceNewLineInCards(PrimerosConceptosLessonRaw
 const LenguajesLessonRaw = [
   {
     type: 'content',
-    imageUrl: '/images/lessons/terminal.png',
+    imageUrl: '/images/courses/programming/terminal.png',
     text: 'Ahora que ya aprendimos los primeros conceptos de la programación, vamos a aprender la sintaxis de un lenguaje muy usado hoy en día, **JavaScript**.',
   },
   {
     type: 'content',
-    imageUrl: '/images/lessons/javascript.png',
+    imageUrl: '/images/courses/programming/javascript.png',
     text: 'Con JavaScript se pueden hacer desde cosas simples como un formulario, hasta juegos en realidad virtual.',
   },
   {
     type: 'content',
-    imageUrl: '/images/lessons/code-window-3.png',
+    imageUrl: '/images/courses/programming/code-window-3.png',
     text: 'En los lenguajes de programación, el código se divide en líneas. Por cada línea, le podemos dar al programa diversas instrucciones, como por ejemplo, empezar una estructura condicional o declarar una variable.',
   },
   {
     type: 'content',
-    imageUrl: '/images/lessons/order.png',
+    imageUrl: '/images/courses/programming/order.png',
     text: 'El programa lee las líneas de arriba para abajo. Entonces, si necesitamos una variable, primero tenemos que declararla (crear), y solo después de declararla la podemos usar.',
   },
   {
     type: 'content',
-    imageUrl: '/images/lessons/semicolon.png',
+    imageUrl: '/images/courses/programming/semicolon.png',
     text: 'En la mayoría de las líneas que no son estructuras condicionales o repetitivas, el último caracter de la línea es un punto y coma ```;```  que sirve para darle a entender a la computadora que la línea se termina ahí.',
   },
   {
     type: 'content',
-    imageUrl: '/images/lessons/plus-2.png',
+    imageUrl: '/images/courses/programming/plus-2.png',
     title: 'console.log()',
     text: 'Supongamos que tenemos un programa que hace la suma de los números del 1 al 50 y nos queremos fijar si está funcionando como lo planeado. Sabemos que el valor de la suma está almacenado en la variable ```sumaTotal```.',
     forceNewStack: true,
   },
   {
     type: 'content',
-    imageUrl: '/images/lessons/screen.png',
+    imageUrl: '/images/courses/programming/screen.png',
     text: 'Entonces, lo que queremos hacer es que por algún lado se muestre el valor de esa variable para poder darnos cuenta si el programa hace lo que queremos o si hay algún error. Para esto usamos la herramienta ```console.log```.',
   },
   {
     type: 'content',
-    imageUrl: '/images/lessons/syntax.png',
+    imageUrl: '/images/courses/programming/syntax.png',
     text: `La sintaxis para usar el console.log es la siguiente: \`\`\`console.log(sumaTotal);\`\`\`
 Se escribe \`\`\`console.log\`\`\` y entre paréntesis la variable que queremos enviar.`,
   },
   {
     type: 'content',
-    imageUrl: '/images/lessons/own-code.png',
+    imageUrl: '/images/courses/programming/own-code.png',
     text: 'Ahora vas a poder escribir tu propio código en este ejercicio',
     forceNewStack: true,
   },
@@ -396,43 +383,43 @@ Se escribe \`\`\`console.log\`\`\` y entre paréntesis la variable que queremos 
   },
   {
     type: 'content',
-    imageUrl: '/images/lessons/business-card.png',
+    imageUrl: '/images/courses/programming/business-card.png',
     title: 'Tipos de datos',
     text: 'Como vimos anteriormente, una variable es un pedazo de memoria que usamos para guardar cualquier tipo de información. En las variables podemos almacenar distintos tipos de datos.',
   },
   {
     type: 'content',
-    imageUrl: '/images/lessons/user.png',
+    imageUrl: '/images/courses/programming/user.png',
     text: 'Por ejemplo, podemos tener una variable que almacene el nombre de un usuario, que sería una palabra, y otra variable para la edad de ese usuario, que sería un número.',
   },
   {
     type: 'content',
-    imageUrl: '/images/lessons/number-block.png',
+    imageUrl: '/images/courses/programming/number-block.png',
     text: 'Primero tenemos el tipo de dato **number** (número). Todas las variables que almacenan un número son de este tipo; el número puede ser tanto positivo como negativo, y puede tener coma.',
   },
   {
     type: 'content',
-    imageUrl: '/images/lessons/calculator.png',
+    imageUrl: '/images/courses/programming/calculator.png',
     text: 'Por ejemplo, si definimos la variable ```peso``` a ```30,5``` y la variable ```temperatura``` igual a ```-5```, ambas tienen el tipo de dato **number**.',
   },
   {
     type: 'content',
-    imageUrl: '/images/lessons/letters.png',
+    imageUrl: '/images/courses/programming/letters.png',
     text: 'Después está el tipo de dato **string** (cadena). Se llama así porque representa una cadena de caracteres. Cualquier variable que almacene una o más palabras es de este tipo. Puede tener espacios o cualquier letra, número o símbolo.',
   },
   {
     type: 'content',
-    imageUrl: '/images/lessons/doc.png',
+    imageUrl: '/images/courses/programming/doc.png',
     text: 'Por ejemplo, si tenemos la variable ```nombre```, que es igual a ```“Juan Pérez”```, y la variable contraseña que es igual ```“1234_(qwer)#”```, entonces ambas tienen el tipo de dato **string**.',
   },
   {
     type: 'content',
-    imageUrl: '/images/lessons/checked.png',
+    imageUrl: '/images/courses/programming/checked.png',
     text: 'Por otro lado tenemos el tipo de dato **boolean** (booleano). Una variable con este tipo de dato tiene solo dos valores posibles: ```true``` (verdadero) o ```false``` (falso).',
   },
   {
     type: 'content',
-    imageUrl: '/images/lessons/thumb-down.png',
+    imageUrl: '/images/courses/programming/thumb-down.png',
     text: 'Si por ejemplo definimos la variable ```terminoElSecundario``` igual a ```true``` o la variable ```aprobo``` igual a ```false```, las dos van a tener el tipo de dato **boolean**.',
   },
   {
@@ -456,7 +443,7 @@ Se escribe \`\`\`console.log\`\`\` y entre paréntesis la variable que queremos 
   },
   {
     type: 'content',
-    imageUrl: '/images/lessons/equal.png',
+    imageUrl: '/images/courses/programming/equal.png',
     title: 'Operadores de comparación',
     text: 'Cuando estamos usando un if, necesitamos una forma de comparar dos variables. Por ejemplo, hay veces que nos queremos fijar si dos variables son iguales o si un número almacenado en una variable es menor que otro.',
   },
@@ -480,12 +467,12 @@ if (contraseñaIngresada !== “12345678”) {
   },
   {
     type: 'content',
-    imageUrl: '/images/lessons/greater.png',
+    imageUrl: '/images/courses/programming/greater.png',
     text: 'Cuando queremos comparar si un número es mayor que otro, usamos el operador ```>```. Un ejemplo de uso sería para ver si la variable ```edadIngresada``` es mayor que 18.',
   },
   {
     type: 'content',
-    imageUrl: '/images/lessons/lesser.png',
+    imageUrl: '/images/courses/programming/lesser.png',
     text: 'También tenemos el operador ```<``` para ver si una variable es menor que otra. Por último tenemos los operadores ```>=``` para ver si una variable es mayor o igual que otra y ```<=``` para ver si una variable es menor o igual que otra.',
   },
   {
@@ -507,13 +494,13 @@ console.log(18 >= 20);
   },
   {
     type: 'content',
-    imageUrl: '/images/lessons/puzzle.png',
+    imageUrl: '/images/courses/programming/puzzle.png',
     title: 'Operadores lógicos',
     text: 'Otra clase de operadores son los lógicos. Por ejemplo, si queremos en un if ver que una variable numérica esté entre dos valores, en vez de usar dos if, usamos un if que contenga las dos comparaciones.',
   },
   {
     type: 'content',
-    imageUrl: '/images/lessons/and.png',
+    imageUrl: '/images/courses/programming/and.png',
     text: `Para juntar dos comparaciones en un if usamos el operador **and** (y), que devuelve verdadero si ambos valores son \`\`\`true\`\`\`. La forma de escribirlo es \`\`\`&&\`\`\`, y nos quedaría así:
 \`\`\`
 if (edad >= 18 && edad < 50)
@@ -521,7 +508,7 @@ if (edad >= 18 && edad < 50)
   },
   {
     type: 'content',
-    imageUrl: '/images/lessons/code-window-4.png',
+    imageUrl: '/images/courses/programming/code-window-4.png',
     text: `Por otro lado, cuando queremos ver si una variable es igual a un valor **o** al otro, usamos el operador lógico **or** (o). La forma de escribirlo es \`\`\`||\`\`\`, y nos quedaría de la siguiente forma en código:
 \`\`\`
 if (contraseña === “123” || contraseña === “1234”)
@@ -566,7 +553,7 @@ console.log(ventanaEstaAbierta || puertaEstaAbierta)
   },
   {
     type: 'content',
-    imageUrl: '/images/lessons/sd-card.png',
+    imageUrl: '/images/courses/programming/sd-card.png',
     title: 'Variables',
     text: `Veamos cómo se usan las variables en JavaScript. Si, por ejemplo, queremos declarar una variable que se llame \`\`\`edad\`\`\` y queremos que sea igual a \`\`\`20\`\`\` (años), se escribiría de la siguiente forma:
 \`\`\`
@@ -575,7 +562,7 @@ let edad = 20;
   },
   {
     type: 'content',
-    imageUrl: '/images/lessons/brackets-1.png',
+    imageUrl: '/images/courses/programming/brackets-1.png',
     text: 'La sintaxis es primero poner la palabra ```let```, después el nombre de la variable, a continuación el signo igual ```=```, luego el valor y por último el punto y coma ```;```',
   },
   {
@@ -594,7 +581,7 @@ let edad = 20;
   },
   {
     type: 'content',
-    imageUrl: '/images/lessons/plus-18.png',
+    imageUrl: '/images/courses/programming/plus-18.png',
     title: 'If y else',
     text: 'Supongamos que queremos no dejar pasar al usuario si es mayor de edad. Para eso tenemos que usar una estructura condicional.',
   },
@@ -610,7 +597,7 @@ Primero se pone la palabra clave \`\`\`if\`\`\`, para indicarle a la computadora
   },
   {
     type: 'content',
-    imageUrl: '/images/lessons/brackets-2.png',
+    imageUrl: '/images/courses/programming/brackets-2.png',
     text: 'En el caso de que la respuesta sea que sí, el programa va a ejecutar lo que esté dentro de las llaves ```{ }```, que en este caso es no dejar pasar al usuario.',
   },
   {
@@ -627,7 +614,7 @@ else {
   },
   {
     type: 'content',
-    imageUrl: '/images/lessons/enter.png',
+    imageUrl: '/images/courses/programming/enter.png',
     text: 'En este caso si el usuario es menor de edad, lo vamos a dejar pasar.',
   },
   {
@@ -671,7 +658,7 @@ terminar el for
   },
   {
     type: 'content',
-    imageUrl: '/images/lessons/info.png',
+    imageUrl: '/images/courses/programming/info.png',
     text: `Veamos como es con la sintaxis de JavaScript.
 En programación se acostumbra a llamar i (de iterador) a la variable que recorre todos los valores del for. En este caso pasoActual se pasaría a llamar i.`,
   },
@@ -739,7 +726,7 @@ for (let i = 1000; i > 0; i = i + 100) {
   },
   {
     type: 'finish',
-    imageUrl: '/images/lessons/tick.png',
+    imageUrl: '/images/courses/programming/tick.png',
     title: 'Felicitaciones!',
     text: 'Terminaste el curso de introducción a la programación! Esperamos que te haya gustado, próximamente se vienen más cursos sobre diferentes temas.',
   },

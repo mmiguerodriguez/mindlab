@@ -10,7 +10,7 @@ class LessonItem extends React.Component {
 
   showEndAnimation() {
     // TODO: Change to real id
-    const $lessonId = $(`#lesson-${this.props.name.replace(/ /g, '-')}`);
+    const $lessonId = $(`#lesson-${this.props.lessonName.replace(/ /g, '-')}`);
     // First, we remove the lines between the lesson items
     $('.lesson-item > hr').addClass('animated fadeOut');
     // All lesson items but the selected fade out to the left
@@ -22,14 +22,14 @@ class LessonItem extends React.Component {
       // This will be triggered twice, first with the hr fade out and then
       // with the lesson items fade out
       if (data.target.localName !== 'hr') {
-        browserHistory.push(`/course/programacion/${this.props.name}`);
+        browserHistory.push(`/course/${this.props.courseName}/${this.props.lessonName}`);
       }
     });
   }
 
   render() {
     // TODO: Change to real id
-    const lessonId = `lesson-${this.props.name.replace(/ /g, '-')}`;
+    const lessonId = `lesson-${this.props.lessonName.replace(/ /g, '-')}`;
 
     return (
       <div className="lesson-item" id={lessonId}>
@@ -38,7 +38,7 @@ class LessonItem extends React.Component {
             <i className="material-icons">{this.props.icon}</i>
           </div>
           <h4 className="lesson-item-name">
-            {this.props.name}
+            {this.props.lessonName}
           </h4>
         </a>
         <hr />
@@ -48,7 +48,8 @@ class LessonItem extends React.Component {
 }
 
 LessonItem.propTypes = {
-  name: React.PropTypes.string.isRequired,
+  courseName: React.PropTypes.string.isRequired,
+  lessonName: React.PropTypes.string.isRequired,
   icon: React.PropTypes.string.isRequired,
 };
 

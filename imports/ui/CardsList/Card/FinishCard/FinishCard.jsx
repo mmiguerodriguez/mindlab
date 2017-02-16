@@ -43,9 +43,9 @@ class FinishCard extends React.Component {
           </h2>
         }
         { this.props.text &&
-          <h3 className="card-text">
+          <p className="card-text">
             {this.props.text}
-          </h3>
+          </p>
         }
         <button
           className="btn btn-raised card-btn-primary"
