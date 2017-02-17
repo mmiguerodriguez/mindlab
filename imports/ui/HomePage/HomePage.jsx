@@ -14,7 +14,7 @@ class HomePage extends React.Component {
       {
         name: 'Alimentación saludable',
         description: 'Mejorá tu alimentación para vivir más, bajar de peso y verte y sentirte mejor.',
-        imageUrl: '/images/courses/programming.svg',
+        imageUrl: '/images/courses/food.png',
         courseUrl: '/course/Alimentación',
       },
       {

@@ -734,7 +734,7 @@ for (let i = 1000; i > 0; i = i + 100) {
     type: 'feedback',
     title: 'Ayudanos!',
     text: 'Qué te pareció el curso? Tu comentario nos es de gran ayuda!',
-    nextUrl: '/course/Programación',
+    nextUrl: '/',
   },
 ];
 const LenguajesLesson = replaceNewLineInCards(LenguajesLessonRaw);

@@ -102,10 +102,12 @@ class CardsList extends React.Component {
 
     cards.forEach((rawCard) => {
       const card = this.addMetaData(rawCard);
-
       const currentCardIsQuiz = Card.isQuiz(card);
+      const forceNewStack = card.forceNewStack ||
+                            card.type === 'finish' ||
+                            card.type === 'feedback';
 
-      if (currentCardIsQuiz === currentStackIsQuizes && !card.forceNewStack) {
+      if (currentCardIsQuiz === currentStackIsQuizes && !forceNewStack) {
         // Current card should be in the same stack as the previous, so push it
         cardStacks[cardStacks.length - 1].push(card);
       } else {

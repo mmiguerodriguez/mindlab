@@ -54,7 +54,7 @@ const QueComerLessonRaw = [
   },
   {
     type: 'content',
-    imageUrl: '/images/courses/food/groceries.png',
+    imageUrl: '/images/courses/food/grapes.png',
     text: 'Evita productos que contengan ingredientes que una persona ordinaria no guardaría en su despensa. Sulfato de amonio? Diglicéridos etoxilados? Si no los usas para cocinar, por qué dejar que otros los usen?',
   },
   {
@@ -76,7 +76,7 @@ const QueComerLessonRaw = [
   {
     type: 'content',
     imageUrl: '/images/courses/food/broccoli.png',
-    text: 'Si viene de una planta, comelo; si fue hecho en una “planta”, no. Comé productos que estén hechos por humanos. En general los alimentos procesados industrialmente contienen mucha sal, grasas y azúcares así como con conservantes o colorantes.',
+    text: 'Si viene de una planta, comelo; si fue hecho en una “planta”, no. Comé productos que estén hechos por humanos. En general los alimentos procesados industrialmente contienen mucha sal, grasas y azúcares así como conservantes y colorantes.',
   },
   {
     type: 'multiple-choice',
@@ -107,7 +107,7 @@ const QueComerLessonRaw = [
       },
       {
         content: 'No',
-        message: 'Muy bien! Por la cantidad de ingredientes que tiene, preferible no comerlo.',
+        message: 'Muy bien! Por la cantidad de ingredientes que tiene, es preferible no comerlo.',
         correct: true,
       },
     ],
@@ -129,14 +129,14 @@ const QueComerLessonRaw = [
   },
   {
     type: 'finish',
-    imageUrl: '/images/courses/food/.png',
+    imageUrl: '/images/courses/food/pineapple.png',
     title: 'Felicitaciones!',
-    text: 'Ya sabés distinguir lo que realmente es comida de lo que no. En la próxima lección vas a ver que tipos de comida son los mejores.',
+    text: 'Ya sabés distinguir lo que realmente es comida de lo que no. En la próxima lección vas a ver qué tipos de comida son los mejores.',
   },
   {
     type: 'feedback',
     title: 'Ayudanos!',
-    text: 'Necesitamos tu ayuda! Decinos todas las sugerencias o comentarios que tengas!',
+    text: 'Que te pareció está lección? Decinos todas las sugerencias o comentarios que tengas!',
     nextUrl: '/course/Alimentación',
   },
 ];
@@ -146,7 +146,7 @@ const TiposDeComidaLessonRaw = [
   {
     type: 'content',
     title: 'Tipos de comida',
-    text: 'De la lección anterior aprendimos a distinguir que es comida y que no, la clave más simple para una dieta sana. Dentro de la comida, hay una diversidad muy amplia. Durante esta lección vamos a ver los diferentes tipos.',
+    text: 'De la lección anterior aprendimos a distinguir qué es comida y qué no, la clave más simple para una dieta sana. Dentro de la comida, hay una diversidad muy amplia. Durante esta lección vamos a ver los diferentes tipos.',
   },
   {
     type: 'content',
@@ -156,12 +156,13 @@ const TiposDeComidaLessonRaw = [
   {
     type: 'content',
     imageUrl: '/images/courses/food/pot-1.png',
-    text: 'El agua donde cocinás los vegetales es rica en vitaminas y en otros nutrientes de las verduras. La podés usar para hacer sopa o agregar a las salsas.',
+    text: 'El agua donde cocinás los vegetales es rica en vitaminas y en otros nutrientes de las verduras. La podés agregar a las salsas o usar para hacer sopa.',
   },
   {
     type: 'content',
     imageUrl: '/images/courses/food/pepper.png',
-    text: 'Comé un plato que tenga diversos colores. Los colores reflejan los diferentes antioxidantes fitoquímicos, que, según la Universidad Nacional de México, ayudan a prevenir enfermedades crónicas, cada uno de una forma diferente.',
+    text: 'Comé platos que tengan diversos colores. Los colores reflejan los diferentes antioxidantes fitoquímicos, que, según la Universidad Nacional de México, ayudan a prevenir enfermedades crónicas, cada uno de una forma diferente.',
+    forceNewStack: true,
   },
   {
     type: 'content',
@@ -214,14 +215,14 @@ const TiposDeComidaLessonRaw = [
   },
   {
     type: 'finish',
-    imageUrl: '/images/courses/food/.png',
+    imageUrl: '/images/courses/food/raspberry.png',
     title: 'Muy bien!',
     text: 'Finalizaste la lección de tipos de comida! Ahora ya podés distinguir qué tipos de comida son las mejores y los más saludables.',
   },
   {
     type: 'feedback',
     title: 'Ayudanos!',
-    text: 'Necesitamos tu ayuda! Decinos todas las sugerencias o comentarios que tengas!',
+    text: 'Cuál es tu opinion del curso? Decinos todas las sugerencias o comentarios que tengas!',
     nextUrl: '/course/Alimentación',
   },
 ];
@@ -236,32 +237,33 @@ const ComoComerLessonRaw = [
   {
     type: 'content',
     imageUrl: '/images/courses/food/bowl-1.png',
-    text: 'Pará de comer antes de estar lleno. El organismo tarda 20 minutos en darse cuenta que está lleno. Si seguimos comiendo hasta sentirnos llenos, ya va a ser tarde.',
+    text: 'Pará de comer antes de llenarte. El organismo tarda 20 minutos en darse cuenta que está saciado. Si seguimos comiendo hasta sentirnos llenos, ya va a ser tarde.',
   },
   {
     type: 'content',
     imageUrl: '/images/courses/food/food.png',
-    text: 'Comé cuando tengas hambre, no cuando estás aburrido. Muchas veces nos encontramos comiendo buscando entretenimiento. La comida es un antidepresivo que nos termina saliendo muy caro.',
+    text: 'Comé cuando tengas hambre, no cuando estés aburrido. Muchas veces nos encontramos comiendo buscando diversión. La comida es un entretenimiento que nos termina saliendo muy caro.',
   },
   {
     type: 'content',
-    imageUrl: '/images/courses/food/fork.png',
-    text: 'Comé despacio. No es solo para que sepas cuando tenés que parar, si comés lo suficientemente despacio para saborear los alimentos, vas a necesitar menos cantidad para sentirte saciado.',
+    imageUrl: '/images/courses/food/cutlery.png',
+    text: 'Comé despacio. No solo para que sepas cuando tenés que parar, si comés lo suficientemente despacio para saborear los alimentos, vas a necesitar menos cantidad para sentirte saciado.',
   },
   {
     type: 'content',
     imageUrl: '/images/courses/food/toast.png',
     text: '“Desayuná como un rey, almorzá como un príncipe, cená como un mendigo”. En el desayuno debemos recibir la energía para todo el día. Mientras que durante la noche la digestión tarda más en efectuarse y comer mucho nos puede producir sobrepeso y acidez.',
+    forceNewStack: true,
   },
   {
     type: 'content',
-    imageUrl: '/images/courses/food/cutlery.png',
+    imageUrl: '/images/courses/food/beans.png',
     text: 'Comé siempre sentado en una mesa. Si comemos mientras trabajamos o vemos la televisión, comemos mecánicamente, y en consecuencia vamos a comer muchísimo más de lo que realmente necesitamos.',
   },
   {
     type: 'content',
     imageUrl: '/images/courses/food/dishes.png',
-    text: 'Intentá no comer solo. La gente con tendencia a comer más de la cuenta se limita cuando está comiendo acompañado. También solemos comer más despacio.',
+    text: 'Intentá no comer solo. La gente con tendencia a comer más de la cuenta se limita cuando está comiendo acompañado. También, si compartimos la mesa, solemos comer más despacio.',
   },
   {
     type: 'content',
@@ -317,15 +319,15 @@ const ComoComerLessonRaw = [
   },
   {
     type: 'finish',
-    imageUrl: '/images/courses/food/.png',
+    imageUrl: '/images/courses/food/avocado.png',
     title: 'Felicitaciones',
     text: 'Terminaste el curso de alimentación! Ahora podés comer de una forma mucho más consciente y sabia, para tener una dieta mucho más saludable.',
   },
   {
     type: 'feedback',
     title: 'Ayudanos!',
-    text: 'Necesitamos tu ayuda! Decinos todas las sugerencias o comentarios que tengas!',
-    nextUrl: '/course/Alimentación',
+    text: 'Qué te pareció el curso? Tu comentario nos es de gran ayuda!',
+    nextUrl: '/',
   },
 ];
 const ComoComerLesson = replaceNewLineInCards(ComoComerLessonRaw);
