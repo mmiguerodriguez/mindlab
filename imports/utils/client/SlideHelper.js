@@ -359,6 +359,9 @@ class SlideHelper {
     ) {
       if (!this.shouldReturn) {
         this.hasEscaped = true;
+      } else if (this.stateX === 0) {
+        // has already returned
+        this.shouldReturn = false;
       }
       this.stateUpdateHandler(this.stateX);
     }

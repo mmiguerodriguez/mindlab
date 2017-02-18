@@ -44,7 +44,6 @@ class Card extends React.Component {
     this.shouldSlide = !(type === 'code' || type === 'order' || type === 'multiple-choice' || type === 'feedback' || type === 'finish');
     this.slideCard = this.slideCard.bind(this);
     this.placeCardInOriginalPosition = this.placeCardInOriginalPosition.bind(this);
-    this.resetCardStyle = this.resetCardStyle.bind(this);
   }
 
   componentDidMount() {
@@ -54,7 +53,7 @@ class Card extends React.Component {
                              // is it the currently visible card?
                              this.props.currentCardIndex === this.props.index) ?
                                'down' : // if user went back
-                               'up'; // if it is the first time
+                               'up'; // if user comes from the previous card
     this.playSlideInAnimation(slideInDirection);
   }
 
@@ -62,7 +61,6 @@ class Card extends React.Component {
     if (nextProps.currentCardIndex === nextProps.index && this.state.passed) {
       // User returned to the card by swiping down
       this.setState({
-        ...this.state,
         passed: false,
       }, () => {
         this.playSlideInAnimation('down'); // makes card visible and plays the animation
@@ -116,7 +114,7 @@ class Card extends React.Component {
   }
 
   /**
-   * play the slide in down animation
+   * play the slide in animation
    * @param {string} direction ('up' or 'down') the direction of the slide in
    */
   playSlideInAnimation(direction = 'down') {
@@ -126,13 +124,13 @@ class Card extends React.Component {
     // initial top style property
     // if direction is equal to 'down' put card on top of the screen
     // otherwise, put the card beneath the screen
-    const cardTop = this.state.dimensions.measured ?
-      `${direction === 'down' ? '-' : ''}${this.state.dimensions.height}px` :
-      `${direction === 'down' ? '-' : ''}450px`; // the default height of the card
+    const cardTop = `${direction === 'down' ? '-' : ''}${
+      this.state.dimensions.measured ?
+        this.state.dimensions.height : '450' // the default height of the card
+      }px`;
 
     // Reset the state and place the card at the top of the screen
     this.setState({
-      ...this.state,
       displacement: { // reset the displacement
         x: 0,
       },
@@ -141,22 +139,18 @@ class Card extends React.Component {
       },
     }, () => {
       setTimeout(() => {
-        this.placeCardInOriginalPosition()
-          .then(() => {
-            setTimeout(this.resetCardStyle, 1000);
-          });
+        this.placeCardInOriginalPosition();
       }, 10); // leave time to update the dom; needed for the animation
     });
   }
 
   /**
-  * updates the card's style to place it in it's original position
+  * updates the card's style to place it in its original position
   * @return {Promise} promise
   */
   placeCardInOriginalPosition() {
     return new Promise((resolve) => {
       this.setState({
-        ...this.state,
         cardStyle: {
           transition: 'top 1s',
           top: 0,
@@ -164,17 +158,6 @@ class Card extends React.Component {
       }, resolve);
     });
   }
-
-  /**
-   * resets the card's style
-   */
-  resetCardStyle() {
-    this.setState({
-      ...this.state,
-      cardStyle: null,
-    });
-  }
-
 
   updateCardSlider() {
     /**
