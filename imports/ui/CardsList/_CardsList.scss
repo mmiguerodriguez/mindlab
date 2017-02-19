@@ -4,6 +4,7 @@
 }
 
 .cards-list {
+  position: relative; // to make the cards not move during the animation
   padding: 0 15px;
   flex: 1;
   height: calc(100vh - 100px);
