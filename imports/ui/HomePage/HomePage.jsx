@@ -12,6 +12,12 @@ class HomePage extends React.Component {
         courseUrl: '/course/Programación',
       },
       {
+        name: 'Alimentación saludable',
+        description: 'Mejorá tu alimentación para vivir más, bajar de peso, verte y sentirte mejor.',
+        imageUrl: '/images/courses/food.png',
+        courseUrl: '/course/Alimentación',
+      },
+      {
         name: 'Qué curso te gustaría que agreguemos?',
         description: 'Necesitamos tu ayuda para poder seguir creciendo',
         imageUrl: '/images/courses/feedback.png',

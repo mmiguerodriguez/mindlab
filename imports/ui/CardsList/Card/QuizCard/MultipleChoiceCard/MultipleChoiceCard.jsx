@@ -46,6 +46,8 @@ class MultipleChoiceCard extends React.Component {
   }
 
   render() {
+    // TODO: change to real id
+    const id = Math.floor(Math.random() * 1000);
     const optionsArray =
       (
         <div className="multiple-choice-card-options">
@@ -59,7 +61,7 @@ class MultipleChoiceCard extends React.Component {
                   <input
                     className="multiple-choice-card-radio"
                     type="radio"
-                    name="multiple-choice-card-quiz"
+                    name={`multiple-choice-card-quiz-${id}`}
                     value={index}
                     checked={this.state.selectedOption === index}
                     onChange={this.handleChange}

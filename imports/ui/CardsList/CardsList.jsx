@@ -104,15 +104,19 @@ class CardsList extends React.Component {
 
     cards.forEach((rawCard) => {
       const card = this.addMetaData(rawCard);
-
       const currentCardIsQuiz = Card.isQuiz(card);
+      const forceNewStack = card.forceNewStack ||
+                            card.type === 'finish' ||
+                            card.type === 'feedback';
 
-      if (currentCardIsQuiz === currentStackIsQuizes && !card.forceNewStack) {
+      if ((currentCardIsQuiz === currentStackIsQuizes && !forceNewStack)
+          || cardStacks[0].length === 0) {
         // Current card should be in the same stack as the previous, so push it
         cardStacks[cardStacks.length - 1].push(card);
       } else {
         // Current card should be in a new stack => Push a new stack
         cardStacks.push([card]);
+
         currentStackIsQuizes = currentCardIsQuiz;
       }
     });
@@ -255,9 +259,9 @@ class CardsList extends React.Component {
 
 CardsList.propTypes = {
   cards: React.PropTypes.arrayOf(React.PropTypes.object).isRequired,
-  lessonName: React.PropTypes.string.isRequired,
-  setCurrentCardGlobalIndex: React.PropTypes.func.isRequired,
-  getCurrentCardGlobalIndex: React.PropTypes.func.isRequired,
+  lessonName: React.PropTypes.string,
+  setCurrentCardGlobalIndex: React.PropTypes.func,
+  getCurrentCardGlobalIndex: React.PropTypes.func,
 };
 
 export default CardsList;

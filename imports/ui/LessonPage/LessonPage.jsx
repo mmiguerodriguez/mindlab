@@ -5,7 +5,13 @@ import {
   IntroduccionLesson,
   PrimerosConceptosLesson,
   LenguajesLesson,
-} from './HardcodedCourseContent';
+} from './HardcodedProgrammingCourseContent';
+import {
+  ImportanciaDeComerLesson,
+  QueComerLesson,
+  TiposDeComidaLesson,
+  ComoComerLesson,
+} from './HardcodedFoodCourseContent';
 
 import ProgressBar from './ProgressBar/ProgressBar';
 
@@ -33,24 +39,42 @@ class LessonPage extends React.Component {
   }
 
   render() {
-    // Get coursePage url from lessonPage url
-    const urlSplited = this.props.location.pathname.split('/');
-    const lessonUrl = `/${urlSplited[1]}/${urlSplited[2]}`;
     let cardsContent = [];
-    switch (this.props.params.lessonName) {
-      case 'Introducción':
-        cardsContent = IntroduccionLesson;
-        break;
-      case 'Primeros conceptos':
-        cardsContent = PrimerosConceptosLesson;
-        break;
-      case 'Lenguajes':
-        cardsContent = LenguajesLesson;
-        break;
-      default:
-        cardsContent = IntroduccionLesson;
-        break;
+    if (this.props.params.courseName === 'Programación') {
+      switch (this.props.params.lessonName) {
+        case 'Introducción':
+          cardsContent = IntroduccionLesson;
+          break;
+        case 'Primeros conceptos':
+          cardsContent = PrimerosConceptosLesson;
+          break;
+        case 'Lenguajes':
+          cardsContent = LenguajesLesson;
+          break;
+        default:
+          cardsContent = IntroduccionLesson;
+          break;
+      }
+    } else if (this.props.params.courseName === 'Alimentación') {
+      switch (this.props.params.lessonName) {
+        case 'Importancia de comer':
+          cardsContent = ImportanciaDeComerLesson;
+          break;
+        case 'Qué comer':
+          cardsContent = QueComerLesson;
+          break;
+        case 'Tipos de comida':
+          cardsContent = TiposDeComidaLesson;
+          break;
+        case 'Cómo comer':
+          cardsContent = ComoComerLesson;
+          break;
+        default:
+          cardsContent = ImportanciaDeComerLesson;
+          break;
+      }
     }
+
     return (
       <div>
         <ProgressBar
@@ -69,11 +93,9 @@ class LessonPage extends React.Component {
 
 LessonPage.propTypes = {
   params: React.PropTypes.shape({
+    courseName: React.PropTypes.string.isRequired,
     lessonName: React.PropTypes.string.isRequired,
   }),
-  location: React.PropTypes.shape({
-    pathname: React.PropTypes.string.isRequired,
-  }).isRequired,
 };
 
 LessonPage.defaultProps = {
