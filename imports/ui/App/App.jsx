@@ -3,14 +3,14 @@ import React from 'react';
 import Navbar from './Navbar/Navbar';
 
 class App extends React.Component {
-componentDidMount() {
-  if (process.env.NODE_ENV === 'development') {
-    ga('create', 'UA-91442900-2'); // Testing Google Analytics
-  } else {
-    // ga('create', 'UA-91442900-2'); TODO: fill this with the real id
+  componentDidMount() {
+    if (process.env.NODE_ENV === 'development') {
+      ga('create', 'UA-91442900-2'); // Testing Google Analytics
+    } else {
+      // ga('create', 'UA-91442900-2'); TODO: fill this with the real id
+    }
+    ga('send', 'pageview');
   }
-  ga('send', 'pageview');
-}
 
   render() {
     return (
