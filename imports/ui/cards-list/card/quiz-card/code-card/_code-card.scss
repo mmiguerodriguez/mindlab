@@ -1,0 +1,16 @@
+@import '../../../../../../../node_modules/codemirror/lib/codemirror';
+@import './character-row/character-row';
+
+.code-card-body {
+  display: flex;
+  flex-flow: column;
+  width: 100%;
+}
+.code-editor {
+  .CodeMirror {
+    height: 200px !important;
+  }
+}
+.code-card-result {
+  background-color: $white-1-color;
+}

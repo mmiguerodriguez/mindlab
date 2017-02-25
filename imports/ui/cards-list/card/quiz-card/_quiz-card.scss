@@ -1,0 +1,18 @@
+@import 'multiple-choice-card/multiple-choice-card';
+@import 'order-card/order-card';
+@import 'code-card/code-card';
+
+.quiz-card-body {
+  display: flex;
+  flex: 1;
+  width: 100%;
+  margin: 12px 0;
+}
+
+.quiz-card-question {
+  font-size: 1.5em;
+  text-align: center;
+  pre {
+    text-align: left;
+  }
+}
