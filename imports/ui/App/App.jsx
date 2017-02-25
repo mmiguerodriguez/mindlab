@@ -5,9 +5,9 @@ import Navbar from './Navbar/Navbar';
 class App extends React.Component {
   componentDidMount() {
     if (process.env.NODE_ENV === 'development') {
-      ga('create', 'UA-91442900-2'); // Testing Google Analytics
+      ga('create', 'UA-91442900-2'); // MindLab development
     } else {
-      // ga('create', 'UA-91442900-2'); TODO: fill this with the real id
+      ga('create', 'UA-91442900-3'); // MindLab production
     }
     ga('send', 'pageview');
   }
