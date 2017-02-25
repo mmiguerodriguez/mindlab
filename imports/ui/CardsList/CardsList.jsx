@@ -164,11 +164,14 @@ class CardsList extends React.Component {
       const currentTime = Math.floor(Date.now() / 1000); // in seconds
       const cardTime = currentTime - this.initialCardTimer;
       this.initialCardTimer = currentTime;
-      /* mixpanel.track('Card passed', {
+      ga('send', {
+        hitType: 'event',
+        eventCategory: 'Lesson',
+        eventAction: 'Card passed',
         'Lesson name': this.props.lessonName,
         'Card index': this.props.getCurrentCardGlobalIndex(),
         'Card time': cardTime,
-      });*/
+      });
 
       // Used by lessonPage in the progressBar
       this.props.setCurrentCardGlobalIndex(this.props.getCurrentCardGlobalIndex() + 1);
@@ -207,11 +210,14 @@ class CardsList extends React.Component {
     const currentTime = Math.floor(Date.now() / 1000); // in seconds
     const cardTime = currentTime - this.initialCardTimer;
     this.initialCardTimer = currentTime;
-    /*mixpanel.track('Previous card', {
+    ga('send', {
+      hitType: 'event',
+      eventCategory: 'Lesson',
+      eventAction: 'Previous card',
       'Lesson name': this.props.lessonName,
       'Card index': this.props.getCurrentCardGlobalIndex(),
       'Card time': cardTime,
-    });*/
+    });
 
     // Used by lessonPage in the progressBar
     this.props.setCurrentCardGlobalIndex(this.props.getCurrentCardGlobalIndex() - 1);
