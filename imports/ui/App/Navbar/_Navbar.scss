@@ -1,6 +1,9 @@
 .navbar {
   width: 100vw;
   background-color: $blue-1-color !important;
+  * {
+    user-select: none;
+  }
 }
 
 .navbar-header {
