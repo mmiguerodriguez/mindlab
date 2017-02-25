@@ -1,21 +1,21 @@
 @import '../imports/utils/client/colors';
 
-@import '../imports/ui/App/App';
-@import '../imports/ui/App/Navbar/Navbar';
+@import '../imports/ui/app/app';
+@import '../imports/ui/app/navbar/navbar';
 
-@import '../imports/ui/WelcomePage/WelcomePage';
-@import '../imports/ui/WelcomePage/WelcomeItem/WelcomeItem';
-@import '../imports/ui/WelcomePage/WelcomeMenu/WelcomeMenu';
-@import '../imports/ui/LessonPage/LessonPage';
+@import '../imports/ui/welcome-page/welcome-page';
+@import '../imports/ui/welcome-page/welcome-item/welcome-item';
+@import '../imports/ui/welcome-page/welcome-menu/welcome-menu';
+@import '../imports/ui/lesson-page/lesson-page';
 
-@import '../imports/ui/HomePage/HomePage';
-@import '../imports/ui/HomePage/CourseItem/CourseItem';
+@import '../imports/ui/home-page/home-page';
+@import '../imports/ui/home-page/course-item/course-item';
 
-@import '../imports/ui/CoursePage/CoursePage';
-@import '../imports/ui/CoursePage/LessonItem/LessonItem';
+@import '../imports/ui/course-page/course-page';
+@import '../imports/ui/course-page/lesson-item/lesson-item';
 
-@import '../imports/ui/CardsList/CardsList';
-@import '../imports/ui/CardsList/Card/Card';
+@import '../imports/ui/cards-list/cards-list';
+@import '../imports/ui/cards-list/card/card';
 
 @import url('https://fonts.googleapis.com/css?family=Quicksand:500');
 

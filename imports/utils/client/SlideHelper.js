@@ -11,14 +11,18 @@ class SlideHelper {
    * @param {float} exitThreshold
    * The distance from the center that, if reached, the element will exit when released
    * @param {float} exitThresholdSpeed The speed at which exit if the element reaches the threshold
+   * @param {float} escapeThreshold
+   * The normalized distance from the tap needed to initialize the animation
    * @param {float} velocityModifier
    * A modifier for the velocity, because finger movement is perceibed as slower
    * @param {float} frictionAcceleration Used to determine if upon release the element should exit
    * @param {float} returnSpeed  Sets the speed with which the state returns to rest position
-   * @param {float} stateUpdateHandler Called every frame with the state, used by user to animate
-   * @param {float} finishHandler Called when the state reaches passed size
-   * @param {float} rightHandler Called when the state reaches passed size, on the right
-   * @param {float} leftHandler Called when the state reaches passed size, on the left
+   * @param {function} stateUpdateHandler Called every frame with the state, used by user to animate
+   * @param {function} finishHandler Called when the state reaches passed size
+   * @param {function} rightHandler Called when the state reaches passed size, on the right
+   * @param {function} leftHandler Called when the state reaches passed size, on the left
+   * @param {function} downHandler
+   * Called when tap hasn't passed the escape threshold but has passed the down threshold
    * @param {float} disableRight Does not slide to the right (more than initially)
    * @param {float} disableLeft Does not slide to the left (more than initially)
    * @return {SlideHelper}
@@ -28,6 +32,7 @@ class SlideHelper {
     size,
     exitThreshold,
     exitThresholdSpeed,
+    escapeThreshold = 0,
     velocityModifier = 10,
     frictionAcceleration = -7,
     returnSpeed = 80,
@@ -35,6 +40,7 @@ class SlideHelper {
     finishHandler = null,
     rightHandler = null,
     leftHandler = null,
+    downHandler = null,
     disableLeft = false,
     disableRight = false,
   }) {
@@ -61,6 +67,8 @@ class SlideHelper {
     this.size = size;
     this.exitThreshold = Number.isFinite(exitThreshold) ? Math.abs(exitThreshold) : size;
     this.exitThresholdSpeed = Number.isFinite(exitThresholdSpeed) ? exitThresholdSpeed : 0;
+    this.escapeThreshold = escapeThreshold;
+    this.hasEscaped = false;
     this.velocityModifier = velocityModifier;
     this.returnSpeed = returnSpeed;
     this.frictionAcceleration = frictionAcceleration;
@@ -70,9 +78,13 @@ class SlideHelper {
     this.finishHandler = finishHandler;
     this.rightHandler = rightHandler;
     this.leftHandler = leftHandler;
+    this.downHandler = downHandler;
 
     // The current position of movement
     this.stateX = 0;// i.e. element pressed then pointer moved to the right, stateX increases
+    // normalized y component of the distance between
+    // current tap position and initial tap position
+    this.stateY = 0;
     this.velocityX = 0;
     this.exitVelocity = 0;// Used when exiting
 
@@ -112,7 +124,7 @@ class SlideHelper {
   }
 
   /**
-   * Sets the size, which is used to calculate stateX
+   * Sets the size, which is used to calculate stateX & stateY
    * @param {float} size the new size value
    * @return {undefined}
    */
@@ -166,8 +178,11 @@ class SlideHelper {
    * @return {undefined}
    */
   pointerMoved(event) {
-    // slide helper should not do anything else than intended
-    event.preventDefault();
+    // If a downHandler was provided, we preventDefault to prevent the reload
+    // gesture in chrome mobile
+    if (this.downHandler) {
+      event.preventDefault();
+    }
     // Get the position of the pointer
     const { x, y } = SlideHelper.getPointerEventPosition(event);
 
@@ -181,6 +196,7 @@ class SlideHelper {
 
     // Update the state
     this.stateX = (this.pointerX - this.pressX) / this.size;
+    this.stateY = (this.pointerY - this.pressY) / this.size;
 
     // If movement in one direction is disabled, disable
     if ((!this.allowLeft && this.stateX < 0) || (!this.allowRight && this.stateX > 0)) {
@@ -195,9 +211,7 @@ class SlideHelper {
    * @return {undefined}
    */
   press(event) {
-    // slide helper should not do anything else than intended
-    // TODO: view this
-    // event.preventDefault();
+
     // Get the position of the pointer
     const { x, y } = SlideHelper.getPointerEventPosition(event);
 
@@ -218,12 +232,9 @@ class SlideHelper {
   /**
    * Called when the pointer release or a finger leaves the screen, and updates the
    *  corresponding variables. Does not accept the jquery event object because not used.
-   *  @param {event} event jquery event object
    *  @return {undefined}
    */
-  release(event) {
-    // slide helper should not do anything else than intended
-    // event.preventDefault();
+  release() {
     // Check for a buggy release (a release when the element was not actually being touched)
     if (!this.pressed) {
       return;
@@ -272,9 +283,15 @@ class SlideHelper {
       this.shouldReturn = false;
       this.shouldExit = true;
       this.exitVelocity = Math.sign(this.stateX) * this.exitThresholdSpeed;
+    } else if ( // the state hasn't reached the limit
+      this.downHandler &&
+      !this.hasEscaped &&
+      this.stateY > 0.25 // check if there is a down swipe TODO: make stateY size.y dependent
+    ) {
+      // call downHandler
+      this.downHandler();
     } else {
-      // The state would not reach the limit, therefore it should return to rest position
-      // (shouldReturn = true)
+      // It should return to rest position
       this.shouldReturn = true;
       this.shouldExit = false;
     }
@@ -308,6 +325,8 @@ class SlideHelper {
     }
 
     if (this.shouldReturn) {
+      // Reset hasEscaped variable for the next touch
+      this.hasEscaped = false;
       // Because the state should return to rest position, move to rest position a bit every frame
       const positionDisplacement =
        this.returnSpeed / this.size;// The distance that will be moved this frame
@@ -329,8 +348,22 @@ class SlideHelper {
       this.stateX += positionDisplacement;
     }
 
-    // Call handler if an stateUpdateHandler was supplied
-    if (this.stateUpdateHandler) {
+    // Call handler if an stateUpdateHandler was supplied and if the card has
+    // already passed the escape threshold
+    if (this.stateUpdateHandler &&
+      (
+        Math.abs(this.stateX) > this.escapeThreshold ||
+        this.hasEscaped ||
+        this.shouldReturn ||
+        this.shouldExit
+      )
+    ) {
+      if (!this.shouldReturn) {
+        this.hasEscaped = true;
+      } else if (this.stateX === 0) {
+        // has already returned
+        this.shouldReturn = false;
+      }
       this.stateUpdateHandler(this.stateX);
     }
 
