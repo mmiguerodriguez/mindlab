@@ -5,6 +5,7 @@ const ImportanciaDeComerLessonRaw = [
     type: 'content',
     title: 'Importancia de comer',
     text: 'Siete años de nuestra vida los pasamos comiendo; es la tercer actividad que más hacemos después de dormir y trabajar. Una buena alimentación es clave para una vida feliz, sana y prolongada.',
+    forceNewStack: true,
   },
   {
     type: 'content',
@@ -242,7 +243,7 @@ const ComoComerLessonRaw = [
   {
     type: 'content',
     imageUrl: '/images/courses/food/food.png',
-    text: 'Comé cuando tengas hambre, no cuando estés aburrido. Muchas veces nos encontramos comiendo buscando diversión. La comida es un entretenimiento que nos termina saliendo muy caro.',
+    text: 'Comé cuando tengas hambre, no cuando estés aburrido. Muchas veces nos encontramos comiendo buscando diversión. La comida es un entretenimiento que nos termina costando muy caro.',
   },
   {
     type: 'content',

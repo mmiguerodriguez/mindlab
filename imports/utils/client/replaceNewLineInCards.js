@@ -7,8 +7,8 @@ const replaceNewLineInCards = cards => (
   cards.map(card => (
     {
       ...card,
-      text: card.text ? card.text.replace('\n', '\n\n') : null,
-      question: card.question ? card.question.replace('\n', '\n\n') : null,
+      text: card.text ? card.text.replace(/\n/g, '\n\n') : null,
+      question: card.question ? card.question.replace(/\n/g, '\n\n') : null,
     }
   ))
 );

@@ -90,7 +90,7 @@ class FeedbackCard extends React.Component {
 
 FeedbackCard.propTypes = {
   title: React.PropTypes.string.isRequired,
-  text: React.PropTypes.string.isRequired,
+  text: React.PropTypes.string,
   nextUrl: React.PropTypes.string,
   mutate: React.PropTypes.func.isRequired,
 };
