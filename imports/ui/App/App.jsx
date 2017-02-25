@@ -3,9 +3,14 @@ import React from 'react';
 import Navbar from './Navbar/Navbar';
 
 class App extends React.Component {
-  componentDidMount() {
-    //mixpanel.identify(); // Setup mixpanel profile
+componentDidMount() {
+  if (process.env.NODE_ENV === 'development') {
+    ga('create', 'UA-91442900-2'); // Testing Google Analytics
+  } else {
+    // ga('create', 'UA-91442900-2'); TODO: fill this with the real id
   }
+  ga('send', 'pageview');
+}
 
   render() {
     return (
