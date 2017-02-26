@@ -18,6 +18,12 @@ class HomePage extends React.Component {
         courseUrl: '/course/Alimentación',
       },
       {
+        name: 'Desarrollo personal',
+        description: 'Aprende a planificar tu futuro, a sentirte mejor con como te ves y como sobrevivir una crisis existencial.',
+        imageUrl: '/images/courses/food.png',
+        courseUrl: '/course/Desarrollo',
+      },
+      {
         name: 'Qué curso te gustaría que agreguemos?',
         description: 'Necesitamos tu ayuda para poder seguir creciendo',
         imageUrl: '/images/courses/feedback.png',

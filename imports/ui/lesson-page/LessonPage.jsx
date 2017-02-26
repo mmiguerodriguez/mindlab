@@ -12,6 +12,9 @@ import {
   TiposDeComidaLesson,
   ComoComerLesson,
 } from './HardcodedFoodCourseContent';
+import {
+  IntroDesarrolloPersonalLesson,
+} from './HardcodedSelfHelpCourseContent';
 
 import ProgressBar from './progress-bar/ProgressBar';
 
@@ -71,6 +74,15 @@ class LessonPage extends React.Component {
           break;
         default:
           cardsContent = ImportanciaDeComerLesson;
+          break;
+      }
+    } else if (this.props.params.courseName === 'Desarrollo') {
+      switch (this.props.params.lessonName) {
+        case 'Introducción':
+          cardsContent = IntroDesarrolloPersonalLesson;
+          break;
+        default:
+          cardsContent = IntroDesarrolloPersonalLesson;
           break;
       }
     }
