@@ -14,10 +14,11 @@ const FeedbackPage = ({ params }) => {
     type: 'feedback',
     title: feedbackTitle,
     nextUrl: params.nextUrl || '/',
+    hideOmitOption: true,
   }];
 
   return (
-    <div>
+    <div id="feedback-page">
       <CardsList cards={cardsContent} />
     </div>
   );
