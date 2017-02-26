@@ -32,7 +32,16 @@ class WelcomePage extends React.Component {
     this.slideLeft = this.slideLeft.bind(this);
   }
 
+  componentDidMount() {
+    // Apart from welcomePage, in the rest of the pages, html, body, and #app
+    // have height: 100vh. In welcomePage, we need this special height in order
+    // to make visible all the content
+    $('html, body, #app').css('height', '100%');
+  }
+
   componentWillUnmount() {
+    // We restore the height of html, body and #app
+    $('html, body, #app').css('height', '100vh');
     if (this.slider) {
       this.slider.disable();
       this.slider = null;
