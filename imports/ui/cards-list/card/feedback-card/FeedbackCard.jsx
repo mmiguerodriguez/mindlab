@@ -50,7 +50,7 @@ class FeedbackCard extends React.Component {
     return (
       <div className="card-body">
         { this.props.title &&
-          <h2>
+          <h2 className="feedback-card-title">
             {this.props.title}
           </h2>
         }
@@ -79,9 +79,11 @@ class FeedbackCard extends React.Component {
           <button className="btn btn-raised card-btn-primary" onClick={this.sendFeedback}>
             Enviar
           </button>
-          <Link className="feedback-card-skip" to={decodeURIComponent(this.props.nextUrl)}>
-            Omitir
-          </Link>
+          { !this.props.hideOmitOption &&
+            <Link className="feedback-card-skip" to={decodeURIComponent(this.props.nextUrl)}>
+              Omitir
+            </Link>
+          }
         </div>
       </div>
     );
@@ -92,11 +94,14 @@ FeedbackCard.propTypes = {
   title: React.PropTypes.string.isRequired,
   text: React.PropTypes.string,
   nextUrl: React.PropTypes.string,
+  hideOmitOption: React.PropTypes.bool,
   mutate: React.PropTypes.func.isRequired,
 };
 
 FeedbackCard.defaultProps = {
+  text: undefined,
   nextUrl: '/',
+  hideOmitOption: false,
   cardPassed: () => {},
 };
 
