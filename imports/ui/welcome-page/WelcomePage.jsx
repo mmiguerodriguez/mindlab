@@ -33,15 +33,12 @@ class WelcomePage extends React.Component {
   }
 
   componentDidMount() {
-    // Apart from welcomePage, in the rest of the pages, html, body, and #app
-    // have height: 100vh. In welcomePage, we need this special height in order
-    // to make visible all the content
-    $('html, body, #app').css('height', '100%');
+    // Style needed to make all the content visible
+    const newHeight = $(window).height() - $('#welcome-menu').height();
+    $('#welcome-page-items-container').css('height', `${newHeight}px`);
   }
 
   componentWillUnmount() {
-    // We restore the height of html, body and #app
-    $('html, body, #app').css('height', '100vh');
     if (this.slider) {
       this.slider.disable();
       this.slider = null;
