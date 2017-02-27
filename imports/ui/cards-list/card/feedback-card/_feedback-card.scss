@@ -1,3 +1,7 @@
+.feedback-card-title {
+  text-align: center;
+}
+
 .feedback-card-input {
   width: calc(100% - 30px);
 }
@@ -9,5 +13,7 @@
 }
 
 .feedback-card-skip {
+  font-size: 1.3em;
+  margin-top: 5px;
   color: $white-4-color;
 }

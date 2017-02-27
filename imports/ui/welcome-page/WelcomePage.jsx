@@ -32,6 +32,12 @@ class WelcomePage extends React.Component {
     this.slideLeft = this.slideLeft.bind(this);
   }
 
+  componentDidMount() {
+    // Style needed to make all the content visible
+    const newHeight = $(window).height() - $('#welcome-menu').height();
+    $('#welcome-page-items-container').css('height', `${newHeight}px`);
+  }
+
   componentWillUnmount() {
     if (this.slider) {
       this.slider.disable();
