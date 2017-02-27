@@ -2,27 +2,33 @@ import React from 'react';
 
 import CardsList from '../cards-list/CardsList';
 
-const FeedbackPage = ({ params }) => {
-  let feedbackTitle;
-  if (params.type === 'new-course') {
-    feedbackTitle = '¿Qué curso te gustaría que agreguemos?';
-  } else {
-    feedbackTitle = '¡Tu sugerencia nos es de gran ayuda!';
+class FeedbackPage extends React.Component {
+  componentDidMount() {
+    ga('send', 'pageview', `feedback/${this.props.params.nextUrl}/${this.props.params.type}`);
   }
 
-  const cardsContent = [{
-    type: 'feedback',
-    title: feedbackTitle,
-    nextUrl: params.nextUrl || '/',
-    hideOmitOption: true,
-  }];
+  render() {
+    let feedbackTitle;
+    if (this.props.params.type === 'new-course') {
+      feedbackTitle = '¿Qué curso te gustaría que agreguemos?';
+    } else {
+      feedbackTitle = '¡Tu sugerencia nos es de gran ayuda!';
+    }
 
-  return (
-    <div id="feedback-page">
-      <CardsList cards={cardsContent} />
-    </div>
-  );
-};
+    const cardsContent = [{
+      type: 'feedback',
+      title: feedbackTitle,
+      nextUrl: this.props.params.nextUrl || '/',
+      hideOmitOption: true,
+    }];
+
+    return (
+      <div id="feedback-page">
+        <CardsList cards={cardsContent} />
+      </div>
+    );
+  }
+}
 
 FeedbackPage.propTypes = {
   params: React.PropTypes.shape({

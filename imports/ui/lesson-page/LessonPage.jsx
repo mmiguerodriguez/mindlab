@@ -38,6 +38,10 @@ class LessonPage extends React.Component {
     return this.state.currentCardGlobalIndex;
   }
 
+  componentDidMount() {
+    ga('send', 'pageview', `course/${this.props.params.courseName}/${this.props.params.lessonName}`);
+  }
+
   render() {
     let cardsContent = [];
     if (this.props.params.courseName === 'Programación') {

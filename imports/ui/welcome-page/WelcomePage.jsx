@@ -32,6 +32,10 @@ class WelcomePage extends React.Component {
     this.slideLeft = this.slideLeft.bind(this);
   }
 
+  componentDidMount() {
+    ga('send', 'pageview', 'welcome');
+  }
+
   componentWillUnmount() {
     if (this.slider) {
       this.slider.disable();

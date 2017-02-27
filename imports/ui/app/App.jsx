@@ -3,15 +3,6 @@ import React from 'react';
 import Navbar from './navbar/Navbar';
 
 class App extends React.Component {
-  componentDidMount() {
-    if (process.env.NODE_ENV === 'development') {
-      ga('create', 'UA-91442900-2'); // MindLab development
-    } else {
-      ga('create', 'UA-91442900-3'); // MindLab production
-    }
-    ga('send', 'pageview');
-  }
-
   render() {
     return (
       <div>
