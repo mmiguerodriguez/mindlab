@@ -19,8 +19,8 @@ class HomePage extends React.Component {
       },
       {
         name: 'Desarrollo personal',
-        description: 'Aprende a planificar tu futuro, a sentirte mejor con como te ves y como sobrevivir una crisis existencial.',
-        imageUrl: '/images/courses/food.png',
+        description: 'Aprende a planificar tu futuro, a sentirte mejor con como te ves y a sobrevivir una crisis existencial.',
+        imageUrl: '/images/courses/growth-plant.png',
         courseUrl: '/course/Desarrollo',
       },
       {
