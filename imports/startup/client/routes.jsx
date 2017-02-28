@@ -18,7 +18,7 @@ const renderRoutes = () => (
   <ApolloProvider client={client}>
     <Router history={browserHistory}>
       <Route path="/welcome" component={WelcomePage} />
-      <Route onChange={() => { console.log('hola'); }} path="/" component={App}>
+      <Route path="/" component={App}>
         <IndexRoute component={HomePage} />
         <Route path="/course/:courseName" component={CoursePage} />
         <Route path="/course/:courseName/:lessonName" component={LessonPage} />

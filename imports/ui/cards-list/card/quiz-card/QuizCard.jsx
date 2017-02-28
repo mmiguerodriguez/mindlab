@@ -41,13 +41,14 @@ class QuizCard extends React.Component {
 
   handleCheckAnswer() {
     const isCorrect = this.state.checkAnswer();
-    // Set the answered correctly metric
-    ga('set', 'metric3', isCorrect);
-    // Set the number of try metric
-    ga('set', 'metric4', this.state.quizTries);
-    // Set the card index metric
-    ga('set', 'metric5', this.props.getCurrentCardGlobalIndex());
-    ga('send', 'event', 'Lesson', 'Quiz responded');
+    ga('send', 'event', 'Lesson', 'Quiz responded', {
+      // Set the card index dimension
+      dimension1: this.props.getCurrentCardGlobalIndex(),
+      // Set the answered correctly metric
+      metric3: isCorrect,
+      // Set the number of try metric
+      metric4: this.state.quizTries,
+    });
 
     this.setState({
       quizTries: this.state.quizTries + 1,

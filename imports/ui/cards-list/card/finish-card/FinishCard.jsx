@@ -18,9 +18,12 @@ class FinishCard extends React.Component {
   }
 
   handleClick() {
-    // Set the lesson time metric in seconds
-    ga('set', 'metric2', Math.floor(Date.now() / 1000) - this.props.lessonTime);
-    ga('send', 'event', 'Lesson', 'Finished lesson');
+    ga('send', 'event', 'Lesson', 'Finished lesson', {
+      // Set the lesson time metric in seconds
+      metric2: Math.floor(Date.now() / 1000) - this.props.lessonTime,
+      // Increment the lesson completion metric by 1
+      metric6: 1,
+    });
     this.props.slideCard();
   }
 

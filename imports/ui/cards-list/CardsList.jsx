@@ -169,11 +169,12 @@ class CardsList extends React.Component {
       const currentTime = Math.floor(Date.now() / 1000); // in seconds
       const cardTime = currentTime - this.initialCardTimer;
       this.initialCardTimer = currentTime;
-      // Set the card time metric in seconds
-      ga('set', 'metric1', cardTime);
-      // Set the card index metric
-      ga('set', 'metric5', this.props.getCurrentCardGlobalIndex());
-      ga('send', 'event', 'Lesson', 'Card passed');
+      ga('send', 'event', 'Lesson', 'Card passed', {
+        // Set the card index dimension
+        dimension1: this.props.getCurrentCardGlobalIndex(),
+        // Set the card time metric in seconds
+        metric1: cardTime,
+      });
 
       // Used by lessonPage in the progressBar
       this.props.setCurrentCardGlobalIndex(this.props.getCurrentCardGlobalIndex() + 1);
@@ -212,11 +213,12 @@ class CardsList extends React.Component {
     const currentTime = Math.floor(Date.now() / 1000); // in seconds
     const cardTime = currentTime - this.initialCardTimer;
     this.initialCardTimer = currentTime;
-    // Set the card time metric in seconds
-    ga('set', 'metric1', cardTime);
-    // Set the card index metric
-    ga('set', 'metric5', this.props.getCurrentCardGlobalIndex());
-    ga('send', 'event', 'Lesson', 'Previous card');
+    ga('send', 'event', 'Lesson', 'Previous card', {
+      // Set the card index dimension
+      dimension1: this.props.getCurrentCardGlobalIndex(),
+      // Set the card time metric in seconds
+      metric1: cardTime,
+    });
 
     // Used by lessonPage in the progressBar
     this.props.setCurrentCardGlobalIndex(this.props.getCurrentCardGlobalIndex() - 1);
