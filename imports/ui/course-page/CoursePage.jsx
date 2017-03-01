@@ -3,6 +3,10 @@ import React from 'react';
 import LessonItem from './lesson-item/LessonItem';
 
 class CoursePage extends React.Component { // TODO: fix $.material.init()
+  componentDidMount() {
+    ga('send', 'pageview', `course/${this.props.params.courseName}`);
+  }
+
   render() {
     // hardcoded programming lessons
     let lessonsContent;

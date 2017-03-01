@@ -33,6 +33,7 @@ class WelcomePage extends React.Component {
   }
 
   componentDidMount() {
+    ga('send', 'pageview', 'welcome');
     // Style needed to make all the content visible
     const newHeight = $(window).height() - $('#welcome-menu').height();
     $('#welcome-page-items-container').css('height', `${newHeight}px`);

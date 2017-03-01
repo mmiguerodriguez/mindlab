@@ -3,6 +3,9 @@ import React from 'react';
 import CourseItem from './course-item/CourseItem';
 
 class HomePage extends React.Component {
+  componentDidMount() {
+    ga('send', 'pageview', 'homepage');
+  }
   render() {
     const coursesContent = [
       {
