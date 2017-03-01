@@ -8,7 +8,8 @@ const IntroDesarrolloPersonalLessonRaw = [
   },
   {
     type: 'content',
-    text: 'En este curso aprenderás como una mentalidad optimista y planificadora puede ayudarte a construir tu futuro, y cómo te afecta una mentalidad pesimista.',
+    imageUrl: '/images/courses/self-help/theater.svg',
+    text: 'En este curso aprenderás cómo una mentalidad optimista y planificadora puede ayudarte a construir tu futuro, y cómo te afecta una mentalidad pesimista.',
   },
   {
     type: 'content',
