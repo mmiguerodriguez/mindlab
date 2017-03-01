@@ -47,19 +47,19 @@ class CoursePage extends React.Component { // TODO: fix $.material.init()
         lessonsContent = [
           {
             lessonName: 'Introducción',
-            icon: 'new_releases',
+            icon: 'flight_takeoff',
           },
           {
             lessonName: 'Pesimismo y optimismo',
-            icon: 'new_releases',
+            icon: 'mood',
           },
           {
             lessonName: 'El problema mente-cuerpo',
-            icon: 'new_releases',
+            icon: 'supervisor_account',
           },
           {
             lessonName: 'Crisis existenciales',
-            icon: 'new_releases',
+            icon: 'trending_down',
           },
         ];
         break;
