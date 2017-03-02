@@ -306,7 +306,7 @@ const ProblemaMenteCuerpoLessonRaw = [
     question: 'Cual es la diferencia en cómo vemos a los demás y cómo nos vemos a nosotros?',
     options: [
       {
-        content: 'Solemos juzgar a los demas por como se ven, pero rara vez hacemos lo mismo.',
+        content: 'Solemos juzgar a los demas por como se ven, pero rara vez hacemos lo mismo con nosotros.',
         message: 'Excelente!',
         correct: true,
       },
@@ -319,7 +319,7 @@ const ProblemaMenteCuerpoLessonRaw = [
   {
     type: 'content',
     title: 'Cómo nos vemos tiende a influir como somos',
-    text: 'Hay una frase que dice que a los 40, todos tienen la cara que merecen. Esto es absurdo. Nadie, ni siquiera con 40 años de intentarlo, ha logrado cambiar su apariencia facial con solo pensarlo.',
+    text: 'Hay una frase que dice que a los 40 todos tienen la cara que merecen. Esto es absurdo. Nadie, ni siquiera con 40 años de intentarlo, ha logrado cambiar su apariencia facial con solo pensarlo.',
     forceNewStack: true,
   },
   {
@@ -347,6 +347,36 @@ const ProblemaMenteCuerpoLessonRaw = [
   {
     type: 'content',
     text: 'Debemos esforzarnos por recordar que el aspecto de los demás puede ser muy distinto de su personalidad, y comprender que si otro no hace eso, es por su ignorancia. No debemos sentirnos mal por lo que piensa el resto.',
+  },
+  {
+    type: 'multiple-choice',
+    question: 'Si una persona tiene aspecto serio y amargado, su personalidad suele ser seria y amargada?',
+    options: [
+      {
+        content: 'Lamentablemente sí, aunque puede ser cambiada.',
+        message: 'Genio!!',
+        correct: true,
+      },
+      {
+        content: 'No. Que tiene que ver su apariencia con su personalidad??',
+        message: 'Prueba releer la seccion.',
+      },
+    ],
+  },
+  {
+    type: 'multiple-choice',
+    question: 'Debemos tratar a alguien con cara redonda que parece un nene, como a un nene?',
+    options: [
+      {
+        content: 'No. A pesar de que es probable que tenga algunas actitudes infantiles, debemos ayudarlo intentando tratarlo como si no fuese así.',
+        message: 'Excelente!',
+        correct: true,
+      },
+      {
+        content: 'Por qué no? Debe ser divertido!',
+        message: 'No te dejes llevar por tus emociones. Podes herir a otros.',
+      },
+    ],
   },
   {
     type: 'finish',
