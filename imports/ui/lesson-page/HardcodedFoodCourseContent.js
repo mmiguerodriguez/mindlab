@@ -31,11 +31,6 @@ const ImportanciaDeComerLessonRaw = [
     type: 'finish',
     imageUrl: '/images/courses/food/strawberry.png',
     text: 'Todos estos beneficios están a tu alcance! Con este curso vas a tener las mejores recomendaciones para mejorar tu alimentación, lo que va a mejorar ampliamente tu vida.',
-  },
-  {
-    type: 'feedback',
-    title: 'Ayudanos!',
-    text: 'Necesitamos tu ayuda! Decinos todas las sugerencias o comentarios que tengas!',
     nextUrl: '/course/Alimentación',
   },
 ];
@@ -218,11 +213,6 @@ const TiposDeComidaLessonRaw = [
     imageUrl: '/images/courses/food/raspberry.png',
     title: 'Muy bien!',
     text: 'Finalizaste la lección de tipos de comida! Ahora ya podés distinguir qué tipos de comida son las mejores y los más saludables.',
-  },
-  {
-    type: 'feedback',
-    title: 'Ayudanos!',
-    text: 'Cuál es tu opinion del curso? Decinos todas las sugerencias o comentarios que tengas!',
     nextUrl: '/course/Alimentación',
   },
 ];

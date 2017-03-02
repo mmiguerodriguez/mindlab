@@ -1,6 +1,7 @@
 import React, { PropTypes } from 'react';
 import { graphql } from 'react-apollo';
 import gql from 'graphql-tag';
+import { browserHistory } from 'react-router';
 
 import Notifications from '../../../../utils/client/notifications';
 
@@ -10,7 +11,6 @@ class FinishCard extends React.Component {
 
     this.handleClick = this.handleClick.bind(this);
   }
-
   componentDidMount() {
     // We wait one second to ask for permission
     setTimeout(() => {
@@ -19,13 +19,19 @@ class FinishCard extends React.Component {
   }
 
   handleClick() {
-    ga('send', 'event', 'Lesson', 'Finished lesson', {
-      // Set the lesson time metric in seconds
-      metric2: Math.floor(Date.now() / 1000) - this.props.lessonTime,
-      // Increment the lesson completion metric by 1
-      metric6: 1,
+    ga('send', {
+      hitType: 'event',
+      eventCategory: 'Lesson',
+      eventAction: 'Finished lesson',
+      'Lesson name': this.props.lessonName,
+      'Lesson time': Math.floor(Date.now() / 1000) - this.props.lessonTime,
     });
-    this.props.slideCard();
+
+    if (this.props.nextUrl) {
+      browserHistory.push(decodeURIComponent(this.props.nextUrl));
+    } else {
+      this.props.slideCard();
+    }
   }
 
   render() {
@@ -69,6 +75,7 @@ FinishCard.propTypes = {
   text: React.PropTypes.string,
   mutate: PropTypes.func.isRequired,
   slideCard: PropTypes.func.isRequired,
+  nextUrl: React.PropTypes.string,
   lessonName: React.PropTypes.string.isRequired,
   lessonTime: React.PropTypes.number.isRequired,
 };

@@ -311,11 +311,6 @@ for desde 1 hasta 100 guardando el valor en pasoActual
     imageUrl: '/images/courses/programming/tick.png',
     title: 'Felicitaciones!',
     text: 'Terminaste la lección de primeros conceptos de la programación! En la próxima lección vas a aprender un lenguaje de programación, y vas a empezar a escribir código.',
-  },
-  {
-    type: 'feedback',
-    title: 'Ayudanos!',
-    text: 'Necesitamos tu ayuda! Decinos todas las sugerencias o comentarios que tengas!',
     nextUrl: '/course/Programación',
   },
 ];
