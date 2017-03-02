@@ -144,6 +144,21 @@ Ser mediocre es la normalidad`,
     text: 'En resumen, el **pesimismo indefinido** es la mentalidad irracional (ya que hay formas mejores) de aquellos que, sin una razón definida, piensan que el presente es malo y el futuro va a ser peor, por lo general con el objetivo de ser más feliz.',
   },
   {
+    type: 'multiple-choice',
+    question: 'Por qué el pesimismo indefinido es una solución a corto plazo?',
+    options: [
+      {
+        content: 'Porque solo mira el presente.',
+        message: 'Capo',
+      },
+      {
+        content: 'Porque el mundo sería cada vez peor porque nadie hace nada para mejorarlo, por lo que se tiene que pensar peor todavía. Es una bola de nieve.',
+        message: 'Excelente!',
+        correct: true,
+      },
+    ],
+  },
+  {
     type: 'content',
     title: 'La salida del pesimismo indefinido',
     text: 'Aún así, hay una alternativa al pesimismo indefinido, el **optimismo definido**.',
@@ -165,7 +180,22 @@ Ser mediocre es la normalidad`,
   },
   {
     type: 'content',
-    text: 'Para un optimista definido, el futuro será mejor que el presente si planea y trabaja para hacerlo mejor.',
+    text: 'Para un optimista definido, el futuro será mejor que el presente si planea y trabaja duro para hacerlo mejor.',
+  },
+  {
+    type: 'multiple-choice',
+    question: 'Por qué el optimismo definido es una solución real?',
+    options: [
+      {
+        content: 'Porque la realidad choca con la sensacion falsa.',
+        message: 'Capo',
+      },
+      {
+        content: 'Porque no te da una sensación de felicidad como en el pesimismo indefinido, sino que realmente te da felicidad ya que mejora el mundo.',
+        message: 'Excelente!',
+        correct: true,
+      },
+    ],
   },
   {
     type: 'content',
