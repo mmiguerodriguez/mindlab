@@ -49,11 +49,11 @@ const PesimismoYOptimismoLessonRaw = [
   },
   {
     type: 'multiple-choice',
-    question: 'Cómo impacta el pesimismo ?',
+    question: 'Cómo impacta el pesimismo?',
     options: [
       {
-        content: 'Queso',
-        message: 'Nope',
+        content: 'Te hace sentir infeliz y pesimo.',
+        message: 'Quizas, pero no es lo habitual.',
       },
       {
         content: 'Te prepara para lo peor, reduce la tensión de las expectativas y te protege de la decepción.',
@@ -64,11 +64,11 @@ const PesimismoYOptimismoLessonRaw = [
   },
   {
     type: 'multiple-choice',
-    question: 'Cual es uno de los orígenes del optimismo implantado en la sociedad ?',
+    question: 'Cual es uno de los orígenes del optimismo implantado en la sociedad?',
     options: [
       {
-        content: 'Bananas',
-        message: 'Capo',
+        content: 'Los humanos son óptimos por naturaleza.',
+        message: 'Óptimos o no, no tiene nada que ver con el optimismo.',
       },
       {
         content: 'Muchas empresas tratando de vendernos cosas, prometiéndonos felicidad a cambio.',
@@ -114,30 +114,25 @@ Reduce sus expectativas!`,
         correct: true,
       },
       {
-        content: 'Bananas',
-        message: 'Como te diste cuenta?',
+        content: 'Porque le hace mal a la sociedad.',
+        message: 'En todo caso esto explica por qué **no** es racional',
       },
     ],
   },
   {
     type: 'content',
     title: 'Lecciones claves del pesimista',
-    text: 'Dia a dia sostienen que:',
+    text: `Dia a dia sostienen que:
+* Se vive mal
+* La felicidad dura 5 minutos
+* No existe tener esperanza
+* Ser mediocre es la normalidad`,
     forceNewStack: true,
   },
   {
     type: 'content',
-    imageUrl: '/images/courses/self-help/presentation.svg',
-    text: `Se vive mal
-Todo el mundo está triste y preocupado todo el tiempo
-La felicidad dura 5 minutos
-No existe tener esperanza
-Ser mediocre es la normalidad`,
-  },
-  {
-    type: 'content',
     imageUrl: '/images/courses/self-help/man-thinking.svg',
-    text: 'Aunque sea un buen dia, se preguntan porque no fue mejor.',
+    text: 'Aunque sea un buen dia, se preguntan porque no fue mejor. Piensan que todo el mundo está triste y preocupado todo el tiempo',
   },
   {
     type: 'content',
@@ -149,8 +144,8 @@ Ser mediocre es la normalidad`,
     question: 'Por qué el pesimismo indefinido es una solución a corto plazo?',
     options: [
       {
-        content: 'Porque solo mira el presente.',
-        message: 'Capo',
+        content: 'Porque solo considera el presente.',
+        message: 'Que solo considere el presente no está relacionado con ser a corto plazo.',
       },
       {
         content: 'Porque el mundo sería cada vez peor porque nadie hace nada para mejorarlo, por lo que se tiene que pensar peor todavía. Es una bola de nieve.',
@@ -177,10 +172,12 @@ Ser mediocre es la normalidad`,
   },
   {
     type: 'content',
+    imageUrl: '/images/courses/self-help/tools.svg',
     text: 'Debemos vivir el día a día sin estar esperando lo mejor ni lo peor, sino simplemente enterandonos del resultado, y no evaluar si fue bueno o malo, sino que instantáneamente buscar cómo mejorarlo. ',
   },
   {
     type: 'content',
+    imageUrl: '/images/courses/self-help/desk.svg',
     text: 'Para un optimista definido, el futuro será mejor que el presente si planea y trabaja duro para hacerlo mejor.',
   },
   {
@@ -189,7 +186,7 @@ Ser mediocre es la normalidad`,
     options: [
       {
         content: 'Porque la realidad choca con la sensacion falsa.',
-        message: 'Capo',
+        message: 'Estás seguro?',
       },
       {
         content: 'Porque no te da una sensación de felicidad como en el pesimismo indefinido, sino que realmente te da felicidad ya que mejora el mundo.',
@@ -206,31 +203,53 @@ Ser mediocre es la normalidad`,
   },
   {
     type: 'content',
+    imageUrl: '/images/courses/self-help/chemistry-1.svg',
     text: 'Entre los avances, estuvieron la aplicación de la química a la industria y la agricultura, la navegación a vapor, los ferrocarriles, los telégrafos eléctricos, la limpieza de continentes enteros para el cultivo y la canalización de los ríos.',
   },
   {
     type: 'content',
+    imageUrl: '/images/courses/self-help/statue-of-liberty.svg',
     text: 'Incluso la Gran Depresión no impidió el progreso implacable en los Estados Unidos, que siempre ha sido el hogar de los optimistas definidos más visionarios del mundo.',
   },
   {
     type: 'content',
+    imageUrl: '/images/courses/self-help/golden-gate-bridge.svg',
     text: 'El Empire State Building se inició en 1929 y terminó en 1931. El Golden Gate Bridge se inició en 1933 y se completó en 1937. El programa de Apolo de la NASA comenzó en 1961 y puso 12 hombres en la luna antes del 1972.',
   },
   {
     type: 'content',
+    imageUrl: '/images/courses/self-help/dam.svg',
     text: 'A finales de 1940, un californiano llamado John Reber se propuso reinventar la geografía física de toda la bahía de San Francisco. Reber era un maestro de escuela primaria!',
   },
   {
     type: 'content',
-    text: 'A pesar de su empleo, propuso públicamente construir dos enormes presas en la bahía, construir lagos masivos de agua dulce para el agua potable y el riego, y reclamar 81 millones de metros<sup>2</sup> de tierra para el desarrollo!',
+    imageUrl: '/images/courses/self-help/water.svg',
+    text: 'A pesar de su empleo, propuso públicamente construir dos enormes presas en la bahía, construir lagos masivos de agua dulce para el agua potable y el riego, y reclamar 81 millones de metros cuadrados de tierra para el desarrollo!',
   },
   {
     type: 'content',
+    imageUrl: '/images/courses/self-help/presentation-1.svg',
     text: 'Aunque no tenía autoridad personal, la gente tomó el plan de Reber en serio. Fue aprobado por juntas de redacción de periódicos en California. El Congreso de los Estados Unidos celebró audiencias sobre su factibilidad.',
   },
   {
     type: 'content',
+    imageUrl: '/images/courses/self-help/engineer.svg',
     text: 'El Cuerpo de Ingenieros del ejército construyó un modelo a escala de la bahía en Sausalito, California. Alguien tomaría hoy tal visión en serio?',
+  },
+  {
+    type: 'multiple-choice',
+    question: 'Si a un recolector de basura se le ocurre como disminuir el tráfico de la ciudad, deberíamos escucharlo?',
+    options: [
+      {
+        content: 'Obvio que sí!',
+        message: 'Excelente!',
+        correct: true,
+      },
+      {
+        content: 'Por favor, si es un recolector de basura!! Que sabe él???',
+        message: 'Las mejores ideas, las disruptoras y poco convencionales, vienen justamente de lugares poco convencionales.',
+      },
+    ],
   },
   {
     type: 'content',
@@ -240,25 +259,29 @@ Ser mediocre es la normalidad`,
   },
   {
     type: 'content',
+    imageUrl: '/images/courses/self-help/strategy.svg',
     text: 'Hoy un plan que viene de un maestro de escuela nunca sería tomado en cuenta. Una planificación de largo alcance que viene de cualquier persona con más poder, sería desechada como basura.',
   },
   {
     type: 'content',
+    imageUrl: '/images/courses/self-help/parthenon.svg',
     text: 'Todavía se puede visitar el modelo de Reber de la bahía en Sausalito, pero hoy es sólo una atracción turística: grandes planes para el futuro se han convertido en curiosidades antiguas.',
   },
   {
     type: 'content',
+    imageUrl: '/images/courses/self-help/road-1.svg',
     text: 'El optimismo definido hace que nos esforcemos hoy para obtener mejores cosas en el futuro.',
   },
   {
     type: 'content',
+    imageUrl: '/images/courses/self-help/strategy-1.svg',
     text: 'No debemos esperar a que las cosas buenas pasen por si solas. Tampoco debemos esperar a que pasen las malas. Debemos planificar el futuro y estar dispuestos a construirlo desde el presente.',
   },
   {
     type: 'finish',
-    imageUrl: '/images/courses/food/raspberry.png',
+    imageUrl: '/images/courses/self-help/list.svg',
     title: 'Excelente!',
-    text: 'Felicitaciones! Ahora sabes sobre diferentes tipos de mentalidades y cómo influyeron en la gente hasta ahora, para tomar mejores decisiones a la hora de mantener alguna!',
+    text: 'Felicitaciones! Ahora vas a poder tomar mejores decisiones porque ya sabés cómo influyen en vos y en el resto de la gente los diferentes tipos de mentalidades!',
   },
   {
     type: 'feedback',
@@ -277,10 +300,12 @@ const ProblemaMenteCuerpoLessonRaw = [
   },
   {
     type: 'content',
+    imageUrl: '/images/courses/self-help/manly.svg',
     text: 'Se asume que un rostro dulce tiene un dueño amable y benevolente, mientras que la cara larga, encarnizada, con ojos estrechos, un dueño enojado y sospechoso.',
   },
   {
     type: 'content',
+    imageUrl: '/images/courses/self-help/happy.svg',
     text: 'Sin embargo, hay una dramática excepción a esta regla: nuestros propios casos.',
   },
   {
@@ -291,6 +316,7 @@ const ProblemaMenteCuerpoLessonRaw = [
   },
   {
     type: 'content',
+    imageUrl: '/images/courses/self-help/mirror.svg',
     text: 'Por dentro podemos sentirnos tiernos, inspirados, y jóvenes, pero la cara que vemos en el espejo puede ser severa, seria, sin humor, y cada vez más semejante a la de un señor anciano y amargado. Nos sentimos mal representados.',
   },
   {
@@ -298,7 +324,7 @@ const ProblemaMenteCuerpoLessonRaw = [
     question: 'Cual es la diferencia en cómo vemos a los demás y cómo nos vemos a nosotros?',
     options: [
       {
-        content: 'Solemos juzgar a los demas por como se ven, pero rara vez hacemos lo mismo.',
+        content: 'Solemos juzgar a los demas por como se ven, pero rara vez hacemos lo mismo con nosotros.',
         message: 'Excelente!',
         correct: true,
       },
@@ -311,15 +337,17 @@ const ProblemaMenteCuerpoLessonRaw = [
   {
     type: 'content',
     title: 'Cómo nos vemos tiende a influir como somos',
-    text: 'Hay una frase que dice que a los 40, todos tienen la cara que merecen. Esto es absurdo. Nadie, ni siquiera con 40 años de intentarlo, ha logrado cambiar su apariencia facial con solo pensarlo.',
+    text: 'Hay una frase que dice que a los 40 todos tienen la cara que merecen. Esto es absurdo. Nadie, ni siquiera con 40 años de intentarlo, ha logrado cambiar su apariencia facial con solo pensarlo.',
     forceNewStack: true,
   },
   {
     type: 'content',
+    imageUrl: '/images/courses/self-help/businessman.svg',
     text: 'Todo lo contrario tiende a ocurrir: nuestras personalidades suelen moldearse a las personalidades representadas por nuestros rostros, como resultado de años de otras personas asumiendo que esto debe ser lo que somos, y tratándonos así.',
   },
   {
     type: 'content',
+    imageUrl: '/images/courses/self-help/target.svg',
     text: 'Las características más gentiles de alguien quien parece amable serán, por lo tanto, constantemente invitadas a la superficie, por las expectativas y el alentamiento de los demás.',
   },
   {
@@ -330,21 +358,54 @@ const ProblemaMenteCuerpoLessonRaw = [
   },
   {
     type: 'content',
+    imageUrl: '/images/courses/self-help/price-tag.svg',
     text: 'Lo mejor que podemos hacer para superar el problema mente-cuerpo no es jugar con la ropa, gastar en peluquerías, o poner en peligro nuestra salud con una cirugía plástica. Nunca seremos capaces de alinear la mente y el cuerpo con la apariencia.',
   },
   {
     type: 'content',
+    imageUrl: '/images/courses/self-help/brain-1.svg',
     text: 'La solución es reconocer que el problema es una parte existencial del ser humano.',
   },
   {
     type: 'content',
+    imageUrl: '/images/courses/self-help/girl.svg',
     text: 'Debemos esforzarnos por recordar que el aspecto de los demás puede ser muy distinto de su personalidad, y comprender que si otro no hace eso, es por su ignorancia. No debemos sentirnos mal por lo que piensa el resto.',
   },
   {
+    type: 'multiple-choice',
+    question: 'Si una persona tiene aspecto serio y amargado, su personalidad suele ser seria y amargada?',
+    options: [
+      {
+        content: 'Lamentablemente sí, aunque puede ser cambiada.',
+        message: 'Genio!!',
+        correct: true,
+      },
+      {
+        content: 'No. Que tiene que ver su apariencia con su personalidad??',
+        message: 'Prueba releer la seccion.',
+      },
+    ],
+  },
+  {
+    type: 'multiple-choice',
+    question: 'Debemos tratar a alguien con cara redonda que parece un nene, como a un nene?',
+    options: [
+      {
+        content: 'No. A pesar de que es probable que tenga algunas actitudes infantiles, debemos ayudarlo intentando tratarlo como si no fuese así.',
+        message: 'Excelente!',
+        correct: true,
+      },
+      {
+        content: 'Por qué no? Debe ser divertido!',
+        message: 'No te dejes llevar por tus emociones. Podes herir a otros.',
+      },
+    ],
+  },
+  {
     type: 'finish',
-    imageUrl: '/images/courses/food/raspberry.png',
+    imageUrl: '/images/courses/self-help/happy-1.svg',
     title: 'Muy bien!',
-    text: 'Finalizaste la lección del problema mente cuerpo! Ahora sabes la importancia de juzgar correctamente y como hacerlo!',
+    text: 'Finalizaste la lección del problema mente cuerpo! Ahora ya sabés que la apariencia superficial no es importante y que la felicidad no tiene que ver con cómo te ves!',
     nextUrl: '/course/Desarrollo',
   },
 ];
@@ -373,7 +434,7 @@ const CrisisExistencialesLessonRaw = [
   {
     type: 'content',
     title: 'Cuestionamiento',
-    text: 'Un periodo en donde mucho de lo que anteriormente veíamos como normal o de sentido común, nos parece extraño, poco casual, y misterioso.',
+    text: 'Un periodo en donde mucho de lo que anteriormente veíamos como normal o de sentido común nos parece extraño, poco casual, y misterioso.',
     forceNewStack: true,
   },
   {
@@ -397,6 +458,25 @@ const CrisisExistencialesLessonRaw = [
 Somos mucho más libres de lo que creemos.`,
   },
   {
+    type: 'multiple-choice',
+    question: 'Que ocurre en el periodo de cuestionamiento?',
+    options: [
+      {
+        content: 'Nos agarra ansiedad.',
+        message: 'Estás seguro?',
+      },
+      {
+        content: 'Nos aislamos.',
+        message: 'Estás seguro?',
+      },
+      {
+        content: 'Mucho de lo que antes veíamos como normal nos parece extraño.',
+        message: 'Excelente!',
+        correct: true,
+      },
+    ],
+  },
+  {
     type: 'content',
     title: 'Iluminación y replanteo de vida',
     text: 'Esta revelación nos produce ansiedad extrema.\n El reconocimiento de nuestra libertad no nos trae calma, de hecho todo lo contrario, reconocemos que hemos estado engañándonos acerca de lo que <strong>debemos</strong> ser.',
@@ -411,6 +491,25 @@ Somos mucho más libres de lo que creemos.`,
     type: 'content',
     imageUrl: '/images/courses/self-help/binoculars.svg',
     text: 'Llegamos a la realización incómoda de que nuestra responsabilidad principal es hacia nosotros, **no** hacia los demás.',
+  },
+  {
+    type: 'multiple-choice',
+    question: 'Es correcto pensar cómo otros interpretaron nuestras acciones?',
+    options: [
+      {
+        content: 'Obvio, muchísimo, así nos mejoramos para futuras ocasiones.',
+        message: 'Si la mayoría de las cosas que hacemos el otro no las nota, para que mejorarlas? Lo que importa es el contenido de la conversación.',
+      },
+      {
+        content: 'Sí, pero sin exagerar. Si la mayoría de las cosas que hacemos el otro no las nota, para que mejorarlas? Lo que importa es el contenido.',
+        message: 'Excelente!?',
+        correct: true,
+      },
+      {
+        content: 'No, para que?',
+        message: 'Siempre está bueno pensar que se podría mejorar y como mejorarlo.',
+      },
+    ],
   },
   {
     type: 'content',
@@ -451,9 +550,24 @@ Somos mucho más libres de lo que creemos.`,
     text: 'Está es la razón por la que nos avergonzamos y pensamos que tenemos algún tipo de maldición, cuando de hecho son sólo cualidades humanas que nos inmovilizan cuando las consideramos con suficiente profundidad.',
   },
   {
+    type: 'multiple-choice',
+    question: 'Por qué nos agarra ansiedad en una crisis existencial?',
+    options: [
+      {
+        content: 'Como el tiempo se acaba, debemos tomar una decisión, pero como vivimos a oscuras, nunca podemos estamos seguros de elegir correctamente. Esto nos trae ansiedad.',
+        message: 'Excelente!',
+        correct: true,
+      },
+      {
+        content: 'Estamos en una crisis. Obviamente nos vamos a sentir ansiosos!',
+        message: 'Puede ser que en cualquier crisis nos sintamos ansiosos. Aún así no responde por qué en está. ',
+      },
+    ],
+  },
+  {
     type: 'content',
     title: 'Todo el mundo pasa por crisis existenciales',
-    text: 'El que sufras por tener que elegir entre tantas opciones, no es una anomalía, es una de las cosas más comunes y predecibles de estar vivo.',
+    text: 'El que sufras por tener que elegir entre tantas opciones no es una anomalía, es una de las cosas más comunes y predecibles de estar vivo.',
     forceNewStack: true,
   },
   {
@@ -465,6 +579,21 @@ Somos mucho más libres de lo que creemos.`,
     type: 'content',
     imageUrl: '/images/courses/self-help/relieved.svg',
     text: 'La manera de disminuir nuestra ansiedad es aliviar el pensamiento de que pudimos haber elegido correctamente pero fallamos.\n El grado de decepción, los errores y las decisiones erróneas son simplemente una condición humana".',
+  },
+  {
+    type: 'multiple-choice',
+    question: 'Debemos sentirnos mal por equivocarnos?',
+    options: [
+      {
+        content: 'Por qué nos sentiriamos mal? Todo el mundo se equivoca todo el tiempo, es normal.',
+        message: 'Excelente!',
+        correct: true,
+      },
+      {
+        content: 'Si nos equivocamos tenemos que sentirnos mal, es como funciona nuestro cuerpo.',
+        message: 'Es cierto que nuestro cuerpo funciona así, pero no significa que no se pueda arreglar!',
+      },
+    ],
   },
   {
     type: 'finish',
