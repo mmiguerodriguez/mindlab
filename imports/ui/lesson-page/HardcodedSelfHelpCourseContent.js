@@ -22,9 +22,10 @@ const IntroDesarrolloPersonalLessonRaw = [
     text: 'También aprenderás qué es una crisis existencial, cómo atravesarla de forma alegre, y por qué podes tener crisis existenciales.',
   },
   {
-    type: 'feedback',
-    title: 'Ayudanos!',
-    text: 'Necesitamos tu ayuda! Decinos todas las sugerencias o comentarios que tengas!',
+    type: 'finish',
+    imageUrl: '/images/course/self-help/workspace.svg',
+    title: 'Felicitaciones',
+    text: 'Ya sabés de que se trata este curso, en la próxima lección vamos a ver las distintas mentalidades y cómo afectan a cada persona.',
     nextUrl: '/course/Desarrollo',
   },
 ];
@@ -259,6 +260,12 @@ Ser mediocre es la normalidad`,
     title: 'Excelente!',
     text: 'Felicitaciones! Ahora sabes sobre diferentes tipos de mentalidades y cómo influyeron en la gente hasta ahora, para tomar mejores decisiones a la hora de mantener alguna!',
   },
+  {
+    type: 'feedback',
+    title: 'Ayudanos!',
+    text: 'Necesitamos tu ayuda! Decinos todas las sugerencias o comentarios que tengas!',
+    nextUrl: '/course/Desarollo',
+  },
 ];
 const PesimismoYOptimismoLesson = replaceNewLineInCards(PesimismoYOptimismoLessonRaw);
 
@@ -338,6 +345,7 @@ const ProblemaMenteCuerpoLessonRaw = [
     imageUrl: '/images/courses/food/raspberry.png',
     title: 'Muy bien!',
     text: 'Finalizaste la lección del problema mente cuerpo! Ahora sabes la importancia de juzgar correctamente y como hacerlo!',
+    nextUrl: '/course/Desarrollo',
   },
 ];
 const ProblemaMenteCuerpoLesson = replaceNewLineInCards(ProblemaMenteCuerpoLessonRaw);
@@ -350,18 +358,17 @@ const CrisisExistencialesLessonRaw = [
   },
   {
     type: 'content',
-    text: 'La crisis está definida bajo cuatro características distintivas:',
+    imageUrl: '/images/courses/self-help/crisis.svg',
+    text: `La crisis está definida bajo cuatro características distintivas:
+* Cuestionamiento
+* Iluminación y replanteo de vida
+* Miedo a morirse
+* Vivimos oscuros`,
   },
   {
     type: 'content',
-    text: `Cuestionamiento
-    Iluminación y replanteo de vida
-    Miedo a morirse
-    Vivimos oscuros`,
-  },
-  {
-    type: 'content',
-    text: 'Lo que viene a continuación puede sonar terrible, pero es importante entender que es real, casi todos pasaron por esto alguna vez. Al final todo va a estar bien, y vas a estár feliz de entender cómo funcionan las crisis y cómo ayudar a otros!',
+    imageUrl: '/images/courses/self-help/tunnel.svg',
+    text: 'Lo que viene a continuación puede sonar terrible, pero es importante entender que es real, casi todos pasaron por esto alguna vez.\n Al final todo va a estar bien, y vas a estár feliz de entender cómo funcionan las crisis y cómo ayudar a otros!',
   },
   {
     type: 'content',
@@ -371,70 +378,76 @@ const CrisisExistencialesLessonRaw = [
   },
   {
     type: 'content',
-    text: 'Por ejemplo, podemos empezar a preguntarnos ',
+    imageUrl: '/images/courses/self-help/questions.svg',
+    text: `Por ejemplo, podemos empezar a preguntarnos:
+* ¿Por qué vivimos en **ESTA** parte del mundo en vez en cualquier otra?
+* ¿Por qué hacemos **ESTE** trabajo y **NO** otro?
+* ¿Por qué estamos con **ESTA** persona y siguiendo **ESTAS** normas sociales?`,
   },
   {
     type: 'content',
-    text: `¿Por qué vivimos en ESTA parte del mundo en vez en cualquier otra?
-    ¿Por qué hacemos ESTE trabajo y NO otro?
-    ¿Por qué estamos con ESTA persona y siguiendo ESTAS normas sociales?`,
-  },
-  {
-    type: 'content',
+    imageUrl: '/images/courses/self-help/iceberg.svg',
     text: 'En poco tiempo nos damos cuenta, perturbados, que hay muchas más opciones bajo la superficie de las que nos permitimos por lo general imaginar.',
   },
   {
     type: 'content',
-    text: `'Hay una famosa frase relacionada:
-    \`\`\`“Es nuestra luz, no nuestra oscuridad, lo que más nos asusta”\`\`\`
-    Somos mucho más libres de lo que creemos.`,
+    imageUrl: '/images/courses/self-help/freedom.svg',
+    text: `Hay una famosa frase relacionada:
+> “Es nuestra luz, no nuestra oscuridad, lo que más nos asusta”
+Somos mucho más libres de lo que creemos.`,
   },
   {
     type: 'content',
     title: 'Iluminación y replanteo de vida',
-    text: 'Esta revelación nos produce ansiedad extrema. El reconocimiento de nuestra libertad no nos trae calma, de hecho todo lo contrario, reconocemos que hemos estado engañándonos acerca de lo que <strong>debemos</strong> ser.',
+    text: 'Esta revelación nos produce ansiedad extrema.\n El reconocimiento de nuestra libertad no nos trae calma, de hecho todo lo contrario, reconocemos que hemos estado engañándonos acerca de lo que <strong>debemos</strong> ser.',
     forceNewStack: true,
   },
   {
     type: 'content',
-    text: 'A nadie realmente le importa tanto lo que nosotros pensamos, lo que somos y lo que hemos elegido ser. Casi siempre sobreestimamos la importancia de nuestras malas acciones.',
+    imageUrl: '/images/courses/self-help/brain.svg',
+    text: 'A nadie realmente le importa tanto lo que nosotros pensamos, lo que somos y lo que hemos elegido ser.\n Casi siempre sobreestimamos la importancia de nuestras malas acciones.',
   },
   {
     type: 'content',
-    text: 'Llegamos a la realización incómoda de que nuestra responsabilidad principal es hacia nosotros, <strong>no</strong> hacia los demás.',
+    imageUrl: '/images/courses/self-help/binoculars.svg',
+    text: 'Llegamos a la realización incómoda de que nuestra responsabilidad principal es hacia nosotros, **no** hacia los demás.',
   },
   {
     type: 'content',
     title: 'Miedo a morirse',
-    text: 'Estamos altamente conscientes de la muerte, el tiempo es corto y se acaba. Necesitamos reexaminar nuestras vidas pero el reloj está corriendo y suena fuerte.',
+    text: 'Estamos altamente conscientes de la muerte, el tiempo es corto y se acaba.\n Necesitamos reexaminar nuestras vidas pero el reloj está corriendo y suena fuerte.',
     forceNewStack: true,
   },
   {
     type: 'content',
+    imageUrl: '/images/courses/self-help/todo-list.svg',
     text: 'Hay tantas cosas para hacer, que pensamos que no vamos a llegar a hacer nada que valga la pena en el día.',
   },
   {
     type: 'content',
     title: 'Vivimos oscuros',
-    text: 'Tenemos muchas opciones pero, como somos humanos, nunca tenemos la información que hubiéramos necesitado para elegir con certeza y sabiduría. Somos forzados a decidir y, como nos falta información, podemos estar seguros de que cometeremos muchos errores.',
+    text: 'Tenemos muchas opciones pero, como somos humanos, nunca tenemos la información que hubiéramos necesitado para elegir con certeza y sabiduría.\n Somos forzados a decidir y, como nos falta información, podemos estar seguros de que cometeremos muchos errores.',
     forceNewStack: true,
   },
   {
     type: 'content',
-    text: 'La condición de la especie humana es planear nuestro curso en la oscuridad, sin una razón adecuada. Esto nos lleva a una palabra favorita de los psicólogos del existencialismo: <strong>ansiedad</strong>.',
+    imageUrl: '/images/courses/self-help/human.svg',
+    text: 'La condición de la especie humana es planear nuestro curso en la oscuridad, sin una razón adecuada.\n Esto nos lleva a una palabra favorita de los psicólogos del existencialismo: **ansiedad**.',
   },
   {
     type: 'content',
     title: 'La ansiedad',
-    text: 'Debido a que debemos elegir sin seguridad de lo escogido, vivimos ansiosos. No sobre algo en particular, pero como una cualidad básica de nuestras vidas.',
+    text: 'Debido a que debemos elegir sin seguridad de lo escogido, vivimos ansiosos.\n No sobre algo en particular, pero como una cualidad básica de nuestras vidas.',
     forceNewStack: true,
   },
   {
     type: 'content',
-    text: 'Esto puede sonar como una conspiración paralizante. Sin embargo, los psicólogos existencialistas no quieren deprimirnos, quieren entender los dilemas que por lo general percibimos como si solo afectarán a uno mismo, y traernos soluciones.',
+    imageUrl: '/images/courses/self-help/puzzle.svg',
+    text: 'Esto puede sonar como una conspiración paralizante.\n Sin embargo, los psicólogos existencialistas no quieren deprimirnos, quieren entender los dilemas que por lo general percibimos como si solo afectarán a uno mismo, y traernos soluciones.',
   },
   {
     type: 'content',
+    imageUrl: '/images/courses/self-help/devil.svg',
     text: 'Está es la razón por la que nos avergonzamos y pensamos que tenemos algún tipo de maldición, cuando de hecho son sólo cualidades humanas que nos inmovilizan cuando las consideramos con suficiente profundidad.',
   },
   {
@@ -445,17 +458,25 @@ const CrisisExistencialesLessonRaw = [
   },
   {
     type: 'content',
-    text: 'Este es un mensaje que nos beneficia escucharlo bastante seguido, porque lo que nos ayuda con el arrepentimiento es el conocimiento de que es una carga para todos. La vida libre de arrepentimientos solo existe en películas y canciones.',
+    imageUrl: '/images/courses/self-help/ear.svg',
+    text: 'Este es un mensaje que nos beneficia escucharlo bastante seguido, porque lo que nos ayuda con el arrepentimiento es el conocimiento de que es una carga para todos.\n La vida libre de arrepentimientos solo existe en películas y canciones.',
   },
   {
     type: 'content',
-    text: 'La manera de disminuir nuestra ansiedad es aliviar el pensamiento de que pudimos haber elegido correctamente pero fallamos. El grado de decepción, los errores y las decisiones erróneas son simplemente "una condición humana".',
+    imageUrl: '/images/courses/self-help/relieved.svg',
+    text: 'La manera de disminuir nuestra ansiedad es aliviar el pensamiento de que pudimos haber elegido correctamente pero fallamos.\n El grado de decepción, los errores y las decisiones erróneas son simplemente una condición humana".',
   },
   {
     type: 'finish',
-    imageUrl: '/images/courses/food/raspberry.png',
+    imageUrl: '/images/courses/self-help/road.svg',
     title: 'Felicitaciones!',
     text: 'Terminaste el curso de desarrollo personal! Ahora conoces mucho más cómo actúa la gente y cómo pensar y actuar para ser más feliz y vivir plenamente!',
+  },
+  {
+    type: 'feedback',
+    title: 'Ayudanos!',
+    text: 'Necesitamos tu ayuda! Decinos todas las sugerencias o comentarios que tengas!',
+    nextUrl: '/',
   },
 ];
 const CrisisExistencialesLesson = replaceNewLineInCards(CrisisExistencialesLessonRaw);
