@@ -48,11 +48,11 @@ const PesimismoYOptimismoLessonRaw = [
   },
   {
     type: 'multiple-choice',
-    question: 'Cómo impacta el pesimismo ?',
+    question: 'Cómo impacta el pesimismo?',
     options: [
       {
-        content: 'Queso',
-        message: 'Nope',
+        content: 'Te hace sentir infeliz y pesimo.',
+        message: 'Quizas, pero no es lo habitual.',
       },
       {
         content: 'Te prepara para lo peor, reduce la tensión de las expectativas y te protege de la decepción.',
@@ -63,11 +63,11 @@ const PesimismoYOptimismoLessonRaw = [
   },
   {
     type: 'multiple-choice',
-    question: 'Cual es uno de los orígenes del optimismo implantado en la sociedad ?',
+    question: 'Cual es uno de los orígenes del optimismo implantado en la sociedad?',
     options: [
       {
-        content: 'Bananas',
-        message: 'Capo',
+        content: 'Los humanos son óptimos por naturaleza.',
+        message: 'Óptimos o no, no tiene nada que ver con el optimismo.',
       },
       {
         content: 'Muchas empresas tratando de vendernos cosas, prometiéndonos felicidad a cambio.',
@@ -113,8 +113,8 @@ Reduce sus expectativas!`,
         correct: true,
       },
       {
-        content: 'Bananas',
-        message: 'Como te diste cuenta?',
+        content: 'Porque le hace mal a la sociedad.',
+        message: 'En todo caso esto explica por qué **no** es racional',
       },
     ],
   },
@@ -148,8 +148,8 @@ Ser mediocre es la normalidad`,
     question: 'Por qué el pesimismo indefinido es una solución a corto plazo?',
     options: [
       {
-        content: 'Porque solo mira el presente.',
-        message: 'Capo',
+        content: 'Porque solo considera el presente.',
+        message: 'Que solo considere el presente no está relacionado con ser a corto plazo.',
       },
       {
         content: 'Porque el mundo sería cada vez peor porque nadie hace nada para mejorarlo, por lo que se tiene que pensar peor todavía. Es una bola de nieve.',
@@ -188,7 +188,7 @@ Ser mediocre es la normalidad`,
     options: [
       {
         content: 'Porque la realidad choca con la sensacion falsa.',
-        message: 'Capo',
+        message: 'Estás seguro?',
       },
       {
         content: 'Porque no te da una sensación de felicidad como en el pesimismo indefinido, sino que realmente te da felicidad ya que mejora el mundo.',
@@ -411,7 +411,7 @@ const CrisisExistencialesLessonRaw = [
   {
     type: 'content',
     title: 'Cuestionamiento',
-    text: 'Un periodo en donde mucho de lo que anteriormente veíamos como normal o de sentido común, nos parece extraño, poco casual, y misterioso.',
+    text: 'Un periodo en donde mucho de lo que anteriormente veíamos como normal o de sentido común nos parece extraño, poco casual, y misterioso.',
     forceNewStack: true,
   },
   {
@@ -435,6 +435,25 @@ const CrisisExistencialesLessonRaw = [
     Somos mucho más libres de lo que creemos.`,
   },
   {
+    type: 'multiple-choice',
+    question: 'Que ocurre en el periodo de cuestionamiento?',
+    options: [
+      {
+        content: 'Nos agarra ansiedad.',
+        message: 'Estás seguro?',
+      },
+      {
+        content: 'Nos aislamos.',
+        message: 'Estás seguro?',
+      },
+      {
+        content: 'Mucho de lo que antes veíamos como normal nos parece extraño.',
+        message: 'Excelente!',
+        correct: true,
+      },
+    ],
+  },
+  {
     type: 'content',
     title: 'Iluminación y replanteo de vida',
     text: 'Esta revelación nos produce ansiedad extrema. El reconocimiento de nuestra libertad no nos trae calma, de hecho todo lo contrario, reconocemos que hemos estado engañándonos acerca de lo que <strong>debemos</strong> ser.',
@@ -447,6 +466,25 @@ const CrisisExistencialesLessonRaw = [
   {
     type: 'content',
     text: 'Llegamos a la realización incómoda de que nuestra responsabilidad principal es hacia nosotros, <strong>no</strong> hacia los demás.',
+  },
+  {
+    type: 'multiple-choice',
+    question: 'Es correcto pensar cómo otros interpretaron nuestras acciones?',
+    options: [
+      {
+        content: 'Obvio, muchísimo, así nos mejoramos para futuras ocasiones.',
+        message: 'Si la mayoría de las cosas que hacemos el otro no las nota, para que mejorarlas? Lo que importa es el contenido de la conversación.',
+      },
+      {
+        content: 'Sí, pero sin exagerar. Si la mayoría de las cosas que hacemos el otro no las nota, para que mejorarlas? Lo que importa es el contenido.',
+        message: 'Excelente!?',
+        correct: true,
+      },
+      {
+        content: 'No, para que?',
+        message: 'Siempre está bueno pensar que se podría mejorar y como mejorarlo.',
+      },
+    ],
   },
   {
     type: 'content',
@@ -483,9 +521,24 @@ const CrisisExistencialesLessonRaw = [
     text: 'Está es la razón por la que nos avergonzamos y pensamos que tenemos algún tipo de maldición, cuando de hecho son sólo cualidades humanas que nos inmovilizan cuando las consideramos con suficiente profundidad.',
   },
   {
+    type: 'multiple-choice',
+    question: 'Por qué nos agarra ansiedad en una crisis existencial?',
+    options: [
+      {
+        content: 'Como el tiempo se acaba, debemos tomar una decisión, pero como vivimos a oscuras, nunca podemos estamos seguros de elegir correctamente. Esto nos trae ansiedad.',
+        message: 'Excelente!',
+        correct: true,
+      },
+      {
+        content: 'Estamos en una crisis. Obviamente nos vamos a sentir ansiosos!',
+        message: 'Puede ser que en cualquier crisis nos sintamos ansiosos. Aún así no responde por qué en está. ',
+      },
+    ],
+  },
+  {
     type: 'content',
     title: 'Todo el mundo pasa por crisis existenciales',
-    text: 'El que sufras por tener que elegir entre tantas opciones, no es una anomalía, es una de las cosas más comunes y predecibles de estar vivo.',
+    text: 'El que sufras por tener que elegir entre tantas opciones no es una anomalía, es una de las cosas más comunes y predecibles de estar vivo.',
     forceNewStack: true,
   },
   {
@@ -495,6 +548,21 @@ const CrisisExistencialesLessonRaw = [
   {
     type: 'content',
     text: 'La manera de disminuir nuestra ansiedad es aliviar el pensamiento de que pudimos haber elegido correctamente pero fallamos. El grado de decepción, los errores y las decisiones erróneas son simplemente "una condición humana".',
+  },
+  {
+    type: 'multiple-choice',
+    question: 'Debemos sentirnos mal por equivocarnos?',
+    options: [
+      {
+        content: 'Por qué nos sentiriamos mal? Todo el mundo se equivoca todo el tiempo, es normal.',
+        message: 'Excelente!',
+        correct: true,
+      },
+      {
+        content: 'Si nos equivocamos tenemos que sentirnos mal, es como funciona nuestro cuerpo.',
+        message: 'Es cierto que nuestro cuerpo funciona así, pero no significa que no se pueda arreglar!',
+      },
+    ],
   },
   {
     type: 'finish',
