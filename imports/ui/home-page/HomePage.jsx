@@ -6,12 +6,6 @@ class HomePage extends React.Component {
   render() {
     const coursesContent = [
       {
-        name: 'Programación',
-        description: 'Vas a poder aprender a programar y a dominar cualquier lenguaje',
-        imageUrl: '/images/courses/programming.svg',
-        courseUrl: '/course/Programación',
-      },
-      {
         name: 'Alimentación saludable',
         description: 'Mejorá tu alimentación para vivir más, bajar de peso, verte y sentirte mejor.',
         imageUrl: '/images/courses/food.png',
@@ -22,6 +16,12 @@ class HomePage extends React.Component {
         description: 'Aprende a planificar tu futuro, a sentirte mejor con como te ves y a sobrevivir una crisis existencial.',
         imageUrl: '/images/courses/growth-plant.png',
         courseUrl: '/course/Desarrollo',
+      },
+      {
+        name: 'Programación',
+        description: 'Vas a poder aprender a programar y a dominar cualquier lenguaje',
+        imageUrl: '/images/courses/programming.svg',
+        courseUrl: '/course/Programación',
       },
       {
         name: 'Qué curso te gustaría que agreguemos?',
