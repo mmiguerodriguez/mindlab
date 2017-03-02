@@ -177,7 +177,7 @@ class Card extends React.Component {
     if (!this.cardSlider) {
       // Create and instantiate a SlideHelper
       const $card = $(this.card);
-      const frictionAcceleration = -3;
+      const frictionAcceleration = -0.5;
       const stateUpdateHandler = (stateX) => {
         if (this.state.displacement.x !== stateX * this.state.dimensions.width) {
           this.setState({

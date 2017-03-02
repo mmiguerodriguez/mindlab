@@ -1,14 +1,16 @@
-import * as webpush from 'web-push';
-import Subscribers from '../../api/subscribers/subscribers';
+// import { Meteor } from 'meteor/meteor';
+// import * as webpush from 'web-push';
+// import Subscribers from '../../api/subscribers/subscribers';
+const webpush = require('web-push');
 
 const sendNotifications = (message) => {
-  const subscribers = Subscribers.find().fetch();
+  const subscribers = [];
 
   const options = {
     vapidDetails: {
-      subject: 'http://www.d14m0nd.slack.com',
-      publicKey: Meteor.settings.public.publicKey,
-      privateKey: Meteor.settings.private.privateKey,
+      subject: 'https://mindlab.ga',
+      publicKey: 'BO8gDJY0eRIy26XMjhVWcJ1aRunB7ijT7_UTrrs9ul93AApZMy2mZjX-apf2a2Fn_gx8OeqbuOd_oLFuCb5UMhs',
+      privateKey: 'GkaPAvBXUGqtRSN0yu8BfvHulIVl-41y5TAgn_ejBqQ',
     },
     TTL: 60 * 60, // 1 hour
   };
@@ -21,5 +23,7 @@ const sendNotifications = (message) => {
     );
   });
 };
+
+sendNotifications('Test');
 
 export default sendNotifications;
