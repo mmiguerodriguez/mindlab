@@ -27,7 +27,6 @@ class CoursePage extends React.Component { // TODO: fix $.material.init()
           },
         ];
         break;
-      default: // TODO: add 404 page
       case 'Alimentación':
         lessonsContent = [
           {
@@ -48,6 +47,27 @@ class CoursePage extends React.Component { // TODO: fix $.material.init()
           },
         ];
         break;
+      case 'Desarrollo':
+        lessonsContent = [
+          {
+            lessonName: 'Introducción',
+            icon: 'flight_takeoff',
+          },
+          {
+            lessonName: 'Pesimismo y optimismo',
+            icon: 'mood',
+          },
+          {
+            lessonName: 'El problema mente-cuerpo',
+            icon: 'supervisor_account',
+          },
+          {
+            lessonName: 'Crisis existenciales',
+            icon: 'trending_down',
+          },
+        ];
+        break;
+      default: // TODO: add 404 page
     }
 
     const lessonsArray = lessonsContent.map(({ lessonName, icon }, index) =>
@@ -72,6 +92,6 @@ CoursePage.propTypes = {
   params: React.PropTypes.shape({
     courseName: React.PropTypes.string.isRequired,
   }),
-}
+};
 
 export default CoursePage;
