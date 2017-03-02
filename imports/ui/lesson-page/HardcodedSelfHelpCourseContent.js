@@ -232,6 +232,21 @@ Ser mediocre es la normalidad`,
     text: 'El Cuerpo de Ingenieros del ejército construyó un modelo a escala de la bahía en Sausalito, California. Alguien tomaría hoy tal visión en serio?',
   },
   {
+    type: 'multiple-choice',
+    question: 'Si a un recolector de basura se le ocurre como disminuir el tráfico de la ciudad, deberíamos escucharlo?',
+    options: [
+      {
+        content: 'Obvio que sí!',
+        message: 'Excelente!',
+        correct: true,
+      },
+      {
+        content: 'Por favor, si es un recolector de basura!! Que sabe el?.',
+        message: '',
+      },
+    ],
+  },
+  {
     type: 'content',
     title: 'El optimismo definido en la actualidad',
     text: 'En la década de 1960, la gente recibía todos estos grandes planes y comenzaron a cuestionarse el sentido de trabajar, ya que todo avanzaba muy bien sin su aporte. Esto provocó el fin del optimismo definido.',
