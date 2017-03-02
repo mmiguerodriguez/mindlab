@@ -13,10 +13,12 @@ const IntroDesarrolloPersonalLessonRaw = [
   },
   {
     type: 'content',
-    text: 'Aprenderás qué es el problema mente cuerpo, relacionado en cómo tus emociones impactan en cómo te ves y al revés; cómo te ves desarrolla tus emociones.',
+    imageUrl: '/images/courses/self-help/weird-man.svg',
+    text: 'Aprenderás qué es el problema mente-cuerpo, relacionado con cómo tus emociones impactan en cómo te ves y al revés; cómo te ves desarrolla tus emociones.',
   },
   {
     type: 'content',
+    imageUrl: '/images/courses/self-help/yearbook.svg',
     text: 'También aprenderás qué es una crisis existencial, cómo atravesarla de forma alegre, y por qué podes tener crisis existenciales.',
   },
   {
@@ -36,10 +38,12 @@ const PesimismoYOptimismoLessonRaw = [
   },
   {
     type: 'content',
+    imageUrl: '/images/courses/self-help/security.svg',
     text: 'Eso es un pequeño ejemplo de lo que el pesimismo puede hacer por vos. Te prepara para lo peor, reduce la tensión de las expectativas y te protege de la decepción.',
   },
   {
     type: 'content',
+    imageUrl: '/images/courses/self-help/apple-logo.svg',
     text: 'Vivimos en un mundo exageradamente optimista. Esto es el resultado de muchas empresas tratando de vendernos cosas, prometiéndonos felicidad a cambio.',
   },
   {
@@ -76,23 +80,28 @@ const PesimismoYOptimismoLessonRaw = [
     type: 'content',
     title: 'Por qué hay pesimistas?',
     text: `Durante siglos, las religiones difundieron mensajes oscuros:
-    El Budismo habla de dolor, la vida es injusta y llena de males. El Cristianismo te carga con la culpa, con que si no hacés lo que te dicen, estás pecando.`,
+El Budismo habla de dolor, la vida es injusta y llena de males.
+El Cristianismo te carga con la culpa, con que si no hacés lo que te dicen, estás pecando.`,
     forceNewStack: true,
   },
   {
     type: 'content',
-    text: 'Fue útil: sirvió para mantener las expectativas bajo control. Las expectativas reducidas explican la existencia de las religiones, ya que te hacen feliz. Se puede comprender mejor con la siguiente ecuación: <strong>felicidad = realidad / expectativas</strong>',
+    imageUrl: '/images/courses/self-help/blackboard.svg',
+    text: `Fue útil: sirvió para mantener las expectativas bajo control.
+Las expectativas reducidas explican la existencia de las religiones, ya que te hacen feliz. Se puede comprender mejor con la siguiente ecuación: **felicidad = realidad / expectativas**`,
   },
   {
     type: 'content',
-    text: `Entonces, para <strong>ser FELIZ</strong>:
-    O mejoras la <strong>realidad</strong>
-    O reducís las <strong>expectativas</strong>`,
+    imageUrl: '/images/courses/self-help/chemistry.svg',
+    text: `Entonces, para **ser FELIZ**:
+O mejoras la **realidad**
+O reducís las **expectativas**`,
   },
   {
     type: 'content',
+    imageUrl: '/images/courses/self-help/physics.svg',
     text: `Entonces qué hace un pesimista?
-    Reduce sus expectativas!`,
+Reduce sus expectativas!`,
   },
   {
     type: 'multiple-choice',
@@ -117,32 +126,37 @@ const PesimismoYOptimismoLessonRaw = [
   },
   {
     type: 'content',
+    imageUrl: '/images/courses/self-help/presentation.svg',
     text: `Se vive mal
-    Todo el mundo está triste y preocupado todo el tiempo
-    La felicidad dura 5 minutos
-    No existe tener esperanza
-    Ser mediocre es la normalidad`,
+Todo el mundo está triste y preocupado todo el tiempo
+La felicidad dura 5 minutos
+No existe tener esperanza
+Ser mediocre es la normalidad`,
   },
   {
     type: 'content',
+    imageUrl: '/images/courses/self-help/man-thinking.svg',
     text: 'Aunque sea un buen dia, se preguntan porque no fue mejor.',
   },
   {
     type: 'content',
-    text: 'En resumen, el <strong>pesimismo indefinido</strong> es la mentalidad irracional (ya que hay formas mejores) de aquellos que, sin una razón definida, piensan que el presente es malo y el futuro va a ser peor, por lo general con el objetivo de ser más feliz.',
+    imageUrl: '/images/courses/self-help/desert.svg',
+    text: 'En resumen, el **pesimismo indefinido** es la mentalidad irracional (ya que hay formas mejores) de aquellos que, sin una razón definida, piensan que el presente es malo y el futuro va a ser peor, por lo general con el objetivo de ser más feliz.',
   },
   {
     type: 'content',
     title: 'La salida del pesimismo indefinido',
-    text: 'Aún así, hay una alternativa al pesimismo indefinido, el <strong>optimismo definido</strong>.',
+    text: 'Aún así, hay una alternativa al pesimismo indefinido, el **optimismo definido**.',
     forceNewStack: true,
   },
   {
     type: 'content',
+    imageUrl: '/images/courses/self-help/test.svg',
     text: 'El optimismo definido dice todo lo contrario, que el mundo puede ser un lugar mejor, pero que para eso tenés que tener un plan definido de cómo ir desde el estado actual a un estado mejor.',
   },
   {
     type: 'content',
+    imageUrl: '/images/courses/self-help/prohibitied-telescope.svg',
     text: 'Esto no implica hacer predicciones positivas, contrarias a las predicciones negativas explicadas antes. El optimismo definido dice que directamente no hagamos predicciones.  ',
   },
   {
