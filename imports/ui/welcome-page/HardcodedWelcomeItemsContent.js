@@ -1,6 +1,6 @@
 const welcomeItemsContent = [
   {
-    imageUrl: 'page1.png',
+    imageUrl: '../logo.svg',
     backgroundColor: 'rgba(46, 204, 113, 0.8)',
     title: 'Nunca aprender fue tan divertido e interesante como con MindLab',
   },

@@ -55,7 +55,7 @@ class Navbar extends React.Component {
               : <img
                 id="navbar-logo"
                 alt="logo"
-                src="/images/logo.png"
+                src="/images/logo.svg"
               />
             }
             <p id="navbar-title" style={feedbackStyle}>{title}</p>
