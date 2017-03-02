@@ -121,22 +121,17 @@ Reduce sus expectativas!`,
   {
     type: 'content',
     title: 'Lecciones claves del pesimista',
-    text: 'Dia a dia sostienen que:',
+    text: `Dia a dia sostienen que:
+* Se vive mal
+* La felicidad dura 5 minutos
+* No existe tener esperanza
+* Ser mediocre es la normalidad`,
     forceNewStack: true,
   },
   {
     type: 'content',
-    imageUrl: '/images/courses/self-help/presentation.svg',
-    text: `Se vive mal
-Todo el mundo está triste y preocupado todo el tiempo
-La felicidad dura 5 minutos
-No existe tener esperanza
-Ser mediocre es la normalidad`,
-  },
-  {
-    type: 'content',
     imageUrl: '/images/courses/self-help/man-thinking.svg',
-    text: 'Aunque sea un buen dia, se preguntan porque no fue mejor.',
+    text: 'Aunque sea un buen dia, se preguntan porque no fue mejor. Piensan que todo el mundo está triste y preocupado todo el tiempo',
   },
   {
     type: 'content',
@@ -176,10 +171,12 @@ Ser mediocre es la normalidad`,
   },
   {
     type: 'content',
+    imageUrl: '/images/courses/self-help/tools.svg',
     text: 'Debemos vivir el día a día sin estar esperando lo mejor ni lo peor, sino simplemente enterandonos del resultado, y no evaluar si fue bueno o malo, sino que instantáneamente buscar cómo mejorarlo. ',
   },
   {
     type: 'content',
+    imageUrl: '/images/courses/self-help/desk.svg',
     text: 'Para un optimista definido, el futuro será mejor que el presente si planea y trabaja duro para hacerlo mejor.',
   },
   {
@@ -205,30 +202,37 @@ Ser mediocre es la normalidad`,
   },
   {
     type: 'content',
+    imageUrl: '/images/courses/self-help/chemistry-1.svg',
     text: 'Entre los avances, estuvieron la aplicación de la química a la industria y la agricultura, la navegación a vapor, los ferrocarriles, los telégrafos eléctricos, la limpieza de continentes enteros para el cultivo y la canalización de los ríos.',
   },
   {
     type: 'content',
+    imageUrl: '/images/courses/self-help/statue-of-liberty.svg',
     text: 'Incluso la Gran Depresión no impidió el progreso implacable en los Estados Unidos, que siempre ha sido el hogar de los optimistas definidos más visionarios del mundo.',
   },
   {
     type: 'content',
+    imageUrl: '/images/courses/self-help/golden-gate-bridge.svg',
     text: 'El Empire State Building se inició en 1929 y terminó en 1931. El Golden Gate Bridge se inició en 1933 y se completó en 1937. El programa de Apolo de la NASA comenzó en 1961 y puso 12 hombres en la luna antes del 1972.',
   },
   {
     type: 'content',
+    imageUrl: '/images/courses/self-help/dam.svg',
     text: 'A finales de 1940, un californiano llamado John Reber se propuso reinventar la geografía física de toda la bahía de San Francisco. Reber era un maestro de escuela primaria!',
   },
   {
     type: 'content',
-    text: 'A pesar de su empleo, propuso públicamente construir dos enormes presas en la bahía, construir lagos masivos de agua dulce para el agua potable y el riego, y reclamar 81 millones de metros<sup>2</sup> de tierra para el desarrollo!',
+    imageUrl: '/images/courses/self-help/water.svg',
+    text: 'A pesar de su empleo, propuso públicamente construir dos enormes presas en la bahía, construir lagos masivos de agua dulce para el agua potable y el riego, y reclamar 81 millones de metros cuadrados de tierra para el desarrollo!',
   },
   {
     type: 'content',
+    imageUrl: '/images/courses/self-help/presentation-1.svg',
     text: 'Aunque no tenía autoridad personal, la gente tomó el plan de Reber en serio. Fue aprobado por juntas de redacción de periódicos en California. El Congreso de los Estados Unidos celebró audiencias sobre su factibilidad.',
   },
   {
     type: 'content',
+    imageUrl: '/images/courses/self-help/engineer.svg',
     text: 'El Cuerpo de Ingenieros del ejército construyó un modelo a escala de la bahía en Sausalito, California. Alguien tomaría hoy tal visión en serio?',
   },
   {
@@ -254,25 +258,29 @@ Ser mediocre es la normalidad`,
   },
   {
     type: 'content',
+    imageUrl: '/images/courses/self-help/strategy.svg',
     text: 'Hoy un plan que viene de un maestro de escuela nunca sería tomado en cuenta. Una planificación de largo alcance que viene de cualquier persona con más poder, sería desechada como basura.',
   },
   {
     type: 'content',
+    imageUrl: '/images/courses/self-help/parthenon.svg',
     text: 'Todavía se puede visitar el modelo de Reber de la bahía en Sausalito, pero hoy es sólo una atracción turística: grandes planes para el futuro se han convertido en curiosidades antiguas.',
   },
   {
     type: 'content',
+    imageUrl: '/images/courses/self-help/road.svg',
     text: 'El optimismo definido hace que nos esforcemos hoy para obtener mejores cosas en el futuro.',
   },
   {
     type: 'content',
+    imageUrl: '/images/courses/self-help/strategy-1.svg',
     text: 'No debemos esperar a que las cosas buenas pasen por si solas. Tampoco debemos esperar a que pasen las malas. Debemos planificar el futuro y estar dispuestos a construirlo desde el presente.',
   },
   {
     type: 'finish',
-    imageUrl: '/images/courses/food/raspberry.png',
+    imageUrl: '/images/courses/self-help/list.svg',
     title: 'Excelente!',
-    text: 'Felicitaciones! Ahora sabes sobre diferentes tipos de mentalidades y cómo influyeron en la gente hasta ahora, para tomar mejores decisiones a la hora de mantener alguna!',
+    text: 'Felicitaciones! Ahora vas a poder tomar mejores decisiones porque ya sabés cómo influyen en vos y en el resto de la gente los diferentes tipos de mentalidades!',
   },
 ];
 const PesimismoYOptimismoLesson = replaceNewLineInCards(PesimismoYOptimismoLessonRaw);
@@ -285,10 +293,12 @@ const ProblemaMenteCuerpoLessonRaw = [
   },
   {
     type: 'content',
+    imageUrl: '/images/courses/self-help/manly.svg',
     text: 'Se asume que un rostro dulce tiene un dueño amable y benevolente, mientras que la cara larga, encarnizada, con ojos estrechos, un dueño enojado y sospechoso.',
   },
   {
     type: 'content',
+    imageUrl: '/images/courses/self-help/happy.svg',
     text: 'Sin embargo, hay una dramática excepción a esta regla: nuestros propios casos.',
   },
   {
@@ -299,6 +309,7 @@ const ProblemaMenteCuerpoLessonRaw = [
   },
   {
     type: 'content',
+    imageUrl: '/images/courses/self-help/mirror.svg',
     text: 'Por dentro podemos sentirnos tiernos, inspirados, y jóvenes, pero la cara que vemos en el espejo puede ser severa, seria, sin humor, y cada vez más semejante a la de un señor anciano y amargado. Nos sentimos mal representados.',
   },
   {
@@ -324,10 +335,12 @@ const ProblemaMenteCuerpoLessonRaw = [
   },
   {
     type: 'content',
+    imageUrl: '/images/courses/self-help/businessman.svg',
     text: 'Todo lo contrario tiende a ocurrir: nuestras personalidades suelen moldearse a las personalidades representadas por nuestros rostros, como resultado de años de otras personas asumiendo que esto debe ser lo que somos, y tratándonos así.',
   },
   {
     type: 'content',
+    imageUrl: '/images/courses/self-help/target.svg',
     text: 'Las características más gentiles de alguien quien parece amable serán, por lo tanto, constantemente invitadas a la superficie, por las expectativas y el alentamiento de los demás.',
   },
   {
@@ -338,21 +351,24 @@ const ProblemaMenteCuerpoLessonRaw = [
   },
   {
     type: 'content',
+    imageUrl: '/images/courses/self-help/price-tag.svg',
     text: 'Lo mejor que podemos hacer para superar el problema mente-cuerpo no es jugar con la ropa, gastar en peluquerías, o poner en peligro nuestra salud con una cirugía plástica. Nunca seremos capaces de alinear la mente y el cuerpo con la apariencia.',
   },
   {
     type: 'content',
+    imageUrl: '/images/courses/self-help/brain.svg',
     text: 'La solución es reconocer que el problema es una parte existencial del ser humano.',
   },
   {
     type: 'content',
+    imageUrl: '/images/courses/self-help/girl.svg',
     text: 'Debemos esforzarnos por recordar que el aspecto de los demás puede ser muy distinto de su personalidad, y comprender que si otro no hace eso, es por su ignorancia. No debemos sentirnos mal por lo que piensa el resto.',
   },
   {
     type: 'finish',
-    imageUrl: '/images/courses/food/raspberry.png',
+    imageUrl: '/images/courses/self-help/happy-1.svg',
     title: 'Muy bien!',
-    text: 'Finalizaste la lección del problema mente cuerpo! Ahora sabes la importancia de juzgar correctamente y como hacerlo!',
+    text: 'Finalizaste la lección del problema mente cuerpo! Ahora ya sabés que la apariencia superficial no es importante y que la felicidad no tiene que ver con cómo te ves!',
   },
 ];
 const ProblemaMenteCuerpoLesson = replaceNewLineInCards(ProblemaMenteCuerpoLessonRaw);
@@ -468,7 +484,7 @@ const CrisisExistencialesLessonRaw = [
   },
   {
     type: 'finish',
-    imageUrl: '/images/courses/food/raspberry.png',
+    imageUrl: '/images/courses/food/raspberry.svg',
     title: 'Felicitaciones!',
     text: 'Terminaste el curso de desarrollo personal! Ahora conoces mucho más cómo actúa la gente y cómo pensar y actuar para ser más feliz y vivir plenamente!',
   },
