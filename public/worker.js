@@ -1,7 +1,7 @@
 self.addEventListener('push', function (event) {
   console.log('[Service Worker] Push Received.');
 
-  const title = 'Diamond Courses';
+  const title = 'MindLab';
   const options = {
     body: `${event.data.text()}`,
     icon: 'images/icon.png',
@@ -13,10 +13,8 @@ self.addEventListener('push', function (event) {
 });
 
 self.addEventListener('notificationclick', function (event) {
-  console.log('[Service Worker] Notification click Received.');
-
   event.notification.close();
   event.waitUntil(
-    clients.openWindow('https://cursos-aranguri.c9users.io/')
+    clients.openWindow('https://mindlab.ga/')
   );
 });

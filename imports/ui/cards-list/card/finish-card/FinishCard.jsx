@@ -10,6 +10,7 @@ class FinishCard extends React.Component {
 
     this.handleClick = this.handleClick.bind(this);
   }
+
   componentDidMount() {
     // We wait one second to ask for permission
     setTimeout(() => {
