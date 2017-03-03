@@ -12,6 +12,12 @@ import {
   TiposDeComidaLesson,
   ComoComerLesson,
 } from './HardcodedFoodCourseContent';
+import {
+  IntroDesarrolloPersonalLesson,
+  PesimismoYOptimismoLesson,
+  ProblemaMenteCuerpoLesson,
+  CrisisExistencialesLesson,
+} from './HardcodedSelfHelpCourseContent';
 
 import ProgressBar from './progress-bar/ProgressBar';
 
@@ -75,6 +81,24 @@ class LessonPage extends React.Component {
           break;
         default:
           cardsContent = ImportanciaDeComerLesson;
+          break;
+      }
+    } else if (this.props.params.courseName === 'Desarrollo') {
+      switch (this.props.params.lessonName) {
+        case 'Introducción':
+          cardsContent = IntroDesarrolloPersonalLesson;
+          break;
+        case 'Pesimismo y optimismo':
+          cardsContent = PesimismoYOptimismoLesson;
+          break;
+        case 'El problema mente-cuerpo':
+          cardsContent = ProblemaMenteCuerpoLesson;
+          break;
+        case 'Crisis existenciales':
+          cardsContent = CrisisExistencialesLesson;
+          break;
+        default:
+          cardsContent = IntroDesarrolloPersonalLesson;
           break;
       }
     }

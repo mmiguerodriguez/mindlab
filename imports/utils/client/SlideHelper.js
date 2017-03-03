@@ -211,6 +211,7 @@ class SlideHelper {
    * @return {undefined}
    */
   press(event) {
+
     // Get the position of the pointer
     const { x, y } = SlideHelper.getPointerEventPosition(event);
 
