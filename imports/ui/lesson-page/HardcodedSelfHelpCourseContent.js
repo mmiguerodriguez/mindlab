@@ -347,7 +347,7 @@ const ProblemaMenteCuerpoLessonRaw = [
   {
     type: 'content',
     imageUrl: '/images/courses/self-help/businessman.svg',
-    text: 'Todo lo contrario tiende a ocurrir: nuestras personalidades suelen moldearse a las personalidades representadas por nuestros rostros, como resultado de años de otras personas asumiendo que esto debe ser lo que somos, y tratándonos así.',
+    text: 'Todo lo contrario tiende a ocurrir: nuestras personalidades suelen moldearse a las personalidades expresadas por nuestros rostros, como resultado de años de otras personas asumiendo que esto debe ser lo que somos, y tratándonos así.',
   },
   {
     type: 'content',
@@ -357,13 +357,16 @@ const ProblemaMenteCuerpoLessonRaw = [
   {
     type: 'content',
     title: 'Como solucionar el problema mente-cuerpo',
-    text: 'El problema mente-cuerpo nos lleva a entender el compromiso de recordar que el otro no es como parece; que su cuerpo fue impuesto y no elegido, y que puede haber una personalidad muy diferente atrapada dentro de su envoltura física.',
+    text: `El problema mente-cuerpo nos lleva a entender el compromiso de recordar que el otro:
+* No es como parece
+* Su cuerpo fue impuesto y no elegido
+* Puede tener una personalidad muy diferente atrapada dentro de su envoltura física.`,
     forceNewStack: true,
   },
   {
     type: 'content',
     imageUrl: '/images/courses/self-help/price-tag.svg',
-    text: 'Lo mejor que podemos hacer para superar el problema mente-cuerpo no es jugar con la ropa, gastar en peluquerías o poner en peligro nuestra salud con una cirugía plástica. Nunca seremos capaces de alinear la mente y el cuerpo con la apariencia.',
+    text: 'Lo mejor que podemos hacer para superar el problema mente-cuerpo no es jugar con la ropa, gastar en peluquerías o poner en peligro nuestra salud con una cirugía plástica.\nNunca seremos capaces de alinear la mente y el cuerpo con la apariencia.',
   },
   {
     type: 'content',
@@ -373,7 +376,7 @@ const ProblemaMenteCuerpoLessonRaw = [
   {
     type: 'content',
     imageUrl: '/images/courses/self-help/girl.svg',
-    text: 'Debemos esforzarnos por recordar que el aspecto de los demás puede ser muy distinto de su personalidad, y comprender que si otro no hace eso con nostros, es por su ignorancia. No debemos sentirnos mal por lo que piensa el resto.',
+    text: 'Debemos esforzarnos por recordar que el aspecto de los demás puede ser muy distinto de su personalidad, y comprender que si otro no hace eso con nostros, es por su ignorancia.\nNo debemos sentirnos mal por lo que piensa el resto.',
   },
   {
     type: 'multiple-choice',
