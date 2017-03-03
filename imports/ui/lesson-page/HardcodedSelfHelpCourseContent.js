@@ -52,7 +52,11 @@ const PesimismoYOptimismoLessonRaw = [
     question: 'Cómo impacta el pesimismo?',
     options: [
       {
-        content: 'Te hace sentir infeliz y pesimo.',
+        content: 'Te hace sentir infeliz, te hace parecer amargado y te incentiva a sentirte inseguro.',
+        message: 'Quizas, pero no es lo habitual.',
+      },
+      {
+        content: 'Aumenta tu productividad sacando tus emociones negativas.',
         message: 'Quizas, pero no es lo habitual.',
       },
       {
@@ -67,11 +71,11 @@ const PesimismoYOptimismoLessonRaw = [
     question: 'Cual es uno de los orígenes del optimismo implantado en la sociedad?',
     options: [
       {
-        content: 'Los humanos son óptimos por naturaleza.',
+        content: 'Los humanos son óptimos por naturaleza, y eso se refleja en la sociedad con el progreso de la tecnología.',
         message: 'Óptimos o no, no tiene nada que ver con el optimismo.',
       },
       {
-        content: 'Muchas empresas tratando de vendernos cosas, prometiéndonos felicidad a cambio.',
+        content: 'La mayoría de lo que consumimos, ya que trae una dosis de felicidad para que lo volvamos a comprar.',
         message: 'Excelente!',
         correct: true,
       },
@@ -116,8 +120,12 @@ Reduce sus expectativas!`,
         correct: true,
       },
       {
-        content: 'Porque le hace mal a la sociedad.',
-        message: 'En todo caso esto explica por qué **no** es racional',
+        content: 'Porque le hace mal a la sociedad, provocando raciocinio esparcido.',
+        message: 'En todo caso esto explica por qué no es racional',
+      },
+      {
+        content: 'Porque el pesimismo nos hace sentir inseguros, forzandonos a traer seguridad usando la razon.',
+        message: 'El pesimismo no suele hacernos sentir inseguros, y sentirnos inseguros no implica forzarnos a usar la razon',
       },
     ],
   },
@@ -134,7 +142,7 @@ Reduce sus expectativas!`,
   {
     type: 'content',
     imageUrl: '/images/courses/self-help/man-thinking.svg',
-    text: 'Aunque sea un buen dia, se preguntan por qué no fue mejor. Piensan que todo el mundo está triste y preocupado todo el tiempo',
+    text: 'Aunque sea un buen día, se preguntan por qué no fue mejor.\nPiensan que todo el mundo está triste y preocupado todo el tiempo',
   },
   {
     type: 'content',
@@ -150,7 +158,11 @@ Reduce sus expectativas!`,
         message: 'Que solo considere el presente no está relacionado con ser a corto plazo.',
       },
       {
-        content: 'Porque el mundo sería cada vez peor porque nadie hace nada para mejorarlo, por lo que se tiene que pensar peor todavía. Es una bola de nieve.',
+        content: 'Porque el pesimismo indefinido considera el futuro cercano antes del lejano, ya que lo que está más proximo a suceder es mucho más facil de estimar.',
+        message: 'Que futuro considerar, cuando y cuan probable es que pase algo no están relacionados con el pesimismo (por lo menos directamente).',
+      },
+      {
+        content: 'Porque el mundo sería cada vez peor si nadie hace algo para mejorarlo, lo que haría que pensemos todavía peor. Sería una bola de nieve.',
         message: 'Excelente!',
         correct: true,
       },
@@ -187,11 +199,11 @@ Reduce sus expectativas!`,
     question: 'Por qué el optimismo definido es una solución real?',
     options: [
       {
-        content: 'Porque la realidad choca con la sensacion falsa.',
+        content: 'Porque la realidad choca con la sensacion falsa que provoca pensar como un pesimista indefinido, provocando que cualquier solución sea a corto plazo.',
         message: 'Estás seguro?',
       },
       {
-        content: 'Porque no te da una sensación de felicidad como en el pesimismo indefinido, sino que realmente te da felicidad ya que mejora el mundo.',
+        content: 'Porque no te da una sensación falsa de felicidad como en el pesimismo indefinido, sino que realmente te da felicidad dado que mejora al mundo.',
         message: 'Excelente!',
         correct: true,
       },
@@ -244,12 +256,12 @@ Reduce sus expectativas!`,
     options: [
       {
         content: 'Obvio que sí!',
-        message: 'Excelente!',
+        message: 'Excelente! En el peor de los casos vas a tener una excusa para enseñarle como funciona el tráfico a todo ciudadano que mire el noticiero (o cualquier medio). Quizas, por eso, hasta le ocurra algo a otro!',
         correct: true,
       },
       {
-        content: 'Por favor, si es un recolector de basura!! Que sabe él???',
-        message: 'Las mejores ideas, las disruptoras y poco convencionales, vienen justamente de lugares poco convencionales.',
+        content: 'Por favor, si es un recolector de basura! Por qué sabría eso él?',
+        message: 'Las mejores ideas, las disruptoras y poco convencionales, vienen justamente de lugares poco convencionales',
       },
     ],
   },
@@ -325,16 +337,16 @@ const ProblemaMenteCuerpoLessonRaw = [
   },
   {
     type: 'multiple-choice',
-    question: 'Cual es la diferencia en cómo vemos a los demás y cómo nos vemos a nosotros?',
+    question: 'Cual es la diferencia entre cómo vemos a los demás y cómo nos vemos a nosotros?',
     options: [
+      {
+        content: 'Como a nosotros solo nos podemos ver con espejos u otras pantallas, es difícil darnos cuenta como nos vería el resto de la gente.',
+        message: 'Esto es cierto, pero no tiene nada que ver con lo explicado',
+      },
       {
         content: 'Solemos juzgar a los demas por como se ven, pero rara vez hacemos lo mismo con nosotros.',
         message: 'Excelente!',
         correct: true,
-      },
-      {
-        content: 'Esta vez cookies',
-        message: 'Crack k  k   k    k     k      k',
       },
     ],
   },
@@ -391,11 +403,15 @@ const ProblemaMenteCuerpoLessonRaw = [
         content: 'No. Que tiene que ver su apariencia con su personalidad??',
         message: 'Prueba releer la seccion.',
       },
+      {
+        content: 'No frecuentemente pero, cuando es así, su personalidad es muy seria y amargada.',
+        message: 'En ningun momento mencionamos que grado cuan fuertemente o debilmente se nota algo de la personalidad. Prueba releer la seccion.',
+      },
     ],
   },
   {
     type: 'multiple-choice',
-    question: 'Debemos tratar a alguien con cara redonda que parece un nene, como a un nene?',
+    question: 'Debemos tratar como a un niño a alguien con cara redonda que parece un niño?',
     options: [
       {
         content: 'No. A pesar de que es probable que tenga algunas actitudes infantiles, debemos ayudarlo intentando tratarlo como si no fuese así.',
@@ -403,8 +419,8 @@ const ProblemaMenteCuerpoLessonRaw = [
         correct: true,
       },
       {
-        content: 'Por qué no? Debe ser divertido!',
-        message: 'No te dejes llevar por tus emociones. Podes herir a otros.',
+        content: 'Por qué no? Seguramente tenga actitudes de niño, por lo que se sentira bien!',
+        message: 'No te dejes llevar por tus emociones. Podes herir a los demas.',
       },
     ],
   },
@@ -469,7 +485,7 @@ Somos mucho más libres de lo que creemos.`,
     question: 'Que ocurre en el periodo de cuestionamiento?',
     options: [
       {
-        content: 'Nos agarra ansiedad.',
+        content: 'Nos agarra mucha ansiedad y queremos dejar de pensar en eso, haciendo que cuestionando nuestros pensamientos.',
         message: 'Estás seguro?',
       },
       {
@@ -477,7 +493,7 @@ Somos mucho más libres de lo que creemos.`,
         message: 'Estás seguro?',
       },
       {
-        content: 'Mucho de lo que antes veíamos como normal nos parece extraño.',
+        content: 'Mucho de lo que antes veíamos como normal nos parece raro y lo cuestionamos.',
         message: 'Excelente!',
         correct: true,
       },
@@ -501,20 +517,20 @@ Somos mucho más libres de lo que creemos.`,
   },
   {
     type: 'multiple-choice',
-    question: 'Es correcto pensar cómo otros interpretaron nuestras acciones?',
+    question: 'Es correcto pensar cómo otros interpretan nuestras acciones?',
     options: [
       {
-        content: 'Obvio, muchísimo, así aprendemos para futuras ocasiones.',
-        message: 'Si la mayoría de lo que hacemos no son notadas, para que mejorarlas? Lo que importa es el contenido de la conversación.',
+        content: 'Obvio, cuanto más mejor, así aprendemos para futuras ocasiones.',
+        message: 'Si la mayoría de lo que hacemos no es noto, para que mejorarlo? Lo que importa es el contenido de la conversación.',
       },
       {
-        content: 'Sí, pero sin exagerar. Si la mayoría de lo que hacemos no son notadas, para que mejorarlas?',
+        content: 'Sí, pero sin exagerar. Si la mayoría de lo que hacemos no es notado, para que mejorarlo?',
         message: 'Excelente! Lo más importante realmente es el contenido de la conversación.',
         correct: true,
       },
       {
-        content: 'No, para que?',
-        message: 'Siempre está bueno pensar que se podría mejorar y como mejorarlo.',
+        content: 'No, por qué quisiera pensar eso?',
+        message: 'Siempre está bueno pensar qué se podría mejorar y como mejorarlo.',
       },
     ],
   },
@@ -561,13 +577,13 @@ Somos mucho más libres de lo que creemos.`,
     question: 'Por qué nos agarra ansiedad en una crisis existencial?',
     options: [
       {
-        content: 'Como el tiempo se acaba, debemos tomar una decisión, pero como vivimos a oscuras, nunca podemos estamos seguros de elegir correctamente. Esto nos trae ansiedad.',
+        content: 'Como el tiempo se acaba, debemos tomar una decisión, pero como vivimos a oscuras, nunca podemos estamos seguros de haber elegido correctamente. Esto nos trae ansiedad.',
         message: 'Excelente!',
         correct: true,
       },
       {
-        content: 'Estamos en una crisis. Obviamente nos vamos a sentir ansiosos!',
-        message: 'Puede ser que en cualquier crisis nos sintamos ansiosos. Aún así no responde por qué en está. ',
+        content: 'Estamos en una crisis. Es lo normal sentirnos ansiosos!',
+        message: 'Puede ser que sea normal sentirnos ansiosos en una crisis, pero eso no explica por qué pasa.',
       },
     ],
   },
@@ -592,13 +608,17 @@ Somos mucho más libres de lo que creemos.`,
     question: 'Debemos sentirnos mal por equivocarnos?',
     options: [
       {
+        content: 'Si nos equivocamos tenemos que sentirnos mal, es como funciona nuestro cuerpo.',
+        message: 'Es cierto que nuestro cuerpo funciona así, pero no significa que no se pueda arreglar!',
+      },
+      {
         content: 'Por qué nos sentiriamos mal? Todo el mundo se equivoca todo el tiempo, es normal.',
         message: 'Excelente!',
         correct: true,
       },
       {
-        content: 'Si nos equivocamos tenemos que sentirnos mal, es como funciona nuestro cuerpo.',
-        message: 'Es cierto que nuestro cuerpo funciona así, pero no significa que no se pueda arreglar!',
+        content: 'Sí, ya que sintiendonos mal nos damos cuenta que hicimos mal para mejorarlo.',
+        message: 'Podemos darnos cuenta de que hicimos mal sin sentirnos mal, y nos ahorraríamos un mal momento',
       },
     ],
   },
