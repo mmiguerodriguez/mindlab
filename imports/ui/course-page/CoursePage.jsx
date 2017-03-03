@@ -58,7 +58,7 @@ class CoursePage extends React.Component { // TODO: fix $.material.init()
             icon: 'mood',
           },
           {
-            lessonName: 'El problema mente-cuerpo',
+            lessonName: 'Problema mente-cuerpo',
             icon: 'supervisor_account',
           },
           {

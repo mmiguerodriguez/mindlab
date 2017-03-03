@@ -1,20 +1,20 @@
 import replaceNewLineInCards from './../../utils/client/replaceNewLineInCards';
-
+// TODO: Fix quizzes
 const IntroDesarrolloPersonalLessonRaw = [
   {
     type: 'content',
-    title: 'Desarrollo Personal??',
-    text: 'En el mundo moderno, cómo afrontas varias situaciones puede tener un impacto muy grande en tu vida.',
+    title: 'Desarrollo Personal',
+    text: 'En el mundo moderno, cómo afrontás varias situaciones puede tener un impacto muy grande en tu vida.',
   },
   {
     type: 'content',
     imageUrl: '/images/courses/self-help/theater.svg',
-    text: 'En este curso aprenderás cómo una mentalidad optimista y planificadora puede ayudarte a construir tu futuro, y cómo te afecta una mentalidad pesimista.',
+    text: 'En este curso aprenderás cómo una mentalidad optimista y planificadora puede ayudarte a construir tu futuro, y cómo te influye una mentalidad pesimista.',
   },
   {
     type: 'content',
     imageUrl: '/images/courses/self-help/weird-man.svg',
-    text: 'Aprenderás qué es el problema mente-cuerpo, relacionado con cómo tus emociones impactan en cómo te ves y al revés; cómo te ves desarrolla tus emociones.',
+    text: 'Vas a aprender qué es el problema mente-cuerpo, que está relacionado con cómo tus emociones impactan en cómo te ves y a su vez, cómo tu aparience desarrolla tus emociones.',
   },
   {
     type: 'content',
@@ -23,9 +23,9 @@ const IntroDesarrolloPersonalLessonRaw = [
   },
   {
     type: 'finish',
-    imageUrl: '/images/course/self-help/workspace.svg',
+    imageUrl: '/images/courses/self-help/workspace.svg',
     title: 'Felicitaciones',
-    text: 'Ya sabés de que se trata este curso, en la próxima lección vamos a ver las distintas mentalidades y cómo afectan a cada persona.',
+    text: 'Ya sabés de que se trata este curso, en la próxima lección vamos a ver distintas mentalidades y cómo afectan a cada persona.',
     nextUrl: '/course/Desarrollo',
   },
 ];
@@ -35,7 +35,7 @@ const PesimismoYOptimismoLessonRaw = [
   {
     type: 'content',
     title: 'La cabeza de un pesimista',
-    text: '“Esta lección va a ser muy mala. No te enseñará nada. Al final te vas a preguntar a dónde se fueron esos pocos minutos de tu vida.”',
+    text: 'Así pensaría un pesimista:\n> “Esta lección va a ser muy mala. No me enseñará nada. Al final me voy a preguntar a dónde se fueron esos pocos minutos de mi vida.”',
   },
   {
     type: 'content',
@@ -81,22 +81,24 @@ const PesimismoYOptimismoLessonRaw = [
     type: 'content',
     title: 'Por qué hay pesimistas?',
     text: `Durante siglos, las religiones difundieron mensajes oscuros:
-El Budismo habla de dolor, la vida es injusta y llena de males.
-El Cristianismo te carga con la culpa, con que si no hacés lo que te dicen, estás pecando.`,
+El Budismo habla de dolor, que la vida es injusta y está llena de males.
+El Cristianismo te carga con culpa, con que si no hacés lo que te dicen, estás pecando.`,
     forceNewStack: true,
   },
   {
     type: 'content',
     imageUrl: '/images/courses/self-help/blackboard.svg',
-    text: `Fue útil: sirvió para mantener las expectativas bajo control.
-Las expectativas reducidas explican la existencia de las religiones, ya que te hacen feliz. Se puede comprender mejor con la siguiente ecuación: **felicidad = realidad / expectativas**`,
+    text: `Esto fue útil, sirvió para mantener las expectativas bajo control.
+Las expectativas reducidas explican la existencia de las religiones, ya que te hacen feliz.
+Se puede comprender mejor con la siguiente ecuación: **felicidad = realidad / expectativas**`,
   },
   {
     type: 'content',
     imageUrl: '/images/courses/self-help/chemistry.svg',
     text: `Entonces, para **ser FELIZ**:
-O mejoras la **realidad**
-O reducís las **expectativas**`,
+* Mejoras la **realidad**
+ó
+* Reducís las **expectativas**`,
   },
   {
     type: 'content',
@@ -132,12 +134,12 @@ Reduce sus expectativas!`,
   {
     type: 'content',
     imageUrl: '/images/courses/self-help/man-thinking.svg',
-    text: 'Aunque sea un buen dia, se preguntan porque no fue mejor. Piensan que todo el mundo está triste y preocupado todo el tiempo',
+    text: 'Aunque sea un buen dia, se preguntan por qué no fue mejor. Piensan que todo el mundo está triste y preocupado todo el tiempo',
   },
   {
     type: 'content',
     imageUrl: '/images/courses/self-help/desert.svg',
-    text: 'En resumen, el **pesimismo indefinido** es la mentalidad irracional (ya que hay formas mejores) de aquellos que, sin una razón definida, piensan que el presente es malo y el futuro va a ser peor, por lo general con el objetivo de ser más feliz.',
+    text: 'En resumen, el **pesimismo indefinido** es la mentalidad irracional (ya que hay formas mejores) de aquellos que piensan que el presente es malo y el futuro va a ser peor, por lo general con el objetivo de ser más feliz.',
   },
   {
     type: 'multiple-choice',
@@ -168,17 +170,17 @@ Reduce sus expectativas!`,
   {
     type: 'content',
     imageUrl: '/images/courses/self-help/prohibitied-telescope.svg',
-    text: 'Esto no implica hacer predicciones positivas, contrarias a las predicciones negativas explicadas antes. El optimismo definido dice que directamente no hagamos predicciones.  ',
+    text: 'Esto no implica hacer predicciones positivas, contrarias a las predicciones negativas explicadas antes.\nEl optimismo definido dice que directamente no hagamos predicciones.',
   },
   {
     type: 'content',
     imageUrl: '/images/courses/self-help/tools.svg',
-    text: 'Debemos vivir el día a día sin estar esperando lo mejor ni lo peor, sino simplemente enterandonos del resultado, y no evaluar si fue bueno o malo, sino que instantáneamente buscar cómo mejorarlo. ',
+    text: 'Debemos vivir el día a día sin estar esperando lo mejor ni lo peor, sino simplemente enterándonos del resultado, y no evaluar si fue bueno o malo, sino que instantáneamente buscar cómo mejorarlo. ',
   },
   {
     type: 'content',
     imageUrl: '/images/courses/self-help/desk.svg',
-    text: 'Para un optimista definido, el futuro será mejor que el presente si planea y trabaja duro para hacerlo mejor.',
+    text: 'Para un optimista definido, el futuro será mejor que el presente si planea y trabaja duro para lograrlo.',
   },
   {
     type: 'multiple-choice',
@@ -198,13 +200,13 @@ Reduce sus expectativas!`,
   {
     type: 'content',
     title: 'El optimismo definido en la sociedad',
-    text: 'Desde el siglo XVII hasta mediados del siglo XX, ciertos optimistas lideraron el mundo occidental. Científicos, ingenieros, médicos y hombres de negocios hicieron al mundo más rico, sano y longevo de lo que se podían imaginar.',
+    text: 'Desde el siglo XVII hasta mediados del siglo XX, ciertos optimistas lideraron el mundo occidental.\nCientíficos, ingenieros, médicos y hombres de negocios hicieron al mundo más rico, sano y longevo de lo que se podían imaginar.',
     forceNewStack: true,
   },
   {
     type: 'content',
     imageUrl: '/images/courses/self-help/chemistry-1.svg',
-    text: 'Entre los avances, estuvieron la aplicación de la química a la industria y la agricultura, la navegación a vapor, los ferrocarriles, los telégrafos eléctricos, la limpieza de continentes enteros para el cultivo y la canalización de los ríos.',
+    text: 'Entre los avances, estuvieron la aplicación de la química a la industria y agricultura, la navegación a vapor, los ferrocarriles, los telégrafos eléctricos, la limpieza de continentes enteros para el cultivo y la canalización de los ríos.',
   },
   {
     type: 'content',
@@ -214,12 +216,12 @@ Reduce sus expectativas!`,
   {
     type: 'content',
     imageUrl: '/images/courses/self-help/golden-gate-bridge.svg',
-    text: 'El Empire State Building se inició en 1929 y terminó en 1931. El Golden Gate Bridge se inició en 1933 y se completó en 1937. El programa de Apolo de la NASA comenzó en 1961 y puso 12 hombres en la luna antes del 1972.',
+    text: 'El Empire State Building se inició en 1929 y terminó en 1931.\nEl Golden Gate Bridge se inició en 1933 y se completó en 1937.\nEl programa de Apolo de la NASA comenzó en 1961 y puso 12 hombres en la luna antes del 1972.',
   },
   {
     type: 'content',
     imageUrl: '/images/courses/self-help/dam.svg',
-    text: 'A finales de 1940, un californiano llamado John Reber se propuso reinventar la geografía física de toda la bahía de San Francisco. Reber era un maestro de escuela primaria!',
+    text: 'A finales de 1940, un californiano llamado John Reber se propuso reinventar la geografía física de toda la bahía de San Francisco. Reber era tan solo un maestro de escuela primaria!',
   },
   {
     type: 'content',
@@ -254,7 +256,7 @@ Reduce sus expectativas!`,
   {
     type: 'content',
     title: 'El optimismo definido en la actualidad',
-    text: 'En la década de 1960, la gente recibía todos estos grandes planes y comenzaron a cuestionarse el sentido de trabajar, ya que todo avanzaba muy bien sin su aporte. Esto provocó el fin del optimismo definido.',
+    text: 'En la década de 1960, la gente recibía todos estos grandes planes y comenzaron a cuestionarse el sentido de trabajar, ya que todo avanzaba muy bien sin su aporte.\nEsto provocó el fin del optimismo definido.',
     forceNewStack: true,
   },
   {
@@ -275,13 +277,15 @@ Reduce sus expectativas!`,
   {
     type: 'content',
     imageUrl: '/images/courses/self-help/strategy-1.svg',
-    text: 'No debemos esperar a que las cosas buenas pasen por si solas. Tampoco debemos esperar a que pasen las malas. Debemos planificar el futuro y estar dispuestos a construirlo desde el presente.',
+    text: `* No debemos esperar a que las cosas buenas pasen por si solas.
+* No debemos esperar a que pasen las malas.
+* Debemos planificar el futuro y estar dispuestos a construirlo desde el presente.`,
   },
   {
     type: 'finish',
     imageUrl: '/images/courses/self-help/list.svg',
     title: 'Excelente!',
-    text: 'Felicitaciones! Ahora vas a poder tomar mejores decisiones porque ya sabés cómo influyen en vos y en el resto de la gente los diferentes tipos de mentalidades!',
+    text: 'Ahora vas a poder tomar mejores decisiones porque ya sabés cómo los diferentes tipos de mentalidades influyen en vos y en el resto de la gente!',
   },
   {
     type: 'feedback',
@@ -296,12 +300,12 @@ const ProblemaMenteCuerpoLessonRaw = [
   {
     type: 'content',
     title: 'Qué es el problema mente-cuerpo?',
-    text: 'El “problema mente-cuerpo” radica en el hecho de que a los ojos de otras personas, nuestra apariencia física es el factor que más influye en cómo otros evalúan nuestra naturaleza y nuestra personalidad.',
+    text: 'El “problema mente-cuerpo” radica en el hecho de que a los ojos de otras personas, nuestra apariencia física es el factor que más influye en cómo evalúan nuestra naturaleza y personalidad.',
   },
   {
     type: 'content',
     imageUrl: '/images/courses/self-help/manly.svg',
-    text: 'Se asume que un rostro dulce tiene un dueño amable y benevolente, mientras que la cara larga, encarnizada, con ojos estrechos, un dueño enojado y sospechoso.',
+    text: 'Se asume que un rostro dulce tiene un dueño amable y benevolente, mientras que la cara larga, encarnizada y con ojos estrechos, un dueño enojado y sospechoso.',
   },
   {
     type: 'content',
@@ -317,7 +321,7 @@ const ProblemaMenteCuerpoLessonRaw = [
   {
     type: 'content',
     imageUrl: '/images/courses/self-help/mirror.svg',
-    text: 'Por dentro podemos sentirnos tiernos, inspirados, y jóvenes, pero la cara que vemos en el espejo puede ser severa, seria, sin humor, y cada vez más semejante a la de un señor anciano y amargado. Nos sentimos mal representados.',
+    text: 'Por dentro podemos sentirnos tiernos, inspirados y jóvenes, pero la cara que vemos en el espejo puede ser severa, seria, sin humor, y cada vez más semejante a la de un señor anciano y amargado. Nos sentimos mal representados.',
   },
   {
     type: 'multiple-choice',
@@ -348,7 +352,7 @@ const ProblemaMenteCuerpoLessonRaw = [
   {
     type: 'content',
     imageUrl: '/images/courses/self-help/target.svg',
-    text: 'Las características más gentiles de alguien quien parece amable serán, por lo tanto, constantemente invitadas a la superficie, por las expectativas y el alentamiento de los demás.',
+    text: 'Las características más gentiles de alguien que parece amable serán constantemente llevadas a la superficie, por las expectativas y el alentamiento de los demás.',
   },
   {
     type: 'content',
@@ -359,7 +363,7 @@ const ProblemaMenteCuerpoLessonRaw = [
   {
     type: 'content',
     imageUrl: '/images/courses/self-help/price-tag.svg',
-    text: 'Lo mejor que podemos hacer para superar el problema mente-cuerpo no es jugar con la ropa, gastar en peluquerías, o poner en peligro nuestra salud con una cirugía plástica. Nunca seremos capaces de alinear la mente y el cuerpo con la apariencia.',
+    text: 'Lo mejor que podemos hacer para superar el problema mente-cuerpo no es jugar con la ropa, gastar en peluquerías o poner en peligro nuestra salud con una cirugía plástica. Nunca seremos capaces de alinear la mente y el cuerpo con la apariencia.',
   },
   {
     type: 'content',
@@ -369,7 +373,7 @@ const ProblemaMenteCuerpoLessonRaw = [
   {
     type: 'content',
     imageUrl: '/images/courses/self-help/girl.svg',
-    text: 'Debemos esforzarnos por recordar que el aspecto de los demás puede ser muy distinto de su personalidad, y comprender que si otro no hace eso, es por su ignorancia. No debemos sentirnos mal por lo que piensa el resto.',
+    text: 'Debemos esforzarnos por recordar que el aspecto de los demás puede ser muy distinto de su personalidad, y comprender que si otro no hace eso con nostros, es por su ignorancia. No debemos sentirnos mal por lo que piensa el resto.',
   },
   {
     type: 'multiple-choice',
@@ -377,7 +381,7 @@ const ProblemaMenteCuerpoLessonRaw = [
     options: [
       {
         content: 'Lamentablemente sí, aunque puede ser cambiada.',
-        message: 'Genio!!',
+        message: 'Correcto!',
         correct: true,
       },
       {
@@ -429,7 +433,7 @@ const CrisisExistencialesLessonRaw = [
   {
     type: 'content',
     imageUrl: '/images/courses/self-help/tunnel.svg',
-    text: 'Lo que viene a continuación puede sonar terrible, pero es importante entender que es real, casi todos pasaron por esto alguna vez.\n Al final todo va a estar bien, y vas a estár feliz de entender cómo funcionan las crisis y cómo ayudar a otros!',
+    text: 'Lo que viene a continuación puede sonar terrible, pero es importante entender que es real, casi todos pasaron por esto alguna vez.\nAl final todo va a estar bien, y vas a estár feliz de entender cómo funcionan las crisis y cómo ayudar a otros!',
   },
   {
     type: 'content',
@@ -479,13 +483,13 @@ Somos mucho más libres de lo que creemos.`,
   {
     type: 'content',
     title: 'Iluminación y replanteo de vida',
-    text: 'Esta revelación nos produce ansiedad extrema.\n El reconocimiento de nuestra libertad no nos trae calma, de hecho todo lo contrario, reconocemos que hemos estado engañándonos acerca de lo que <strong>debemos</strong> ser.',
+    text: 'Esta revelación nos produce ansiedad extrema.\nEl reconocimiento de nuestra libertad no nos trae calma, de hecho todo lo contrario, reconocemos que hemos estado engañándonos acerca de lo que <strong>debemos</strong> ser.',
     forceNewStack: true,
   },
   {
     type: 'content',
     imageUrl: '/images/courses/self-help/brain.svg',
-    text: 'A nadie realmente le importa tanto lo que nosotros pensamos, lo que somos y lo que hemos elegido ser.\n Casi siempre sobreestimamos la importancia de nuestras malas acciones.',
+    text: 'A nadie realmente le importa tanto lo que nosotros pensamos, lo que somos y lo que hemos elegido ser.\nCasi siempre sobreestimamos la importancia de nuestras malas acciones.',
   },
   {
     type: 'content',
@@ -514,40 +518,40 @@ Somos mucho más libres de lo que creemos.`,
   {
     type: 'content',
     title: 'Miedo a morirse',
-    text: 'Estamos altamente conscientes de la muerte, el tiempo es corto y se acaba.\n Necesitamos reexaminar nuestras vidas pero el reloj está corriendo y suena fuerte.',
+    text: 'Estamos altamente conscientes de la muerte, el tiempo es corto y se acaba.\nNecesitamos reexaminar nuestras vidas pero el reloj está corriendo y suena fuerte.',
     forceNewStack: true,
   },
   {
     type: 'content',
     imageUrl: '/images/courses/self-help/todo-list.svg',
-    text: 'Hay tantas cosas para hacer, que pensamos que no vamos a llegar a hacer nada que valga la pena en el día.',
+    text: 'Hay tantas cosas para hacer que pensamos que no vamos a llegar a hacer nada que valga la pena en el día.',
   },
   {
     type: 'content',
     title: 'Vivimos oscuros',
-    text: 'Tenemos muchas opciones pero, como somos humanos, nunca tenemos la información que hubiéramos necesitado para elegir con certeza y sabiduría.\n Somos forzados a decidir y, como nos falta información, podemos estar seguros de que cometeremos muchos errores.',
+    text: 'Tenemos muchas opciones pero, como somos humanos, nunca tenemos la información que hubiéramos necesitado para elegir con certeza y sabiduría.\nSomos forzados a decidir y, como nos falta información, podemos estar seguros de que cometeremos muchos errores.',
     forceNewStack: true,
   },
   {
     type: 'content',
     imageUrl: '/images/courses/self-help/human.svg',
-    text: 'La condición de la especie humana es planear nuestro curso en la oscuridad, sin una razón adecuada.\n Esto nos lleva a una palabra favorita de los psicólogos del existencialismo: **ansiedad**.',
+    text: 'La condición de la especie humana es planear nuestro curso en la oscuridad, sin una razón adecuada.\nEsto nos lleva a una palabra favorita de los psicólogos del existencialismo: **ansiedad**.',
   },
   {
     type: 'content',
     title: 'La ansiedad',
-    text: 'Debido a que debemos elegir sin seguridad de lo escogido, vivimos ansiosos.\n No sobre algo en particular, pero como una cualidad básica de nuestras vidas.',
+    text: 'Debido a que debemos elegir sin seguridad de lo escogido, vivimos ansiosos.\nNo sobre algo en particular, pero como una cualidad básica de nuestras vidas.',
     forceNewStack: true,
   },
   {
     type: 'content',
     imageUrl: '/images/courses/self-help/puzzle.svg',
-    text: 'Esto puede sonar como una conspiración paralizante.\n Sin embargo, los psicólogos existencialistas no quieren deprimirnos, quieren entender los dilemas que por lo general percibimos como si solo afectarán a uno mismo, y traernos soluciones.',
+    text: 'Esto puede sonar como una conspiración paralizante.\nSin embargo, los psicólogos existencialistas no quieren deprimirnos, quieren entender los dilemas que por lo general percibimos como si solo afectarán a uno mismo, y traernos soluciones.',
   },
   {
     type: 'content',
     imageUrl: '/images/courses/self-help/devil.svg',
-    text: 'Está es la razón por la que nos avergonzamos y pensamos que tenemos algún tipo de maldición, cuando de hecho son sólo cualidades humanas que nos inmovilizan cuando las consideramos con suficiente profundidad.',
+    text: 'Esta es la razón por la que nos avergonzamos y pensamos que tenemos algún tipo de maldición, cuando de hecho son sólo cualidades humanas que nos inmovilizan cuando las consideramos con suficiente profundidad.',
   },
   {
     type: 'multiple-choice',
@@ -573,12 +577,12 @@ Somos mucho más libres de lo que creemos.`,
   {
     type: 'content',
     imageUrl: '/images/courses/self-help/ear.svg',
-    text: 'Este es un mensaje que nos beneficia escucharlo bastante seguido, porque lo que nos ayuda con el arrepentimiento es el conocimiento de que es una carga para todos.\n La vida libre de arrepentimientos solo existe en películas y canciones.',
+    text: 'Este es un mensaje que nos beneficia escucharlo bastante seguido, porque lo que nos ayuda con el arrepentimiento es el conocimiento de que es una carga para todos.\nLa vida libre de arrepentimientos solo existe en películas y canciones.',
   },
   {
     type: 'content',
     imageUrl: '/images/courses/self-help/relieved.svg',
-    text: 'La manera de disminuir nuestra ansiedad es aliviar el pensamiento de que pudimos haber elegido correctamente pero fallamos.\n El grado de decepción, los errores y las decisiones erróneas son simplemente una condición humana".',
+    text: 'La manera de disminuir nuestra ansiedad es aliviar el pensamiento de que pudimos haber elegido correctamente pero fallamos.\nEl grado de decepción, los errores y las decisiones erróneas son simplemente una condición humana".',
   },
   {
     type: 'multiple-choice',

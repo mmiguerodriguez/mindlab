@@ -91,7 +91,7 @@ class LessonPage extends React.Component {
         case 'Pesimismo y optimismo':
           cardsContent = PesimismoYOptimismoLesson;
           break;
-        case 'El problema mente-cuerpo':
+        case 'Problema mente-cuerpo':
           cardsContent = ProblemaMenteCuerpoLesson;
           break;
         case 'Crisis existenciales':
