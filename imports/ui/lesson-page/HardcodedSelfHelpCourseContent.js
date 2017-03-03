@@ -431,12 +431,12 @@ const CrisisExistencialesLessonRaw = [
 * Cuestionamiento
 * Iluminación y replanteo de vida
 * Miedo a morirse
-* Vivimos oscuros`,
+* Vivir a oscuras`,
   },
   {
     type: 'content',
     imageUrl: '/images/courses/self-help/tunnel.svg',
-    text: 'Lo que viene a continuación puede sonar terrible, pero es importante entender que es real, casi todos pasaron por esto alguna vez.\nAl final todo va a estar bien, y vas a estár feliz de entender cómo funcionan las crisis y cómo ayudar a otros!',
+    text: 'Lo que viene a continuación puede sonar terrible, pero es importante entender que es real y que casi todos pasaron por esto alguna vez.\nAl final todo va a estar bien y vas a estár feliz de entender cómo funcionan las crisis y cómo ayudar a otros!',
   },
   {
     type: 'content',
@@ -448,9 +448,9 @@ const CrisisExistencialesLessonRaw = [
     type: 'content',
     imageUrl: '/images/courses/self-help/questions.svg',
     text: `Por ejemplo, podemos empezar a preguntarnos:
-* ¿Por qué vivimos en **ESTA** parte del mundo en vez en cualquier otra?
-* ¿Por qué hacemos **ESTE** trabajo y **NO** otro?
-* ¿Por qué estamos con **ESTA** persona y siguiendo **ESTAS** normas sociales?`,
+* ¿Por qué vivimos en **esta** parte del mundo en vez en cualquier otra?
+* ¿Por qué hacemos **este** trabajo y **no** otro?
+* ¿Por qué estamos con **esta** persona y siguiendo **estas** normas sociales?`,
   },
   {
     type: 'content',
@@ -486,7 +486,7 @@ Somos mucho más libres de lo que creemos.`,
   {
     type: 'content',
     title: 'Iluminación y replanteo de vida',
-    text: 'Esta revelación nos produce ansiedad extrema.\nEl reconocimiento de nuestra libertad no nos trae calma, de hecho todo lo contrario, reconocemos que hemos estado engañándonos acerca de lo que <strong>debemos</strong> ser.',
+    text: 'La revelación mencionada previamente nos produce ansiedad extrema.\nEl reconocimiento de nuestra libertad no nos trae calma, de hecho todo lo contrario, reconocemos que hemos estado engañándonos acerca de lo que <strong>debemos</strong> ser.',
     forceNewStack: true,
   },
   {
@@ -504,12 +504,12 @@ Somos mucho más libres de lo que creemos.`,
     question: 'Es correcto pensar cómo otros interpretaron nuestras acciones?',
     options: [
       {
-        content: 'Obvio, muchísimo, así nos mejoramos para futuras ocasiones.',
-        message: 'Si la mayoría de las cosas que hacemos el otro no las nota, para que mejorarlas? Lo que importa es el contenido de la conversación.',
+        content: 'Obvio, muchísimo, así aprendemos para futuras ocasiones.',
+        message: 'Si la mayoría de lo que hacemos no son notadas, para que mejorarlas? Lo que importa es el contenido de la conversación.',
       },
       {
-        content: 'Sí, pero sin exagerar. Si la mayoría de las cosas que hacemos el otro no las nota, para que mejorarlas? Lo que importa es el contenido.',
-        message: 'Excelente!?',
+        content: 'Sí, pero sin exagerar. Si la mayoría de lo que hacemos no son notadas, para que mejorarlas?',
+        message: 'Excelente! Lo más importante realmente es el contenido de la conversación.',
         correct: true,
       },
       {
@@ -521,24 +521,24 @@ Somos mucho más libres de lo que creemos.`,
   {
     type: 'content',
     title: 'Miedo a morirse',
-    text: 'Estamos altamente conscientes de la muerte, el tiempo es corto y se acaba.\nNecesitamos reexaminar nuestras vidas pero el reloj está corriendo y suena fuerte.',
+    text: 'Estamos altamente conscientes de la muerte. Nuestra vida es corta y se acaba lentamente.\nNecesitamos reexaminar nuestras vidas pero el reloj está corriendo y notamos alarmadamente como avanza.',
     forceNewStack: true,
   },
   {
     type: 'content',
     imageUrl: '/images/courses/self-help/todo-list.svg',
-    text: 'Hay tantas cosas para hacer que pensamos que no vamos a llegar a hacer nada que valga la pena en el día.',
+    text: 'Hay tantas cosas para hacer que pensamos que no vamos a llegar a hacer nada que valga la pena durante el día.',
   },
   {
     type: 'content',
-    title: 'Vivimos oscuros',
+    title: 'Vivimos a oscuras',
     text: 'Tenemos muchas opciones pero, como somos humanos, nunca tenemos la información que hubiéramos necesitado para elegir con certeza y sabiduría.\nSomos forzados a decidir y, como nos falta información, podemos estar seguros de que cometeremos muchos errores.',
     forceNewStack: true,
   },
   {
     type: 'content',
     imageUrl: '/images/courses/self-help/human.svg',
-    text: 'La condición de la especie humana es planear nuestro curso en la oscuridad, sin una razón adecuada.\nEsto nos lleva a una palabra favorita de los psicólogos del existencialismo: **ansiedad**.',
+    text: 'La condición de la especie humana es planear nuestro camino en la oscuridad, sin una razón adecuada.\nEsto nos lleva a una palabra favorita de los psicólogos del existencialismo: **ansiedad**.',
   },
   {
     type: 'content',
@@ -549,12 +549,12 @@ Somos mucho más libres de lo que creemos.`,
   {
     type: 'content',
     imageUrl: '/images/courses/self-help/puzzle.svg',
-    text: 'Esto puede sonar como una conspiración paralizante.\nSin embargo, los psicólogos existencialistas no quieren deprimirnos, quieren entender los dilemas que por lo general percibimos como si solo afectarán a uno mismo, y traernos soluciones.',
+    text: 'Esto puede sonar como una conspiración paralizante.\nSin embargo, los psicólogos existencialistas no quieren deprimirnos. Ellos quieren entender los dilemas que por lo general percibimos como si solo afectarán a uno mismo, y traernos soluciones.',
   },
   {
     type: 'content',
     imageUrl: '/images/courses/self-help/devil.svg',
-    text: 'Esta es la razón por la que nos avergonzamos y pensamos que tenemos algún tipo de maldición, cuando de hecho son sólo cualidades humanas que nos inmovilizan cuando las consideramos con suficiente profundidad.',
+    text: 'Esta es la razón por la que nos avergonzamos y pensamos que tenemos algún tipo de maldición, cuando de hecho son sólo cualidades humanas que nos inmovilizan cuando las consideramos con suficiente atención.',
   },
   {
     type: 'multiple-choice',
@@ -574,7 +574,7 @@ Somos mucho más libres de lo que creemos.`,
   {
     type: 'content',
     title: 'Todo el mundo pasa por crisis existenciales',
-    text: 'El que sufras por tener que elegir entre tantas opciones no es una anomalía, es una de las cosas más comunes y predecibles de estar vivo.',
+    text: 'El que sufras por tener que elegir entre tantas opciones no es una anomalía, es una de las cosas más comunes y predecibles de estar vivo!',
     forceNewStack: true,
   },
   {
@@ -585,7 +585,7 @@ Somos mucho más libres de lo que creemos.`,
   {
     type: 'content',
     imageUrl: '/images/courses/self-help/relieved.svg',
-    text: 'La manera de disminuir nuestra ansiedad es aliviar el pensamiento de que pudimos haber elegido correctamente pero fallamos.\nEl grado de decepción, los errores y las decisiones erróneas son simplemente una condición humana".',
+    text: 'La manera de disminuir nuestra ansiedad es aliviar el pensamiento de que pudimos haber elegido correctamente pero fallamos.\nEl grado de decepción, los errores y las decisiones erróneas son simplemente una condición humana!',
   },
   {
     type: 'multiple-choice',

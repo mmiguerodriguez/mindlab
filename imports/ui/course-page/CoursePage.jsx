@@ -47,7 +47,7 @@ class CoursePage extends React.Component { // TODO: fix $.material.init()
           },
         ];
         break;
-      case 'Desarrollo':
+      case 'Desarrollo Personal':
         lessonsContent = [
           {
             lessonName: 'Introducción',
