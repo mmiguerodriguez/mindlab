@@ -26,7 +26,7 @@ const IntroDesarrolloPersonalLessonRaw = [
     imageUrl: '/images/courses/self-help/workspace.svg',
     title: 'Felicitaciones',
     text: 'Ya sabés de que se trata este curso, en la próxima lección vamos a ver distintas mentalidades y cómo afectan a cada persona.',
-    nextUrl: '/course/Desarrollo',
+    nextUrl: '/course/Desarrollo%20Personal',
   },
 ];
 const IntroDesarrolloPersonalLesson = replaceNewLineInCards(IntroDesarrolloPersonalLessonRaw);
@@ -99,10 +99,9 @@ Se puede comprender mejor con la siguiente ecuación: **felicidad = realidad / e
   {
     type: 'content',
     imageUrl: '/images/courses/self-help/chemistry.svg',
-    text: `Entonces, para **ser FELIZ**:
-* Mejoras la **realidad**
-ó
-* Reducís las **expectativas**`,
+    text: `Entonces, para **ser FELIZ** tenés dos alternativas:
+* Mejorar la **realidad**
+* Reducir las **expectativas**`,
   },
   {
     type: 'content',
@@ -303,7 +302,7 @@ Reduce sus expectativas!`,
     type: 'feedback',
     title: 'Ayudanos!',
     text: 'Necesitamos tu ayuda! Decinos todas las sugerencias o comentarios que tengas!',
-    nextUrl: '/course/Desarollo',
+    nextUrl: '/course/Desarrollo%20Personal',
   },
 ];
 const PesimismoYOptimismoLesson = replaceNewLineInCards(PesimismoYOptimismoLessonRaw);
@@ -429,7 +428,7 @@ const ProblemaMenteCuerpoLessonRaw = [
     imageUrl: '/images/courses/self-help/happy-1.svg',
     title: 'Muy bien!',
     text: 'Finalizaste la lección del problema mente cuerpo! Ahora ya sabés que la apariencia superficial no es importante y que la felicidad no tiene que ver con cómo te ves!',
-    nextUrl: '/course/Desarrollo',
+    nextUrl: '/course/Desarrollo%20Personal',
   },
 ];
 const ProblemaMenteCuerpoLesson = replaceNewLineInCards(ProblemaMenteCuerpoLessonRaw);
@@ -631,7 +630,7 @@ Somos mucho más libres de lo que creemos.`,
   {
     type: 'feedback',
     title: 'Ayudanos!',
-    text: 'Necesitamos tu ayuda! Decinos todas las sugerencias o comentarios que tengas!',
+    text: 'Qué te pareció el curso? Decinos todas las sugerencias o comentarios que tengas!',
     nextUrl: '/',
   },
 ];
