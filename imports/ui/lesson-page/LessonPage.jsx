@@ -83,7 +83,7 @@ class LessonPage extends React.Component {
           cardsContent = ImportanciaDeComerLesson;
           break;
       }
-    } else if (this.props.params.courseName === 'Desarrollo') {
+    } else if (this.props.params.courseName === 'Desarrollo Personal') {
       switch (this.props.params.lessonName) {
         case 'Introducción':
           cardsContent = IntroDesarrolloPersonalLesson;
@@ -91,7 +91,7 @@ class LessonPage extends React.Component {
         case 'Pesimismo y optimismo':
           cardsContent = PesimismoYOptimismoLesson;
           break;
-        case 'El problema mente-cuerpo':
+        case 'Problema mente-cuerpo':
           cardsContent = ProblemaMenteCuerpoLesson;
           break;
         case 'Crisis existenciales':
